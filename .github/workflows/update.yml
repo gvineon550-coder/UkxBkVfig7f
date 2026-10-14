@@ -84,19 +84,156 @@ jobs:
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g} HD")
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g}")
 
+        BLOCKED_COUNTRIES = {"UA", "UZ", "TM", "IL", "DE", "AZ", "AM", "MD",
+                             "EE", "LV", "LT", "GE", "TR", "KG", "TJ", "AR",
+                             "EG", "PK", "AF", "IQ", "IR", "SY", "SA"}
+
+        BLOCKED_SUFFIXES = (".ua", ".uz", ".tm", ".il", ".de", ".az", ".am",
+                            ".md", ".ee", ".lv", ".lt", ".ge", ".tr", ".kg", ".tj")
+
+        CATEGORY_OVERRIDES = {
+            "2x2.ru": "Развлекательные",
+            "TNT.ru": "Развлекательные",
+            "TNT4.ru": "Развлекательные",
+            "TNT4International.ru": "Развлекательные",
+            "TNTInternational.ru": "Развлекательные",
+            "Friday.ru": "Развлекательные",
+            "FridayInternational.ru": "Развлекательные",
+            "U.ru": "Развлекательные",
+            "Che.ru": "Развлекательные",
+            "TV3.ru": "Развлекательные",
+            "Subbota.ru": "Развлекательные",
+            "TvoeTV.ru": "Развлекательные",
+            "TvoyeTVYumor.ru": "Развлекательные",
+            "PeretzInternational.ru": "Развлекательные",
+            "KrikTV.ru": "Развлекательные",
+            "VoprosyiOtvety.ru": "Развлекательные",
+            "Komediynoe.ru": "Развлекательные",
+            "Smotrim100Prazdnik.ru": "Развлекательные",
+            "CityEdenMedZdrav.ru": "Развлекательные",
+            "CityEdenReceptyGurmana.ru": "Развлекательные",
+            "Kinokomedija.ru": "Кино",
+            "Komedia.ru": "Кино",
+            "vijuPlusComedy.ru": "Кино",
+            "Fox.ru": "Кино",
+            "FoxLife.ru": "Сериалы",
+            "Kinopokaz.ru": "Кино",
+            "Kinosemja.ru": "Кино",
+            "Kinouzhas.ru": "Кино",
+            "KinoHit.ru": "Кино",
+            "KinoBoevik.kz": "Кино",
+            "Mirovoekino.kz": "Кино",
+            "Muzhskoekino.ru": "Кино",
+            "RodnoeKino.ru": "Кино",
+            "RusskiyBestseller.ru": "Кино",
+            "RusskiyDetektiv.ru": "Кино",
+            "RusskiyIllusion.ru": "Кино",
+            "HorosheeKino.ru": "Кино",
+            "TV21International.ru": "Кино",
+            "StarCinema.ru": "Кино",
+            "StarFamily.ru": "Кино",
+            "DiscoveryChannel.ru": "Познавательные",
+            "TLC.ru": "Познавательные",
+            "FoodNetwork.ru": "Познавательные",
+            "Nano.ru": "Познавательные",
+            "OtkritiymirZdorove.ru": "Познавательные",
+            "AnimalPlanet.ru": "Познавательные",
+            "InvestigationDiscovery.ru": "Познавательные",
+            "vijuExplore.ru": "Познавательные",
+            "vijuNature.ru": "Познавательные",
+            "vijuPlusPlanet.ru": "Познавательные",
+            "RTDocumentary.ru": "Документальные",
+            "Smotrim100Fakty.ru": "Документальные",
+            "CityEdenKinoDok.ru": "Документальные",
+            "365daysTV.ru": "Документальные",
+            "Izvestia.ru": "Новостные",
+            "Mir24.ru": "Новостные",
+            "360.ru": "Новостные",
+            "360News.ru": "Новостные",
+            "RTRPlaneta.ru": "Новостные",
+            "RTBalkan.ru": "Новостные",
+            "CurrentTimeTV.cz": "Новостные",
+            "VestiFM.ru": "Новостные",
+            "Tolk.ru": "Новостные",
+            "SolovyovLive.ru": "Новостные",
+            "Moskva24.ru": "Новостные",
+            "MoskvaDoveriye.ru": "Новостные",
+            "VmesteRF.ru": "Новостные",
+            "PerviyInformationniy.by": "Новостные",
+            "Belarus24.by": "Новостные",
+            "24KZ.kz": "Новостные",
+            "AtamekenBusiness.kz": "Новостные",
+            "India.ru": "Новостные",
+            "ProBusiness.ru": "Новостные",
+            "NTV.ru": "Общие",
+            "NTVVitrina.ru": "Общие",
+            "Mir.ru": "Общие",
+            "Zvezda.ru": "Общие",
+            "ZvezdaPlus.ru": "Общие",
+            "Russia1.ru": "Общие",
+            "RussiaK.ru": "Общие",
+            "STS.ru": "Общие",
+            "STSLove.ru": "Общие",
+            "ChannelOne.ru": "Общие",
+            "ChannelOneCIS.ru": "Общие",
+            "ChannelOneEurasia.kz": "Общие",
+            "OTR.ru": "Общие",
+            "TVCentrInternational.ru": "Общие",
+            "Belarus1.by": "Общие",
+            "Belarus2.by": "Общие",
+            "Belarus3.by": "Общие",
+            "STV.by": "Общие",
+            "Soyuzny.ru": "Общие",
+            "JibekJoly.kz": "Общие",
+            "Khabar.kz": "Общие",
+            "KTK.kz": "Общие",
+            "NTK.kz": "Общие",
+            "Channel7.kz": "Общие",
+            "AlmatyTV.kz": "Общие",
+            "RikaTV.kz": "Общие",
+            "SilkWay.kz": "Общие",
+            "Ulytau.kz": "Общие",
+            "TDK42.kz": "Общие",
+            "BRIDGEClassic.ru": "Музыкальные",
+            "MyZenTV.fr": "Разное",
+            "3ABNRussia.ru": "Разное",
+            "HopeChannelRussia.ru": "Разное",
+            "ManaTserkovOnlayn.pt": "Разное",
+            "Soyuz.ru": "Разное",
+            "Spas.ru": "Разное",
+            "TsargradTV.ru": "Разное",
+            "Avto24.ru": "Разное",
+        }
+
         API_CATEGORY_MAP = {
-            "movies": "Кино", "series": "Сериалы", "sports": "Спорт",
-            "news": "Новостные", "documentary": "Документальные",
-            "science": "Познавательные", "education": "Познавательные",
-            "history": "Документальные", "culture": "Познавательные",
-            "travel": "Познавательные", "music": "Музыкальные",
-            "entertainment": "Развлекательные", "comedy": "Развлекательные",
-            "general": "Общие", "business": "Новостные", "weather": "Новостные",
-            "animation": "Разное", "kids": "Разное", "family": "Разное",
-            "shopping": "Разное", "religious": "Разное",
-            "lifestyle": "Развлекательные", "cooking": "Развлекательные",
-            "auto": "Познавательные", "outdoor": "Познавательные",
-            "relax": "Музыкальные", "classic": "Кино", "hobby": "Познавательные",
+            "movies": "Кино",
+            "series": "Сериалы",
+            "sports": "Спорт",
+            "news": "Новостные",
+            "documentary": "Документальные",
+            "science": "Познавательные",
+            "education": "Познавательные",
+            "history": "Документальные",
+            "culture": "Познавательные",
+            "travel": "Познавательные",
+            "music": "Музыкальные",
+            "entertainment": "Развлекательные",
+            "comedy": "Развлекательные",
+            "general": "Общие",
+            "business": "Новостные",
+            "weather": "Новостные",
+            "animation": "Разное",
+            "kids": "Разное",
+            "family": "Разное",
+            "shopping": "Разное",
+            "religious": "Разное",
+            "lifestyle": "Развлекательные",
+            "cooking": "Развлекательные",
+            "auto": "Познавательные",
+            "outdoor": "Познавательные",
+            "relax": "Музыкальные",
+            "classic": "Кино",
+            "hobby": "Познавательные",
         }
 
         GENRE_MAP = {
@@ -107,17 +244,15 @@ jobs:
             "Документальные": ["365 дней", "documental", "документ", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "dmax", "охота", "рыбалка"],
             "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc", "россия 24"],
             "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz", "шансон", "радио дача"],
-            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday", "пятница!", "суббота"],
-            "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "спас", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts", "домашний", "тв-21", "тв21"],
+            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday", "пятница!", "суббота", "2x2"],
+            "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts", "домашний"],
         }
 
         CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
 
-        REGION_BLACKLIST = ["брянск", "калуга", "самара", "новосибирск", "красноярск", "омск", "челябинск", "уфа", "казань", "ростов", "волгоград", "пермь", "воронеж", "саратов", "тольятти", "ижевск", "барнаул", "иркутск", "хабаровск", "ярославль", "тюмень", "томск", "оренбург", "кемерово", "рязань", "астрахань", "пенза", "липецк", "тула", "чебоксары", "курск", "ставрополь", "сочи", "кубань", "регион", "губерния", "край", "осетия", "грозный", "архыз", "якутия", "югра", "колыма", "ямал", "енисей", "алтай", "бурят", "дагестан", "башкорт", "татарстан", "удмурт", "чуваш", "мордов", "марий", "коми", "карел"]
+        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "adult", "взрослый", "18+"]
 
-        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "adult", "взрослый", "18+", "религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд"]
-
-        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "america", "arabic", "spanish", "italian", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "egypt", "al jazeera", "france 24", "bbc", "cnn"]
+        FOREIGN_MARKERS = ["turkish", "israel", "german", "deutsch", "arabic", "spanish", "italian", "polish", "korean", "japanese", "chinese", "pakistan", "egypt", "al jazeera"]
 
         BAD_DOMAINS_EXACT = ["localhost", "127.0.0.1"]
         BAD_DOMAINS_SUFFIX = [
@@ -131,7 +266,7 @@ jobs:
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "region": 0, "trash": 0, "foreign": 0, "trash_url": 0}
+        filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0}
 
         def download_file(url):
             try:
@@ -157,10 +292,11 @@ jobs:
         def load_api():
             cats = {}
             names_index = {}
+            country_by_id = {}
             print(f"   Loading API: {API_CHANNELS}")
             txt = download_file(API_CHANNELS)
             if not txt:
-                return cats, names_index
+                return cats, names_index, country_by_id
             try:
                 data = json.loads(txt)
                 for ch in data:
@@ -168,26 +304,25 @@ jobs:
                     ch_cats = ch.get("categories", []) or []
                     ch_name = ch.get("name", "")
                     alt_names = ch.get("alt_names", []) or []
-
+                    country = ch.get("country", "")
+                    if cid and country:
+                        country_by_id[cid] = country
                     if cid and ch_cats:
                         for c in ch_cats:
                             mapped = API_CATEGORY_MAP.get(c.lower())
                             if mapped:
                                 cats[cid] = mapped
                                 break
-
                     if cid:
                         if ch_name:
                             names_index[clean_channel_name(ch_name)] = cid
                         for alt in alt_names:
                             if alt:
                                 names_index[clean_channel_name(alt)] = cid
-                print(f"   API categories: {len(cats)}, name index: {len(names_index)}")
-                sample_cats = list(cats.items())[:5]
-                print(f"   API sample cats: {sample_cats}")
+                print(f"   API: cats={len(cats)}, names={len(names_index)}, countries={len(country_by_id)}")
             except Exception as e:
                 print(f"   API err: {e}")
-            return cats, names_index
+            return cats, names_index, country_by_id
 
         def clean_url(url):
             p = urlparse(url)
@@ -204,6 +339,9 @@ jobs:
         def is_trash_url(url):
             if not url.lower().startswith("http"):
                 return True
+            u = url.lower()
+            if "cinerama" in u:
+                return True
             p = urlparse(url)
             host = p.netloc.lower().split(":")[0]
             if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host):
@@ -213,8 +351,6 @@ jobs:
             for bad in BAD_DOMAINS_SUFFIX:
                 if host == bad or host.endswith("." + bad):
                     return True
-            if host.endswith(".local") or host.endswith(".test") or host.endswith(".example"):
-                return True
             if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
                 return True
             return False
@@ -251,14 +387,16 @@ jobs:
             m = re.search(rf'{attr}="([^"]*)"', line)
             return m.group(1) if m else ""
 
-        def parse_m3u(content, ids_map, api_cats, api_names, source_name="", source_priority=0):
+        def get_base_id(tvg_id):
+            return tvg_id.split("@")[0] if tvg_id else ""
+
+        def parse_m3u(content, ids_map, api_cats, api_names, country_by_id, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
             total_seen = 0
             api_used = 0
-            name_used = 0
-            debug_ids = []
+            override_used = 0
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -288,15 +426,11 @@ jobs:
                     filter_stats["child"] += 1
                     current_inf = ""
                     continue
-                if source_name == "RU-Country" and in_list(z, REGION_BLACKLIST):
-                    filter_stats["region"] += 1
-                    current_inf = ""
-                    continue
                 if in_list(z, TRASH_BLACKLIST):
                     filter_stats["trash"] += 1
                     current_inf = ""
                     continue
-                if source_name == "RU-Country" and any(fm in z for fm in FOREIGN_MARKERS):
+                if any(fm in z for fm in FOREIGN_MARKERS):
                     filter_stats["foreign"] += 1
                     current_inf = ""
                     continue
@@ -306,21 +440,41 @@ jobs:
                     continue
 
                 tvg_id = orig_tvg_id or ids_map.get(clean_name, "")
+                base_id = get_base_id(tvg_id)
 
-                if len(debug_ids) < 5:
-                    debug_ids.append(f"{name_match} → tvg={tvg_id or 'EMPTY'}")
+                # Check country (API) or tvg-id suffix
+                blocked = False
+                country = country_by_id.get(base_id)
+                if not country:
+                    found_id = api_names.get(clean_name)
+                    if found_id:
+                        country = country_by_id.get(found_id)
+                if country and country in BLOCKED_COUNTRIES:
+                    blocked = True
+                elif base_id:
+                    bl = base_id.lower()
+                    for suf in BLOCKED_SUFFIXES:
+                        if bl.endswith(suf):
+                            blocked = True
+                            break
+                if blocked:
+                    filter_stats["blocked_country"] += 1
+                    current_inf = ""
+                    continue
 
-                # ПРИОРИТЕТ: API по tvg_id → API по имени → угадывание
+                # Category priority: override → API by base_id → API by name → GENRE_MAP → Разное
                 base_group = ""
-                if tvg_id and tvg_id in api_cats:
-                    base_group = api_cats[tvg_id]
+                if base_id and base_id in CATEGORY_OVERRIDES:
+                    base_group = CATEGORY_OVERRIDES[base_id]
+                    override_used += 1
+                if not base_group and base_id and base_id in api_cats:
+                    base_group = api_cats[base_id]
                     api_used += 1
                 if not base_group:
                     found_id = api_names.get(clean_name)
                     if found_id and found_id in api_cats:
                         base_group = api_cats[found_id]
                         api_used += 1
-                        name_used += 1
                 if not base_group:
                     base_group = determine_group_from_name(orig_group, clean_name)
                 if not base_group:
@@ -342,10 +496,7 @@ jobs:
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API used: {api_used} (by name: {name_used})")
-            print(f"   [{source_name}] DEBUG samples:")
-            for s in debug_ids:
-                print(f"      {s}")
+            print(f"   [{source_name}] API used: {api_used}, overrides: {override_used}")
             return channels
 
         def dedup(channels):
@@ -455,7 +606,7 @@ jobs:
             ids_map = load_epg(epg_text)
             print(f"   EPG channels: {len(ids_map)}")
 
-            api_cats, api_names = load_api()
+            api_cats, api_names, country_by_id = load_api()
 
             all_channels = []
             for src in SOURCES:
@@ -464,12 +615,13 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, ids_map, api_cats, api_names, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, ids_map, api_cats, api_names, country_by_id, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
 
             total_raw = len(all_channels)
             print(f"Total before dedup: {total_raw}")
+            print(f"Filtered by country: {filter_stats['blocked_country']}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
