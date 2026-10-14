@@ -30,6 +30,7 @@ jobs:
         import re
         import json
         import time
+        import gzip
         import requests
         import xml.etree.ElementTree as ET
         from tqdm import tqdm
@@ -42,8 +43,8 @@ jobs:
         EPG_SOURCES = [
             "https://iptv-org.github.io/epg/ru.xml",
             "https://iptv-org.github.io/epg/guides/ru.epg.xml",
-            "https://raw.githubusercontent.com/iptv-org/epg/master/guides/ru.xml",
-            "https://raw.githubusercontent.com/iptv-org/epg/master/sites/ru/ru.xml",
+            "https://iptvx.one/EPG_LITE",
+            "https://iptvx.one/epg/epg_lite.xml.gz",
         ]
 
         OUTPUT_M3U = "clean_sorted_channels.m3u"
@@ -99,9 +100,12 @@ jobs:
 
         def download_file(url):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=25)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=25, stream=True)
                 r.raise_for_status()
-                return r.text
+                content = r.content
+                if content[:2] == b'\x1f\x8b':
+                    content = gzip.decompress(content)
+                return content.decode('utf-8', errors='replace')
             except Exception as e:
                 print(f"   warn: {url} -> {e}")
                 return None
