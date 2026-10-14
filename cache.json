@@ -504,11 +504,6 @@
   "ua_name": "TiviMate",
   "ts": 1791942919
  },
- "http://kino-1.catcast.tv/content/38617/index.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791942919
- },
  "https://istoki.tv/live/stream1/playlist.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -634,17 +629,7 @@
   "ua_name": "TiviMate",
   "ts": 1791942923
  },
- "https://kino-1.catcast.tv/content/37745/index.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791942923
- },
  "http://stream.mcquack.net/419/index.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791942923
- },
- "https://kino-1.catcast.tv/content/37739/index.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
   "ts": 1791942923
@@ -1604,11 +1589,6 @@
   "ua_name": "Wink",
   "ts": 1791955994
  },
- "https://vod.tuva.ru/nst/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791955996
- },
  "https://cdn-dvr.ntv.ru/ntv0_hd/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -1660,11 +1640,6 @@
   "ts": 1791956033
  },
  "https://streaming.thestream.cyou/live/7009.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956032
- },
- "https://vod.tuva.ru/rusroman/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791956032
@@ -1754,11 +1729,6 @@
   "ua_name": "Wink",
   "ts": 1791956034
  },
- "https://vod.tuva.ru/kinotv/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956035
- },
  "https://tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -1783,16 +1753,6 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791956036
- },
- "https://vod.tuva.ru/nauka2/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956036
- },
- "https://vod.tuva.ru/friday/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956037
  },
  "https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -1959,27 +1919,12 @@
   "ua_name": "Wink",
   "ts": 1791974815
  },
- "http://178.134.1.158:8081/doktor/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974815
- },
- "http://178.134.1.158:8081/5channel/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974815
- },
  "http://45.153.24.78/1TV/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974815
  },
  "http://178.217.49.7/1/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974815
- },
- "http://176.118.197.101/KinoTvHD/playlist.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974815
@@ -2044,11 +1989,6 @@
   "ua_name": "Wink",
   "ts": 1791974856
  },
- "http://178.134.1.158:8081/CTC/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974857
- },
  "http://217.114.191.150/Subbota/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -2058,16 +1998,6 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974857
- },
- "http://178.134.1.158:8081/t24/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974857
- },
- "http://178.134.1.158:8081/U/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974860
  },
  "http://5.188.159.128:8070/udar/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2080,11 +2010,6 @@
   "ts": 1791974859
  },
  "http://178.124.179.122:8080/HistoryHD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974860
- },
- "http://178.134.1.158:8081/vkus/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974860
@@ -2154,36 +2079,6 @@
   "ua_name": "Wink",
   "ts": 1791974882
  },
- "http://178.134.1.158:8081/BRIDGE/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974882
- },
- "http://178.134.1.158:8081/BRIDGEROCK/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974883
- },
- "http://178.134.1.158:8081/RENTV/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974883
- },
- "http://178.134.1.158:8081/ntvhit/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974884
- },
- "http://178.134.1.158:8081/red/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974884
- },
- "http://178.134.1.158:8081/TVXXI/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974884
- },
  "http://194.143.148.28:8080/Mir24/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -2208,101 +2103,6 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974895
- },
- "http://176.118.197.101/TB3/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Bollywood_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/START_AIR/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/THT/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Che/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/1HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Komediya/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/KHL/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/RBK/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/CTC/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/NTV/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Evrokino/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/2x2/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Rossiya24/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/MirSeriala/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/RossiyaHD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Nostalgiya/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Illuzion+/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
- },
- "http://176.118.197.101/Retro/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974897
  },
  "http://31.131.139.253:9002/novoros/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2379,25 +2179,10 @@
   "ua_name": "Wink",
   "ts": 1791974899
  },
- "http://46.53.200.153:7777/play/test_krask1/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974899
- },
  "http://31.148.5.241/kanal_9/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974898
- },
- "http://46.53.200.153:7777/play/a01i/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974899
- },
- "http://46.53.200.153:7777/play/a01j/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974899
  },
  "http://31.148.5.241/kanal_19/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2409,105 +2194,20 @@
   "ua_name": "Wink",
   "ts": 1791974899
  },
- "http://46.53.200.153:7777/play/a01k/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
  "http://31.148.5.241/kanal_11/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974899
- },
- "http://46.53.200.153:7777/play/SRT_Nash_kinopokaz/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/a00u/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viju_Comedy_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viju_Megahit_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viju_Premiere/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viju_Serial_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Shanson_TV/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/EuropaPlus/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
  },
  "http://31.148.5.241/kanal_14/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974899
  },
- "http://46.53.200.153:7777/play/Live_music_channel/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viasat_Sport/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/a01l/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/VIJU_TV_1000_novella/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/Viju_Drama/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
  "http://31.148.5.241/kanal_17/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974899
- },
- "http://46.53.200.153:7777/play/TV_1000/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/a01h/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
- },
- "http://46.53.200.153:7777/play/a01g/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974900
  },
  "http://57.128.231.171:8080/316/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2544,11 +2244,6 @@
   "ua_name": "Wink",
   "ts": 1791974899
  },
- "http://46.53.200.153:7777/play/Bug_TV_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974901
- },
  "http://31.148.5.241/kanal_21/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -2568,16 +2263,6 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791974971
- },
- "http://46.53.200.153:7777/play/a00h/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974978
- },
- "http://46.53.200.153:7777/play/Sapfir_HD/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791976489
  },
  "http://5.188.159.128:8070/Bridge_TV_Classic/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2978,5 +2663,40 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791979674
+ },
+ "https://fs.uplink.kz/avto24/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991664
+ },
+ "https://fs.uplink.kz/eurokino/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991665
+ },
+ "https://fs.uplink.kz/oruzhie/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991666
+ },
+ "https://fs.uplink.kz/russkiy_illusion/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991667
+ },
+ "https://fs.uplink.kz/tochka_otriva/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991668
+ },
+ "https://fs.uplink.kz/zoopark/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991673
+ },
+ "https://fs.uplink.kz/domashnie_zhivotnie/mono.m3u8?token=onlinetv": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791991677
  }
 }

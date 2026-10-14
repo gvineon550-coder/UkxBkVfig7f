@@ -3,24 +3,25 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 12:09 UTC
-- Total from source: 1337
-- After dedup: 1011
-- Live channels: **795**
-- With EPG: 578
+- Updated: 14.10.2026 15:29 UTC
+- Total from source: 1251
+- After dedup: 947
+- Live channels: **739**
+- With EPG: 535
 - Whitelist channels: 199
-- RU-NAME applied: 730
-- From cache: 517
+- RU-NAME applied: 687
+- Renamed by tvg-id: 0
+- From cache: 533
 - Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
-| by_name | 319 |
-| by_translit | 376 |
-| by_prefix | 41 |
-| no_match | 398 |
+| by_name | 273 |
+| by_translit | 354 |
+| by_prefix | 39 |
+| no_match | 382 |
 
 ## Filters
 
@@ -29,16 +30,18 @@
 | child | 48 |
 | trash | 26 |
 | name_delete | 57 |
-| trash_url | 98 |
-| blocked_id | 17 |
+| trash_url | 185 |
+| blocked_id | 16 |
 | blocked_country | 31 |
+| blocked_host | 87 |
+| blocked_url | 0 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| Wink | 339 |
-| TiviMate | 251 |
+| Wink | 286 |
+| TiviMate | 248 |
 | Chrome | 4 |
 | AndroidTV | 2 |
 
@@ -46,26 +49,26 @@
 
 | Category | Channels |
 | :--- | :---: |
-| 🎬 Кино HD | 21 |
-| 🎬 Кино | 89 |
-| 📺 Сериалы HD | 3 |
-| 📺 Сериалы | 5 |
+| 🎬 Кино HD | 13 |
+| 🎬 Кино | 77 |
+| 📺 Сериалы HD | 1 |
+| 📺 Сериалы | 2 |
 | 🎞 Сериалы НТВ HD | 0 |
 | 🎞 Сериалы НТВ | 8 |
-| ⚽ Спорт HD | 3 |
-| ⚽ Спорт | 38 |
-| 🌍 Познавательные HD | 12 |
-| 🌍 Познавательные | 37 |
+| ⚽ Спорт HD | 2 |
+| ⚽ Спорт | 35 |
+| 🌍 Познавательные HD | 11 |
+| 🌍 Познавательные | 35 |
 | 🎥 Документальные HD | 0 |
-| 🎥 Документальные | 12 |
+| 🎥 Документальные | 11 |
 | 📰 Новостные HD | 5 |
-| 📰 Новостные | 39 |
-| 🎵 Музыкальные HD | 3 |
-| 🎵 Музыкальные | 45 |
+| 📰 Новостные | 37 |
+| 🎵 Музыкальные HD | 2 |
+| 🎵 Музыкальные | 38 |
 | 🎭 Развлекательные HD | 5 |
-| 🎭 Развлекательные | 53 |
-| 📡 Общие HD | 18 |
-| 📡 Общие | 85 |
+| 🎭 Развлекательные | 48 |
+| 📡 Общие HD | 17 |
+| 📡 Общие | 79 |
 | 🏙 Региональные HD | 5 |
 | 🏙 Региональные | 47 |
 | 🙏 Религиозные HD | 0 |
@@ -73,7 +76,7 @@
 | 📻 Радио HD | 0 |
 | 📻 Радио | 2 |
 | 📦 Разное HD | 0 |
-| 📦 Разное | 50 |
+| 📦 Разное | 49 |
 
 ### Из whitelist
 
