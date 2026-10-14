@@ -3,12 +3,12 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 02:20 UTC
+- Updated: 14.10.2026 02:32 UTC
 - Total from source: 873
 - After dedup: 497
 - Live channels: **389**
 - With EPG: 389
-- From cache: 294
+- From cache: 389
 - Active EPG: `https://iptvx.one/EPG_LITE`
 
 ## User-Agents
