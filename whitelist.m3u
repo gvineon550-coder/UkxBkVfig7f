@@ -462,10 +462,10 @@ http://kinowalk.hopto.org/paranormal404_live
 #EXTINF:-1 tvg-id="johan_grohan_live" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/johan_grohan_live.jpg" group-title="Kinowalk",Johan Grohan Live
 http://kinowalk.hopto.org/johan_grohan_live
 
-#EXTINF:-1 tvg-id="LampovoeTV" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/lampovoe.png" group-title="Основные",Lampovoe TV
+#EXTINF:-1 tvg-id="LampovoeTV" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/lampovoe.png" group-title="Kinowalk",Lampovoe TV
 http://kinowalk.hopto.org/lampovoetv_live
 
-#EXTINF:-1 tvg-id="Strimach" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/strimach.jpg" group-title="Основные",STRIMACH
+#EXTINF:-1 tvg-id="Strimach" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/strimach.jpg" group-title="Kinowalk",STRIMACH
 http://kinowalk.hopto.org/strimach_live
 
 #EXTINF:-1 tvg-id="channel36569193_live" tvg-name="Кинофильмы 2026 - kinopag" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/logotips/main/channel36569193_live.png" group-title="Kinowalk",Кинофильмы 2026 - kinopag
