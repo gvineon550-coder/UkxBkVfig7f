@@ -3,66 +3,66 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 05:08 UTC
-- Total from source: 804
-- After dedup: 447
-- Live channels: **341**
-- With EPG: 194
+- Updated: 14.10.2026 05:35 UTC
+- Total from source: 926
+- After dedup: 661
+- Live channels: **524**
+- With EPG: 340
 - Whitelist channels: 0
-- From cache: 298
-- Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
+- From cache: 339
+- Active EPG: `http://iptvx.one/epg/epg_lite.xml.gz; https://iptvx.one/EPG_NOARCH`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
-| by_name | 137 |
-| by_translit | 275 |
-| by_prefix | 21 |
-| no_match | 370 |
+| by_name | 242 |
+| by_translit | 303 |
+| by_prefix | 32 |
+| no_match | 348 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| TiviMate | 294 |
-| Wink | 43 |
+| TiviMate | 293 |
+| Wink | 227 |
 | Chrome | 4 |
 
 ## Categories
 
 | Category | Channels |
 | :--- | :---: |
-| 🎬 Кино HD | 11 |
-| 🎬 Кино | 41 |
+| 🎬 Кино HD | 13 |
+| 🎬 Кино | 69 |
 | 📺 Сериалы HD | 1 |
 | 📺 Сериалы | 12 |
 | ⚽ Спорт HD | 1 |
-| ⚽ Спорт | 14 |
-| 🌍 Познавательные HD | 9 |
-| 🌍 Познавательные | 21 |
+| ⚽ Спорт | 30 |
+| 🌍 Познавательные HD | 10 |
+| 🌍 Познавательные | 27 |
 | 🎥 Документальные HD | 0 |
-| 🎥 Документальные | 4 |
-| 📰 Новостные HD | 2 |
-| 📰 Новостные | 24 |
+| 🎥 Документальные | 14 |
+| 📰 Новостные HD | 5 |
+| 📰 Новостные | 39 |
 | 🎵 Музыкальные HD | 1 |
-| 🎵 Музыкальные | 25 |
-| 🎭 Развлекательные HD | 4 |
-| 🎭 Развлекательные | 29 |
-| 📡 Общие HD | 12 |
-| 📡 Общие | 51 |
-| 🏙 Региональные HD | 2 |
+| 🎵 Музыкальные | 36 |
+| 🎭 Развлекательные HD | 5 |
+| 🎭 Развлекательные | 47 |
+| 📡 Общие HD | 17 |
+| 📡 Общие | 65 |
+| 🏙 Региональные HD | 5 |
 | 🏙 Региональные | 44 |
 | 🙏 Религиозные HD | 0 |
-| 🙏 Религиозные | 10 |
+| 🙏 Религиозные | 12 |
 | 📻 Радио HD | 0 |
 | 📻 Радио | 3 |
 | 📦 Разное HD | 1 |
-| 📦 Разное | 19 |
+| 📦 Разное | 67 |
 
 ---
 
 ## Links
 
 - Playlist: `https://gvineon550-coder.github.io/lindsben_iptv-/clean_sorted_channels.m3u`
-- EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
+- EPG: `http://iptvx.one/epg/epg_lite.xml.gz; https://iptvx.one/EPG_NOARCH`
