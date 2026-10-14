@@ -1,4 +1,4 @@
-#EXTM3U url-tvg="https://iptv-org.github.io/epg/guides/ru.epg.xml" x-tvg-url="https://iptv-org.github.io/epg/guides/ru.epg.xml"
+#EXTM3U url-tvg="https://iptvx.one/EPG_LITE" x-tvg-url="https://iptvx.one/EPG_LITE"
 #EXTINF:-1 tvg-id="Blokbaster.ru@HD" tvg-name="Blokbaster HD (1080p)" tvg-logo="https://i.imgur.com/KcOi4Os.png" group-title="Кино HD",Blokbaster HD (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/364/index.m3u8
@@ -182,6 +182,9 @@ http://stream.mcquack.net/492/index.m3u8
 #EXTINF:-1 tvg-id="Sportivnyy.ru@SD" tvg-name="Sportivnyy (1080p)" tvg-logo="https://i.imgur.com/ujS6mMo.png" group-title="Спорт",Sportivnyy (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-3.otcnet.ru/sportivny/index.m3u8
+#EXTINF:-1 tvg-id="TraceSportStars.fr@Russia" tvg-name="Trace Sport Stars Russia (720p)" tvg-logo="https://i.imgur.com/FabFP5A.png" group-title="Спорт",Trace Sport Stars Russia (720p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1274/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-name="viju+ Sport (576p)" tvg-logo="https://i.imgur.com/fXESG0l.png" group-title="Спорт",viju+ Sport (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/333/index.m3u8
@@ -203,6 +206,9 @@ http://stream.mcquack.net/114/index.m3u8
 #EXTINF:-1 tvg-id="DiscoveryChannel.ru@SD" tvg-name="Discovery Channel (Russia) (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/2019_Discovery_logo.svg/960px-2019_Discovery_logo.svg.png" group-title="Познавательные",Discovery Channel (Russia) (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/177/index.m3u8
+#EXTINF:-1 tvg-id="GlazamiTurista.ru@SD" tvg-name="Glazami Turista (576i)" tvg-logo="https://i.imgur.com/GXJKWdy.png" group-title="Познавательные",Glazami Turista (576i)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1423/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="InvestigationDiscovery.ru@SD" tvg-name="Investigation Discovery (Russia) (1080p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/InvestigationDiscoveryLogo2020.svg/960px-InvestigationDiscoveryLogo2020.svg.png" group-title="Познавательные",Investigation Discovery (Russia) (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/205/index.m3u8
@@ -353,6 +359,9 @@ http://dancehits80.denvs.ru:8080/index.m3u8
 #EXTINF:-1 tvg-id="FirstMusicChannel.by@SD" tvg-name="First Music Channel (1080p)" tvg-logo="https://i.imgur.com/YdyFJrl.png" group-title="Музыкальные",First Music Channel (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://rtmp.one.by:1300
+#EXTINF:-1 tvg-id="FONMusic.ru@SD" tvg-name="FON Music (576p)" tvg-logo="https://i.imgur.com/tXABQDE.png" group-title="Музыкальные",FON Music (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1272/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="KNMusicTV.az@SD" tvg-name="KN Music TV" tvg-logo="https://www.knmusictv.com/wp-content/uploads/2026/01/LOGO2112.png" group-title="Музыкальные",KN Music TV
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cdn4.yayin.com.tr/kntv/tracks-v1a1/mono.m3u8
@@ -413,6 +422,9 @@ http://stream.mcquack.net/265/index.m3u8
 #EXTINF:-1 tvg-id="Komedia.ru@SD" tvg-name="Komedia (576p)" tvg-logo="https://i.imgur.com/VRC5juh.png" group-title="Развлекательные",Komedia (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/68/index.m3u8
+#EXTINF:-1 tvg-id="Priklyucheniya.ru@SD" tvg-name="Priklyucheniya (576p)" tvg-logo="https://i.imgur.com/qQ6pPPQ.png" group-title="Развлекательные",Priklyucheniya (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1420/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Prosveshchenie.ru@SD" tvg-name="Prosveshchenie (576p)" tvg-logo="https://i.imgur.com/uppFhhq.png" group-title="Развлекательные",Prosveshchenie (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://cdn-01.bonus-tv.ru/prosveschenie_edge/index.m3u8
@@ -503,6 +515,9 @@ http://serv25.vintera.tv:8081/test/aris/playlist.m3u8
 #EXTINF:-1 tvg-id="Arkhyz24.ru@SD" tvg-name="Arkhyz 24 (1080p)" tvg-logo="https://i.imgur.com/blAtdkJ.png" group-title="Разное",Arkhyz 24 (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live.mediacdn.ru/sr1/arhis24/playlist.m3u8
+#EXTINF:-1 tvg-id="Arsenal.ru@SD" tvg-name="Arsenal (576p)" tvg-logo="https://i.imgur.com/DBpVeb0.png" group-title="Разное",Arsenal (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1414/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="AstrahanRuTV.ru@SD" tvg-name="Astrahan.Ru TV (480p)" tvg-logo="https://i.imgur.com/w4ys6zm.png" group-title="Разное",Astrahan.Ru TV (480p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://streaming.astrakhan.ru/astrakhanrulivehd/playlist.m3u8
@@ -563,9 +578,15 @@ http://stream.mcquack.net/238/index.m3u8
 #EXTINF:-1 tvg-id="Dagestan.ru@SD" tvg-name="Dagestan (1080p)" tvg-logo="https://i.imgur.com/jumkRvc.png" group-title="Разное",Dagestan (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://dagestan.mediacdn.ru/cdn/dagestan/playlist.m3u8
+#EXTINF:-1 tvg-id="DomashnieZhivotnye.ru@SD" tvg-name="Domashnie Zhivotnye (576p)" tvg-logo="https://i.imgur.com/ISJzQGP.png" group-title="Разное",Domashnie Zhivotnye (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1426/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Domashniy.ru@SD" tvg-name="Domashniy (576p)" tvg-logo="https://i.imgur.com/XVRwgom.png" group-title="Разное",Domashniy (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/227/index.m3u8
+#EXTINF:-1 tvg-id="Drive.ru@SD" tvg-name="Drive (576i)" tvg-logo="https://i.imgur.com/FnuwfSC.png" group-title="Разное",Drive (576i)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1421/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Enisey.ru@SD" tvg-name="Enisey (576p)" tvg-logo="https://i.imgur.com/57deE7f.png" group-title="Разное",Enisey (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tshift-1.telecoma.tv/enisei/index.m3u8
@@ -674,6 +695,9 @@ https://cdn.ntv.ru/vitrina/index.m3u8
 #EXTINF:-1 tvg-id="NVKSakha.ru@SD" tvg-name="NVK Sakha (1080p) [Not 24/7]" tvg-logo="https://i.imgur.com/LwXNUhf.png" group-title="Разное",NVK Sakha (1080p) [Not 24/7]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-saha.cdnvideo.ru/saha/saha/playlist.m3u8
+#EXTINF:-1 tvg-id="Ohotnikirybolov.ru@SD" tvg-name="Ohotnik i rybolov (576i)" tvg-logo="https://i.imgur.com/Bj1jI7F.png" group-title="Разное",Ohotnik i rybolov (576i)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1413/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Okhotairybalka.ru@SD" tvg-name="Okhota i rybalka (576p)" tvg-logo="https://i.imgur.com/nZwBaeW.png" group-title="Разное",Okhota i rybalka (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/155/index.m3u8
@@ -800,9 +824,15 @@ https://fs.uplink.kz/tnv/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TNVTatarstan.ru@SD" tvg-name="TNV-Tatarstan (720p)" tvg-logo="https://i.imgur.com/58u9TQT.png" group-title="Разное",TNV-Tatarstan (720p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://user91229.clients-cdnnow.ru/hls/user91229_1.m3u8
+#EXTINF:-1 tvg-id="Tochkaotryva.ru@SD" tvg-name="Tochka otryva (576p)" tvg-logo="https://i.imgur.com/TZiBQDK.png" group-title="Разное",Tochka otryva (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1031/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="TsargradTV.ru@SD" tvg-name="Tsargrad TV (1080p) [Geo-blocked]" tvg-logo="https://i.imgur.com/34RINpb.png" group-title="Разное",Tsargrad TV (1080p) [Geo-blocked]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://bl.rutube.ru/livestream/91815da4edb167b5bd617bae490e57da/index.m3u8?e=2070278263&s=is_mLq_kjPYLsOJ4qj85tw&scheme=https
+#EXTINF:-1 tvg-id="TVCentrInternational.ru@SD" tvg-name="TV Centr International (576p)" tvg-logo="https://i.imgur.com/tsCOnBW.png" group-title="Разное",TV Centr International (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1281/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="TVPRO.ru@SD" tvg-name="TV PRO" tvg-logo="https://i.imgur.com/sbuSefI.png" group-title="Разное",TV PRO
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://rtmp.tvpro-online.ru/hls/ch1.m3u8
@@ -839,6 +869,15 @@ https://yaroslavl.mediacdn.ru/cdn/pervyaroslavsk/playlist.m3u8
 #EXTINF:-1 tvg-id="ZaTV.ru@SD" tvg-name="Za! TV" tvg-logo="https://i.imgur.com/pVPTl8J.png" group-title="Разное",Za! TV
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://streaming.televizor-24-tochka.ru/live/25.m3u8
+#EXTINF:-1 tvg-id="ZdorovoeTV.ru@SD" tvg-name="Zdorovoe TV (576p)" tvg-logo="https://i.imgur.com/jedtE5l.png" group-title="Разное",Zdorovoe TV (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1428/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="ZhivayaPlaneta.ru@SD" tvg-name="Zhivaya Planeta (576p)" tvg-logo="https://i.imgur.com/onNv1tM.png" group-title="Разное",Zhivaya Planeta (576p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1250/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Zhivayapriroda.ru@SD" tvg-name="Zhivaya priroda (1080p)" tvg-logo="https://i.imgur.com/9lHQPdN.png" group-title="Разное",Zhivaya priroda (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/83/index.m3u8
+#EXTINF:-1 tvg-id="Zoopark.ru@SD" tvg-name="Zoopark (576i)" tvg-logo="https://i.imgur.com/IO5jegK.png" group-title="Разное",Zoopark (576i)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://stream8.cinerama.uz/1417/tracks-v1a1/mono.m3u8
