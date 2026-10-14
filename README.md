@@ -3,13 +3,13 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 05:35 UTC
+- Updated: 14.10.2026 05:46 UTC
 - Total from source: 926
 - After dedup: 661
 - Live channels: **524**
 - With EPG: 340
 - Whitelist channels: 0
-- From cache: 339
+- From cache: 524
 - Active EPG: `http://iptvx.one/epg/epg_lite.xml.gz; https://iptvx.one/EPG_NOARCH`
 
 ## EPG Match Stats
