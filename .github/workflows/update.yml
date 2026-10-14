@@ -100,6 +100,7 @@ jobs:
             "AlmatyTV.kz", "Channel7.kz", "JibekJoly.kz", "KTK.kz",
             "Khabar.kz", "NTK.kz", "Ulytau.kz", "SilkWay.kz",
             "24KZ.kz", "AtamekenBusiness.kz", "ChannelOneEurasia.kz",
+            "RTBalkan.ru", "RTenEspanol.es", "RTEspanol.es",
         }
 
         NOISE_WORDS = {
@@ -149,7 +150,7 @@ jobs:
             "CityEdenKinoDok.ru": "Документальные", "365daysTV.ru": "Документальные",
             "Izvestia.ru": "Новостные", "Mir24.ru": "Новостные", "360.ru": "Новостные",
             "360News.ru": "Новостные", "RTRPlaneta.ru": "Новостные",
-            "RTBalkan.ru": "Новостные", "CurrentTimeTV.cz": "Новостные",
+            "CurrentTimeTV.cz": "Новостные",
             "VestiFM.ru": "Новостные", "Tolk.ru": "Новостные",
             "SolovyovLive.ru": "Новостные", "Moskva24.ru": "Новостные",
             "MoskvaDoveriye.ru": "Новостные", "VmesteRF.ru": "Новостные",
@@ -196,6 +197,9 @@ jobs:
         }
 
         NAME_GROUP_OVERRIDES = {
+            "rt balkan": "DELETE",
+            "rt en espanol": "DELETE",
+            "rt en español": "DELETE",
             "ani": "DELETE", "ani tv": "DELETE",
             "carousel": "DELETE", "carousel international": "DELETE", "carousel sd": "DELETE",
             "gulli girl": "DELETE",
@@ -353,7 +357,6 @@ jobs:
             "tvc.ru",
             "tvzvezda.ru",
             "matchtv.ru",
-            "rtvi.com",
             "ntvplus.ru",
             "mts.ru",
             "beeline.ru",
@@ -367,7 +370,7 @@ jobs:
         filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0}
         filter_url_samples = []
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
-        ru_name_stats = {"applied": 0, "candidates": 0}
+        ru_name_stats = {"applied": 0}
 
         def detect_encoding(raw_bytes):
             head = raw_bytes[:500].lower()
@@ -421,7 +424,6 @@ jobs:
             return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
 
         def set_name_in_extinf(extinf, new_name):
-            """Заменяет имя канала после последней запятой."""
             if not new_name:
                 return extinf
             idx = extinf.rfind(",")
@@ -559,7 +561,6 @@ jobs:
                         for alt in alt_names:
                             if alt:
                                 names_index[normalize_v2(alt)] = cid
-                        # RU-NAME-END: ищем русское имя
                         all_names = ([ch_name] if ch_name else []) + list(alt_names)
                         for nm in all_names:
                             if nm and has_cyrillic(nm):
@@ -801,7 +802,6 @@ jobs:
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{final_logo}" group-title="{group}",{name_match}')
 
-                # RU-NAME-END: заменяем латинское имя на русское
                 if not has_cyrillic(name_match):
                     iptv_org_id = api_names.get(clean_name)
                     if iptv_org_id:
