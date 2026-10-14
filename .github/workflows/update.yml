@@ -1,0 +1,294 @@
+name: Update IPTV Playlist
+
+on:
+  schedule:
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+jobs:
+  update-list:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+
+    - name: Install deps
+      run: pip install requests tqdm
+
+    - name: Create main.py
+      run: |
+        cat > main.py << 'PYEOF'
+        import os
+        import re
+        import requests
+        import xml.etree.ElementTree as ET
+        from tqdm import tqdm
+        from concurrent.futures import ThreadPoolExecutor
+        from urllib.parse import urlparse
+        from datetime import datetime, timezone
+
+        SOURCE_M3U = "https://iptv-org.github.io/iptv/countries/ru.m3u"
+        EPG_SOURCES = [
+            "https://iptv-org.github.io/epg/guides/ru.epg.xml",
+            "https://iptv-org.github.io/epg/ru.xml",
+            "https://raw.githubusercontent.com/iptv-org/epg/master/guides/ru.epg.xml",
+        ]
+        OUTPUT_M3U = "clean_sorted_channels.m3u"
+        TIMEOUT = 4.0
+        MAX_WORKERS = 15
+        CATEGORY_PRIORITY = ["Кино", "Спорт", "Познавательные", "Новостные", "Общие", "Разное"]
+        GENRE_MAP = {
+            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf"],
+            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит"],
+            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал"],
+            "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24"]
+        }
+        CONTENT_BLACK_LIST = [
+            "детск", "child", "kids", "cartoon", "мульт", "nickelodeon", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя",
+            "shop", "магазин", "ювелир", "leomax", "tts",
+            "брянск", "калуга", "самара", "новосибирск", "красноярск", "омск", "челябинск", "уфа", "казань", "ростов", "волгоград",
+            "пермь", "воронеж", "саратов", "тольятти", "ижевск", "барнаул", "иркутск", "хабаровск", "ярославль", "тюмень", "томск",
+            "оренбург", "кемерово", "рязань", "астрахань", "пенза", "липецк", "тула", "чебоксары", "курск", "ставрополь", "сочи", "кубань",
+            "регион", "губерния", "край", "осетия", "грозный", "архыз", "якутия", "югра", "колыма", "ямал", "енисей"
+        ]
+        DOMAIN_BLACK_LIST = [".xyz", "cinerama.uz", "local", "test", "example"]
+        FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        TV_PLAYER_UA = "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"
+
+        def download_file(url, binary=False):
+            headers = {"User-Agent": FAKE_BROWSER_UA}
+            try:
+                r = requests.get(url, headers=headers, timeout=25)
+                r.raise_for_status()
+                return r.content if binary else r.text
+            except Exception as e:
+                print(f"   warn: {url} -> {e}")
+                return None
+
+        def download_epg_with_fallback():
+            for url in EPG_SOURCES:
+                print(f"   Probing EPG: {url}")
+                content = download_file(url)
+                if content and "<tv" in content[:2000].lower():
+                    print(f"   OK EPG: {url}")
+                    return content, url
+                print("   fail, next...")
+            return None, ""
+
+        def clean_url(url):
+            p = urlparse(url)
+            return f"{p.scheme}://{p.netloc}{p.path}".strip().lower()
+
+        def is_trash_url(url):
+            if not url.lower().startswith("http"):
+                return True
+            p = urlparse(url)
+            host_only = p.netloc.lower().split(":")[0]
+            if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host_only):
+                return True
+            if host_only in ("localhost", "127.0.0.1") or host_only.startswith(("192.168.", "10.")):
+                return True
+            for bad in DOMAIN_BLACK_LIST:
+                if bad in host_only:
+                    return True
+            if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
+                return True
+            return False
+
+        def clean_channel_name(name):
+            name = name.lower()
+            name = re.sub(r'\(.*?\)|\[.*?\]|hd|sd|fhd|4k|\.|\b(tv|тв)\b|\!|\+', '', name)
+            return " ".join(name.split())
+
+        def is_blacklisted_content(clean_name, group):
+            zone = f"{clean_name} {group.lower()}"
+            return any(bad in zone for bad in CONTENT_BLACK_LIST)
+
+        def determine_group(orig_group, clean_name):
+            zone = f"{clean_name} {orig_group.lower()}"
+            for target, keywords in GENRE_MAP.items():
+                for kw in keywords:
+                    if kw in zone:
+                        return target
+            if orig_group.lower() in ("general", "public") or any(k in clean_name for k in ["первый", "россия", "нтв", "тнт", "стс", "пятница"]):
+                return "Общие"
+            return "Разное"
+
+        def load_epg_channels(epg_xml_content):
+            epg_map = {}
+            if not epg_xml_content:
+                return epg_map
+            try:
+                root = ET.fromstring(epg_xml_content)
+                for ch in root.findall('channel'):
+                    cid = ch.get('id')
+                    if not cid:
+                        continue
+                    for dn in ch.findall('display-name'):
+                        if dn.text:
+                            epg_map[clean_channel_name(dn.text)] = cid
+            except Exception as e:
+                print(f"   XMLTV parse err: {e}")
+            return epg_map
+
+        def parse_attr(inf_line, attr):
+            m = re.search(rf'{attr}="([^"]*)"', inf_line)
+            return m.group(1) if m else ""
+
+        def parse_and_match_m3u(m3u_content, epg_map):
+            channels = []
+            seen_urls = set()
+            current_inf = ""
+            extgrp = ""
+            for raw in m3u_content.splitlines():
+                line = raw.strip()
+                if not line:
+                    continue
+                if line.startswith("#EXTINF:"):
+                    current_inf = line
+                    extgrp = ""
+                    continue
+                if line.startswith("#EXTGRP:"):
+                    extgrp = line.split(":", 1)[1].strip()
+                    continue
+                if line.startswith("#"):
+                    continue
+                if not current_inf:
+                    continue
+                name_match = current_inf.rsplit(",", 1)[-1].strip()
+                clean_name = clean_channel_name(name_match)
+                orig_tvg_id = parse_attr(current_inf, "tvg-id")
+                orig_tvg_name = parse_attr(current_inf, "tvg-name") or name_match
+                orig_group = parse_attr(current_inf, "group-title") or extgrp or "Разное"
+                orig_logo = parse_attr(current_inf, "tvg-logo")
+                if is_blacklisted_content(clean_name, orig_group):
+                    current_inf = ""
+                    continue
+                if is_trash_url(line):
+                    current_inf = ""
+                    continue
+                base_url = clean_url(line)
+                if base_url in seen_urls:
+                    current_inf = ""
+                    continue
+                seen_urls.add(base_url)
+                tvg_id = orig_tvg_id or epg_map.get(clean_name, "")
+                assigned_group = determine_group(orig_group, clean_name)
+                new_inf = (f'#EXTINF:-1 tvg-id="{tvg_id}" '
+                           f'tvg-name="{orig_tvg_name}" '
+                           f'tvg-logo="{orig_logo}" '
+                           f'group-title="{assigned_group}",{name_match}')
+                channels.append({"inf": new_inf, "url": line, "name": name_match, "group": assigned_group})
+                current_inf = ""
+            return channels
+
+        def check_stream(channel):
+            headers = {"User-Agent": TV_PLAYER_UA}
+            try:
+                with requests.get(channel["url"], headers=headers, timeout=TIMEOUT, stream=True) as r:
+                    if r.status_code == 200:
+                        for _ in r.iter_content(chunk_size=1024):
+                            return channel
+            except Exception:
+                pass
+            return None
+
+        def sort_key(channel):
+            g = channel["group"]
+            idx = CATEGORY_PRIORITY.index(g) if g in CATEGORY_PRIORITY else len(CATEGORY_PRIORITY)
+            return (idx, channel["name"].lower())
+
+        def generate_readme(valid_channels, total_raw, active_epg):
+            stats = {cat: 0 for cat in CATEGORY_PRIORITY}
+            for ch in valid_channels:
+                stats[ch['group']] = stats.get(ch['group'], 0) + 1
+            now = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
+            repo_env = os.getenv("GITHUB_REPOSITORY", "")
+            if "/" in repo_env:
+                user, repo = repo_env.split("/", 1)
+                pages_url = f"https://{user.lower()}.github.io/{repo.lower()}/{OUTPUT_M3U}"
+            else:
+                pages_url = f"https://YOUR_NICK.github.io/iptv/{OUTPUT_M3U}"
+            lines = []
+            lines.append("# IPTV Playlist")
+            lines.append("")
+            lines.append("Auto-updated via GitHub Actions.")
+            lines.append("")
+            lines.append("## Dashboard")
+            lines.append(f"- Updated: {now}")
+            lines.append(f"- Total in source: {total_raw}")
+            lines.append(f"- Live channels: **{len(valid_channels)}**")
+            lines.append(f"- Active EPG: `{active_epg}`")
+            lines.append("")
+            lines.append("## Categories")
+            lines.append("")
+            lines.append("| Category | Channels |")
+            lines.append("| :--- | :---: |")
+            for cat in CATEGORY_PRIORITY:
+                lines.append(f"| {cat} | {stats[cat]} |")
+            lines.append("")
+            lines.append("---")
+            lines.append("")
+            lines.append("## Links")
+            lines.append("")
+            lines.append(f"- Playlist: `{pages_url}`")
+            lines.append(f"- EPG: `{active_epg}`")
+            lines.append(f"- Source: `{SOURCE_M3U}`")
+            lines.append("")
+            with open("README.md", "w", encoding="utf-8") as f:
+                f.write("\n".join(lines))
+
+        def main():
+            print("Loading EPG...")
+            epg_content, active_epg = download_epg_with_fallback()
+            if not epg_content:
+                print("No EPG, continue without")
+                active_epg = EPG_SOURCES[0]
+            epg_map = load_epg_channels(epg_content)
+            print(f"   EPG channels: {len(epg_map)}")
+            print("Downloading playlist...")
+            m3u_content = download_file(SOURCE_M3U)
+            if not m3u_content:
+                print("Failed to download")
+                return
+            raw_channels = parse_and_match_m3u(m3u_content, epg_map)
+            total_raw = len(raw_channels)
+            print(f"   After first filter: {total_raw}")
+            print("Checking streams...")
+            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+                results = list(tqdm(ex.map(check_stream, raw_channels), total=total_raw))
+            valid_channels = [c for c in results if c is not None]
+            valid_channels.sort(key=sort_key)
+            print("Saving M3U...")
+            with open(OUTPUT_M3U, "w", encoding="utf-8") as f:
+                f.write(f'#EXTM3U url-tvg="{active_epg}" x-tvg-url="{active_epg}"\n')
+                for ch in valid_channels:
+                    f.write(f"{ch['inf']}\n")
+                    f.write(f"#EXTVLCOPT:http-user-agent={TV_PLAYER_UA}\n")
+                    f.write(f"{ch['url']}\n")
+            print("Updating README.md...")
+            generate_readme(valid_channels, total_raw, active_epg)
+            print(f"Done: {len(valid_channels)} live channels")
+
+        if __name__ == "__main__":
+            main()
+        PYEOF
+
+    - name: Run parser
+      run: python main.py
+
+    - name: Commit changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add clean_sorted_channels.m3u README.md
+        git commit -m "Auto-update playlist" || echo "No changes"
+        git push
