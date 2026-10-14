@@ -1,0 +1,212 @@
+{
+ "https://xykt-fix.github.io/cinerama_edge01/hls/BOLLYWOOD_RU/Movie009.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mir24_2500/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/192/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/298/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/112/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/176/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz2/muzsoyuz.6fw0-58xp-acts-esy0/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://hls.volgograd1vtv.cdnvideo.ru/volgograd1vtv/volgograd1vtv.sdp/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://live-tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://hls.tv.3angels.ru/stream.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/301/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "http://tvcdn01.esilnet.kz/tv/mir/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://fs.uplink.kz/match_planeta/mono.m3u8?token=onlinetv": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "http://flussonic.linkintel.ru/otr/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://bl.rutube.ru/livestream/c37cd74192c6bc3d6cd6077c0c4fd686/index.m3u8?e=2077050299&s=HSWg81JrQ3OqmwuWkEIDAQ&scheme=https": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://v4.proofix.ru/0mir/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://stream1.dc.beltelecom.by/radiomir/studio.stream/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://rt-doc.rttv.com/dvr/rtdru/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942701
+ },
+ "https://shift03.isp.bg/RTVi/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942701
+ },
+ "http://mirbelogorya.ru:8080/mirbelogorya/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://cdn4.skygo.mn/live/disk1/MIR/HLSv3-FTA/MIR.m3u8": {
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "ua_name": "Chrome",
+  "ts": 1791942699
+ },
+ "http://stream.mcquack.net/229/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942702
+ },
+ "https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz/soyuz/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "https://stream.smotrim.ru/hls2/russia_hd/playlist_6.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942702
+ },
+ "https://songtv.hls.iptvdc.com/web-russia/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "http://stream.mcquack.net/168/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "http://stream.mcquack.net/138/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "https://stream.smotrim.ru/hls2/russia_k/playlist_5.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "https://rt-srb.rttv.com/dvr/rtbalkan/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "http://stream.mcquack.net/135/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "http://stream.mcquack.net/110/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "http://tshift-1.telecoma.tv/sts/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942703
+ },
+ "http://stream.mcquack.net/100/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942704
+ },
+ "https://fs.uplink.kz/viju_tv1000_russkoe/mono.m3u8?token=onlinetv": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942704
+ },
+ "https://cdn4.skygo.mn/live/disk1/Fashion_TV/HLSv3-FTA/Fashion_TV.m3u8": {
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "ua_name": "Chrome",
+  "ts": 1791942703
+ },
+ "https://cdn.ntv.ru/ntv4/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://cdn.ntv.ru/ntv7/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://cdn.ntv.ru/ntv2/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://cdn.ntv.ru/vitrina/index.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942700
+ },
+ "https://cdn.ntv.ru/ntv1/playlist.m3u8": {
+  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "ua_name": "TiviMate",
+  "ts": 1791942699
+ },
+ "https://cdn.ntv.ru/unknown_russia/playlist.m3u8": {
+  "ua": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "ua_name": "Chrome",
+  "ts": 1791942703
+ }
+}
