@@ -38,7 +38,14 @@ jobs:
         from datetime import datetime, timezone
 
         SOURCE_M3U = "https://iptv-org.github.io/iptv/countries/ru.m3u"
-        EPG_URL = "https://iptv-org.github.io/epg/guides/ru.epg.xml"
+
+        EPG_SOURCES = [
+            "https://iptv-org.github.io/epg/ru.xml",
+            "https://iptv-org.github.io/epg/guides/ru.epg.xml",
+            "https://raw.githubusercontent.com/iptv-org/epg/master/guides/ru.xml",
+            "https://raw.githubusercontent.com/iptv-org/epg/master/sites/ru/ru.xml",
+        ]
+
         OUTPUT_M3U = "clean_sorted_channels.m3u"
         CACHE_FILE = "cache.json"
         CACHE_TTL = 7 * 24 * 3600
@@ -66,13 +73,13 @@ jobs:
         ]
 
         GENRE_MAP = {
-            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis", "футбол"],
-            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "индийское кино", "русский роман", "русский детектив", "киносерия", "кинохит"],
+            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis"],
+            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "киносерия", "кинохит"],
             "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных"],
-            "Документальные": ["365 дней", "documental", "документ", "документальн", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "viu", "dmax", "discovery science"],
+            "Документальные": ["365 дней", "documental", "документ", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "dmax"],
             "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc"],
             "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz"],
-            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "пятница!", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday"],
+            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday"],
             "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "спас", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts"],
         }
 
@@ -80,15 +87,15 @@ jobs:
 
         REGION_BLACKLIST = ["брянск", "калуга", "самара", "новосибирск", "красноярск", "омск", "челябинск", "уфа", "казань", "ростов", "волгоград", "пермь", "воронеж", "саратов", "тольятти", "ижевск", "барнаул", "иркутск", "хабаровск", "ярославль", "тюмень", "томск", "оренбург", "кемерово", "рязань", "астрахань", "пенза", "липецк", "тула", "чебоксары", "курск", "ставрополь", "сочи", "кубань", "регион", "губерния", "край", "осетия", "грозный", "архыз", "якутия", "югра", "колыма", "ямал", "енисей", "алтай", "бурят", "дагестан", "башкорт", "татарстан", "удмурт", "чуваш", "мордов", "марий", "коми", "карел"]
 
-        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "test", "demo", "preview", "promo", "adult", "взрослый", "18+", "религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "союз"]
+        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "adult", "взрослый", "18+", "религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд"]
 
-        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "usa-", "america", "american", "arabic", "arab-", "spanish", "spain", "italian", "italy", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "iran-", "iraq", "syria", "egypt", "al jazeera", "france 24"]
+        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "america", "arabic", "spanish", "italian", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "egypt", "al jazeera", "france 24", "bbc", "cnn"]
 
-        DOMAIN_BLACK_LIST = [".xyz", "cinerama.uz", "local", "test", "example"]
+        BAD_DOMAINS_EXACT = ["localhost", "127.0.0.1"]
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "region": 0, "trash": 0, "foreign": 0, "trash_url": 0}
+        filter_stats = {"child": 0, "region": 0, "trash": 0, "foreign": 0, "trash_url": 0, "ip": 0}
 
         def download_file(url):
             try:
@@ -98,6 +105,15 @@ jobs:
             except Exception as e:
                 print(f"   warn: {url} -> {e}")
                 return None
+
+        def download_epg():
+            for url in EPG_SOURCES:
+                print(f"   Probing EPG: {url}")
+                txt = download_file(url)
+                if txt and "<tv" in txt[:2000].lower():
+                    print(f"   OK: {url}")
+                    return txt, url
+            return None, EPG_SOURCES[0]
 
         def clean_url(url):
             p = urlparse(url)
@@ -117,12 +133,12 @@ jobs:
             p = urlparse(url)
             host = p.netloc.lower().split(":")[0]
             if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host):
+                filter_stats["ip"] += 1
                 return True
-            if host in ("localhost", "127.0.0.1") or host.startswith(("192.168.", "10.")):
+            if host in BAD_DOMAINS_EXACT:
                 return True
-            for b in DOMAIN_BLACK_LIST:
-                if b in host:
-                    return True
+            if host.endswith(".local") or host.endswith(".test") or host.endswith(".example"):
+                return True
             if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
                 return True
             return False
@@ -326,7 +342,7 @@ jobs:
 
         def main():
             print("Loading EPG...")
-            epg_text = download_file(EPG_URL)
+            epg_text, active_epg = download_epg()
             epg_map = load_epg(epg_text)
             print(f"   EPG channels: {len(epg_map)}")
 
@@ -363,13 +379,13 @@ jobs:
 
             print("Saving M3U...")
             with open(OUTPUT_M3U, "w", encoding="utf-8") as f:
-                f.write(f'#EXTM3U url-tvg="{EPG_URL}" x-tvg-url="{EPG_URL}"\n')
+                f.write(f'#EXTM3U url-tvg="{active_epg}" x-tvg-url="{active_epg}"\n')
                 for ch in valid:
                     f.write(f"{ch['inf']}\n")
                     f.write(f"#EXTVLCOPT:http-user-agent={ch['working_ua']}\n")
                     f.write(f"{ch['url']}\n")
 
-            generate_readme(valid, total_raw, total_dedup, EPG_URL, ua_stats, cache_hits)
+            generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits)
             print(f"Done: {len(valid)} live channels (cache hits: {cache_hits})")
 
         if __name__ == "__main__":
