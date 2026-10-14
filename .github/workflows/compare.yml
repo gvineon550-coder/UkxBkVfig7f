@@ -30,6 +30,31 @@ jobs:
 
         NOISE = re.compile(r'\b(тв|tv|hd|fhd|uhd|4k|1080|720|576|480|sd|канал|channel|online|live|stream|not|24/7)\b', re.IGNORECASE)
 
+        # Исключаем эти источники из сравнения
+        SKIP_DOMAINS = [
+            "rutube.ru",
+            "kinowalk",
+            "catcast.tv",
+            "cityeden",
+            "kino-1.catcast.tv",
+        ]
+
+        SKIP_NAMES = [
+            "kinowalk",
+            "rutube",
+        ]
+
+        def should_skip(channel):
+            name_low = channel["name"].lower()
+            url_low = channel["url"].lower()
+            for s in SKIP_NAMES:
+                if s in name_low:
+                    return True
+            for d in SKIP_DOMAINS:
+                if d in url_low:
+                    return True
+            return False
+
         def normalize(name):
             n = name.lower().strip()
             n = n.replace('ё', 'е').replace('й', 'и')
@@ -42,16 +67,13 @@ jobs:
             chans = []
             cur_name = None
             cur_group = None
-            cur_url = None
             for raw in text.splitlines():
                 line = raw.strip()
                 if not line:
                     continue
                 if line.startswith("#EXTINF:"):
-                    # group-title
                     m = re.search(r'group-title="([^"]*)"', line)
                     cur_group = m.group(1) if m else ""
-                    # name after last comma
                     cur_name = line.rsplit(",", 1)[-1].strip()
                     continue
                 if line.startswith("#"):
@@ -67,36 +89,36 @@ jobs:
             return f"{p.scheme}://{p.netloc}{p.path}".strip().lower()
 
         print("Скачиваю их плейлист...")
-        theirs_text = requests.get(THEIR_URL, timeout=60).text
-        theirs = parse_m3u(theirs_text)
-        print(f"   {len(theirs)} каналов")
+        theirs_all = parse_m3u(requests.get(THEIR_URL, timeout=60).text)
+        theirs = [c for c in theirs_all if not should_skip(c)]
+        print(f"   {len(theirs_all)} всего, после фильтра: {len(theirs)}")
 
         print("Скачиваю наш плейлист...")
-        ours_text = requests.get(OUR_URL, timeout=60).text
-        ours = parse_m3u(ours_text)
-        print(f"   {len(ours)} каналов")
+        ours_all = parse_m3u(requests.get(OUR_URL, timeout=60).text)
+        ours = [c for c in ours_all if not should_skip(c)]
+        print(f"   {len(ours_all)} всего, после фильтра: {len(ours)}")
 
         # По URL
         their_urls = {norm_url(c["url"]) for c in theirs}
         our_urls = {norm_url(c["url"]) for c in ours}
-
-        print("\n" + "=" * 60)
-        print(f"URL ЕСТЬ У НИХ, НЕТ У НАС: {len(their_urls - our_urls)}")
-        print("=" * 60)
         their_by_url = {norm_url(c["url"]): c for c in theirs}
-        for u in sorted(their_urls - our_urls)[:200]:
-            c = their_by_url[u]
-            print(f"   {c['name'][:40]:40} | {c['group'][:20]:20} | {u[:80]}")
-
-        print("\n" + "=" * 60)
-        print(f"URL ЕСТЬ У НАС, НЕТ У НИХ: {len(our_urls - their_urls)}")
-        print("=" * 60)
         our_by_url = {norm_url(c["url"]): c for c in ours}
-        for u in sorted(our_urls - their_urls)[:200]:
-            c = our_by_url[u]
-            print(f"   {c['name'][:40]:40} | {c['group'][:20]:20} | {u[:80]}")
 
-        # По нормализованному имени
+        print("\n" + "=" * 70)
+        print(f"URL ЕСТЬ У НИХ, НЕТ У НАС: {len(their_urls - our_urls)}")
+        print("=" * 70)
+        for u in sorted(their_urls - our_urls)[:300]:
+            c = their_by_url[u]
+            print(f"   {c['name'][:45]:45} | {c['group'][:20]:20} | {u[:70]}")
+
+        print("\n" + "=" * 70)
+        print(f"URL ЕСТЬ У НАС, НЕТ У НИХ: {len(our_urls - their_urls)}")
+        print("=" * 70)
+        for u in sorted(our_urls - their_urls)[:300]:
+            c = our_by_url[u]
+            print(f"   {c['name'][:45]:45} | {c['group'][:20]:20} | {u[:70]}")
+
+        # По имени
         their_names = {}
         for c in theirs:
             n = normalize(c["name"])
@@ -108,18 +130,18 @@ jobs:
             if n and n not in our_names:
                 our_names[n] = c
 
-        print("\n" + "=" * 60)
+        print("\n" + "=" * 70)
         print(f"КАНАЛЫ ЕСТЬ У НИХ, НЕТ У НАС (по имени): {len(set(their_names) - set(our_names))}")
-        print("=" * 60)
-        for n in sorted(set(their_names) - set(our_names))[:200]:
+        print("=" * 70)
+        for n in sorted(set(their_names) - set(our_names))[:300]:
             c = their_names[n]
-            print(f"   {c['name'][:50]:50} | {c['group'][:25]}")
+            print(f"   {c['name'][:55]:55} | {c['group'][:25]}")
 
-        print("\n" + "=" * 60)
+        print("\n" + "=" * 70)
         print(f"КАНАЛЫ ЕСТЬ У НАС, НЕТ У НИХ (по имени): {len(set(our_names) - set(their_names))}")
-        print("=" * 60)
-        for n in sorted(set(our_names) - set(their_names))[:300]:
+        print("=" * 70)
+        for n in sorted(set(our_names) - set(their_names))[:400]:
             c = our_names[n]
-            print(f"   {c['name'][:50]:50} | {c['group'][:25]}")
+            print(f"   {c['name'][:55]:55} | {c['group'][:25]}")
         PYEOF
         python compare.py
