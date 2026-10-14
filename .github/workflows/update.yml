@@ -74,6 +74,9 @@ jobs:
             "Музыкальные": "🎵",
             "Развлекательные": "🎭",
             "Общие": "📡",
+            "Региональные": "🏙",
+            "Религиозные": "🙏",
+            "Радио": "📻",
             "Разное": "📦",
         }
 
@@ -90,6 +93,8 @@ jobs:
 
         BLOCKED_SUFFIXES = (".ua", ".uz", ".tm", ".il", ".de", ".az", ".am",
                             ".md", ".ee", ".lv", ".lt", ".ge", ".tr", ".kg", ".tj")
+
+        BLOCKED_TVG_IDS = {"STSLove.ru"}
 
         CATEGORY_OVERRIDES = {
             "2x2.ru": "Развлекательные",
@@ -110,8 +115,9 @@ jobs:
             "VoprosyiOtvety.ru": "Развлекательные",
             "Komediynoe.ru": "Развлекательные",
             "Smotrim100Prazdnik.ru": "Развлекательные",
-            "CityEdenMedZdrav.ru": "Развлекательные",
             "CityEdenReceptyGurmana.ru": "Развлекательные",
+            "Kuhnya.ru": "Развлекательные",
+            "KulinarTV.ru": "Развлекательные",
             "Kinokomedija.ru": "Кино",
             "Komedia.ru": "Кино",
             "vijuPlusComedy.ru": "Кино",
@@ -136,12 +142,21 @@ jobs:
             "TLC.ru": "Познавательные",
             "FoodNetwork.ru": "Познавательные",
             "Nano.ru": "Познавательные",
-            "OtkritiymirZdorove.ru": "Познавательные",
             "AnimalPlanet.ru": "Познавательные",
             "InvestigationDiscovery.ru": "Познавательные",
             "vijuExplore.ru": "Познавательные",
             "vijuNature.ru": "Познавательные",
             "vijuPlusPlanet.ru": "Познавательные",
+            "V mire zhivotnykh": "Познавательные",
+            "Vmirezhivotnykh.ru": "Познавательные",
+            "BigPlanet.ru": "Познавательные",
+            "Zhivayapriroda.ru": "Познавательные",
+            "Dikayaokhota.ru": "Познавательные",
+            "Dikayarybalka.ru": "Познавательные",
+            "Okhotairybalka.ru": "Познавательные",
+            "Rybalkaiokhota.ru": "Познавательные",
+            "Rybolov.ru": "Познавательные",
+            "Ohotnikirybolov.ru": "Познавательные",
             "RTDocumentary.ru": "Документальные",
             "Smotrim100Fakty.ru": "Документальные",
             "CityEdenKinoDok.ru": "Документальные",
@@ -165,6 +180,7 @@ jobs:
             "AtamekenBusiness.kz": "Новостные",
             "India.ru": "Новостные",
             "ProBusiness.ru": "Новостные",
+            "PervyyRespublikanskiy.ru": "Новостные",
             "NTV.ru": "Общие",
             "NTVVitrina.ru": "Общие",
             "Mir.ru": "Общие",
@@ -173,7 +189,6 @@ jobs:
             "Russia1.ru": "Общие",
             "RussiaK.ru": "Общие",
             "STS.ru": "Общие",
-            "STSLove.ru": "Общие",
             "ChannelOne.ru": "Общие",
             "ChannelOneCIS.ru": "Общие",
             "ChannelOneEurasia.kz": "Общие",
@@ -194,46 +209,85 @@ jobs:
             "SilkWay.kz": "Общие",
             "Ulytau.kz": "Общие",
             "TDK42.kz": "Общие",
+            # Региональные
+            "Belgorod24.ru": "Региональные",
+            "Dagestan.ru": "Региональные",
+            "Sochi24.ru": "Региональные",
+            "SochiLive.ru": "Региональные",
+            "Groznyj.ru": "Региональные",
+            "Ingushetia.ru": "Региональные",
+            "OsetiyaIryston.ru": "Региональные",
+            "UgraTV.ru": "Региональные",
+            "NVKSakha.ru": "Региональные",
+            "Arkhyz24.ru": "Региональные",
+            "SamaraGIS.ru": "Региональные",
+            "AstrahanRuTV.ru": "Региональные",
+            "Astrahan24.ru": "Региональные",
+            "AstrahanRuSport.ru": "Региональные",
+            "MTVVolgograd.ru": "Региональные",
+            "Volga.ru": "Региональные",
+            "GuberniaSamara.ru": "Региональные",
+            "KurajTV.ru": "Региональные",
+            "Kuban24.ru": "Региональные",
+            "TelekanalKrasnodar.ru": "Региональные",
+            "TNVTatarstan.ru": "Региональные",
+            "YaPervyy.ru": "Региональные",
+            "Channel8Novosibirsk.ru": "Региональные",
+            "Channel8Krasnoyarsk.ru": "Региональные",
+            "NovgorOblTV.ru": "Региональные",
+            "NTK21.ru": "Региональные",
+            "Surgut24.ru": "Региональные",
+            "ShchyolkovskoeTV.ru": "Региональные",
+            "Telplus.ru": "Региональные",
+            "Enisey.ru": "Региональные",
+            "MirBelogorya.ru": "Региональные",
+            "Channel16.ru": "Региональные",
+            "86.ru": "Региональные",
+            "Channel12.ru": "Региональные",
+            "Channel10.ru": "Региональные",
+            "Channel8International.ru": "Региональные",
+            "S1.ru": "Региональные",
+            "Sever.ru": "Региональные",
+            "NikaTV.ru": "Региональные",
+            "NTM.ru": "Региональные",
+            "NTS.ru": "Региональные",
+            "TNVPlanet.ru": "Региональные",
+            "Prodvizhenie.ru": "Региональные",
+            "SanktPeterburg.ru": "Региональные",
+            "Vetta24.ru": "Региональные",
+            # Религиозные
+            "3ABNRussia.ru": "Религиозные",
+            "AngelTV.in": "Религиозные",
+            "HopeChannelRussia.ru": "Религиозные",
+            "HuzurTV.ru": "Религиозные",
+            "ManaTserkovOnlayn.pt": "Религиозные",
+            "Soyuz.ru": "Религиозные",
+            "TsargradTV.ru": "Религиозные",
+            "TVManaRusskiy.pt": "Религиозные",
+            # Радио
+            "Radio1.ru": "Радио",
+            "RadioMir.by": "Радио",
+            "RadioRossii.ru": "Радио",
+            # Развлекательные прочее
+            "CityEdenMedZdrav.ru": "Разное",
             "BRIDGEClassic.ru": "Музыкальные",
             "MyZenTV.fr": "Разное",
-            "3ABNRussia.ru": "Разное",
-            "HopeChannelRussia.ru": "Разное",
-            "ManaTserkovOnlayn.pt": "Разное",
-            "Soyuz.ru": "Разное",
-            "Spas.ru": "Разное",
-            "TsargradTV.ru": "Разное",
             "Avto24.ru": "Разное",
         }
 
         API_CATEGORY_MAP = {
-            "movies": "Кино",
-            "series": "Сериалы",
-            "sports": "Спорт",
-            "news": "Новостные",
-            "documentary": "Документальные",
-            "science": "Познавательные",
-            "education": "Познавательные",
-            "history": "Документальные",
-            "culture": "Познавательные",
-            "travel": "Познавательные",
-            "music": "Музыкальные",
-            "entertainment": "Развлекательные",
-            "comedy": "Развлекательные",
-            "general": "Общие",
-            "business": "Новостные",
-            "weather": "Новостные",
-            "animation": "Разное",
-            "kids": "Разное",
-            "family": "Разное",
-            "shopping": "Разное",
-            "religious": "Разное",
-            "lifestyle": "Развлекательные",
-            "cooking": "Развлекательные",
-            "auto": "Познавательные",
-            "outdoor": "Познавательные",
-            "relax": "Музыкальные",
-            "classic": "Кино",
-            "hobby": "Познавательные",
+            "movies": "Кино", "series": "Сериалы", "sports": "Спорт",
+            "news": "Новостные", "documentary": "Документальные",
+            "science": "Познавательные", "education": "Познавательные",
+            "history": "Документальные", "culture": "Познавательные",
+            "travel": "Познавательные", "music": "Музыкальные",
+            "entertainment": "Развлекательные", "comedy": "Развлекательные",
+            "general": "Общие", "business": "Новостные", "weather": "Новостные",
+            "animation": "Разное", "kids": "Разное", "family": "Разное",
+            "shopping": "Разное", "religious": "Религиозные",
+            "lifestyle": "Развлекательные", "cooking": "Развлекательные",
+            "auto": "Познавательные", "outdoor": "Познавательные",
+            "relax": "Музыкальные", "classic": "Кино", "hobby": "Познавательные",
         }
 
         GENRE_MAP = {
@@ -246,6 +300,7 @@ jobs:
             "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz", "шансон", "радио дача"],
             "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday", "пятница!", "суббота", "2x2"],
             "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts", "домашний"],
+            "Религиозные": ["религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "3abn", "hope channel", "angel tv", "huzur", "manasat", "tsargrad"],
         }
 
         CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
@@ -266,7 +321,7 @@ jobs:
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0}
+        filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
 
         def download_file(url):
             try:
@@ -442,7 +497,11 @@ jobs:
                 tvg_id = orig_tvg_id or ids_map.get(clean_name, "")
                 base_id = get_base_id(tvg_id)
 
-                # Check country (API) or tvg-id suffix
+                if base_id and base_id in BLOCKED_TVG_IDS:
+                    filter_stats["blocked_id"] += 1
+                    current_inf = ""
+                    continue
+
                 blocked = False
                 country = country_by_id.get(base_id)
                 if not country:
@@ -462,7 +521,6 @@ jobs:
                     current_inf = ""
                     continue
 
-                # Category priority: override → API by base_id → API by name → GENRE_MAP → Разное
                 base_group = ""
                 if base_id and base_id in CATEGORY_OVERRIDES:
                     base_group = CATEGORY_OVERRIDES[base_id]
@@ -622,6 +680,7 @@ jobs:
             total_raw = len(all_channels)
             print(f"Total before dedup: {total_raw}")
             print(f"Filtered by country: {filter_stats['blocked_country']}")
+            print(f"Filtered by ID: {filter_stats['blocked_id']}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
