@@ -3,14 +3,14 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 04:23 UTC
+- Updated: 14.10.2026 04:36 UTC
 - Total from source: 782
 - After dedup: 390
 - Live channels: **301**
 - With EPG: 168
 - Whitelist channels: 0
-- From cache: 295
-- Active EPG: `http://iptvx.one/epg/epg_lite.xml.gz`
+- From cache: 301
+- Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
 
@@ -64,4 +64,4 @@
 ## Links
 
 - Playlist: `https://gvineon550-coder.github.io/lindsben_iptv-/clean_sorted_channels.m3u`
-- EPG: `http://iptvx.one/epg/epg_lite.xml.gz`
+- EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
