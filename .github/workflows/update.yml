@@ -51,7 +51,7 @@ jobs:
         EPG_URL_FALLBACK = "http://iptvx.one/epg/epg_lite.xml.gz"
 
         EPG_MAP_FILE = "epg_map.json"
-        EPG_MAP_VERSION = 22
+        EPG_MAP_VERSION = 23
         EPG_MAP_TTL = 7 * 24 * 3600
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -102,6 +102,31 @@ jobs:
             "24KZ.kz", "AtamekenBusiness.kz", "ChannelOneEurasia.kz",
             "RTBalkan.ru", "RTenEspanol.es", "RTEspanol.es",
             "ViasatEpicDrama.ua", "312Kino.ua", "312TV.ua", "RTN.us",
+        }
+
+        # === НОВОЕ: блокировка хостов целиком ===
+        BLOCKED_URL_HOSTS = [
+            "46.53.200.153",
+            "176.118.197.101",
+            "178.134.1.158",
+            "vod.tuva.ru",
+            "kino-1.catcast.tv",
+        ]
+
+        # === НОВОЕ: блокировка конкретных URL ===
+        BLOCKED_URLS_EXACT = [
+            "https://stream.smotrim.ru/hls2/russia_k/playlist_5.m3u8",
+        ]
+
+        # === НОВОЕ: переименование по tvg-id ===
+        RENAME_BY_TVG_ID = {
+            "kino-tv-pl": "Кино ТВ",
+            "kinopokaz": "Кинопоказ",
+        }
+
+        # === НОВОЕ: очистка битого tvg-id (для матчинга EPG по имени) ===
+        CLEAR_TVG_ID = {
+            "tv21plus",
         }
 
         NOISE_WORDS = {
@@ -216,6 +241,7 @@ jobs:
             "smotrim 100 fakty": "DELETE", "smotrim 100": "DELETE",
             "rtvi": "DELETE", "rtvi us": "DELETE",
             "kapitan fantastika": "DELETE", "kapitan fantastika hd": "DELETE",
+            "кино uhd": "Кино",
             "5 minut tishiny": "Сериалы НТВ",
             "balabol": "Сериалы НТВ",
             "nevskiy": "Сериалы НТВ",
@@ -372,10 +398,11 @@ jobs:
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0}
+        filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0, "blocked_host": 0, "blocked_url": 0}
         filter_url_samples = []
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
         ru_name_stats = {"applied": 0}
+        rename_stats = {"applied": 0}
 
         def detect_encoding(raw_bytes):
             head = raw_bytes[:500].lower()
@@ -590,9 +617,22 @@ jobs:
             p = urlparse(url)
             host = p.netloc.lower().split(":")[0]
 
+            # Whitelist — не трогаем
             for wd in WHITELIST_DOMAINS:
                 if host == wd or host.endswith("." + wd):
                     return False
+
+            # Заблокированные хосты целиком
+            for bh in BLOCKED_URL_HOSTS:
+                if host == bh or host.endswith("." + bh):
+                    filter_stats["blocked_host"] = filter_stats.get("blocked_host", 0) + 1
+                    return True
+
+            # Точные URL
+            for bu in BLOCKED_URLS_EXACT:
+                if u.strip() == bu.lower().strip():
+                    filter_stats["blocked_url"] = filter_stats.get("blocked_url", 0) + 1
+                    return True
 
             if "cinerama" in u:
                 return True
@@ -698,6 +738,7 @@ jobs:
             name_override_used = 0
             epg_used = 0
             ru_applied = 0
+            rename_applied = 0
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -804,9 +845,15 @@ jobs:
                     group = f"{emoji} {base_group}"
 
                 final_tvg_id = epg_id if epg_id else ""
+
+                # Очистка битого tvg-id (EPG по имени)
+                if base_id in CLEAR_TVG_ID:
+                    final_tvg_id = ""
+
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{final_logo}" group-title="{group}",{name_match}')
 
+                # RU-NAME-END: заменяем латинское имя на русское
                 if not has_cyrillic(name_match):
                     iptv_org_id = api_names.get(clean_name)
                     if iptv_org_id:
@@ -822,6 +869,11 @@ jobs:
                                 new_inf = set_name_in_extinf(new_inf, ru_name)
                                 ru_applied += 1
 
+                # Переименование по tvg-id (приоритет над RU-NAME-END)
+                if base_id in RENAME_BY_TVG_ID:
+                    new_inf = set_name_in_extinf(new_inf, RENAME_BY_TVG_ID[base_id])
+                    rename_applied += 1
+
                 channels.append({
                     "inf": new_inf, "url": line, "name": name_match,
                     "clean_name": clean_name, "tvg_id": final_tvg_id,
@@ -830,8 +882,9 @@ jobs:
                 })
                 current_inf = ""
             ru_name_stats["applied"] += ru_applied
+            rename_stats["applied"] += rename_applied
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API: {api_used}, overrides: {override_used}, name_overrides: {name_override_used}, EPG: {epg_used}, ru_names: {ru_applied}")
+            print(f"   [{source_name}] API: {api_used}, overrides: {override_used}, name_overrides: {name_override_used}, EPG: {epg_used}, ru_names: {ru_applied}, renamed: {rename_applied}")
             return channels
 
         def dedup(channels):
@@ -932,6 +985,7 @@ jobs:
                      f"- With EPG: {with_epg}",
                      f"- Whitelist channels: {wl_in_valid}",
                      f"- RU-NAME applied: {ru_name_stats['applied']}",
+                     f"- Renamed by tvg-id: {rename_stats['applied']}",
                      f"- From cache: {cache_hits}",
                      f"- Active EPG: `{active_epg}`",
                      "", "## EPG Match Stats", "",
@@ -950,6 +1004,8 @@ jobs:
                      f"| trash_url | {filter_stats['trash_url']} |",
                      f"| blocked_id | {filter_stats['blocked_id']} |",
                      f"| blocked_country | {filter_stats['blocked_country']} |",
+                     f"| blocked_host | {filter_stats.get('blocked_host', 0)} |",
+                     f"| blocked_url | {filter_stats.get('blocked_url', 0)} |",
                      "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
             for name, count in sorted(ua_stats.items(), key=lambda x: -x[1]):
                 lines.append(f"| {name} | {count} |")
@@ -997,7 +1053,7 @@ jobs:
 
             total_raw = len(all_channels)
             print(f"Total before dedup: {total_raw}")
-            print(f"Filtered: child={filter_stats['child']}, trash={filter_stats['trash']}, name_delete={filter_stats['name_delete']}, trash_url={filter_stats['trash_url']}, blocked_id={filter_stats['blocked_id']}, blocked_country={filter_stats['blocked_country']}")
+            print(f"Filtered: child={filter_stats['child']}, trash={filter_stats['trash']}, name_delete={filter_stats['name_delete']}, trash_url={filter_stats['trash_url']}, blocked_id={filter_stats['blocked_id']}, blocked_country={filter_stats['blocked_country']}, blocked_host={filter_stats.get('blocked_host', 0)}, blocked_url={filter_stats.get('blocked_url', 0)}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
@@ -1038,7 +1094,7 @@ jobs:
                     f.write(f"{ch['url']}\n")
 
             generate_readme(valid, total_raw, total_dedup, EPG_HEADER, ua_stats, cache_hits, len(whitelist))
-            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)}, ru_names_applied: {ru_name_stats['applied']})")
+            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)}, ru_names_applied: {ru_name_stats['applied']}, renamed: {rename_stats['applied']})")
 
         if __name__ == "__main__":
             main()
