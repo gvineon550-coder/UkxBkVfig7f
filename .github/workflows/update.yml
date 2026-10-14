@@ -46,8 +46,6 @@ jobs:
         EPG_SOURCES = [
             "https://iptvx.one/EPG_LITE",
             "https://iptvx.one/epg/epg_lite.xml.gz",
-            "https://iptv-org.github.io/epg/guides/ru/ru.epg.xml",
-            "https://iptv-org.github.io/epg/countries/ru.xml",
         ]
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -87,55 +85,18 @@ jobs:
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g}")
 
         API_CATEGORY_MAP = {
-            "movies": "Кино",
-            "series": "Сериалы",
-            "sports": "Спорт",
-            "news": "Новостные",
-            "documentary": "Документальные",
-            "science": "Познавательные",
-            "education": "Познавательные",
-            "history": "Документальные",
-            "culture": "Познавательные",
-            "travel": "Познавательные",
-            "music": "Музыкальные",
-            "entertainment": "Развлекательные",
-            "comedy": "Развлекательные",
-            "general": "Общие",
-            "business": "Новостные",
-            "weather": "Новостные",
-            "animation": "Разное",
-            "kids": "Разное",
-            "family": "Разное",
-            "shopping": "Разное",
-            "religious": "Разное",
-            "lifestyle": "Развлекательные",
-            "cooking": "Развлекательные",
-            "auto": "Познавательные",
-            "outdoor": "Познавательные",
-            "relax": "Музыкальные",
-            "classic": "Кино",
-            "hobby": "Познавательные",
-        }
-
-        EPG_CATEGORY_MAP = {
-            "кино": "Кино", "фильм": "Кино", "кинофильм": "Кино", "movie": "Кино",
-            "cinema": "Кино", "films": "Кино", "кинотеатр": "Кино",
-            "сериал": "Сериалы", "series": "Сериалы", "tv series": "Сериалы",
-            "спорт": "Спорт", "sport": "Спорт", "sports": "Спорт",
-            "футбол": "Спорт", "хоккей": "Спорт", "football": "Спорт",
-            "новост": "Новостные", "news": "Новостные",
-            "познав": "Познавательные", "образов": "Познавательные",
-            "наука": "Познавательные", "science": "Познавательные",
-            "education": "Познавательные", "документал": "Документальные",
-            "документ": "Документальные", "documentary": "Документальные",
-            "history": "Документальные", "история": "Документальные",
-            "музык": "Музыкальные", "music": "Музыкальные",
-            "развлек": "Развлекательные", "entertainment": "Развлекательные",
-            "comedy": "Развлекательные", "юмор": "Развлекательные",
-            "общ": "Общие", "general": "Общие", "public": "Общие",
-            "детск": "Разное", "kids": "Разное", "for kids": "Разное",
-            "animation": "Разное", "cartoon": "Разное",
+            "movies": "Кино", "series": "Сериалы", "sports": "Спорт",
+            "news": "Новостные", "documentary": "Документальные",
+            "science": "Познавательные", "education": "Познавательные",
+            "history": "Документальные", "culture": "Познавательные",
+            "travel": "Познавательные", "music": "Музыкальные",
+            "entertainment": "Развлекательные", "comedy": "Развлекательные",
+            "general": "Общие", "business": "Новостные", "weather": "Новостные",
+            "animation": "Разное", "kids": "Разное", "family": "Разное",
             "shopping": "Разное", "religious": "Разное",
+            "lifestyle": "Развлекательные", "cooking": "Развлекательные",
+            "auto": "Познавательные", "outdoor": "Познавательные",
+            "relax": "Музыкальные", "classic": "Кино", "hobby": "Познавательные",
         }
 
         GENRE_MAP = {
@@ -159,6 +120,14 @@ jobs:
         FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "america", "arabic", "spanish", "italian", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "egypt", "al jazeera", "france 24", "bbc", "cnn"]
 
         BAD_DOMAINS_EXACT = ["localhost", "127.0.0.1"]
+        BAD_DOMAINS_SUFFIX = [
+            "cinerama.uz", "tektv.co", "procajaiptv.com", "videopne.co",
+            "1iptv.xyz", "tptv.cz", "daddylive3.com", "rereyano.ru",
+            "telestream.mom", "kondoplay.cfd", "iptvsupra.com", "d4ktv.info",
+            "xemtv.net", "apollogrouptv.cam", "usaliveiptv.com",
+            "streamseast.zip", "digitallizard-iptv.com", "iptvjoker.cloud",
+            "4kliveiptv.io", "streamxyz.shop", "iptv-eldbert.xyz",
+        ]
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
@@ -185,28 +154,40 @@ jobs:
                     return txt, url
             return None, EPG_SOURCES[0]
 
-        def load_api_categories():
+        def load_api():
             cats = {}
-            print(f"   Loading API categories: {API_CHANNELS}")
+            names_index = {}
+            print(f"   Loading API: {API_CHANNELS}")
             txt = download_file(API_CHANNELS)
             if not txt:
-                return cats
+                return cats, names_index
             try:
                 data = json.loads(txt)
                 for ch in data:
                     cid = ch.get("id")
-                    ch_cats = ch.get("categories", [])
-                    if not cid or not ch_cats:
-                        continue
-                    for c in ch_cats:
-                        mapped = API_CATEGORY_MAP.get(c.lower())
-                        if mapped:
-                            cats[cid] = mapped
-                            break
-                print(f"   API categories loaded: {len(cats)}")
+                    ch_cats = ch.get("categories", []) or []
+                    ch_name = ch.get("name", "")
+                    alt_names = ch.get("alt_names", []) or []
+
+                    if cid and ch_cats:
+                        for c in ch_cats:
+                            mapped = API_CATEGORY_MAP.get(c.lower())
+                            if mapped:
+                                cats[cid] = mapped
+                                break
+
+                    if cid:
+                        if ch_name:
+                            names_index[clean_channel_name(ch_name)] = cid
+                        for alt in alt_names:
+                            if alt:
+                                names_index[clean_channel_name(alt)] = cid
+                print(f"   API categories: {len(cats)}, name index: {len(names_index)}")
+                sample_cats = list(cats.items())[:5]
+                print(f"   API sample cats: {sample_cats}")
             except Exception as e:
                 print(f"   API err: {e}")
-            return cats
+            return cats, names_index
 
         def clean_url(url):
             p = urlparse(url)
@@ -229,6 +210,9 @@ jobs:
                 return True
             if host in BAD_DOMAINS_EXACT:
                 return True
+            for bad in BAD_DOMAINS_SUFFIX:
+                if host == bad or host.endswith("." + bad):
+                    return True
             if host.endswith(".local") or host.endswith(".test") or host.endswith(".example"):
                 return True
             if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
@@ -246,20 +230,10 @@ jobs:
                         return target
             return ""
 
-        def map_epg_category(epg_cat):
-            if not epg_cat:
-                return ""
-            c = epg_cat.lower().strip()
-            for key, val in EPG_CATEGORY_MAP.items():
-                if key in c:
-                    return val
-            return ""
-
         def load_epg(xml_text):
             ids_map = {}
-            cats_map = {}
             if not xml_text:
-                return ids_map, cats_map
+                return ids_map
             try:
                 root = ET.fromstring(xml_text)
                 for ch in root.findall('channel'):
@@ -269,27 +243,22 @@ jobs:
                     for dn in ch.findall('display-name'):
                         if dn.text:
                             ids_map[clean_channel_name(dn.text)] = cid
-                    for cat in ch.findall('category'):
-                        if cat.text:
-                            mapped = map_epg_category(cat.text)
-                            if mapped:
-                                cats_map[cid] = mapped
-                                break
             except Exception as e:
                 print(f"   XMLTV err: {e}")
-            return ids_map, cats_map
+            return ids_map
 
         def parse_attr(line, attr):
             m = re.search(rf'{attr}="([^"]*)"', line)
             return m.group(1) if m else ""
 
-        def parse_m3u(content, ids_map, cats_map, api_cats_map, source_name="", source_priority=0):
+        def parse_m3u(content, ids_map, api_cats, api_names, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
             total_seen = 0
-            epg_used = 0
             api_used = 0
+            name_used = 0
+            debug_ids = []
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -338,14 +307,20 @@ jobs:
 
                 tvg_id = orig_tvg_id or ids_map.get(clean_name, "")
 
-                # ПРИОРИТЕТ: API → EPG → угадывание
+                if len(debug_ids) < 5:
+                    debug_ids.append(f"{name_match} → tvg={tvg_id or 'EMPTY'}")
+
+                # ПРИОРИТЕТ: API по tvg_id → API по имени → угадывание
                 base_group = ""
-                if tvg_id and tvg_id in api_cats_map:
-                    base_group = api_cats_map[tvg_id]
+                if tvg_id and tvg_id in api_cats:
+                    base_group = api_cats[tvg_id]
                     api_used += 1
-                if not base_group and tvg_id and tvg_id in cats_map:
-                    base_group = cats_map[tvg_id]
-                    epg_used += 1
+                if not base_group:
+                    found_id = api_names.get(clean_name)
+                    if found_id and found_id in api_cats:
+                        base_group = api_cats[found_id]
+                        api_used += 1
+                        name_used += 1
                 if not base_group:
                     base_group = determine_group_from_name(orig_group, clean_name)
                 if not base_group:
@@ -367,8 +342,10 @@ jobs:
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API categories used: {api_used}")
-            print(f"   [{source_name}] EPG categories used: {epg_used}")
+            print(f"   [{source_name}] API used: {api_used} (by name: {name_used})")
+            print(f"   [{source_name}] DEBUG samples:")
+            for s in debug_ids:
+                print(f"      {s}")
             return channels
 
         def dedup(channels):
@@ -475,10 +452,10 @@ jobs:
         def main():
             print("Loading EPG...")
             epg_text, active_epg = download_epg()
-            ids_map, cats_map = load_epg(epg_text)
-            print(f"   EPG channels: {len(ids_map)}, with categories: {len(cats_map)}")
+            ids_map = load_epg(epg_text)
+            print(f"   EPG channels: {len(ids_map)}")
 
-            api_cats_map = load_api_categories()
+            api_cats, api_names = load_api()
 
             all_channels = []
             for src in SOURCES:
@@ -487,7 +464,7 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, ids_map, cats_map, api_cats_map, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, ids_map, api_cats, api_names, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
 
