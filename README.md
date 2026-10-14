@@ -3,29 +3,29 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 03:49 UTC
+- Updated: 14.10.2026 04:23 UTC
 - Total from source: 782
-- After dedup: 383
-- Live channels: **304**
+- After dedup: 390
+- Live channels: **301**
+- With EPG: 168
 - Whitelist channels: 0
-- With EPG: 304
-- From cache: 304
-- Active EPG: `https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz`
+- From cache: 295
+- Active EPG: `http://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
-| Exact ID | 0 |
-| Exact Name | 0 |
-| Fuzzy | 0 |
-| No match | 782 |
+| by_name | 140 |
+| by_translit | 276 |
+| by_prefix | 17 |
+| no_match | 346 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| TiviMate | 300 |
+| TiviMate | 297 |
 | Chrome | 4 |
 
 ## Categories
@@ -37,19 +37,19 @@
 | 📺 Сериалы HD | 1 |
 | 📺 Сериалы | 12 |
 | ⚽ Спорт HD | 1 |
-| ⚽ Спорт | 13 |
+| ⚽ Спорт | 14 |
 | 🌍 Познавательные HD | 7 |
 | 🌍 Познавательные | 20 |
 | 🎥 Документальные HD | 0 |
 | 🎥 Документальные | 4 |
 | 📰 Новостные HD | 1 |
-| 📰 Новостные | 20 |
-| 🎵 Музыкальные HD | 1 |
+| 📰 Новостные | 19 |
+| 🎵 Музыкальные HD | 0 |
 | 🎵 Музыкальные | 23 |
 | 🎭 Развлекательные HD | 2 |
-| 🎭 Развлекательные | 29 |
-| 📡 Общие HD | 5 |
-| 📡 Общие | 37 |
+| 🎭 Развлекательные | 26 |
+| 📡 Общие HD | 4 |
+| 📡 Общие | 39 |
 | 🏙 Региональные HD | 2 |
 | 🏙 Региональные | 43 |
 | 🙏 Религиозные HD | 0 |
@@ -64,4 +64,4 @@
 ## Links
 
 - Playlist: `https://gvineon550-coder.github.io/lindsben_iptv-/clean_sorted_channels.m3u`
-- EPG: `https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz`
+- EPG: `http://iptvx.one/epg/epg_lite.xml.gz`
