@@ -3,29 +3,29 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 03:46 UTC
+- Updated: 14.10.2026 03:49 UTC
 - Total from source: 782
-- After dedup: 385
-- Live channels: **305**
+- After dedup: 383
+- Live channels: **304**
 - Whitelist channels: 0
-- With EPG: 305
-- From cache: 303
-- Active EPG: `https://epg.it999.ru/epg.xml.gz`
+- With EPG: 304
+- From cache: 304
+- Active EPG: `https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
 | Exact ID | 0 |
-| Exact Name | 113 |
-| Fuzzy | 16 |
-| No match | 653 |
+| Exact Name | 0 |
+| Fuzzy | 0 |
+| No match | 782 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| TiviMate | 301 |
+| TiviMate | 300 |
 | Chrome | 4 |
 
 ## Categories
@@ -48,7 +48,7 @@
 | 🎵 Музыкальные | 23 |
 | 🎭 Развлекательные HD | 2 |
 | 🎭 Развлекательные | 29 |
-| 📡 Общие HD | 6 |
+| 📡 Общие HD | 5 |
 | 📡 Общие | 37 |
 | 🏙 Региональные HD | 2 |
 | 🏙 Региональные | 43 |
@@ -64,4 +64,4 @@
 ## Links
 
 - Playlist: `https://gvineon550-coder.github.io/lindsben_iptv-/clean_sorted_channels.m3u`
-- EPG: `https://epg.it999.ru/epg.xml.gz`
+- EPG: `https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz`
