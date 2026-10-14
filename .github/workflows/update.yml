@@ -44,14 +44,13 @@ jobs:
             {"url": "https://iptv-org.github.io/iptv/languages/rus.m3u", "name": "RU-Language", "priority": 1},
         ]
 
-        # Два EPG в шапке через "; " — как у них
         EPG_URL = "http://iptvx.one/epg/epg_lite.xml.gz"
         EPG_URL_SECOND = "https://iptvx.one/EPG_NOARCH"
         EPG_HEADER = f"{EPG_URL}; {EPG_URL_SECOND}"
         EPG_URL_FALLBACK = "https://iptvx.one/epg/epg_lite.xml.gz"
 
         EPG_MAP_FILE = "epg_map.json"
-        EPG_MAP_VERSION = 19
+        EPG_MAP_VERSION = 20
         EPG_MAP_TTL = 7 * 24 * 3600
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -206,16 +205,17 @@ jobs:
         }
 
         GENRE_MAP = {
-            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis", "автоспорт", "motorsport"],
-            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "киносерия", "кинохит", "русский роман", "русский детектив", "индийское кино"],
-            "Сериалы": ["сериал", "series"],
-            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных", "моя планета"],
-            "Документальные": ["365 дней", "documental", "документ", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "dmax", "охота", "рыбалка"],
-            "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc", "россия 24"],
-            "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz", "шансон", "радио дача"],
-            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday", "пятница!", "суббота", "2x2"],
+            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis", "автоспорт", "motorsport", "fight", "борьб", "единоборств"],
+            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "киносерия", "кинохит", "русский роман", "русский детектив", "индийское кино", "боевик", "ужас", "фантастик", "детектив", "blockbuster", "блокбастер", "премьера"],
+            "Сериалы": ["сериал", "series", "serial", "теленовелл", "novella"],
+            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных", "моя планета", "viasat nature", "viasat explore", "viasat history", "hgtv", "tlc", "nano", "viju", "интересное", "удивительное"],
+            "Документальные": ["365 дней", "documental", "документ", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "dmax", "охота", "рыбалка", "biography", "биограф", "военн", "война", "war", "military", "криминал"],
+            "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc", "россия 24", "вести", "lenta", "лента", "tass", "тасс", "reuters"],
+            "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz", "шансон", "радио дача", "hit", "хит", "dance", "танц", "disco", "рок", "rock", "поп", "pop", "jazz", "джаз", "караоке"],
+            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday", "пятница!", "суббота", "2x2", "shorts", "шоу", "show", "humor", "цирк", "игр", "game", "мод", "fashion", "стиль", "кухн", "реалити", "reality"],
             "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts", "домашний"],
-            "Религиозные": ["религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "3abn", "hope channel", "angel tv", "huzur", "manasat", "tsargrad"],
+            "Религиозные": ["религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "3abn", "hope channel", "angel tv", "huzur", "manasat", "tsargrad", "царь", "бог", "god", "христиан", "евангел"],
+            "Региональные": ["region", "регион", "област", "губерния", "край", "республик", "vainah", "vainakh", "крым", "crim", "чечен", "chechen", "дагест", "dagest", "ingush", "oset", "осетин", "kabard", "балкар", "карел", "komi", "коми", "tatar", "татар", "bashkir", "башк", "хмао", "ямал", "yamal", "югра", "ugra", "sakha", "саха", "якут", "yakut"],
         }
 
         CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
@@ -713,17 +713,35 @@ jobs:
 
         def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits, wl_count):
             stats = {}
+            groups_dump = {}
             for g in BASE_GROUPS:
                 stats[f"{EMOJI[g]} {g}"] = 0
                 stats[f"{EMOJI[g]} {g} HD"] = 0
+                groups_dump[f"{EMOJI[g]} {g}"] = []
+                groups_dump[f"{EMOJI[g]} {g} HD"] = []
             with_epg = 0
             wl_in_valid = 0
             for ch in valid:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
+                groups_dump.setdefault(ch['group'], []).append(ch["name"])
                 if ch["tvg_id"]:
                     with_epg += 1
                 if ch.get("is_whitelist"):
                     wl_in_valid += 1
+
+            # ДИАГНОСТИКА: первые 15 каналов из каждой группы
+            print("\n===== ДИАГНОСТИКА ПО ГРУППАМ =====")
+            for g in sorted(groups_dump.keys()):
+                names = groups_dump[g]
+                if not names:
+                    continue
+                print(f"\n[{g}] — {len(names)} каналов:")
+                for nm in names[:15]:
+                    print(f"   {nm}")
+                if len(names) > 15:
+                    print(f"   ... и ещё {len(names) - 15}")
+            print("\n===== КОНЕЦ ДИАГНОСТИКИ =====\n")
+
             now_str = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" in repo_env:
