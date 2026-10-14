@@ -605,6 +605,9 @@ http://176.118.197.101/Bollywood_HD/index.m3u8
 #EXTINF:-1 tvg-id="domkino-premium" tvg-name="Dom kino Premium HD (1080p)" tvg-logo="https://iptvx.one/picons/domkino-premium.png" group-title="🎬 Кино HD",Дом кино Премиум
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/108/index.m3u8
+#EXTINF:-1 tvg-id="domkino-premium" tvg-name="Dom kino Premium HD (1080p)" tvg-logo="https://iptvx.one/picons/domkino-premium.png" group-title="🎬 Кино HD",Дом кино Премиум
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/dom_kino_premium/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="dorama" tvg-name="Dorama HD (1080p)" tvg-logo="https://iptvx.one/picons/dorama.png" group-title="🎬 Кино HD",Дорама
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/412/index.m3u8
@@ -617,6 +620,9 @@ http://stream.mcquack.net/385/index.m3u8
 #EXTINF:-1 tvg-id="kino-tv-pl" tvg-name="Kino TV HD (1080p)" tvg-logo="https://iptvx.one/picons/kino-tv-pl.png" group-title="🎬 Кино HD",Кино UHD
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/KinoTvHD/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Kinopremyera HD (1080p)" tvg-logo="" group-title="🎬 Кино HD",Кинопремьера
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinopremiera_hd/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="nash-kinopokaz" tvg-name="Nash Kinopokaz HD (576p)" tvg-logo="https://iptvx.one/picons/nash-kinopokaz.png" group-title="🎬 Кино HD",Наш Кинопоказ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/SRT_Nash_kinopokaz/index.m3u8
@@ -707,6 +713,12 @@ https://cityeden.catcast.tv/content/40783/index.m3u8
 #EXTINF:-1 tvg-id="domkino" tvg-name="Dom kino (576p)" tvg-logo="https://iptvx.one/picons/domkino.png" group-title="🎬 Кино",Дом кино
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/236/index.m3u8
+#EXTINF:-1 tvg-id="domkino-int" tvg-name="Dom kino International (576p)" tvg-logo="https://iptvx.one/picons/domkino.png" group-title="🎬 Кино",Дом кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/dom_kino/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="dorama" tvg-name="Dorama (576p)" tvg-logo="https://iptvx.one/picons/dorama.png" group-title="🎬 Кино",Дорама
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/dorama/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="evrokino" tvg-name="Evrokino (576p)" tvg-logo="https://iptvx.one/picons/eurokino.png" group-title="🎬 Кино",Еврокино
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/Evrokino/index.m3u8
@@ -728,6 +740,9 @@ http://188.113.190.12/329/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Indiyskoye Kino (576p)" tvg-logo="" group-title="🎬 Кино",Индийское кино
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/104/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Indiyskoye Kino (576p)" tvg-logo="" group-title="🎬 Кино",Индийское кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/indiyskoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kino-1" tvg-name="Kino 1 (Russia) [Not 24/7]" tvg-logo="https://i.imgur.com/zsCPLs4.png" group-title="🎬 Кино",Kino 1 (Russia) [Not 24/7]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://kino-1.catcast.tv/content/38617/index.m3u8
@@ -737,18 +752,30 @@ http://flussonic.linkintel.ru/kino-tv/index.m3u8
 #EXTINF:-1 tvg-id="kino-tv-pl" tvg-name="Kino TV SD (576p)" tvg-logo="https://iptvx.one/picons/kino-tv-pl.png" group-title="🎬 Кино",Кино UHD
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/221/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="KinoBoevik (1080p)" tvg-logo="https://kt.server-img.lfstrm.tv/images/channel_logos/logo_66b351f01f828dca40d006b3.png" group-title="🎬 Кино",КиноБоевик
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinoboevik/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="KinoHit (576p)" tvg-logo="" group-title="🎬 Кино",Кинохит
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/126/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="KinoHit (576p)" tvg-logo="" group-title="🎬 Кино",Кинохит
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinohit/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kinokazka" tvg-name="Kinokomedija (576p)" tvg-logo="https://iptvx.one/picons/kinokazka.png" group-title="🎬 Кино",Кинокомедия
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/265/index.m3u8
+#EXTINF:-1 tvg-id="kinokazka" tvg-name="Kinokomedija (576p)" tvg-logo="https://iptvx.one/picons/kinokazka.png" group-title="🎬 Кино",Кинокомедия
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinokomedia/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Kinomix (576p)" tvg-logo="" group-title="🎬 Кино",Киномикс
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://93.170.254.17/Kinomiks/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Kinomix (576p)" tvg-logo="" group-title="🎬 Кино",Киномикс
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/133/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Kinomix (576p)" tvg-logo="" group-title="🎬 Кино",Киномикс
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinomix/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kinopokaz" tvg-name="Kinopokaz (576p)" tvg-logo="https://iptvx.one/picons/kinopokaz.png" group-title="🎬 Кино",Шокирующее
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/64/index.m3u8
@@ -758,27 +785,54 @@ http://5.188.159.128:8070/KINOPREMIERA/index.m3u8
 #EXTINF:-1 tvg-id="kinosweet" tvg-name="Kinosemja (576p)" tvg-logo="https://iptvx.one/picons/kinosweet.png" group-title="🎬 Кино",Киносемья
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/170/index.m3u8
+#EXTINF:-1 tvg-id="kinosweet" tvg-name="Kinosemja (576p)" tvg-logo="https://iptvx.one/picons/kinosweet.png" group-title="🎬 Кино",Киносемья
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinosemya/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="kinoseria" tvg-name="Kinoseriya (576p)" tvg-logo="https://iptvx.one/picons/kinoseria.png" group-title="🎬 Кино",Киносерия
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinoseria/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kinosvidanie" tvg-name="Kinosvidanie (576p)" tvg-logo="https://iptvx.one/picons/kinosvidanie.png" group-title="🎬 Кино",Киносвидание
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/kinosvidanie/index.m3u8
 #EXTINF:-1 tvg-id="kinosvidanie" tvg-name="Kinosvidanie (576p)" tvg-logo="https://iptvx.one/picons/kinosvidanie.png" group-title="🎬 Кино",Киносвидание
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/171/index.m3u8
+#EXTINF:-1 tvg-id="kinosvidanie" tvg-name="Kinosvidanie (576p)" tvg-logo="https://iptvx.one/picons/kinosvidanie.png" group-title="🎬 Кино",Киносвидание
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinosvidanie/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kinouzhas" tvg-name="Kinouzhas (576p)" tvg-logo="https://iptvx.one/picons/kinouzhas.png" group-title="🎬 Кино",Киноужас
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/278/index.m3u8
+#EXTINF:-1 tvg-id="kinouzhas" tvg-name="Kinouzhas (576p)" tvg-logo="https://iptvx.one/picons/kinouzhas.png" group-title="🎬 Кино",Киноужас
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinouzhas/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Komedia (576p)" tvg-logo="" group-title="🎬 Кино",Комедия
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/68/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Komedia (576p)" tvg-logo="" group-title="🎬 Кино",Комедия
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/Komediya/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Mirovoe kino (1080p)" tvg-logo="https://tele2.server-img.lfstrm.tv/images/channel_logos/logo_65c24031d8bec399a7aa2226.png" group-title="🎬 Кино",Мировое кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/mirovoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Mosfilm Gold Collection (576p)" tvg-logo="" group-title="🎬 Кино",Мосфильм Золотая коллекция
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/369/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Mosfilm Gold Collection (576p)" tvg-logo="" group-title="🎬 Кино",Мосфильм Золотая коллекция
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/mosfilm/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="muzhskoe-kino" tvg-name="Muzhskoe kino (576p)" tvg-logo="https://iptvx.one/picons/muzhskoe-kino.png" group-title="🎬 Кино",Мужское кино
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/107/index.m3u8
+#EXTINF:-1 tvg-id="muzhskoe-kino" tvg-name="Muzhskoe kino (576p)" tvg-logo="https://iptvx.one/picons/muzhskoe-kino.png" group-title="🎬 Кино",Мужское кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/muzhskoe_kino/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="nashe-novoe-kino" tvg-name="Nashe Novoe Kino (576p)" tvg-logo="https://iptvx.one/picons/nashe-novoe-kino.png" group-title="🎬 Кино",Наше новое кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/nashe_novoe_kino/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="" tvg-name="Nostalgia (576p)" tvg-logo="" group-title="🎬 Кино",Nostalgia (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/nostalgia/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Nostalgia (576p)" tvg-logo="" group-title="🎬 Кино",Nostalgia (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/Nostalgiya/index.m3u8
@@ -791,6 +845,9 @@ https://vod.tuva.ru/nst/index.m3u8
 #EXTINF:-1 tvg-id="patriot" tvg-name="Patriot (720p)" tvg-logo="https://iptvx.one/picons/patriot.png" group-title="🎬 Кино",Патриот
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://stream.smotrim.ru/hls2/static/playlist_4.m3u8
+#EXTINF:-1 tvg-id="pobeda" tvg-name="Pobeda (576p)" tvg-logo="https://iptvx.one/picons/pobeda.png" group-title="🎬 Кино",Победа
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/pobeda/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="quadro4k" tvg-name="Quadro (2160p)" tvg-logo="https://iptvx.one/picons/quadro4k.png" group-title="🎬 Кино",Quadro (2160p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://57.128.231.171:8080/316/index.m3u8
@@ -803,6 +860,9 @@ http://176.118.197.101/Retro/index.m3u8
 #EXTINF:-1 tvg-id="rodnoe-kino" tvg-name="Rodnoe Kino (576p)" tvg-logo="https://iptvx.one/picons/rodnoe-kino.png" group-title="🎬 Кино",Родное Кино
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/242/index.m3u8
+#EXTINF:-1 tvg-id="rodnoe-kino" tvg-name="Rodnoe Kino (576p)" tvg-logo="https://iptvx.one/picons/rodnoe-kino.png" group-title="🎬 Кино",Родное Кино
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/rodnoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Russkiy Bestseller (576p)" tvg-logo="" group-title="🎬 Кино",Русский бестселлер
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/208/index.m3u8
@@ -824,15 +884,27 @@ https://dash2.antik.sk/live/test_star_family_atktv/playlist.m3u8
 #EXTINF:-1 tvg-id="start-air" tvg-name="START Air (576p)" tvg-logo="https://iptvx.one/picons/start-air.png" group-title="🎬 Кино",START Air (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/128/index.m3u8
+#EXTINF:-1 tvg-id="start-air" tvg-name="START Air (576p)" tvg-logo="https://iptvx.one/picons/start-air.png" group-title="🎬 Кино",START Air (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/start_air/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="start-air" tvg-name="START Air (1080p)" tvg-logo="https://iptvx.one/picons/start-air.png" group-title="🎬 Кино",START Air (1080p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/START_AIR/index.m3u8
+#EXTINF:-1 tvg-id="start-world" tvg-name="START World (576p)" tvg-logo="https://iptvx.one/picons/start-world.png" group-title="🎬 Кино",START World (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/start_world/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tv21plus" tvg-name="TV 21 (576p)" tvg-logo="https://iptvx.one/picons/tv21plus.png" group-title="🎬 Кино",ТВ 21
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.134.1.158:8081/TVXXI/index.m3u8
+#EXTINF:-1 tvg-id="tv21plus" tvg-name="TV 21 (576p)" tvg-logo="https://iptvx.one/picons/tv21plus.png" group-title="🎬 Кино",ТВ 21
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tvxxi/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tv1000" tvg-name="viju TV1000 (576p)" tvg-logo="https://iptvx.one/picons/tv1000.png" group-title="🎬 Кино",viju TV1000 (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/110/index.m3u8
+#EXTINF:-1 tvg-id="tv1000" tvg-name="viju TV1000 (576p)" tvg-logo="https://iptvx.one/picons/tv1000.png" group-title="🎬 Кино",viju TV1000 (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_tv1000/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tv1000" tvg-name="viju TV1000 (576p)" tvg-logo="https://iptvx.one/picons/tv1000.png" group-title="🎬 Кино",viju TV1000 (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/TV_1000/index.m3u8
@@ -841,7 +913,13 @@ http://46.53.200.153:7777/play/TV_1000/index.m3u8
 http://stream.mcquack.net/100/index.m3u8
 #EXTINF:-1 tvg-id="tv1000-action" tvg-name="viju TV1000 action (576p)" tvg-logo="https://iptvx.one/picons/tv1000-action.png" group-title="🎬 Кино",viju TV1000 action (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_tv1000_action/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="tv1000-action" tvg-name="viju TV1000 action (576p)" tvg-logo="https://iptvx.one/picons/tv1000-action.png" group-title="🎬 Кино",viju TV1000 action (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01h/index.m3u8
+#EXTINF:-1 tvg-id="tv1000-russkoe-kino" tvg-name="viju TV1000 russkoe (576p)" tvg-logo="https://iptvx.one/picons/tv1000-russkoe-kino.png" group-title="🎬 Кино",viju TV1000 русское
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_tv1000_russkoe/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tv1000-russkoe-kino" tvg-name="viju TV1000 russkoe (576p)" tvg-logo="https://iptvx.one/picons/tv1000-russkoe-kino.png" group-title="🎬 Кино",viju TV1000 русское
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01g/index.m3u8
@@ -872,9 +950,6 @@ http://178.134.1.158:8081/ntvhit/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Saphire (1080p)" tvg-logo="" group-title="📺 Сериалы",Сапфир
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/Sapfir_HD/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="Viasat Epic Drama Ukraine (576p)" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/e/e1/Viasat_Epic_Drama_2026.svg" group-title="📺 Сериалы",Viasat Epic Drama Ukraine (576p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://195.189.60.253/118/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="5 minut tishiny (1080p)" tvg-logo="" group-title="🎞 Сериалы НТВ",Пять минут тишины
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cdn-dvr.ntv.ru/5_minut_tishiny/index.m3u8
@@ -902,6 +977,9 @@ https://cdn-dvr.ntv.ru/Skoraja_pomosh/index.m3u8
 #EXTINF:-1 tvg-id="belarus5" tvg-name="Belarus-5 HD (1080p)" tvg-logo="https://i.imgur.com/NJsRFud.png" group-title="⚽ Спорт HD",Беларусь 5
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/BT5/index.m3u8
+#EXTINF:-1 tvg-id="setanta-sports" tvg-name="Setanta Sports 1 HD" tvg-logo="https://iptvx.one/picons/setanta-sports.png" group-title="⚽ Спорт HD",Setanta Sports 1 HD
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/setanta_sports_1_hd/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="viasat-sport" tvg-name="viju+ Sport HD (1080p)" tvg-logo="https://iptvx.one/picons/viasat-sport.png" group-title="⚽ Спорт HD",viju+ Sport HD (1080p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01l/index.m3u8
@@ -920,15 +998,24 @@ http://stream.mcquack.net/176/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Eurosport 2 Russia (1080p)" tvg-logo="https://i.imgur.com/f56dHgR.png" group-title="⚽ Спорт",Eurosport 2 Russia (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/192/index.m3u8
+#EXTINF:-1 tvg-id="extreme-sports" tvg-name="Extreme Sports Channel (576p)" tvg-logo="https://iptvx.one/picons/extreme-sports.png" group-title="⚽ Спорт",Extreme Sports Channel (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/extreme_sports/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kxl" tvg-name="KHL (576p)" tvg-logo="https://iptvx.one/picons/kxl.png" group-title="⚽ Спорт",КХЛ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/166/index.m3u8
+#EXTINF:-1 tvg-id="kxl" tvg-name="KHL (576p)" tvg-logo="https://iptvx.one/picons/kxl.png" group-title="⚽ Спорт",КХЛ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/telekanal_khl/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="kxl" tvg-name="KHL (576p)" tvg-logo="https://iptvx.one/picons/kxl.png" group-title="⚽ Спорт",КХЛ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/KHL/index.m3u8
 #EXTINF:-1 tvg-id="kxl-hd" tvg-name="KHL Prime (1080p)" tvg-logo="https://iptvx.one/picons/kxl-hd.png" group-title="⚽ Спорт",KHL Prime (1080p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/178/index.m3u8
+#EXTINF:-1 tvg-id="kxl-hd" tvg-name="KHL Prime (1080p)" tvg-logo="https://iptvx.one/picons/kxl-hd.png" group-title="⚽ Спорт",KHL Prime (1080p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/khl_prime/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="match-arena" tvg-name="Match! Arena (576p)" tvg-logo="https://iptvx.one/picons/match-arena.png" group-title="⚽ Спорт",Матч! Арена
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/163/index.m3u8
@@ -938,12 +1025,18 @@ http://stream.mcquack.net/112/index.m3u8
 #EXTINF:-1 tvg-id="match-igra" tvg-name="Match! Igra (576p)" tvg-logo="https://iptvx.one/picons/match-igra.png" group-title="⚽ Спорт",Матч! Игра
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/188/index.m3u8
+#EXTINF:-1 tvg-id="match-planeta" tvg-name="Match! Planeta (576p)" tvg-logo="https://iptvx.one/picons/match-planeta.png" group-title="⚽ Спорт",Матч! Планета
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/match_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="match-nash-sport" tvg-name="Match! Strana (576p)" tvg-logo="https://iptvx.one/picons/match-strana.png" group-title="⚽ Спорт",Матч! Страна
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/143/index.m3u8
 #EXTINF:-1 tvg-id="match4-hu" tvg-name="Match! Ultra (576p)" tvg-logo="https://iptvx.one/picons/match4-hu.png" group-title="⚽ Спорт",Матч! Ультра
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.linkintel.ru/match/index.m3u8
+#EXTINF:-1 tvg-id="match4-hu" tvg-name="Match! Ultra (576p)" tvg-logo="https://iptvx.one/picons/match4-hu.png" group-title="⚽ Спорт",Матч! Ультра
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/match/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="match4-hu" tvg-name="Match! Ultra (576p)" tvg-logo="https://iptvx.one/picons/match4-hu.png" group-title="⚽ Спорт",Матч! Ультра
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://45.132.87.69:8080/match/index.m3u8
@@ -956,6 +1049,9 @@ http://stream.mcquack.net/169/index.m3u8
 #EXTINF:-1 tvg-id="match4-hu" tvg-name="Match! Ultra (1080p)" tvg-logo="https://iptvx.one/picons/match4-hu.png" group-title="⚽ Спорт",Матч! Ультра
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_3/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="MMA-TV.com (576p)" tvg-logo="" group-title="⚽ Спорт",MMA-TV.com (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/mma/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="MMA-TV.com (1080p)" tvg-logo="https://i.imgur.com/QhdxNsB.png" group-title="⚽ Спорт",MMA-TV.com (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://streams2.sofast.tv/vglive-sk-462904/playlist.m3u8
@@ -992,6 +1088,9 @@ http://stream.mcquack.net/279/index.m3u8
 #EXTINF:-1 tvg-id="viasat-sport" tvg-name="viju+ Sport (576p)" tvg-logo="https://iptvx.one/picons/viasat-sport.png" group-title="⚽ Спорт",viju+ Sport (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/333/index.m3u8
+#EXTINF:-1 tvg-id="viasat-sport" tvg-name="viju+ Sport (576p)" tvg-logo="https://iptvx.one/picons/viasat-sport.png" group-title="⚽ Спорт",viju+ Sport (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_sport/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="viasat-sport" tvg-name="viju+ Sport (576p)" tvg-logo="https://iptvx.one/picons/viasat-sport.png" group-title="⚽ Спорт",viju+ Sport (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/Viasat_Sport/index.m3u8
@@ -1046,12 +1145,18 @@ http://185.23.80.23:8080/ART/index.m3u8
 #EXTINF:-1 tvg-id="avto24" tvg-name="Avto24 (576p)" tvg-logo="https://iptvx.one/picons/avto24.png" group-title="🌍 Познавательные",Авто24
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/78/index.m3u8
+#EXTINF:-1 tvg-id="big-planet" tvg-name="Big Planet (576p)" tvg-logo="https://iptvx.one/picons/big-planet.png" group-title="🌍 Познавательные",Big Planet (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/big_planet/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="City Eden AutoGid [Not 24/7]" tvg-logo="https://i.imgur.com/qpe8L27.png" group-title="🌍 Познавательные",Сити Эдем АвтоГид
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cityeden.catcast.tv/content/47515/index.m3u8
 #EXTINF:-1 tvg-id="da-vinci" tvg-name="Da Vinci (576p)" tvg-logo="https://iptvx.one/picons/da-vinci.png" group-title="🌍 Познавательные",Da Vinci (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/238/index.m3u8
+#EXTINF:-1 tvg-id="da-vinci" tvg-name="Da Vinci (576p)" tvg-logo="https://iptvx.one/picons/da-vinci.png" group-title="🌍 Познавательные",Da Vinci (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/da_vinci/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="discovery-channel" tvg-name="Discovery Channel (1080p)" tvg-logo="https://iptvx.one/picons/discovery-channel.png" group-title="🌍 Познавательные",Discovery Channel (1080p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/177/index.m3u8
@@ -1070,6 +1175,9 @@ https://aegis-cloudfront-1.tubi.video/6d6d0f24-8445-4b4c-bdf6-44f9e38beaa4/playl
 #EXTINF:-1 tvg-id="moya-planeta" tvg-name="Moya Planeta (576p)" tvg-logo="https://iptvx.one/picons/moya-planeta.png" group-title="🌍 Познавательные",Моя Планета
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/124/index.m3u8
+#EXTINF:-1 tvg-id="moya-planeta" tvg-name="Moya Planeta (576p)" tvg-logo="https://iptvx.one/picons/moya-planeta.png" group-title="🌍 Познавательные",Моя Планета
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/moya_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="moya-planeta" tvg-name="Moya Planeta (1080p)" tvg-logo="https://iptvx.one/picons/moya-planeta.png" group-title="🌍 Познавательные",Моя Планета
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://91.226.120.120/chid210/tracks-v1a1/mono.m3u8
@@ -1085,12 +1193,18 @@ http://stream.mcquack.net/155/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Ost West 24 (1080p)" tvg-logo="https://i.imgur.com/voeQ6x1.png" group-title="🌍 Познавательные",Ost West 24 (1080p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/455/index.m3u8
+#EXTINF:-1 tvg-id="rybalka-i-oxota" tvg-name="Rybalka i okhota (576p)" tvg-logo="https://iptvx.one/picons/rybalka-i-oxota.png" group-title="🌍 Познавательные",Рыбалка и охота
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/ohota_i_ribalka/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="oxotnik-i-rybolov" tvg-name="Rybolov (576p)" tvg-logo="https://iptvx.one/picons/oxotnik-i-rybolov.png" group-title="🌍 Познавательные",Рыболов
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/264/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Telecafe (576p)" tvg-logo="" group-title="🌍 Познавательные",Телекафе
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/314/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Telecafe (576p)" tvg-logo="" group-title="🌍 Познавательные",Телекафе
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/telecafe/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Telecafe (Russia) (720p)" tvg-logo="https://i.imgur.com/1H3h1HL.png" group-title="🌍 Познавательные",Телекафе
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://cdn4.skygo.mn/live/disk1/Telecafe/HLSv3-FTA/Telecafe.m3u8
@@ -1111,7 +1225,13 @@ http://stream.mcquack.net/241/index.m3u8
 http://stream.mcquack.net/239/index.m3u8
 #EXTINF:-1 tvg-id="viasat-explore" tvg-name="viju Explore (576p)" tvg-logo="https://iptvx.one/picons/viasat-explore.png" group-title="🌍 Познавательные",viju Explore (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_explore/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="viasat-explore" tvg-name="viju Explore (576p)" tvg-logo="https://iptvx.one/picons/viasat-explore.png" group-title="🌍 Познавательные",viju Explore (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01i/index.m3u8
+#EXTINF:-1 tvg-id="viasat-nature" tvg-name="viju Nature (576p)" tvg-logo="https://iptvx.one/picons/viasat-nature.png" group-title="🌍 Познавательные",viju Nature (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_nature/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="viasat-nature" tvg-name="viju Nature (576p)" tvg-logo="https://iptvx.one/picons/viasat-nature.png" group-title="🌍 Познавательные",viju Nature (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01k/index.m3u8
@@ -1127,12 +1247,24 @@ https://vod.tuva.ru/nauka2/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="365 days TV (576p)" tvg-logo="" group-title="🎥 Документальные",365 дней ТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/70/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="365 days TV (576p)" tvg-logo="" group-title="🎥 Документальные",365 дней ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/365_dney/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="City Eden KinoDok [Not 24/7]" tvg-logo="https://i.imgur.com/itRbMX3.png" group-title="🎥 Документальные",Сити Эдем КиноДок
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cityeden.catcast.tv/content/38354/index.m3u8
+#EXTINF:-1 tvg-id="istoria" tvg-name="Istoriya (576p)" tvg-logo="https://iptvx.one/picons/istoria.png" group-title="🎥 Документальные",История
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/istoriya/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="national-geographic" tvg-name="National Geographic (576p)" tvg-logo="https://iptvx.one/picons/national-geographic.png" group-title="🎥 Документальные",National Geographic (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/116/index.m3u8
+#EXTINF:-1 tvg-id="national-geographic" tvg-name="National Geographic (576p)" tvg-logo="https://iptvx.one/picons/national-geographic.png" group-title="🎥 Документальные",National Geographic (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/nat_geo/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="nat-geo-wild-pl" tvg-name="National Geographic Wild (576p)" tvg-logo="https://iptvx.one/picons/nat-geo-wild-pl.png" group-title="🎥 Документальные",National Geographic Wild (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/nat_geo_wild/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="rtd-ru" tvg-name="RT Documentary Russian (1080p)" tvg-logo="https://i.imgur.com/aeu5zIC.png" group-title="🎥 Документальные",RTД
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://rt-doc.rttv.com/dvr/rtdru/playlist.m3u8
@@ -1142,6 +1274,9 @@ http://178.124.179.122:8080/HistoryHD/index.m3u8
 #EXTINF:-1 tvg-id="viasat-history" tvg-name="viju History (576p)" tvg-logo="https://iptvx.one/picons/viasat-history.png" group-title="🎥 Документальные",viju History (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/101/index.m3u8
+#EXTINF:-1 tvg-id="viasat-history" tvg-name="viju History (576p)" tvg-logo="https://iptvx.one/picons/viasat-history.png" group-title="🎥 Документальные",viju History (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_history/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="viasat-history" tvg-name="viju History (576p)" tvg-logo="https://iptvx.one/picons/viasat-history.png" group-title="🎥 Документальные",viju History (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/a01j/index.m3u8
@@ -1184,12 +1319,18 @@ https://rfe-ingest.akamaized.net/hls/live/2033043/tvmc05/master.m3u8
 #EXTINF:-1 tvg-id="euronews" tvg-name="Euronews Russian (720p)" tvg-logo="https://i.imgur.com/8t9mdg9.png" group-title="📰 Новостные",Euronews по-русски
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cdn-euronews.akamaized.net/live/eds/euronews-ru/25071/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="India (576p)" tvg-logo="" group-title="📰 Новостные",India (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/india/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="mir-24" tvg-name="Mir 24 (576p)" tvg-logo="https://iptvx.one/picons/mir24.png" group-title="📰 Новостные",Мир 24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/mir_24/index.m3u8
 #EXTINF:-1 tvg-id="moskva-24" tvg-name="Moskva 24 (576p)" tvg-logo="https://iptvx.one/picons/moskva-24.png" group-title="📰 Новостные",Москва 24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://stream.smotrim.ru/hls2/moscow_24/playlist_3.m3u8
+#EXTINF:-1 tvg-id="moskva-24" tvg-name="Moskva 24 (576p)" tvg-logo="https://iptvx.one/picons/moskva-24.png" group-title="📰 Новостные",Москва 24
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/moskva24/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="moskva-24" tvg-name="Moskva 24 (720p)" tvg-logo="https://iptvx.one/picons/moskva-24.png" group-title="📰 Новостные",Москва 24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://stream.smotrim.ru/hls2/givc9/playlist_4.m3u8
@@ -1220,9 +1361,9 @@ http://176.118.197.101/RBK/index.m3u8
 #EXTINF:-1 tvg-id="rt-news" tvg-name="RT (720p)" tvg-logo="https://iptvx.one/picons/rt-news.png" group-title="📰 Новостные",RT (720p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://212.5.144.156:8080/rt/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RTN (United States)" tvg-logo="https://i.imgur.com/jjUzuLV.png" group-title="📰 Новостные",RTN (United States)
+#EXTINF:-1 tvg-id="" tvg-name="RTR-Planeta (576p)" tvg-logo="" group-title="📰 Новостные",РТР-Планета
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://4.59.210.197:8815/udp/127.0.0.1:6002
+https://fs.uplink.kz/rtr_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="RTR-Planeta Asia" tvg-logo="https://i.imgur.com/0YEahxs.png" group-title="📰 Новостные",РТР-Планета
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://streaming.televizor-24-tochka.ru/live/211.m3u8
@@ -1232,6 +1373,9 @@ https://stream.smotrim.ru/hls/planeta_rtr_euro/playlist.m3u8?entity=channel&id=5
 #EXTINF:-1 tvg-id="" tvg-name="Russia-24" tvg-logo="" group-title="📰 Новостные",Россия-24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://dmi3y-tv.online/hls/smotrim/T2/CH_RUSSIA24_INT.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Russia-24 (576p)" tvg-logo="" group-title="📰 Новостные",Россия-24
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/rossia_24/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Russia-24 (576p)" tvg-logo="" group-title="📰 Новостные",Россия-24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/Rossiya24/index.m3u8
@@ -1295,6 +1439,9 @@ http://stream.mcquack.net/272/index.m3u8
 #EXTINF:-1 tvg-id="bridge-tv-classic" tvg-name="BRIDGE Classic (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-classic.png" group-title="🎵 Музыкальные",BRIDGE Classic (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/Bridge_TV_Classic/index.m3u8
+#EXTINF:-1 tvg-id="bridge-tv-classic" tvg-name="BRIDGE Classic (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-classic.png" group-title="🎵 Музыкальные",BRIDGE Classic (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/bridge_classic/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="bridge-tv-dance" tvg-name="BRIDGE Hits (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-dance.png" group-title="🎵 Музыкальные",BRIDGE Hits (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/320/index.m3u8
@@ -1322,6 +1469,9 @@ http://stream.mcquack.net/312/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="DanceHits80" tvg-logo="" group-title="🎵 Музыкальные",DanceHits80
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://dancehits80.denvs.ru:8080/index.m3u8
+#EXTINF:-1 tvg-id="europa-plus-tv" tvg-name="Europa Plus TV (576p)" tvg-logo="https://iptvx.one/picons/europa-plus-tv.png" group-title="🎵 Музыкальные",Europa Plus TV (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/europa_plus/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="europa-plus-tv" tvg-name="Europa Plus TV Belarus (576p)" tvg-logo="https://iptvx.one/picons/europa-plus-tv.png" group-title="🎵 Музыкальные",Europa Plus TV Belarus (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/EuropaPlus/index.m3u8
@@ -1345,6 +1495,9 @@ https://live-maidantv.cdnvideo.ru/maidantv/maidantv.smil/playlist.m3u8
 http://stream.mcquack.net/86/index.m3u8
 #EXTINF:-1 tvg-id="muztv" tvg-name="Muz-TV (576p)" tvg-logo="https://iptvx.one/picons/muztv.png" group-title="🎵 Музыкальные",Муз-ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/muz_tv/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="muztv" tvg-name="Muz-TV (576p)" tvg-logo="https://iptvx.one/picons/muztv.png" group-title="🎵 Музыкальные",Муз-ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_20/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Muzyka 1 [Not 24/7]" tvg-logo="https://i.imgur.com/DIKe5vA.png" group-title="🎵 Музыкальные",Музыка 1
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
@@ -1358,6 +1511,9 @@ http://stream.mcquack.net/303/index.m3u8
 #EXTINF:-1 tvg-id="muzyka-pervogo" tvg-name="Muzyka Pervogo (576p)" tvg-logo="https://iptvx.one/picons/muzyka-pervogo.png" group-title="🎵 Музыкальные",Музыка Первого
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/153/index.m3u8
+#EXTINF:-1 tvg-id="ru-tv" tvg-name="RU.TV (576p)" tvg-logo="https://iptvx.one/picons/ru-tv.png" group-title="🎵 Музыкальные",РУ.ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/RuTV/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="ru-tv" tvg-name="RU.TV (1080p)" tvg-logo="https://iptvx.one/picons/ru-tv.png" group-title="🎵 Музыкальные",РУ.ТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://bl.rutube.ru/livestream/b1eb8e90d7e636677b3eb73b4fcbb717/index.m3u8?e=2069285076&s=d-E-bxKy2v3EEJ94RQX9CA&scheme=https
@@ -1370,6 +1526,9 @@ http://stream.mcquack.net/319/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Shanson TV (576p)" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://catchup.videoline.ru/shanson/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Shanson TV (576p)" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/shanson/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Shanson TV (576p)" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://46.53.200.153:7777/play/Shanson_TV/index.m3u8
@@ -1385,6 +1544,9 @@ https://live-stranafm.cdnvideo.ru/stranafm/smil:stranafm.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="zhara" tvg-name="Zhara (576p)" tvg-logo="https://iptvx.one/picons/zhara.png" group-title="🎵 Музыкальные",Жара ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/386/index.m3u8
+#EXTINF:-1 tvg-id="zhara" tvg-name="Zhara (576p)" tvg-logo="https://iptvx.one/picons/zhara.png" group-title="🎵 Музыкальные",Жара ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/zhara/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Муз союз (576p)" tvg-logo="" group-title="🎵 Музыкальные",Муз союз (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz2/muzsoyuz.6fw0-58xp-acts-esy0/playlist.m3u8
@@ -1427,6 +1589,9 @@ http://stream.mcquack.net/187/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="312 TV (406p)" tvg-logo="https://i.ibb.co/S6sZvqk/iLSGi6c.png" group-title="🎭 Развлекательные",312 ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.126.166.43:1935/live/312musik/playlist.m3u8
+#EXTINF:-1 tvg-id="bobior" tvg-name="Bober (576p)" tvg-logo="https://iptvx.one/picons/bobior.png" group-title="🎭 Развлекательные",Бобёр
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/bober/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Channel 8 (576p)" tvg-logo="" group-title="🎭 Развлекательные",Channel 8 (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://45.11.139.43:8555/8kanal/index.m3u8
@@ -1460,6 +1625,9 @@ http://flussonic.linkintel.ru/Pyatnica/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Friday! (576p)" tvg-logo="" group-title="🎭 Развлекательные",Пятница!
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_16/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Friday! International Kazakhstan (576p)" tvg-logo="" group-title="🎭 Развлекательные",Пятница! International
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/bolshaya_pyatnica/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="krik-tv" tvg-name="Krik-TV (1080p)" tvg-logo="https://i.imgur.com/rtuChZR.png" group-title="🎭 Развлекательные",Крик-ТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://cdn-01.bonus-tv.ru/kriktv_edge/playlist.m3u8
@@ -1472,18 +1640,30 @@ https://api.alpaca.t62a.com/hls/9110/stream0.m3u8
 #EXTINF:-1 tvg-id="kvn-tv" tvg-name="KVN TV (576p)" tvg-logo="https://iptvx.one/picons/kvn-tv.png" group-title="🎭 Развлекательные",КВН ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/KVN-TV/index.m3u8
+#EXTINF:-1 tvg-id="kvn-tv" tvg-name="KVN TV (576p)" tvg-logo="https://iptvx.one/picons/kvn-tv.png" group-title="🎭 Развлекательные",КВН ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kvn_tv/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="OTV-Prim" tvg-logo="https://i.imgur.com/2zd8trG.png" group-title="🎭 Развлекательные",ОТВ-Прим
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://jz2lo90hnpy.a.trbcdn.net/livemaster/yo8gr_live-5gorrrfpouq.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Peretz International (576p)" tvg-logo="" group-title="🎭 Развлекательные",Перец International
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/121/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Peretz International (576p)" tvg-logo="" group-title="🎭 Развлекательные",Перец International
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/perec/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="" tvg-name="Poehali! (576p)" tvg-logo="" group-title="🎭 Развлекательные",Поехали!
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/poehali/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="prosveschenie" tvg-name="Prosveshchenie (576p)" tvg-logo="https://iptvx.one/picons/prosveschenie.png" group-title="🎭 Развлекательные",Просвещение
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://cdn-01.bonus-tv.ru/prosveschenie_edge/index.m3u8
 #EXTINF:-1 tvg-id="sarafan" tvg-name="Sarafan (576p)" tvg-logo="https://iptvx.one/picons/sarafan.png" group-title="🎭 Развлекательные",Сарафан
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/81/index.m3u8
+#EXTINF:-1 tvg-id="sarafan" tvg-name="Sarafan (576p)" tvg-logo="https://iptvx.one/picons/sarafan.png" group-title="🎭 Развлекательные",Сарафан
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/sarafan/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="super" tvg-name="Subbota! (576p)" tvg-logo="https://iptvx.one/picons/subbota.png" group-title="🎭 Развлекательные",Суббота!
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://217.114.191.150/Subbota/index.m3u8
@@ -1496,6 +1676,9 @@ http://flussonic.linkintel.ru/tnt4/index.m3u8
 #EXTINF:-1 tvg-id="tnt4" tvg-name="TNT4 (576p)" tvg-logo="https://iptvx.one/picons/tnt4.png" group-title="🎭 Развлекательные",ТНТ4
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/106/index.m3u8
+#EXTINF:-1 tvg-id="tnt4-international" tvg-name="TNT4 International (576p)" tvg-logo="https://iptvx.one/picons/tnt4.png" group-title="🎭 Развлекательные",ТНТ4 International
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tnt4/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tnt" tvg-name="TNT (576p)" tvg-logo="https://iptvx.one/picons/tnt.png" group-title="🎭 Развлекательные",TNT (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.linkintel.ru/tnt/index.m3u8
@@ -1529,6 +1712,9 @@ http://178.134.1.158:8081/U/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="U (576p)" tvg-logo="" group-title="🎭 Развлекательные",U (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/230/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="U (576p)" tvg-logo="" group-title="🎭 Развлекательные",U (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/u/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="U (720p)" tvg-logo="" group-title="🎭 Развлекательные",U (720p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://bl.rutube.ru/livestream/5c9327074e25ca86f3111d4085cbbb65/index.m3u8?e=2066519758&s=9cPc1rCGu6M932eqrifRhQ&scheme=https
@@ -1625,6 +1811,9 @@ https://cdn4.skygo.mn/live/disk1/Channel_5/HLSv3-FTA/Channel_5.m3u8
 #EXTINF:-1 tvg-id="piaty-int" tvg-name="Channel 5 International (576p)" tvg-logo="https://iptvx.one/picons/piaty-int.png" group-title="📡 Общие",Пятый International
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.134.1.158:8081/5channel/index.m3u8
+#EXTINF:-1 tvg-id="piaty-int" tvg-name="Channel 5 International (576p)" tvg-logo="https://iptvx.one/picons/piaty-int.png" group-title="📡 Общие",Пятый International
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/5_kanal/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="one-il" tvg-name="Channel One (576p)" tvg-logo="https://iptvx.one/picons/one-il.png" group-title="📡 Общие",Channel One (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://45.153.24.78/1TV/index.m3u8
@@ -1634,12 +1823,18 @@ http://178.217.49.7/1/index.m3u8
 #EXTINF:-1 tvg-id="one-il" tvg-name="Channel One (576p)" tvg-logo="https://iptvx.one/picons/one-il.png" group-title="📡 Общие",Channel One (576p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 http://31.148.5.241/kanal_1/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Channel One CIS (576p)" tvg-logo="" group-title="📡 Общие",Первый СНГ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/perviy_kanal_sng/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Channel One Europa (480p)" tvg-logo="" group-title="📡 Общие",Первый канал
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://streaming.thestream.cyou/live/210-req_offset_28000000-req_window_0-1k_v5.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="City Eden TV [Not 24/7]" tvg-logo="https://i.imgur.com/X9kACKi.png" group-title="📡 Общие",Сити Эдем TV
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cityeden.catcast.tv/content/34246/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Domashniy (576p)" tvg-logo="" group-title="📡 Общие",Dомашний
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/domashniy/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Domashniy (576p)" tvg-logo="" group-title="📡 Общие",Dомашний
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_14/index.m3u8
@@ -1667,6 +1862,9 @@ http://45.153.24.78/MIR/index.m3u8
 #EXTINF:-1 tvg-id="mir" tvg-name="Mir (576p)" tvg-logo="https://iptvx.one/picons/mir.png" group-title="📡 Общие",Мир
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://tvcdn01.oktv.kz/tv/mir/index.m3u8
+#EXTINF:-1 tvg-id="mir" tvg-name="Mir (576p)" tvg-logo="https://iptvx.one/picons/mir.png" group-title="📡 Общие",Мир
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/mir/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="mir" tvg-name="Mir (576p)" tvg-logo="https://iptvx.one/picons/mir.png" group-title="📡 Общие",Мир
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 http://31.148.5.241/kanal_18/index.m3u8
@@ -1706,6 +1904,9 @@ https://cdn.ntv.ru/ntv7/playlist.m3u8
 #EXTINF:-1 tvg-id="ntv-mir" tvg-name="NTV Mir (576p)" tvg-logo="https://iptvx.one/picons/ntv-mir.png" group-title="📡 Общие",НТВ Мир
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/ntvmir_TV/index.m3u8
+#EXTINF:-1 tvg-id="ntv-mir" tvg-name="NTV Mir (576p)" tvg-logo="https://iptvx.one/picons/ntv-mir.png" group-title="📡 Общие",НТВ Мир
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/ntv_mir/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="ntv" tvg-name="NTV SD (576p)" tvg-logo="https://iptvx.one/picons/ntv.png" group-title="📡 Общие",NTV SD (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://cdn.ntv.ru/ntv-spb/index.m3u8
@@ -1730,6 +1931,9 @@ http://31.148.5.241/kanal_11/index.m3u8
 #EXTINF:-1 tvg-id="rentv-int" tvg-name="REN TV International (576p)" tvg-logo="https://iptvx.one/picons/rentv-int.png" group-title="📡 Общие",РЕН ТВ International
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.134.1.158:8081/RENTV/index.m3u8
+#EXTINF:-1 tvg-id="rentv-int" tvg-name="REN TV International (576p)" tvg-logo="https://iptvx.one/picons/rentv-int.png" group-title="📡 Общие",РЕН ТВ International
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/ren/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="rika" tvg-name="Rika TV (480p)" tvg-logo="https://i.imgur.com/KJHWZ3B.png" group-title="📡 Общие",Рика ТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-rikatv.cdnvideo.ru/rikatv/rikatv_tcode.sdp/playlist.m3u8
@@ -1747,6 +1951,9 @@ http://31.148.5.241/kanal_2/index.m3u8
 http://stream.mcquack.net/229/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Russia-K (576p)" tvg-logo="" group-title="📡 Общие",Россия-К
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/rossia_k/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="" tvg-name="Russia-K (576p)" tvg-logo="" group-title="📡 Общие",Россия-К
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_6/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Soyuzny (480p)" tvg-logo="" group-title="📡 Общие",Союзный
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
@@ -1760,6 +1967,9 @@ http://tshift-1.telecoma.tv/sts/index.m3u8
 #EXTINF:-1 tvg-id="sts" tvg-name="STS (576p)" tvg-logo="https://iptvx.one/picons/sts.png" group-title="📡 Общие",СТС
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.linkintel.ru/sts/index.m3u8
+#EXTINF:-1 tvg-id="sts" tvg-name="STS (576p)" tvg-logo="https://iptvx.one/picons/sts.png" group-title="📡 Общие",СТС
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/sts/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="sts" tvg-name="STS (576p)" tvg-logo="https://iptvx.one/picons/sts.png" group-title="📡 Общие",СТС
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.118.197.101/CTC/index.m3u8
@@ -1793,6 +2003,9 @@ https://streaming.televizor-24-tochka.ru/live/25.m3u8
 #EXTINF:-1 tvg-id="zvezda" tvg-name="Zvezda (576p)" tvg-logo="https://iptvx.one/picons/zvezda.png" group-title="📡 Общие",Звезда ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.linkintel.ru/zvezda/index.m3u8
+#EXTINF:-1 tvg-id="zvezda" tvg-name="Zvezda (576p)" tvg-logo="https://iptvx.one/picons/zvezda.png" group-title="📡 Общие",Звезда ТВ
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/zvezda/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="zvezda" tvg-name="Zvezda (576p)" tvg-logo="https://iptvx.one/picons/zvezda.png" group-title="📡 Общие",Звезда ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_17/index.m3u8
@@ -1904,6 +2117,9 @@ https://sitv.ru/vgtrk/stv.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Telekanal Krasnodar (1080p)" tvg-logo="https://i.imgur.com/YVtutzp.png" group-title="🏙 Региональные",Телеканал Краснодар
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-tvkrasnodar.cdnvideo.ru/tvkrasnodar/tvkrasnodar.sdp/playlist.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TNV-Planet (576p)" tvg-logo="" group-title="🏙 Региональные",ТНВ-Планета
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tnv/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tnv" tvg-name="TNV-Tatarstan (720p)" tvg-logo="https://iptvx.one/picons/tnv-tat.png" group-title="🏙 Региональные",ТНВ-Татарстан
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://user91229.clients-cdnnow.ru/hls/user91229_1.m3u8
@@ -2033,6 +2249,9 @@ http://185.23.80.23:8080/DumaTV/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Insayt TV (1080p)" tvg-logo="" group-title="📦 Разное",Инсайт ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/361/index.m3u8
+#EXTINF:-1 tvg-id="lapki-live" tvg-name="Lapki Live (576p)" tvg-logo="https://iptvx.one/picons/lapki-live.png" group-title="📦 Разное",Лапки Live
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/lapki_live/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="Moy mir (720p)" tvg-logo="" group-title="📦 Разное",Мой мир
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://moymir.ru/hls/onair.m3u8
@@ -2042,6 +2261,9 @@ https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex
 #EXTINF:-1 tvg-id="" tvg-name="O! (576p)" tvg-logo="" group-title="📦 Разное",O! (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/60/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="O! International (576p)" tvg-logo="" group-title="📦 Разное",О!
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/o/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="radost-moya" tvg-name="Radost Moya (576p)" tvg-logo="https://iptvx.one/picons/radost-moya.png" group-title="📦 Разное",Радость Моя
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://radm.mediacdn.ru/cdn/radost/playlist_sdhigh.m3u8
@@ -2072,6 +2294,9 @@ http://178.134.1.158:8081/t24/index.m3u8
 #EXTINF:-1 tvg-id="ct24-cz" tvg-name="T24 (576p)" tvg-logo="https://iptvx.one/picons/ct24-cz.png" group-title="📦 Разное",Т24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/209/index.m3u8
+#EXTINF:-1 tvg-id="ct24-cz" tvg-name="T24 (576p)" tvg-logo="https://iptvx.one/picons/ct24-cz.png" group-title="📦 Разное",Т24
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tehno_24/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="tdk-42" tvg-name="TDK 42" tvg-logo="https://i.imgur.com/iVhdcS7.png" group-title="📦 Разное",TDK 42
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-tdk42kz.cdnvideo.ru/tdk42kz/tdk42kz_720.smil/playlist.m3u8
@@ -2090,6 +2315,9 @@ http://live-saha.cdnvideo.ru/saha/tooky/playlist.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="TV Centr (576p)" tvg-logo="" group-title="📦 Разное",ТВ Центр
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.linkintel.ru/tvc/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="TV Centr (576p)" tvg-logo="" group-title="📦 Разное",ТВ Центр
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tvc/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="" tvg-name="TV Centr (576p)" tvg-logo="" group-title="📦 Разное",ТВ Центр
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_10/index.m3u8
@@ -2117,6 +2345,9 @@ https://live-11cinema.cdnvideo.ru/11cinema/11cinema/playlist.m3u8
 #EXTINF:-1 tvg-id="vremia" tvg-name="Vremya (576p)" tvg-logo="https://iptvx.one/picons/vremia.png" group-title="📦 Разное",Время
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://stream.mcquack.net/237/index.m3u8
+#EXTINF:-1 tvg-id="vremia" tvg-name="Vremya (576p)" tvg-logo="https://iptvx.one/picons/vremia.png" group-title="📦 Разное",Время
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/vremya/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="vremia" tvg-name="Vremya (720p)" tvg-logo="https://i.imgur.com/jZlj3ga.png" group-title="📦 Разное",Время
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://cdn4.skygo.mn/live/disk1/Vremya/HLSv3-FTA/Vremya.m3u8
