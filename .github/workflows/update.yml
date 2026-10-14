@@ -66,47 +66,14 @@ jobs:
         ]
 
         GENRE_MAP = {
-            "Спорт": [
-                "sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена",
-                "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc",
-                "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis"
-            ],
-            "Кино": [
-                "cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама",
-                "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc",
-                "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама",
-                "индийское кино", "русский роман", "русский детектив", "киносерия", "кинохит"
-            ],
-            "Познавательные": [
-                "science", "наука", "history", "история", "discovery", "nat geo",
-                "гео", "travel", "путешествия", "культура", "документал", "animal planet",
-                "wild", "nature", "природа", "планета", "24 техно", "в мире животных"
-            ],
-            "Документальные": [
-                "365 дней", "documental", "документ", "документальн", "военная тайна",
-                "national geographic", "tlc", "hgtv", "viasat explore", "viasat history",
-                "viasat nature", "viju", "viu", "dmax", "discovery science"
-            ],
-            "Новостные": [
-                "news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф",
-                "мир 24", "москва 24", "360", "24 дождь", "дождь", "forbes", "bloomberg",
-                "cnbc", "france 24", "dw", "bbc", "cnn"
-            ],
-            "Музыкальные": [
-                "music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв",
-                "tnt music", "тнт music", "europa plus", "европа плюс", "радио",
-                "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz"
-            ],
-            "Развлекательные": [
-                "entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3",
-                "продвижение", "че", "пятница!", "ю-тв", "юмор", "comedy", "тнт4",
-                "тнт comedy", "комедия тв", "che", "friday", "supermatchtv"
-            ],
-            "Общие": [
-                "первый", "россия", "мир", "тв центр", "отр", "звезда", "спас",
-                "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый",
-                "ren tv", "рен тв", "рен-тв", "твц", "мир 24", "стс", "sts"
-            ],
+            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis", "футбол"],
+            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "индийское кино", "русский роман", "русский детектив", "киносерия", "кинохит"],
+            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных"],
+            "Документальные": ["365 дней", "documental", "документ", "документальн", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "viu", "dmax", "discovery science"],
+            "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc"],
+            "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz"],
+            "Развлекательные": ["entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3", "продвижение", "че", "пятница!", "ю-тв", "юмор", "comedy", "тнт4", "комедия тв", "che", "friday"],
+            "Общие": ["первый", "россия", "мир", "тв центр", "отр", "звезда", "спас", "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый", "ren tv", "рен тв", "рен-тв", "твц", "стс", "sts"],
         }
 
         CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
@@ -115,13 +82,13 @@ jobs:
 
         TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "test", "demo", "preview", "promo", "adult", "взрослый", "18+", "религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "союз"]
 
-        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "usa", "america", "american", "arabic", "arab", "spanish", "spain", "italian", "italy", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "iran", "iraq", "syria", "egypt", "euronews", "cnn", "bbc", "al jazeera", "dw", "france 24"]
-
-        LATIN_WHITELIST = ["rt", "rbc", "rtvi", "russia", "tnt", "ntv", "sts", "ctc", "tvc", "rtv", "rtr", "otr", "tv3", "tv1000", "sony", "vh1", "mtv", "viasat", "amc", "eurosport", "match", "hgtv", "tlc", "nat geo", "national geographic", "food network", "5tv", "5-tv", "mir", "spas", "soyuz"]
+        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "usa-", "america", "american", "arabic", "arab-", "spanish", "spain", "italian", "italy", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "iran-", "iraq", "syria", "egypt", "al jazeera", "france 24"]
 
         DOMAIN_BLACK_LIST = [".xyz", "cinerama.uz", "local", "test", "example"]
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+        filter_stats = {"child": 0, "region": 0, "trash": 0, "foreign": 0, "trash_url": 0}
 
         def download_file(url):
             try:
@@ -135,9 +102,6 @@ jobs:
         def clean_url(url):
             p = urlparse(url)
             return f"{p.scheme}://{p.netloc}{p.path}".strip().lower()
-
-        def has_cyrillic(t):
-            return bool(re.search(r'[а-яА-ЯёЁ]', t))
 
         def has_hd_marker(name):
             return bool(re.search(r'\b(hd|fhd|uhd|4k|1080|720|full hd)\b', name.lower()))
@@ -162,17 +126,6 @@ jobs:
             if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
                 return True
             return False
-
-        def is_russian(name_match, clean_name):
-            if has_cyrillic(name_match) or has_cyrillic(clean_name):
-                return True
-            for w in LATIN_WHITELIST:
-                if re.search(rf'\b{re.escape(w)}\b', clean_name):
-                    return True
-            return False
-
-        def zone_of(clean_name, group):
-            return f"{clean_name} {group.lower()}"
 
         def in_list(zone, lst):
             return any(b in zone for b in lst)
@@ -210,6 +163,7 @@ jobs:
             channels = []
             current_inf = ""
             extgrp = ""
+            total_seen = 0
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -225,6 +179,7 @@ jobs:
                     continue
                 if not current_inf:
                     continue
+                total_seen += 1
                 name_match = current_inf.rsplit(",", 1)[-1].strip()
                 clean_name = clean_channel_name(name_match)
                 orig_tvg_id = parse_attr(current_inf, "tvg-id")
@@ -232,35 +187,30 @@ jobs:
                 orig_group = parse_attr(current_inf, "group-title") or extgrp or "Разное"
                 orig_logo = parse_attr(current_inf, "tvg-logo")
 
-                z = zone_of(clean_name, orig_group)
+                z = f"{clean_name} {orig_group.lower()}"
 
-                if not is_russian(name_match, clean_name):
-                    current_inf = ""
-                    continue
                 if in_list(z, CHILD_BLACKLIST):
+                    filter_stats["child"] += 1
                     current_inf = ""
                     continue
                 if in_list(z, REGION_BLACKLIST):
+                    filter_stats["region"] += 1
                     current_inf = ""
                     continue
                 if in_list(z, TRASH_BLACKLIST):
+                    filter_stats["trash"] += 1
                     current_inf = ""
                     continue
                 if any(fm in z for fm in FOREIGN_MARKERS):
+                    filter_stats["foreign"] += 1
                     current_inf = ""
                     continue
                 if is_trash_url(line):
-                    current_inf = ""
-                    continue
-                if not orig_logo:
+                    filter_stats["trash_url"] += 1
                     current_inf = ""
                     continue
 
                 tvg_id = orig_tvg_id or epg_map.get(clean_name, "")
-                if not tvg_id:
-                    current_inf = ""
-                    continue
-
                 base_group = determine_group(orig_group, clean_name)
                 group = f"{base_group} HD" if has_hd_marker(name_match) else base_group
 
@@ -272,20 +222,25 @@ jobs:
                     "group": group, "source_priority": 0,
                 })
                 current_inf = ""
+            print(f"   Total seen: {total_seen}")
+            for k, v in filter_stats.items():
+                if v:
+                    print(f"   Filtered by {k}: {v}")
             return channels
 
         def dedup(channels):
             seen_url = set()
-            seen_id = set()
+            seen_key = set()
             out = []
             for ch in channels:
                 u = clean_url(ch["url"])
                 if u in seen_url:
                     continue
-                if ch["tvg_id"] in seen_id:
+                key = ch["tvg_id"] if ch["tvg_id"] else f"name:{ch['clean_name']}"
+                if key in seen_key:
                     continue
                 seen_url.add(u)
-                seen_id.add(ch["tvg_id"])
+                seen_key.add(key)
                 out.append(ch)
             return out
 
@@ -338,8 +293,11 @@ jobs:
 
         def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits):
             stats = {c: 0 for c in CATEGORY_PRIORITY}
+            with_epg = 0
             for ch in valid:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
+                if ch["tvg_id"]:
+                    with_epg += 1
             now = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" in repo_env:
@@ -352,6 +310,7 @@ jobs:
                      f"- Total from source: {total_raw}",
                      f"- After dedup: {total_dedup}",
                      f"- Live channels: **{len(valid)}**",
+                     f"- With EPG: {with_epg}",
                      f"- From cache: {cache_hits}",
                      f"- Active EPG: `{active_epg}`",
                      "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
