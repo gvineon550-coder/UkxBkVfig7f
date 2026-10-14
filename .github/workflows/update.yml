@@ -45,8 +45,9 @@ jobs:
         ]
 
         EPG_SOURCES = [
+            "https://epg.it999.ru/epg.xml.gz",
+            "https://iptvx.one/EPG",
             "https://iptvx.one/EPG_LITE",
-            "https://iptvx.one/epg/epg_lite.xml.gz",
         ]
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -231,11 +232,14 @@ jobs:
 
         def download_file(url):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=25, stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=30, stream=True)
                 r.raise_for_status()
                 content = r.content
                 if content[:2] == b'\x1f\x8b':
-                    content = gzip.decompress(content)
+                    try:
+                        content = gzip.decompress(content)
+                    except Exception:
+                        pass
                 return content.decode('utf-8', errors='replace')
             except Exception as e:
                 print(f"   warn: {url} -> {e}")
@@ -245,9 +249,13 @@ jobs:
             for url in EPG_SOURCES:
                 print(f"   Probing EPG: {url}")
                 txt = download_file(url)
-                if txt and "<tv" in txt[:2000].lower():
-                    print(f"   OK: {url}")
-                    return txt, url
+                if txt and "<tv" in txt[:5000].lower():
+                    n_channels = txt.count("<channel ")
+                    print(f"   OK: {url} (~{n_channels} channels)")
+                    if n_channels >= 100:
+                        return txt, url
+                    else:
+                        print(f"   Too few channels, try next")
             return None, EPG_SOURCES[0]
 
         def load_api():
@@ -328,11 +336,6 @@ jobs:
             return ""
 
         def load_epg(xml_text):
-            """Строит три структуры:
-               - by_id: {epg_id: [normalized_names]}
-               - by_name: {normalized_name: epg_id}
-               - all_names: [все нормализованные имена] для fuzzy
-            """
             by_id = {}
             by_name = {}
             all_names = []
@@ -359,20 +362,15 @@ jobs:
             return by_id, by_name, all_names
 
         def find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names):
-            """Ищет EPG ID: точное по tvg_id → точное по имени → fuzzy."""
-            # 1. Точное по tvg_id (без @)
             base = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
             if base and base in epg_by_id:
                 return base, "exact_id"
-            # 2. Точное по имени (как оно есть)
             if clean_name in epg_by_name:
                 return epg_by_name[clean_name], "exact_name"
-            # 3. Точное по tvg_name
             if orig_tvg_name:
                 cn2 = clean_channel_name(orig_tvg_name)
                 if cn2 and cn2 in epg_by_name:
                     return epg_by_name[cn2], "exact_name"
-            # 4. Fuzzy только для имён длиной >= 4
             if clean_name and len(clean_name) >= FUZZY_MIN_LEN:
                 match = difflib.get_close_matches(clean_name, epg_all_names, n=1, cutoff=FUZZY_CUTOFF)
                 if match:
@@ -389,14 +387,13 @@ jobs:
         def load_whitelist():
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" not in repo_env:
-                print("   No GITHUB_REPOSITORY env, skip whitelist")
                 return []
             user, repo = repo_env.split("/", 1)
             url = f"https://raw.githubusercontent.com/{user}/{repo}/main/{WHITELIST_FILE}"
             print(f"   Loading whitelist: {url}")
             content = download_file(url)
             if not content:
-                print("   Whitelist not found or empty, skip")
+                print("   Whitelist not found, skip")
                 return []
             channels = []
             current_inf = ""
@@ -507,7 +504,6 @@ jobs:
                     current_inf = ""
                     continue
 
-                # === АВТОСОПОСТАВЛЕНИЕ EPG ===
                 epg_id, how = find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
                 if len(samples) < 5:
@@ -536,7 +532,6 @@ jobs:
                 else:
                     group = f"{emoji} {base_group}"
 
-                # tvg_id из EPG (совпадает с программой) или чистый без @
                 final_tvg_id = epg_id if epg_id else base_id
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{orig_logo}" group-title="{group}",{name_match}')
