@@ -28,6 +28,8 @@ jobs:
         cat > main.py << 'PYEOF'
         import os
         import re
+        import json
+        import time
         import requests
         import xml.etree.ElementTree as ET
         from tqdm import tqdm
@@ -36,119 +38,179 @@ jobs:
         from datetime import datetime, timezone
 
         SOURCE_M3U = "https://iptv-org.github.io/iptv/countries/ru.m3u"
-        EPG_SOURCES = [
-            "https://iptv-org.github.io/epg/guides/ru.epg.xml",
-            "https://iptv-org.github.io/epg/ru.xml",
-            "https://raw.githubusercontent.com/iptv-org/epg/master/guides/ru.epg.xml",
-        ]
+        EPG_URL = "https://iptv-org.github.io/epg/guides/ru.epg.xml"
         OUTPUT_M3U = "clean_sorted_channels.m3u"
-        TIMEOUT = 4.0
-        MAX_WORKERS = 15
-        CATEGORY_PRIORITY = ["Кино", "Спорт", "Познавательные", "Новостные", "Общие", "Разное"]
-        GENRE_MAP = {
-            "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf"],
-            "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит"],
-            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал"],
-            "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24"]
-        }
-        CONTENT_BLACK_LIST = [
-            "детск", "child", "kids", "cartoon", "мульт", "nickelodeon", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя",
-            "shop", "магазин", "ювелир", "leomax", "tts",
-            "брянск", "калуга", "самара", "новосибирск", "красноярск", "омск", "челябинск", "уфа", "казань", "ростов", "волгоград",
-            "пермь", "воронеж", "саратов", "тольятти", "ижевск", "барнаул", "иркутск", "хабаровск", "ярославль", "тюмень", "томск",
-            "оренбург", "кемерово", "рязань", "астрахань", "пенза", "липецк", "тула", "чебоксары", "курск", "ставрополь", "сочи", "кубань",
-            "регион", "губерния", "край", "осетия", "грозный", "архыз", "якутия", "югра", "колыма", "ямал", "енисей"
-        ]
-        DOMAIN_BLACK_LIST = [".xyz", "cinerama.uz", "local", "test", "example"]
-        FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-        TV_PLAYER_UA = "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"
+        CACHE_FILE = "cache.json"
+        CACHE_TTL = 7 * 24 * 3600
+        TIMEOUT = 6.0
+        MAX_WORKERS = 20
 
-        def download_file(url, binary=False):
-            headers = {"User-Agent": FAKE_BROWSER_UA}
+        USER_AGENTS = [
+            ("TiviMate", "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"),
+            ("VLC", "VLC/3.0.20 LibVLC/3.0.20"),
+            ("Chrome", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
+            ("okhttp", "okhttp/4.11.0"),
+            ("Kodi", "Kodi/20.5 (Windows NT 10.0; Win64; x64) App_Bitness/64 Version/20.5.0"),
+        ]
+
+        CATEGORY_PRIORITY = [
+            "Кино HD", "Кино",
+            "Спорт HD", "Спорт",
+            "Познавательные HD", "Познавательные",
+            "Документальные HD", "Документальные",
+            "Новостные HD", "Новостные",
+            "Музыкальные HD", "Музыкальные",
+            "Развлекательные HD", "Развлекательные",
+            "Общие HD", "Общие",
+            "Разное HD", "Разное",
+        ]
+
+        GENRE_MAP = {
+            "Спорт": [
+                "sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена",
+                "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc",
+                "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis"
+            ],
+            "Кино": [
+                "cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама",
+                "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc",
+                "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама",
+                "индийское кино", "русский роман", "русский детектив", "киносерия", "кинохит"
+            ],
+            "Познавательные": [
+                "science", "наука", "history", "история", "discovery", "nat geo",
+                "гео", "travel", "путешествия", "культура", "документал", "animal planet",
+                "wild", "nature", "природа", "планета", "24 техно", "в мире животных"
+            ],
+            "Документальные": [
+                "365 дней", "documental", "документ", "документальн", "военная тайна",
+                "national geographic", "tlc", "hgtv", "viasat explore", "viasat history",
+                "viasat nature", "viju", "viu", "dmax", "discovery science"
+            ],
+            "Новостные": [
+                "news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф",
+                "мир 24", "москва 24", "360", "24 дождь", "дождь", "forbes", "bloomberg",
+                "cnbc", "france 24", "dw", "bbc", "cnn"
+            ],
+            "Музыкальные": [
+                "music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв",
+                "tnt music", "тнт music", "europa plus", "европа плюс", "радио",
+                "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz"
+            ],
+            "Развлекательные": [
+                "entertainment", "развлек", "тнт", "tnt", "пятница", "ю", "тв3", "тв-3",
+                "продвижение", "че", "пятница!", "ю-тв", "юмор", "comedy", "тнт4",
+                "тнт comedy", "комедия тв", "che", "friday", "supermatchtv"
+            ],
+            "Общие": [
+                "первый", "россия", "мир", "тв центр", "отр", "звезда", "спас",
+                "ртр", "rtr", "russia", "1tv", "1 канал", "5 канал", "пятый",
+                "ren tv", "рен тв", "рен-тв", "твц", "мир 24", "стс", "sts"
+            ],
+        }
+
+        CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
+
+        REGION_BLACKLIST = ["брянск", "калуга", "самара", "новосибирск", "красноярск", "омск", "челябинск", "уфа", "казань", "ростов", "волгоград", "пермь", "воронеж", "саратов", "тольятти", "ижевск", "барнаул", "иркутск", "хабаровск", "ярославль", "тюмень", "томск", "оренбург", "кемерово", "рязань", "астрахань", "пенза", "липецк", "тула", "чебоксары", "курск", "ставрополь", "сочи", "кубань", "регион", "губерния", "край", "осетия", "грозный", "архыз", "якутия", "югра", "колыма", "ямал", "енисей", "алтай", "бурят", "дагестан", "башкорт", "татарстан", "удмурт", "чуваш", "мордов", "марий", "коми", "карел"]
+
+        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "test", "demo", "preview", "promo", "adult", "взрослый", "18+", "религ", "церков", "православ", "ислам", "мусульман", "иудей", "будд", "спас", "союз"]
+
+        FOREIGN_MARKERS = ["german", "deutsch", "israel", "turkey", "turkish", "france", "french", "usa", "america", "american", "arabic", "arab", "spanish", "spain", "italian", "italy", "poland", "polish", "ukrain", "belarus", "korea", "korean", "japan", "japanese", "china", "chinese", "india", "indian", "pakistan", "iran", "iraq", "syria", "egypt", "euronews", "cnn", "bbc", "al jazeera", "dw", "france 24"]
+
+        LATIN_WHITELIST = ["rt", "rbc", "rtvi", "russia", "tnt", "ntv", "sts", "ctc", "tvc", "rtv", "rtr", "otr", "tv3", "tv1000", "sony", "vh1", "mtv", "viasat", "amc", "eurosport", "match", "hgtv", "tlc", "nat geo", "national geographic", "food network", "5tv", "5-tv", "mir", "spas", "soyuz"]
+
+        DOMAIN_BLACK_LIST = [".xyz", "cinerama.uz", "local", "test", "example"]
+
+        FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+
+        def download_file(url):
             try:
-                r = requests.get(url, headers=headers, timeout=25)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=25)
                 r.raise_for_status()
-                return r.content if binary else r.text
+                return r.text
             except Exception as e:
                 print(f"   warn: {url} -> {e}")
                 return None
-
-        def download_epg_with_fallback():
-            for url in EPG_SOURCES:
-                print(f"   Probing EPG: {url}")
-                content = download_file(url)
-                if content and "<tv" in content[:2000].lower():
-                    print(f"   OK EPG: {url}")
-                    return content, url
-                print("   fail, next...")
-            return None, ""
 
         def clean_url(url):
             p = urlparse(url)
             return f"{p.scheme}://{p.netloc}{p.path}".strip().lower()
 
+        def has_cyrillic(t):
+            return bool(re.search(r'[а-яА-ЯёЁ]', t))
+
+        def has_hd_marker(name):
+            return bool(re.search(r'\b(hd|fhd|uhd|4k|1080|720|full hd)\b', name.lower()))
+
+        def clean_channel_name(name):
+            n = name.lower()
+            n = re.sub(r'\(.*?\)|\[.*?\]|hd|sd|fhd|4k|\.|\b(tv|тв)\b|\!|\+', '', n)
+            return " ".join(n.split())
+
         def is_trash_url(url):
             if not url.lower().startswith("http"):
                 return True
             p = urlparse(url)
-            host_only = p.netloc.lower().split(":")[0]
-            if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host_only):
+            host = p.netloc.lower().split(":")[0]
+            if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host):
                 return True
-            if host_only in ("localhost", "127.0.0.1") or host_only.startswith(("192.168.", "10.")):
+            if host in ("localhost", "127.0.0.1") or host.startswith(("192.168.", "10.")):
                 return True
-            for bad in DOMAIN_BLACK_LIST:
-                if bad in host_only:
+            for b in DOMAIN_BLACK_LIST:
+                if b in host:
                     return True
             if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
                 return True
             return False
 
-        def clean_channel_name(name):
-            name = name.lower()
-            name = re.sub(r'\(.*?\)|\[.*?\]|hd|sd|fhd|4k|\.|\b(tv|тв)\b|\!|\+', '', name)
-            return " ".join(name.split())
+        def is_russian(name_match, clean_name):
+            if has_cyrillic(name_match) or has_cyrillic(clean_name):
+                return True
+            for w in LATIN_WHITELIST:
+                if re.search(rf'\b{re.escape(w)}\b', clean_name):
+                    return True
+            return False
 
-        def is_blacklisted_content(clean_name, group):
-            zone = f"{clean_name} {group.lower()}"
-            return any(bad in zone for bad in CONTENT_BLACK_LIST)
+        def zone_of(clean_name, group):
+            return f"{clean_name} {group.lower()}"
+
+        def in_list(zone, lst):
+            return any(b in zone for b in lst)
 
         def determine_group(orig_group, clean_name):
-            zone = f"{clean_name} {orig_group.lower()}"
-            for target, keywords in GENRE_MAP.items():
-                for kw in keywords:
-                    if kw in zone:
+            z = f"{clean_name} {orig_group.lower()}"
+            for target, kws in GENRE_MAP.items():
+                for kw in kws:
+                    if kw in z:
                         return target
-            if orig_group.lower() in ("general", "public") or any(k in clean_name for k in ["первый", "россия", "нтв", "тнт", "стс", "пятница"]):
-                return "Общие"
             return "Разное"
 
-        def load_epg_channels(epg_xml_content):
-            epg_map = {}
-            if not epg_xml_content:
-                return epg_map
+        def load_epg(xml_text):
+            m = {}
+            if not xml_text:
+                return m
             try:
-                root = ET.fromstring(epg_xml_content)
+                root = ET.fromstring(xml_text)
                 for ch in root.findall('channel'):
                     cid = ch.get('id')
                     if not cid:
                         continue
                     for dn in ch.findall('display-name'):
                         if dn.text:
-                            epg_map[clean_channel_name(dn.text)] = cid
+                            m[clean_channel_name(dn.text)] = cid
             except Exception as e:
-                print(f"   XMLTV parse err: {e}")
-            return epg_map
+                print(f"   XMLTV err: {e}")
+            return m
 
-        def parse_attr(inf_line, attr):
-            m = re.search(rf'{attr}="([^"]*)"', inf_line)
+        def parse_attr(line, attr):
+            m = re.search(rf'{attr}="([^"]*)"', line)
             return m.group(1) if m else ""
 
-        def parse_and_match_m3u(m3u_content, epg_map):
+        def parse_m3u(content, epg_map):
             channels = []
-            seen_urls = set()
             current_inf = ""
             extgrp = ""
-            for raw in m3u_content.splitlines():
+            for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
                     continue
@@ -169,46 +231,114 @@ jobs:
                 orig_tvg_name = parse_attr(current_inf, "tvg-name") or name_match
                 orig_group = parse_attr(current_inf, "group-title") or extgrp or "Разное"
                 orig_logo = parse_attr(current_inf, "tvg-logo")
-                if is_blacklisted_content(clean_name, orig_group):
+
+                z = zone_of(clean_name, orig_group)
+
+                if not is_russian(name_match, clean_name):
+                    current_inf = ""
+                    continue
+                if in_list(z, CHILD_BLACKLIST):
+                    current_inf = ""
+                    continue
+                if in_list(z, REGION_BLACKLIST):
+                    current_inf = ""
+                    continue
+                if in_list(z, TRASH_BLACKLIST):
+                    current_inf = ""
+                    continue
+                if any(fm in z for fm in FOREIGN_MARKERS):
                     current_inf = ""
                     continue
                 if is_trash_url(line):
                     current_inf = ""
                     continue
-                base_url = clean_url(line)
-                if base_url in seen_urls:
+                if not orig_logo:
                     current_inf = ""
                     continue
-                seen_urls.add(base_url)
+
                 tvg_id = orig_tvg_id or epg_map.get(clean_name, "")
-                assigned_group = determine_group(orig_group, clean_name)
-                new_inf = (f'#EXTINF:-1 tvg-id="{tvg_id}" '
-                           f'tvg-name="{orig_tvg_name}" '
-                           f'tvg-logo="{orig_logo}" '
-                           f'group-title="{assigned_group}",{name_match}')
-                channels.append({"inf": new_inf, "url": line, "name": name_match, "group": assigned_group})
+                if not tvg_id:
+                    current_inf = ""
+                    continue
+
+                base_group = determine_group(orig_group, clean_name)
+                group = f"{base_group} HD" if has_hd_marker(name_match) else base_group
+
+                new_inf = (f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{orig_tvg_name}" '
+                           f'tvg-logo="{orig_logo}" group-title="{group}",{name_match}')
+                channels.append({
+                    "inf": new_inf, "url": line, "name": name_match,
+                    "clean_name": clean_name, "tvg_id": tvg_id,
+                    "group": group, "source_priority": 0,
+                })
                 current_inf = ""
             return channels
 
-        def check_stream(channel):
-            headers = {"User-Agent": TV_PLAYER_UA}
-            try:
-                with requests.get(channel["url"], headers=headers, timeout=TIMEOUT, stream=True) as r:
-                    if r.status_code == 200:
+        def dedup(channels):
+            seen_url = set()
+            seen_id = set()
+            out = []
+            for ch in channels:
+                u = clean_url(ch["url"])
+                if u in seen_url:
+                    continue
+                if ch["tvg_id"] in seen_id:
+                    continue
+                seen_url.add(u)
+                seen_id.add(ch["tvg_id"])
+                out.append(ch)
+            return out
+
+        def load_cache():
+            if os.path.exists(CACHE_FILE):
+                try:
+                    with open(CACHE_FILE, encoding="utf-8") as f:
+                        return json.load(f)
+                except Exception:
+                    return {}
+            return {}
+
+        def save_cache(cache):
+            with open(CACHE_FILE, "w", encoding="utf-8") as f:
+                json.dump(cache, f, ensure_ascii=False, indent=1)
+
+        def check_stream(channel, cache):
+            url = channel["url"]
+            now = int(time.time())
+            if url in cache and now - cache[url].get("ts", 0) < CACHE_TTL:
+                channel["working_ua"] = cache[url]["ua"]
+                channel["working_ua_name"] = cache[url]["ua_name"]
+                channel["from_cache"] = True
+                return channel
+            for ua_name, ua in USER_AGENTS:
+                try:
+                    with requests.get(url, headers={"User-Agent": ua}, timeout=TIMEOUT, stream=True, allow_redirects=True) as r:
+                        if r.status_code != 200:
+                            continue
+                        ct = r.headers.get("Content-Type", "").lower()
+                        if "text/html" in ct:
+                            continue
                         for _ in r.iter_content(chunk_size=1024):
+                            channel["working_ua"] = ua
+                            channel["working_ua_name"] = ua_name
+                            channel["from_cache"] = False
+                            cache[url] = {"ua": ua, "ua_name": ua_name, "ts": now}
                             return channel
-            except Exception:
-                pass
+                except Exception:
+                    continue
             return None
 
-        def sort_key(channel):
-            g = channel["group"]
-            idx = CATEGORY_PRIORITY.index(g) if g in CATEGORY_PRIORITY else len(CATEGORY_PRIORITY)
-            return (idx, channel["name"].lower())
+        def natural_key(s):
+            return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\d+)', s)]
 
-        def generate_readme(valid_channels, total_raw, active_epg):
-            stats = {cat: 0 for cat in CATEGORY_PRIORITY}
-            for ch in valid_channels:
+        def sort_key(ch):
+            g = ch["group"]
+            idx = CATEGORY_PRIORITY.index(g) if g in CATEGORY_PRIORITY else len(CATEGORY_PRIORITY)
+            return (idx, natural_key(ch["name"]))
+
+        def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits):
+            stats = {c: 0 for c in CATEGORY_PRIORITY}
+            for ch in valid:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
             now = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
@@ -217,66 +347,71 @@ jobs:
                 pages_url = f"https://{user.lower()}.github.io/{repo.lower()}/{OUTPUT_M3U}"
             else:
                 pages_url = f"https://YOUR_NICK.github.io/iptv/{OUTPUT_M3U}"
-            lines = []
-            lines.append("# IPTV Playlist")
-            lines.append("")
-            lines.append("Auto-updated via GitHub Actions.")
-            lines.append("")
-            lines.append("## Dashboard")
-            lines.append(f"- Updated: {now}")
-            lines.append(f"- Total in source: {total_raw}")
-            lines.append(f"- Live channels: **{len(valid_channels)}**")
-            lines.append(f"- Active EPG: `{active_epg}`")
-            lines.append("")
-            lines.append("## Categories")
-            lines.append("")
-            lines.append("| Category | Channels |")
-            lines.append("| :--- | :---: |")
-            for cat in CATEGORY_PRIORITY:
-                lines.append(f"| {cat} | {stats[cat]} |")
-            lines.append("")
-            lines.append("---")
-            lines.append("")
-            lines.append("## Links")
-            lines.append("")
-            lines.append(f"- Playlist: `{pages_url}`")
-            lines.append(f"- EPG: `{active_epg}`")
-            lines.append(f"- Source: `{SOURCE_M3U}`")
-            lines.append("")
+            lines = ["# IPTV Playlist", "", "Только русскоязычные каналы. Автообновление.", "", "## Dashboard",
+                     f"- Updated: {now}",
+                     f"- Total from source: {total_raw}",
+                     f"- After dedup: {total_dedup}",
+                     f"- Live channels: **{len(valid)}**",
+                     f"- From cache: {cache_hits}",
+                     f"- Active EPG: `{active_epg}`",
+                     "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
+            for name, count in sorted(ua_stats.items(), key=lambda x: -x[1]):
+                lines.append(f"| {name} | {count} |")
+            lines += ["", "## Categories", "", "| Category | Channels |", "| :--- | :---: |"]
+            for c in CATEGORY_PRIORITY:
+                lines.append(f"| {c} | {stats[c]} |")
+            lines += ["", "---", "", "## Links", "",
+                      f"- Playlist: `{pages_url}`", f"- EPG: `{active_epg}`", ""]
             with open("README.md", "w", encoding="utf-8") as f:
                 f.write("\n".join(lines))
 
         def main():
             print("Loading EPG...")
-            epg_content, active_epg = download_epg_with_fallback()
-            if not epg_content:
-                print("No EPG, continue without")
-                active_epg = EPG_SOURCES[0]
-            epg_map = load_epg_channels(epg_content)
+            epg_text = download_file(EPG_URL)
+            epg_map = load_epg(epg_text)
             print(f"   EPG channels: {len(epg_map)}")
+
             print("Downloading playlist...")
-            m3u_content = download_file(SOURCE_M3U)
-            if not m3u_content:
+            m3u = download_file(SOURCE_M3U)
+            if not m3u:
                 print("Failed to download")
                 return
-            raw_channels = parse_and_match_m3u(m3u_content, epg_map)
-            total_raw = len(raw_channels)
-            print(f"   After first filter: {total_raw}")
+            parsed = parse_m3u(m3u, epg_map)
+            total_raw = len(parsed)
+            print(f"   After filters: {total_raw}")
+            deduped = dedup(parsed)
+            total_dedup = len(deduped)
+            print(f"   After dedup: {total_dedup}")
+
+            print("Loading cache...")
+            cache = load_cache()
+
             print("Checking streams...")
             with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
-                results = list(tqdm(ex.map(check_stream, raw_channels), total=total_raw))
-            valid_channels = [c for c in results if c is not None]
-            valid_channels.sort(key=sort_key)
+                results = list(tqdm(ex.map(lambda c: check_stream(c, cache), deduped), total=total_dedup))
+            valid = [c for c in results if c is not None]
+            cache_hits = sum(1 for c in valid if c.get("from_cache"))
+            valid.sort(key=sort_key)
+
+            valid_urls = {c["url"] for c in valid}
+            cache = {k: v for k, v in cache.items() if k in valid_urls}
+            save_cache(cache)
+
+            ua_stats = {}
+            for c in valid:
+                n = c.get("working_ua_name", "Unknown")
+                ua_stats[n] = ua_stats.get(n, 0) + 1
+
             print("Saving M3U...")
             with open(OUTPUT_M3U, "w", encoding="utf-8") as f:
-                f.write(f'#EXTM3U url-tvg="{active_epg}" x-tvg-url="{active_epg}"\n')
-                for ch in valid_channels:
+                f.write(f'#EXTM3U url-tvg="{EPG_URL}" x-tvg-url="{EPG_URL}"\n')
+                for ch in valid:
                     f.write(f"{ch['inf']}\n")
-                    f.write(f"#EXTVLCOPT:http-user-agent={TV_PLAYER_UA}\n")
+                    f.write(f"#EXTVLCOPT:http-user-agent={ch['working_ua']}\n")
                     f.write(f"{ch['url']}\n")
-            print("Updating README.md...")
-            generate_readme(valid_channels, total_raw, active_epg)
-            print(f"Done: {len(valid_channels)} live channels")
+
+            generate_readme(valid, total_raw, total_dedup, EPG_URL, ua_stats, cache_hits)
+            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits})")
 
         if __name__ == "__main__":
             main()
@@ -290,5 +425,6 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add clean_sorted_channels.m3u README.md
+        git add cache.json 2>/dev/null || true
         git commit -m "Auto-update playlist" || echo "No changes"
         git push
