@@ -47,7 +47,7 @@ jobs:
         EPG_URL = "https://iptvx.one/epg/epg_lite.xml.gz"
         EPG_URL_FALLBACK = "http://iptvx.one/epg/epg_lite.xml.gz"
         EPG_MAP_FILE = "epg_map.json"
-        EPG_MAP_VERSION = 17
+        EPG_MAP_VERSION = 18
         EPG_MAP_TTL = 7 * 24 * 3600
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -56,15 +56,15 @@ jobs:
         OUTPUT_M3U = "clean_sorted_channels.m3u"
         CACHE_FILE = "cache.json"
         CACHE_TTL = 7 * 24 * 3600
-        TIMEOUT = 6.0
+        TIMEOUT = 8.0
         MAX_WORKERS = 25
 
         USER_AGENTS = [
+            ("Wink", "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36"),
             ("TiviMate", "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"),
-            ("Wink", "Wink/2.4.1 (Linux; Android 11; Sony Smart TV)"),
-            ("ExoPlayer", "ExoPlayer/2.19.1 (Linux; Android 11)"),
-            ("Chrome", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
-            ("Kodi", "Kodi/20.5 (Windows NT 10.0; Win64; x64) App_Bitness/64 Version/20.5.0"),
+            ("AndroidTV", "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
+            ("VLC", "VLC/3.0.20 LibVLC/3.0.20"),
+            ("SmartTV", "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36"),
         ]
 
         EMOJI = {
@@ -83,21 +83,15 @@ jobs:
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g} HD")
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g}")
 
-        BLOCKED_COUNTRIES = {"UA", "UZ", "TM", "IL", "DE", "AZ", "AM", "MD",
-                             "EE", "LV", "LT", "GE", "TR", "KG", "TJ", "AR",
-                             "EG", "PK", "AF", "IQ", "IR", "SY", "SA"}
-
-        BLOCKED_SUFFIXES = (".ua", ".uz", ".tm", ".il", ".de", ".az", ".am",
-                            ".md", ".ee", ".lv", ".lt", ".ge", ".tr", ".kg", ".tj")
-
-        BLOCKED_TVG_IDS = {"STSLove.ru"}
+        # ТОЛЬКО УКРАИНА — как просил
+        BLOCKED_COUNTRIES = {"UA"}
+        BLOCKED_SUFFIXES = (".ua",)
+        BLOCKED_TVG_IDS = {"STSLove.ru", "Blokbaster.ru", "TV21International.ru", "Ostrosyuzhetnoye.ru"}
 
         NOISE_WORDS = {
             "тв", "tv", "hd", "uhd", "fhd", "sd", "4k", "1080p", "1080i",
             "720p", "720i", "576p", "576i", "480p", "full", "канал", "channel",
-            "ru", "russia", "россия", "российский", "international", "int",
-            "europa", "europe", "cis", "asia", "kazakhstan", "belarus",
-            "online", "live", "stream", "not", "24/7", "plus", "плюс",
+            "online", "live", "stream", "not", "24/7",
         }
 
         TRANSLIT = {
@@ -127,8 +121,7 @@ jobs:
             "Mirovoekino.kz": "Кино", "Muzhskoekino.ru": "Кино",
             "RodnoeKino.ru": "Кино", "RusskiyBestseller.ru": "Кино",
             "RusskiyDetektiv.ru": "Кино", "RusskiyIllusion.ru": "Кино",
-            "HorosheeKino.ru": "Кино", "TV21International.ru": "Кино",
-            "StarCinema.ru": "Кино", "StarFamily.ru": "Кино",
+            "HorosheeKino.ru": "Кино", "StarCinema.ru": "Кино", "StarFamily.ru": "Кино",
             "DiscoveryChannel.ru": "Познавательные", "TLC.ru": "Познавательные",
             "FoodNetwork.ru": "Познавательные", "Nano.ru": "Познавательные",
             "AnimalPlanet.ru": "Познавательные", "InvestigationDiscovery.ru": "Познавательные",
@@ -224,23 +217,33 @@ jobs:
 
         CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
 
-        TRASH_BLACKLIST = ["shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop", "adult", "взрослый", "18+"]
+        TRASH_BLACKLIST = [
+            "shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop",
+            "adult", "взрослый", "18+", "test", "тест", "demo", "промо", "promo",
+            "backup", "резерв", "дубл", "xxx", "порно", "эрот",
+        ]
 
-        FOREIGN_MARKERS = ["turkish", "israel", "german", "deutsch", "arabic", "spanish", "italian", "polish", "korean", "japanese", "chinese", "pakistan", "egypt", "al jazeera"]
+        # УБРАЛ FOREIGN_MARKERS полностью
+        FOREIGN_MARKERS = []
 
         BAD_DOMAINS_EXACT = ["localhost", "127.0.0.1"]
         BAD_DOMAINS_SUFFIX = [
-            "cinerama.uz", "tektv.co", "procajaiptv.com", "videopne.co",
-            "1iptv.xyz", "tptv.cz", "daddylive3.com", "rereyano.ru",
-            "telestream.mom", "kondoplay.cfd", "iptvsupra.com", "d4ktv.info",
-            "xemtv.net", "apollogrouptv.cam", "usaliveiptv.com",
-            "streamseast.zip", "digitallizard-iptv.com", "iptvjoker.cloud",
-            "4kliveiptv.io", "streamxyz.shop", "iptv-eldbert.xyz",
+            "cinerama.uz", "adf.ly", "shorte.st", "sh.st", "ouo.io",
+            "linkvertise.com", "sub2unlock.com", "bit.ly", "tinyurl.com",
+            "goo.gl", "clck.ru", "vk.cc", "cutt.ly", "rb.gy", "is.gd",
         ]
+
+        BAD_EXTENSIONS = (".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".svg", ".ico",
+                          ".html", ".htm", ".php", ".asp", ".aspx", ".jsp",
+                          ".zip", ".rar", ".7z", ".tar", ".gz",
+                          ".exe", ".dmg", ".apk", ".deb", ".rpm")
+
+        BAD_PORTS = (":22/", ":21/", ":23/", ":25/", ":110/", ":143/", ":3306/",
+                     ":5432/", ":6379/", ":27017/", ":9200/", ":11211/")
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
+        filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
 
         def detect_encoding(raw_bytes):
@@ -447,8 +450,13 @@ jobs:
             for bad in BAD_DOMAINS_SUFFIX:
                 if host == bad or host.endswith("." + bad):
                     return True
-            if p.path.lower().endswith((".html", ".php", ".asp", ".jsp")):
-                return True
+            path_lower = p.path.lower()
+            for ext in BAD_EXTENSIONS:
+                if path_lower.endswith(ext):
+                    return True
+            for port in BAD_PORTS:
+                if port in u:
+                    return True
             return False
 
         def in_list(zone, lst):
@@ -552,10 +560,6 @@ jobs:
                     filter_stats["trash"] += 1
                     current_inf = ""
                     continue
-                if any(fm in z for fm in FOREIGN_MARKERS):
-                    filter_stats["foreign"] += 1
-                    current_inf = ""
-                    continue
                 if is_trash_url(line):
                     filter_stats["trash_url"] += 1
                     current_inf = ""
@@ -568,24 +572,27 @@ jobs:
                     current_inf = ""
                     continue
 
-                blocked = False
+                # Только Украина в блоке
                 country = country_by_id.get(base_id)
                 if not country:
                     found_id = api_names.get(clean_name)
                     if found_id:
                         country = country_by_id.get(found_id)
                 if country and country in BLOCKED_COUNTRIES:
-                    blocked = True
-                elif base_id:
-                    bl = base_id.lower()
-                    for suf in BLOCKED_SUFFIXES:
-                        if bl.endswith(suf):
-                            blocked = True
-                            break
-                if blocked:
                     filter_stats["blocked_country"] += 1
                     current_inf = ""
                     continue
+                if base_id:
+                    bl = base_id.lower()
+                    for suf in BLOCKED_SUFFIXES:
+                        if bl.endswith(suf):
+                            filter_stats["blocked_country"] += 1
+                            current_inf = ""
+                            break
+                    else:
+                        pass
+                    if bl.endswith(tuple(BLOCKED_SUFFIXES)):
+                        continue
 
                 epg_id, how = resolve_epg_id(name_match, by_name, by_translit, by_prefix)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
@@ -639,19 +646,15 @@ jobs:
             return channels
 
         def dedup(channels):
+            # ТОЛЬКО ПО URL — как у них
             channels.sort(key=lambda c: c["source_priority"])
             seen_url = set()
-            seen_key = set()
             out = []
             for ch in channels:
                 u = clean_url(ch["url"])
                 if u in seen_url:
                     continue
-                key = ch["tvg_id"] if ch["tvg_id"] else f"name:{ch['clean_name']}"
-                if key in seen_key:
-                    continue
                 seen_url.add(u)
-                seen_key.add(key)
                 out.append(ch)
             return out
 
@@ -683,15 +686,22 @@ jobs:
                     with requests.get(url, headers={"User-Agent": ua}, timeout=TIMEOUT, stream=True, allow_redirects=True) as r:
                         if r.status_code != 200:
                             continue
-                        ct = r.headers.get("Content-Type", "").lower()
-                        if "text/html" in ct:
+                        chunk = None
+                        for c in r.iter_content(chunk_size=1024):
+                            chunk = c
+                            break
+                        if not chunk or len(chunk) < 16:
                             continue
-                        for _ in r.iter_content(chunk_size=1024):
-                            channel["working_ua"] = ua
-                            channel["working_ua_name"] = ua_name
-                            channel["from_cache"] = False
-                            cache[url] = {"ua": ua, "ua_name": ua_name, "ts": now}
-                            return channel
+                        head = chunk[:200].lower()
+                        # Отбрасываем HTML-заглушки по первым байтам (как у них)
+                        if (head.startswith(b'<!doctype') or head.startswith(b'<html')
+                                or head.startswith(b'<head') or head.startswith(b'<?xml')):
+                            continue
+                        channel["working_ua"] = ua
+                        channel["working_ua_name"] = ua_name
+                        channel["from_cache"] = False
+                        cache[url] = {"ua": ua, "ua_name": ua_name, "ts": now}
+                        return channel
                 except Exception:
                     continue
             return None
