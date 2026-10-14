@@ -44,7 +44,8 @@ jobs:
             {"url": "https://iptv-org.github.io/iptv/languages/rus.m3u", "name": "RU-Language", "priority": 1},
         ]
 
-        EPG_URL = "http://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_URL = "https://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_URL_FALLBACK = "http://iptvx.one/epg/epg_lite.xml.gz"
         EPG_MAP_FILE = "epg_map.json"
         EPG_MAP_VERSION = 17
         EPG_MAP_TTL = 7 * 24 * 3600
@@ -242,9 +243,17 @@ jobs:
         filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
 
+        def detect_encoding(raw_bytes):
+            head = raw_bytes[:500].lower()
+            if b'encoding="windows-1251"' in head or b"encoding='windows-1251'" in head:
+                return 'windows-1251'
+            if b'encoding="cp1251"' in head or b"encoding='cp1251'" in head:
+                return 'cp1251'
+            return 'utf-8'
+
         def download_file(url, gz=False):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 120), stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 180), stream=True)
                 r.raise_for_status()
                 content = r.content
                 if content[:2] == b'\x1f\x8b' or gz:
@@ -252,7 +261,10 @@ jobs:
                         content = gzip.decompress(content)
                     except Exception:
                         pass
-                return content.decode('utf-8', errors='replace')
+                enc = detect_encoding(content)
+                if enc != 'utf-8':
+                    print(f"      encoding: {enc}")
+                return content.decode(enc, errors='replace')
             except Exception as e:
                 print(f"   warn: {url} -> {e}")
                 return None
@@ -341,6 +353,10 @@ jobs:
             print(f"   Downloading EPG: {EPG_URL}")
             xml_text = download_file(EPG_URL, gz=True)
             if not xml_text:
+                print(f"   Fallback: {EPG_URL_FALLBACK}")
+                xml_text = download_file(EPG_URL_FALLBACK, gz=True)
+            if not xml_text:
+                print("   EPG unavailable")
                 return {}, {}, {}, {}
             by_name, by_translit, by_prefix, icons = build_epg_map(xml_text)
             print(f"   EPG: {len(by_name)} names, {len(by_translit)} translit, {len(icons)} icons, {len(by_prefix)} prefixes")
@@ -571,7 +587,6 @@ jobs:
                     current_inf = ""
                     continue
 
-                # === EPG resolve через нормализацию имени ===
                 epg_id, how = resolve_epg_id(name_match, by_name, by_translit, by_prefix)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
                 if epg_id:
@@ -579,7 +594,6 @@ jobs:
                 if len(samples) < 6:
                     samples.append(f"{name_match[:25]} → {epg_id or '(removed)'} [{how}]")
 
-                # логотип: если нет в iptv-org → берём из EPG icons
                 final_logo = orig_logo
                 if not final_logo and epg_id and epg_id in icons:
                     final_logo = icons[epg_id]
@@ -607,7 +621,6 @@ jobs:
                 else:
                     group = f"{emoji} {base_group}"
 
-                # финальный tvg-id: из EPG, иначе ПУСТОЙ (не мусорный)
                 final_tvg_id = epg_id if epg_id else ""
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{final_logo}" group-title="{group}",{name_match}')
