@@ -27,12 +27,11 @@ jobs:
       run: |
         cat > main.py << 'PYEOF'
         import os
-        import io
         import re
+        import io
         import json
         import time
         import gzip
-        import difflib
         import requests
         import xml.etree.ElementTree as ET
         from tqdm import tqdm
@@ -45,11 +44,10 @@ jobs:
             {"url": "https://iptv-org.github.io/iptv/languages/rus.m3u", "name": "RU-Language", "priority": 1},
         ]
 
-        EPG_SOURCES = [
-            "https://epgshare01.online/epgshare01/epg_ripper_RU1.xml.gz",
-            "https://iptvx.one/EPG",
-            "https://iptvx.one/EPG_LITE",
-        ]
+        EPG_URL = "http://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_MAP_FILE = "epg_map.json"
+        EPG_MAP_VERSION = 17
+        EPG_MAP_TTL = 7 * 24 * 3600
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
         WHITELIST_FILE = "whitelist.m3u"
@@ -59,9 +57,6 @@ jobs:
         CACHE_TTL = 7 * 24 * 3600
         TIMEOUT = 6.0
         MAX_WORKERS = 25
-
-        FUZZY_CUTOFF = 0.88
-        FUZZY_MIN_LEN = 4
 
         USER_AGENTS = [
             ("TiviMate", "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"),
@@ -95,6 +90,22 @@ jobs:
                             ".md", ".ee", ".lv", ".lt", ".ge", ".tr", ".kg", ".tj")
 
         BLOCKED_TVG_IDS = {"STSLove.ru"}
+
+        NOISE_WORDS = {
+            "тв", "tv", "hd", "uhd", "fhd", "sd", "4k", "1080p", "1080i",
+            "720p", "720i", "576p", "576i", "480p", "full", "канал", "channel",
+            "ru", "russia", "россия", "российский", "international", "int",
+            "europa", "europe", "cis", "asia", "kazakhstan", "belarus",
+            "online", "live", "stream", "not", "24/7", "plus", "плюс",
+        }
+
+        TRANSLIT = {
+            "а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"e","ж":"zh",
+            "з":"z","и":"i","й":"y","к":"k","л":"l","м":"m","н":"n","о":"o",
+            "п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"kh","ц":"ts",
+            "ч":"ch","ш":"sh","щ":"shch","ъ":"","ы":"y","ь":"","э":"e",
+            "ю":"yu","я":"ya","ї":"i","є":"e","і":"i","ґ":"g","ў":"u",
+        }
 
         CATEGORY_OVERRIDES = {
             "2x2.ru": "Развлекательные", "TNT.ru": "Развлекательные",
@@ -229,14 +240,14 @@ jobs:
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
         filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
-        epg_stats = {"exact_id": 0, "exact_name": 0, "fuzzy": 0, "none": 0}
+        epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
 
-        def download_file(url):
+        def download_file(url, gz=False):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 60), stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 120), stream=True)
                 r.raise_for_status()
                 content = r.content
-                if content[:2] == b'\x1f\x8b':
+                if content[:2] == b'\x1f\x8b' or gz:
                     try:
                         content = gzip.decompress(content)
                     except Exception:
@@ -246,50 +257,122 @@ jobs:
                 print(f"   warn: {url} -> {e}")
                 return None
 
-        def load_epg_stream(url):
-            """Потоковая загрузка и парсинг XML в один проход"""
-            by_id = {}
+        def normalize_v2(name):
+            if not name:
+                return ""
+            n = name.lower()
+            n = re.sub(r'\(.*?\)|\[.*?\]', ' ', n)
+            n = n.replace('ё', 'е').replace('й', 'и')
+            n = re.sub(r'[^а-яa-z0-9\s]', ' ', n)
+            words = n.split()
+            words = [w for w in words if w and w not in NOISE_WORDS]
+            return " ".join(words)
+
+        def translit(s):
+            if not s:
+                return ""
+            out = []
+            for ch in s:
+                if ch in TRANSLIT:
+                    out.append(TRANSLIT[ch])
+                else:
+                    out.append(ch)
+            return "".join(out)
+
+        def build_epg_map(xml_text):
             by_name = {}
-            all_names = []
-            print(f"   Streaming: {url}")
+            by_translit = {}
+            by_prefix = {}
+            icons = {}
+            if not xml_text:
+                return by_name, by_translit, by_prefix, icons
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 180), stream=True)
-                r.raise_for_status()
-                raw = r.raw
-                if url.endswith(".gz"):
-                    raw = gzip.GzipFile(fileobj=raw)
+                stream = io.BytesIO(xml_text.encode('utf-8'))
                 count = 0
-                for event, elem in ET.iterparse(raw, events=('end',)):
+                for event, elem in ET.iterparse(stream, events=('end',)):
                     if elem.tag == 'channel':
                         cid = elem.get('id')
                         if cid:
-                            names = []
+                            icon_url = ""
+                            icon_el = elem.find('icon')
+                            if icon_el is not None:
+                                icon_url = icon_el.get('src', '')
+                            if icon_url:
+                                icons[cid] = icon_url
                             for dn in elem.findall('display-name'):
                                 if dn.text:
-                                    n = clean_channel_name(dn.text)
-                                    if n and len(n) >= 2:
-                                        names.append(n)
-                                        if n not in by_name:
-                                            by_name[n] = cid
-                                            all_names.append(n)
-                            by_id[cid] = names
+                                    norm = normalize_v2(dn.text)
+                                    if norm and len(norm) >= 2:
+                                        if norm not in by_name:
+                                            by_name[norm] = cid
+                                        tr = translit(norm)
+                                        if tr and tr not in by_translit:
+                                            by_translit[tr] = cid
+                                        pfx = norm[:5]
+                                        if len(pfx) >= 3:
+                                            by_prefix.setdefault(pfx, [])
+                                            if (norm, cid) not in by_prefix[pfx]:
+                                                by_prefix[pfx].append((norm, cid))
                         elem.clear()
                         count += 1
-                        if count % 1000 == 0:
-                            print(f"      parsed {count} channels...")
-                r.close()
-                print(f"   OK: {url} ({count} channels)")
-                return by_id, by_name, all_names
+                print(f"   EPG parsed: {count} channels")
             except Exception as e:
-                print(f"   err: {url} -> {e}")
-                return {}, {}, []
+                print(f"   XMLTV err: {e}")
+            return by_name, by_translit, by_prefix, icons
 
-        def load_epg_best():
-            for url in EPG_SOURCES:
-                by_id, by_name, all_names = load_epg_stream(url)
-                if len(by_id) >= 100:
-                    return by_id, by_name, all_names, url
-            return {}, {}, [], EPG_SOURCES[0]
+        def load_epg_map():
+            if os.path.exists(EPG_MAP_FILE):
+                try:
+                    with open(EPG_MAP_FILE, encoding="utf-8") as f:
+                        data = json.load(f)
+                    if data.get("version") == EPG_MAP_VERSION:
+                        age = time.time() - data.get("ts", 0)
+                        if age < EPG_MAP_TTL:
+                            print(f"   EPG map from cache (age: {int(age/3600)}h)")
+                            epg_stats["from_cache"] = 1
+                            return (
+                                data.get("by_name", {}),
+                                data.get("by_translit", {}),
+                                {k: [tuple(x) for x in v] for k, v in data.get("by_prefix", {}).items()},
+                                data.get("icons", {}),
+                            )
+                except Exception as e:
+                    print(f"   cache err: {e}")
+            print(f"   Downloading EPG: {EPG_URL}")
+            xml_text = download_file(EPG_URL, gz=True)
+            if not xml_text:
+                return {}, {}, {}, {}
+            by_name, by_translit, by_prefix, icons = build_epg_map(xml_text)
+            print(f"   EPG: {len(by_name)} names, {len(by_translit)} translit, {len(icons)} icons, {len(by_prefix)} prefixes")
+            try:
+                with open(EPG_MAP_FILE, "w", encoding="utf-8") as f:
+                    json.dump({
+                        "version": EPG_MAP_VERSION,
+                        "ts": int(time.time()),
+                        "by_name": by_name,
+                        "by_translit": by_translit,
+                        "by_prefix": {k: list(v) for k, v in by_prefix.items()},
+                        "icons": icons,
+                    }, f, ensure_ascii=False)
+            except Exception as e:
+                print(f"   save err: {e}")
+            return by_name, by_translit, by_prefix, icons
+
+        def resolve_epg_id(name, by_name, by_translit, by_prefix):
+            norm = normalize_v2(name)
+            if not norm:
+                return "", ""
+            if norm in by_name:
+                return by_name[norm], "by_name"
+            tr = translit(norm)
+            if tr and tr in by_translit:
+                return by_translit[tr], "by_translit"
+            pfx = norm[:5]
+            if len(pfx) >= 3 and pfx in by_prefix:
+                candidates = by_prefix[pfx]
+                if len(candidates) <= 3:
+                    return candidates[0][1], "by_prefix"
+            return "", "no_match"
 
         def load_api():
             cats = {}
@@ -317,10 +400,10 @@ jobs:
                                 break
                     if cid:
                         if ch_name:
-                            names_index[clean_channel_name(ch_name)] = cid
+                            names_index[normalize_v2(ch_name)] = cid
                         for alt in alt_names:
                             if alt:
-                                names_index[clean_channel_name(alt)] = cid
+                                names_index[normalize_v2(alt)] = cid
                 print(f"   API: cats={len(cats)}, names={len(names_index)}, countries={len(country_by_id)}")
             except Exception as e:
                 print(f"   API err: {e}")
@@ -332,11 +415,6 @@ jobs:
 
         def has_hd_marker(name):
             return bool(re.search(r'\b(hd|fhd|uhd|4k|1080|720|full hd)\b', name.lower()))
-
-        def clean_channel_name(name):
-            n = name.lower()
-            n = re.sub(r'\(.*?\)|\[.*?\]|hd|sd|fhd|4k|\.|\b(tv|тв)\b|\!|\+', '', n)
-            return " ".join(n.split())
 
         def is_trash_url(url):
             if not url.lower().startswith("http"):
@@ -368,28 +446,9 @@ jobs:
                         return target
             return ""
 
-        def find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names):
-            base = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
-            if base and base in epg_by_id:
-                return base, "exact_id"
-            if clean_name in epg_by_name:
-                return epg_by_name[clean_name], "exact_name"
-            if orig_tvg_name:
-                cn2 = clean_channel_name(orig_tvg_name)
-                if cn2 and cn2 in epg_by_name:
-                    return epg_by_name[cn2], "exact_name"
-            if clean_name and len(clean_name) >= FUZZY_MIN_LEN:
-                match = difflib.get_close_matches(clean_name, epg_all_names, n=1, cutoff=FUZZY_CUTOFF)
-                if match:
-                    return epg_by_name[match[0]], "fuzzy"
-            return "", "none"
-
         def parse_attr(line, attr):
             m = re.search(rf'{attr}="([^"]*)"', line)
             return m.group(1) if m else ""
-
-        def get_base_id(tvg_id):
-            return tvg_id.split("@")[0] if tvg_id else ""
 
         def load_whitelist():
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
@@ -424,7 +483,7 @@ jobs:
                            f'tvg-logo="{orig_logo}" group-title="{orig_group}",{name_match}')
                 channels.append({
                     "inf": new_inf, "url": line, "name": name_match,
-                    "clean_name": clean_channel_name(name_match),
+                    "clean_name": normalize_v2(name_match),
                     "tvg_id": orig_tvg_id,
                     "group": orig_group, "base_group": orig_group,
                     "source_priority": -1, "is_whitelist": True,
@@ -435,13 +494,14 @@ jobs:
             print(f"   Whitelist channels: {len(channels)}")
             return channels
 
-        def parse_m3u(content, epg_by_id, epg_by_name, epg_all_names, api_cats, api_names, country_by_id, source_name="", source_priority=0):
+        def parse_m3u(content, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
             total_seen = 0
             api_used = 0
             override_used = 0
+            epg_used = 0
             samples = []
             for raw in content.splitlines():
                 line = raw.strip()
@@ -460,7 +520,7 @@ jobs:
                     continue
                 total_seen += 1
                 name_match = current_inf.rsplit(",", 1)[-1].strip()
-                clean_name = clean_channel_name(name_match)
+                clean_name = normalize_v2(name_match)
                 orig_tvg_id = parse_attr(current_inf, "tvg-id")
                 orig_tvg_name = parse_attr(current_inf, "tvg-name") or name_match
                 orig_group = parse_attr(current_inf, "group-title") or extgrp or "Разное"
@@ -485,7 +545,7 @@ jobs:
                     current_inf = ""
                     continue
 
-                base_id = get_base_id(orig_tvg_id)
+                base_id = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
 
                 if base_id and base_id in BLOCKED_TVG_IDS:
                     filter_stats["blocked_id"] += 1
@@ -511,10 +571,18 @@ jobs:
                     current_inf = ""
                     continue
 
-                epg_id, how = find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names)
+                # === EPG resolve через нормализацию имени ===
+                epg_id, how = resolve_epg_id(name_match, by_name, by_translit, by_prefix)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
-                if len(samples) < 8:
-                    samples.append(f"{name_match[:25]} → {epg_id or '—'} ({how})")
+                if epg_id:
+                    epg_used += 1
+                if len(samples) < 6:
+                    samples.append(f"{name_match[:25]} → {epg_id or '(removed)'} [{how}]")
+
+                # логотип: если нет в iptv-org → берём из EPG icons
+                final_logo = orig_logo
+                if not final_logo and epg_id and epg_id in icons:
+                    final_logo = icons[epg_id]
 
                 base_group = ""
                 if base_id and base_id in CATEGORY_OVERRIDES:
@@ -539,9 +607,10 @@ jobs:
                 else:
                     group = f"{emoji} {base_group}"
 
-                final_tvg_id = epg_id if epg_id else base_id
+                # финальный tvg-id: из EPG, иначе ПУСТОЙ (не мусорный)
+                final_tvg_id = epg_id if epg_id else ""
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
-                           f'tvg-logo="{orig_logo}" group-title="{group}",{name_match}')
+                           f'tvg-logo="{final_logo}" group-title="{group}",{name_match}')
                 channels.append({
                     "inf": new_inf, "url": line, "name": name_match,
                     "clean_name": clean_name, "tvg_id": final_tvg_id,
@@ -550,8 +619,8 @@ jobs:
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API used: {api_used}, overrides: {override_used}")
-            print(f"   [{source_name}] EPG match samples:")
+            print(f"   [{source_name}] API used: {api_used}, overrides: {override_used}, EPG matched: {epg_used}")
+            print(f"   [{source_name}] EPG samples:")
             for s in samples:
                 print(f"      {s}")
             return channels
@@ -650,17 +719,17 @@ jobs:
                      f"- Total from source: {total_raw}",
                      f"- After dedup: {total_dedup}",
                      f"- Live channels: **{len(valid)}**",
-                     f"- Whitelist channels: {wl_in_valid}",
                      f"- With EPG: {with_epg}",
+                     f"- Whitelist channels: {wl_in_valid}",
                      f"- From cache: {cache_hits}",
                      f"- Active EPG: `{active_epg}`",
                      "", "## EPG Match Stats", "",
                      "| Method | Count |",
                      "| :--- | :---: |",
-                     f"| Exact ID | {epg_stats.get('exact_id', 0)} |",
-                     f"| Exact Name | {epg_stats.get('exact_name', 0)} |",
-                     f"| Fuzzy | {epg_stats.get('fuzzy', 0)} |",
-                     f"| No match | {epg_stats.get('none', 0)} |",
+                     f"| by_name | {epg_stats.get('by_name', 0)} |",
+                     f"| by_translit | {epg_stats.get('by_translit', 0)} |",
+                     f"| by_prefix | {epg_stats.get('by_prefix', 0)} |",
+                     f"| no_match | {epg_stats.get('no_match', 0)} |",
                      "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
             for name, count in sorted(ua_stats.items(), key=lambda x: -x[1]):
                 lines.append(f"| {name} | {count} |")
@@ -678,19 +747,17 @@ jobs:
                 for g, c in sorted(extra_groups.items(), key=lambda x: -x[1]):
                     lines.append(f"| {g} | {c} |")
             lines += ["", "---", "", "## Links", "",
-                      f"- Playlist: `{pages_url}`", f"- EPG: `{active_epg}`", ""]
+                      f"- Playlist: `{pages_url}`",
+                      f"- EPG: `{active_epg}`", ""]
             with open("README.md", "w", encoding="utf-8") as f:
                 f.write("\n".join(lines))
 
         def main():
-            print("Loading EPG...")
-            epg_by_id, epg_by_name, epg_all_names, active_epg = load_epg_best()
-            print(f"   EPG channels: {len(epg_by_id)}, unique names: {len(epg_all_names)}")
-            print(f"   EPG sample IDs: {list(epg_by_id.keys())[:8]}")
-            print(f"   EPG sample names: {epg_all_names[:8]}")
+            print("Loading EPG map...")
+            by_name, by_translit, by_prefix, icons = load_epg_map()
+            print(f"   by_name={len(by_name)} by_translit={len(by_translit)} by_prefix={len(by_prefix)} icons={len(icons)}")
 
             api_cats, api_names, country_by_id = load_api()
-
             whitelist = load_whitelist()
 
             all_channels = []
@@ -700,7 +767,7 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, epg_by_id, epg_by_name, epg_all_names, api_cats, api_names, country_by_id, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
 
@@ -712,7 +779,7 @@ jobs:
             print(f"Total before dedup: {total_raw}")
             print(f"Filtered by country: {filter_stats['blocked_country']}")
             print(f"Filtered by ID: {filter_stats['blocked_id']}")
-            print(f"EPG match: exact_id={epg_stats['exact_id']}, exact_name={epg_stats['exact_name']}, fuzzy={epg_stats['fuzzy']}, none={epg_stats['none']}")
+            print(f"EPG match: by_name={epg_stats['by_name']}, by_translit={epg_stats['by_translit']}, by_prefix={epg_stats['by_prefix']}, no_match={epg_stats['no_match']}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
@@ -740,13 +807,13 @@ jobs:
 
             print("Saving M3U...")
             with open(OUTPUT_M3U, "w", encoding="utf-8") as f:
-                f.write(f'#EXTM3U url-tvg="{active_epg}" x-tvg-url="{active_epg}"\n')
+                f.write(f'#EXTM3U url-tvg="{EPG_URL}" x-tvg-url="{EPG_URL}"\n')
                 for ch in valid:
                     f.write(f"{ch['inf']}\n")
                     f.write(f"#EXTVLCOPT:http-user-agent={ch['working_ua']}\n")
                     f.write(f"{ch['url']}\n")
 
-            generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits, len(whitelist))
+            generate_readme(valid, total_raw, total_dedup, EPG_URL, ua_stats, cache_hits, len(whitelist))
             print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)})")
 
         if __name__ == "__main__":
@@ -761,6 +828,6 @@ jobs:
         git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git config --local user.name "github-actions[bot]"
         git add clean_sorted_channels.m3u README.md
-        git add cache.json 2>/dev/null || true
+        git add cache.json epg_map.json 2>/dev/null || true
         git commit -m "Auto-update playlist" || echo "No changes"
         git push
