@@ -44,13 +44,12 @@ jobs:
             {"url": "https://iptv-org.github.io/iptv/languages/rus.m3u", "name": "RU-Language", "priority": 1},
         ]
 
-        EPG_URL = "http://iptvx.one/epg/epg_lite.xml.gz"
-        EPG_URL_SECOND = "https://iptvx.one/EPG_NOARCH"
-        EPG_HEADER = f"{EPG_URL}; {EPG_URL_SECOND}"
-        EPG_URL_FALLBACK = "https://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_URL = "https://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_HEADER = "https://iptvx.one/epg/epg_lite.xml.gz"
+        EPG_URL_FALLBACK = "http://iptvx.one/epg/epg_lite.xml.gz"
 
         EPG_MAP_FILE = "epg_map.json"
-        EPG_MAP_VERSION = 20
+        EPG_MAP_VERSION = 22
         EPG_MAP_TTL = 7 * 24 * 3600
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -71,7 +70,7 @@ jobs:
         ]
 
         EMOJI = {
-            "Кино": "🎬", "Сериалы": "📺", "Спорт": "⚽",
+            "Кино": "🎬", "Сериалы": "📺", "Сериалы НТВ": "🎞", "Спорт": "⚽",
             "Познавательные": "🌍", "Документальные": "🎥",
             "Новостные": "📰", "Музыкальные": "🎵",
             "Развлекательные": "🎭", "Общие": "📡",
@@ -88,7 +87,18 @@ jobs:
 
         BLOCKED_COUNTRIES = {"UA"}
         BLOCKED_SUFFIXES = (".ua",)
-        BLOCKED_TVG_IDS = {"STSLove.ru", "Blokbaster.ru", "TV21International.ru", "Ostrosyuzhetnoye.ru"}
+
+        BLOCKED_TVG_IDS = {
+            "STSLove.ru", "Blokbaster.ru", "TV21International.ru", "Ostrosyuzhetnoye.ru",
+            "Smotrim100Fakty.ru", "Smotrim100Prazdnik.ru", "Smotrim100Lyubov.ru",
+            "Smotrim100Muzhskoe.ru", "Smotrim100Klassika.ru",
+            "RTVi.ru", "RTViUS.us",
+            "Channel9.il", "DW.de", "ArmeniaTVSatellite.am",
+            "LifeTV.ee", "TBNBaltia.ee", "RadioMir.by",
+            "AlmatyTV.kz", "Channel7.kz", "JibekJoly.kz", "KTK.kz",
+            "Khabar.kz", "NTK.kz", "Ulytau.kz", "SilkWay.kz",
+            "24KZ.kz", "AtamekenBusiness.kz", "ChannelOneEurasia.kz",
+        }
 
         NOISE_WORDS = {
             "тв", "tv", "hd", "uhd", "fhd", "sd", "4k", "1080p", "1080i",
@@ -113,7 +123,7 @@ jobs:
             "Subbota.ru": "Развлекательные", "TvoeTV.ru": "Развлекательные",
             "TvoyeTVYumor.ru": "Развлекательные", "PeretzInternational.ru": "Развлекательные",
             "KrikTV.ru": "Развлекательные", "VoprosyiOtvety.ru": "Развлекательные",
-            "Komediynoe.ru": "Развлекательные", "Smotrim100Prazdnik.ru": "Развлекательные",
+            "Komediynoe.ru": "Развлекательные",
             "CityEdenReceptyGurmana.ru": "Развлекательные", "Kuhnya.ru": "Развлекательные",
             "KulinarTV.ru": "Развлекательные",
             "Kinokomedija.ru": "Кино", "Komedia.ru": "Кино",
@@ -133,7 +143,7 @@ jobs:
             "Dikayaokhota.ru": "Познавательные", "Dikayarybalka.ru": "Познавательные",
             "Okhotairybalka.ru": "Познавательные", "Rybalkaiokhota.ru": "Познавательные",
             "Rybolov.ru": "Познавательные", "Ohotnikirybolov.ru": "Познавательные",
-            "RTDocumentary.ru": "Документальные", "Smotrim100Fakty.ru": "Документальные",
+            "RTDocumentary.ru": "Документальные",
             "CityEdenKinoDok.ru": "Документальные", "365daysTV.ru": "Документальные",
             "Izvestia.ru": "Новостные", "Mir24.ru": "Новостные", "360.ru": "Новостные",
             "360News.ru": "Новостные", "RTRPlaneta.ru": "Новостные",
@@ -142,21 +152,15 @@ jobs:
             "SolovyovLive.ru": "Новостные", "Moskva24.ru": "Новостные",
             "MoskvaDoveriye.ru": "Новостные", "VmesteRF.ru": "Новостные",
             "PerviyInformationniy.by": "Новостные", "Belarus24.by": "Новостные",
-            "24KZ.kz": "Новостные", "AtamekenBusiness.kz": "Новостные",
             "India.ru": "Новостные", "ProBusiness.ru": "Новостные",
             "PervyyRespublikanskiy.ru": "Новостные",
             "NTV.ru": "Общие", "NTVVitrina.ru": "Общие", "Mir.ru": "Общие",
             "Zvezda.ru": "Общие", "ZvezdaPlus.ru": "Общие",
             "Russia1.ru": "Общие", "RussiaK.ru": "Общие", "STS.ru": "Общие",
             "ChannelOne.ru": "Общие", "ChannelOneCIS.ru": "Общие",
-            "ChannelOneEurasia.kz": "Общие", "OTR.ru": "Общие",
-            "TVCentrInternational.ru": "Общие", "Belarus1.by": "Общие",
-            "Belarus2.by": "Общие", "Belarus3.by": "Общие", "STV.by": "Общие",
-            "Soyuzny.ru": "Общие", "JibekJoly.kz": "Общие",
-            "Khabar.kz": "Общие", "KTK.kz": "Общие", "NTK.kz": "Общие",
-            "Channel7.kz": "Общие", "AlmatyTV.kz": "Общие",
-            "RikaTV.kz": "Общие", "SilkWay.kz": "Общие", "Ulytau.kz": "Общие",
-            "TDK42.kz": "Общие",
+            "OTR.ru": "Общие", "TVCentrInternational.ru": "Общие",
+            "Belarus1.by": "Общие", "Belarus2.by": "Общие", "Belarus3.by": "Общие",
+            "STV.by": "Общие", "Soyuzny.ru": "Общие",
             "Belgorod24.ru": "Региональные", "Dagestan.ru": "Региональные",
             "Sochi24.ru": "Региональные", "SochiLive.ru": "Региональные",
             "Groznyj.ru": "Региональные", "Ingushetia.ru": "Региональные",
@@ -184,9 +188,86 @@ jobs:
             "HopeChannelRussia.ru": "Религиозные", "HuzurTV.ru": "Религиозные",
             "ManaTserkovOnlayn.pt": "Религиозные", "Soyuz.ru": "Религиозные",
             "TsargradTV.ru": "Религиозные", "TVManaRusskiy.pt": "Религиозные",
-            "Radio1.ru": "Радио", "RadioMir.by": "Радио", "RadioRossii.ru": "Радио",
+            "Radio1.ru": "Радио", "RadioRossii.ru": "Радио",
             "CityEdenMedZdrav.ru": "Разное", "BRIDGEClassic.ru": "Музыкальные",
-            "MyZenTV.fr": "Разное", "Avto24.ru": "Разное",
+            "MyZenTV.fr": "Разное", "Avto24.ru": "Познавательные",
+        }
+
+        # === РУЧНЫЕ ОВЕРРАЙДЫ ПО НОРМАЛИЗОВАННОМУ ИМЕНИ ===
+        NAME_GROUP_OVERRIDES = {
+            # === DELETE (не должно быть в плейлисте) ===
+            "ani": "DELETE", "ani tv": "DELETE",
+            "carousel": "DELETE", "carousel international": "DELETE", "carousel sd": "DELETE",
+            "gulli girl": "DELETE",
+            "mult": "DELETE", "mult hd": "DELETE", "mult tv": "DELETE", "мульт": "DELETE",
+            "mama": "DELETE", "mama tv": "DELETE",
+            "v gostyakh u skazki": "DELETE", "v gostyah u skazki": "DELETE",
+            "гостях у сказки": "DELETE",
+            "smotrim 100 klassika": "DELETE", "smotrim 100 lyubov": "DELETE",
+            "smotrim 100 muzhskoe": "DELETE", "smotrim 100 prazdnik": "DELETE",
+            "smotrim 100 fakty": "DELETE", "smotrim 100": "DELETE",
+            "rtvi": "DELETE", "rtvi us": "DELETE",
+            "kapitan fantastika": "DELETE", "kapitan fantastika hd": "DELETE",
+            # === СЕРИАЛЫ НТВ ===
+            "5 minut tishiny": "Сериалы НТВ",
+            "balabol": "Сериалы НТВ",
+            "nevskiy": "Сериалы НТВ",
+            "perviy otdel": "Сериалы НТВ",
+            "pes": "Сериалы НТВ",
+            "shef": "Сериалы НТВ",
+            "skoraya pomoshch": "Сериалы НТВ",
+            "ntv series": "Сериалы НТВ",
+            # === КИНО ===
+            "black": "Кино", "black hd": "Кино",
+            "red": "Кино", "red hd": "Кино",
+            "start air": "Кино", "start air hd": "Кино",
+            "sci fi": "Кино", "scifi": "Кино", "sci-fi": "Кино",
+            "fan": "Кино", "fan hd": "Кино",
+            "nst": "Кино", "nst hd": "Кино", "нст": "Кино", "нст hd": "Кино",
+            "nastoyashchee strashnoe": "Кино", "настоящее страшное": "Кино",
+            "pobeda": "Кино", "pobeda hd": "Кино", "победа": "Кино",
+            "nashe": "Кино", "nashe hd": "Кино",
+            "nashe muzhskoe": "Кино", "nashe muzhskoe hd": "Кино",
+            "ostrosyuzhetnoe": "Кино", "ostrosyuzhetnoe hd": "Кино",
+            "premialnoe": "Кино", "premialnoe hd": "Кино",
+            "shokiruyushchee": "Кино", "shokiruyushchee hd": "Кино",
+            "kinopremyera": "Кино", "kinopremyera hd": "Кино",
+            "dushevnoe": "Кино", "dushevnoe hd": "Кино",
+            # === МУЗЫКАЛЬНЫЕ ===
+            "hit": "Музыкальные", "hit hd": "Музыкальные",
+            # === РАЗВЛЕКАТЕЛЬНЫЕ ===
+            "sarafan": "Развлекательные", "sarafan hd": "Развлекательные",
+            "сарафан": "Развлекательные",
+            "bober": "Развлекательные",
+            "insayt tv": "Развлекательные",
+            "life tv": "Развлекательные",
+            "fashion lifestyle": "Развлекательные",
+            "fashion and lifestyle": "Развлекательные",
+            "priklyucheniya": "Развлекательные", "priklyucheniya hd": "Развлекательные",
+            # === ПОЗНАВАТЕЛЬНЫЕ ===
+            "domashnie zhivotnye": "Познавательные",
+            "avto 24": "Познавательные", "avto24": "Познавательные",
+            "lapki live": "Познавательные",
+            "v mire zhivotnykh": "Познавательные",
+            "moya stikhiya": "Познавательные", "moya stikhiya hd": "Познавательные",
+            "nauka": "Познавательные", "nauka hd": "Познавательные",
+            "наука": "Познавательные", "наука hd": "Познавательные",
+            "nano": "Познавательные", "нано тв": "Познавательные",
+            "food time": "Познавательные", "foodtime": "Познавательные",
+            # === ОБЩИЕ ===
+            "ntv mir": "Общие", "ntv mir hd": "Общие",
+            "domashniy": "Общие", "domashniy sd": "Общие",
+            # === РЕГИОНАЛЬНЫЕ ===
+            "tochka rf": "Региональные",
+            "channel 8": "Региональные", "channel 8 hd": "Региональные",
+            "bst": "Региональные",
+            "mir belogorya": "Региональные",
+            "abaza tv": "Региональные", "apsua tv": "Региональные",
+            "belarus 4 gomel": "Региональные",
+            "belarus 4 vitebsk": "Региональные",
+            # === РАЗНОЕ ===
+            "doctor": "Разное",
+            "city eden medzdrav": "Разное",
         }
 
         API_CATEGORY_MAP = {
@@ -199,7 +280,7 @@ jobs:
             "general": "Общие", "business": "Новостные", "weather": "Новостные",
             "animation": "Разное", "kids": "Разное", "family": "Разное",
             "shopping": "Разное", "religious": "Религиозные",
-            "lifestyle": "Развлекательные", "cooking": "Развлекательные",
+            "lifestyle": "Развлекательные", "cooking": "Познавательные",
             "auto": "Познавательные", "outdoor": "Познавательные",
             "relax": "Музыкальные", "classic": "Кино", "hobby": "Познавательные",
         }
@@ -208,7 +289,7 @@ jobs:
             "Спорт": ["sport", "спорт", "football", "футбол", "матч", "боец", "arena", "арена", "golf", "eurosport", "extreme", "экстрим", "бокс", "boxing", "mma", "ufc", "хоккей", "hockey", "баскетбол", "basketball", "теннис", "tennis", "автоспорт", "motorsport", "fight", "борьб", "единоборств"],
             "Кино": ["cinema", "кино", "фильм", "movie", "film", "action", "комедия", "дорама", "tv1000", "иллюзион", "shik", "хит", "premium", "премиум", "sony", "amc", "vh1", "paramount", "hbo", "fox", "thriller", "драма", "мелодрама", "киносерия", "кинохит", "русский роман", "русский детектив", "индийское кино", "боевик", "ужас", "фантастик", "детектив", "blockbuster", "блокбастер", "премьера"],
             "Сериалы": ["сериал", "series", "serial", "теленовелл", "novella"],
-            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных", "моя планета", "viasat nature", "viasat explore", "viasat history", "hgtv", "tlc", "nano", "viju", "интересное", "удивительное"],
+            "Познавательные": ["science", "наука", "history", "история", "discovery", "nat geo", "гео", "travel", "путешествия", "культура", "документал", "animal planet", "wild", "nature", "природа", "планета", "24 техно", "в мире животных", "моя планета", "viasat nature", "viasat explore", "viasat history", "hgtv", "tlc", "nano", "viju", "интересное", "удивительное", "auto", "avto", "авто", "motor", "food"],
             "Документальные": ["365 дней", "documental", "документ", "военная тайна", "national geographic", "tlc", "hgtv", "viasat explore", "viasat history", "viasat nature", "viju", "dmax", "охота", "рыбалка", "biography", "биограф", "военн", "война", "war", "military", "криминал"],
             "Новостные": ["news", "новости", "известия", "euronews", "рбк", "rt", "вместе-рф", "мир 24", "москва 24", "360", "дождь", "forbes", "bloomberg", "cnbc", "россия 24", "вести", "lenta", "лента", "tass", "тасс", "reuters"],
             "Музыкальные": ["music", "музык", "муз", "mtv", "vh1", "box", "ru.tv", "ру.тв", "tnt music", "тнт music", "europa plus", "европа плюс", "радио", "bridge", "mezzo", "russian music", "music box", "муз-тв", "muz", "шансон", "радио дача", "hit", "хит", "dance", "танц", "disco", "рок", "rock", "поп", "pop", "jazz", "джаз", "караоке"],
@@ -218,12 +299,31 @@ jobs:
             "Региональные": ["region", "регион", "област", "губерния", "край", "республик", "vainah", "vainakh", "крым", "crim", "чечен", "chechen", "дагест", "dagest", "ingush", "oset", "осетин", "kabard", "балкар", "карел", "komi", "коми", "tatar", "татар", "bashkir", "башк", "хмао", "ямал", "yamal", "югра", "ugra", "sakha", "саха", "якут", "yakut"],
         }
 
-        CHILD_BLACKLIST = ["детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon", "nick jr", "карусель", "disney", "дисней", "baby", "tiptop", "гулли", "радость моя", "улыбка", "мультик", "детский", "юный", "школьник", "boomerang"]
+        CHILD_BLACKLIST = [
+            "детск", "child", "kids", "kid", "cartoon", "мульт", "nickelodeon",
+            "nick jr", "карусель", "carousel", "disney", "дисней", "baby",
+            "tiptop", "гулли", "gulli", "радость моя", "улыбка", "мультик",
+            "детский", "юный", "школьник", "boomerang", "смешарик", "fairy", "сказк",
+            "mult", "mama",
+            "гостях у сказки", "v gostyakh u skazki", "v gostyah u skazki",
+            "ani",
+        ]
 
         TRASH_BLACKLIST = [
-            "shop", "магазин", "ювелир", "leomax", "tts", "teleshop", "home shop", "top shop",
-            "adult", "взрослый", "18+", "test", "тест", "demo", "промо", "promo",
+            "shop", "магазин", "ювелир", "leomax", "tts", "teleshop",
+            "home shop", "top shop", "adult", "взрослый", "18+",
+            "test", "тест", "demo", "промо", "promo",
             "backup", "резерв", "дубл", "xxx", "порно", "эрот",
+            "smotrim", "rtvi",
+            "v gostyakh u skazki", "v gostyah u skazki", "гостях у сказки",
+            "dw русский", "dw russian",
+            "channel 9 israel", "channel 9 (israel)",
+            "armenia tv satellite",
+            "life tv estonia", "life tv (estonia)",
+            "tbn baltia",
+            "radio mir",
+            "almaty", "jibek joly", "khabar", "ktk", "ntk", "ulytau",
+            "silk way", "atameken",
         ]
 
         FOREIGN_MARKERS = []
@@ -245,7 +345,7 @@ jobs:
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
-        filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
+        filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0}
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
 
         def detect_encoding(raw_bytes):
@@ -527,6 +627,7 @@ jobs:
             total_seen = 0
             api_used = 0
             override_used = 0
+            name_override_used = 0
             epg_used = 0
             samples = []
             for raw in content.splitlines():
@@ -554,14 +655,25 @@ jobs:
 
                 z = f"{clean_name} {orig_group.lower()}"
 
+                # 1. DELETE по имени
+                if clean_name in NAME_GROUP_OVERRIDES and NAME_GROUP_OVERRIDES[clean_name] == "DELETE":
+                    filter_stats["name_delete"] += 1
+                    current_inf = ""
+                    continue
+
+                # 2. Детские
                 if in_list(z, CHILD_BLACKLIST):
                     filter_stats["child"] += 1
                     current_inf = ""
                     continue
+
+                # 3. Мусор
                 if in_list(z, TRASH_BLACKLIST):
                     filter_stats["trash"] += 1
                     current_inf = ""
                     continue
+
+                # 4. Битые URL
                 if is_trash_url(line):
                     filter_stats["trash_url"] += 1
                     current_inf = ""
@@ -569,11 +681,13 @@ jobs:
 
                 base_id = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
 
+                # 5. По ID
                 if base_id and base_id in BLOCKED_TVG_IDS:
                     filter_stats["blocked_id"] += 1
                     current_inf = ""
                     continue
 
+                # 6. По стране
                 country = country_by_id.get(base_id)
                 if not country:
                     found_id = api_names.get(clean_name)
@@ -590,6 +704,7 @@ jobs:
                         current_inf = ""
                         continue
 
+                # 7. EPG
                 epg_id, how = resolve_epg_id(name_match, by_name, by_translit, by_prefix)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
                 if epg_id:
@@ -601,8 +716,12 @@ jobs:
                 if not final_logo and epg_id and epg_id in icons:
                     final_logo = icons[epg_id]
 
+                # 8. Категоризация
                 base_group = ""
-                if base_id and base_id in CATEGORY_OVERRIDES:
+                if clean_name in NAME_GROUP_OVERRIDES:
+                    base_group = NAME_GROUP_OVERRIDES[clean_name]
+                    name_override_used += 1
+                if not base_group and base_id and base_id in CATEGORY_OVERRIDES:
                     base_group = CATEGORY_OVERRIDES[base_id]
                     override_used += 1
                 if not base_group and base_id and base_id in api_cats:
@@ -635,10 +754,7 @@ jobs:
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API used: {api_used}, overrides: {override_used}, EPG matched: {epg_used}")
-            print(f"   [{source_name}] EPG samples:")
-            for s in samples:
-                print(f"      {s}")
+            print(f"   [{source_name}] API: {api_used}, overrides: {override_used}, name_overrides: {name_override_used}, EPG: {epg_used}")
             return channels
 
         def dedup(channels):
@@ -713,35 +829,17 @@ jobs:
 
         def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits, wl_count):
             stats = {}
-            groups_dump = {}
             for g in BASE_GROUPS:
                 stats[f"{EMOJI[g]} {g}"] = 0
                 stats[f"{EMOJI[g]} {g} HD"] = 0
-                groups_dump[f"{EMOJI[g]} {g}"] = []
-                groups_dump[f"{EMOJI[g]} {g} HD"] = []
             with_epg = 0
             wl_in_valid = 0
             for ch in valid:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
-                groups_dump.setdefault(ch['group'], []).append(ch["name"])
                 if ch["tvg_id"]:
                     with_epg += 1
                 if ch.get("is_whitelist"):
                     wl_in_valid += 1
-
-            # ДИАГНОСТИКА: первые 15 каналов из каждой группы
-            print("\n===== ДИАГНОСТИКА ПО ГРУППАМ =====")
-            for g in sorted(groups_dump.keys()):
-                names = groups_dump[g]
-                if not names:
-                    continue
-                print(f"\n[{g}] — {len(names)} каналов:")
-                for nm in names[:15]:
-                    print(f"   {nm}")
-                if len(names) > 15:
-                    print(f"   ... и ещё {len(names) - 15}")
-            print("\n===== КОНЕЦ ДИАГНОСТИКИ =====\n")
-
             now_str = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" in repo_env:
@@ -765,6 +863,15 @@ jobs:
                      f"| by_translit | {epg_stats.get('by_translit', 0)} |",
                      f"| by_prefix | {epg_stats.get('by_prefix', 0)} |",
                      f"| no_match | {epg_stats.get('no_match', 0)} |",
+                     "", "## Filters", "",
+                     "| Reason | Count |",
+                     "| :--- | :---: |",
+                     f"| child | {filter_stats['child']} |",
+                     f"| trash | {filter_stats['trash']} |",
+                     f"| name_delete | {filter_stats['name_delete']} |",
+                     f"| trash_url | {filter_stats['trash_url']} |",
+                     f"| blocked_id | {filter_stats['blocked_id']} |",
+                     f"| blocked_country | {filter_stats['blocked_country']} |",
                      "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
             for name, count in sorted(ua_stats.items(), key=lambda x: -x[1]):
                 lines.append(f"| {name} | {count} |")
@@ -812,9 +919,7 @@ jobs:
 
             total_raw = len(all_channels)
             print(f"Total before dedup: {total_raw}")
-            print(f"Filtered by country: {filter_stats['blocked_country']}")
-            print(f"Filtered by ID: {filter_stats['blocked_id']}")
-            print(f"EPG match: by_name={epg_stats['by_name']}, by_translit={epg_stats['by_translit']}, by_prefix={epg_stats['by_prefix']}, no_match={epg_stats['no_match']}")
+            print(f"Filtered: child={filter_stats['child']}, trash={filter_stats['trash']}, name_delete={filter_stats['name_delete']}, trash_url={filter_stats['trash_url']}, blocked_id={filter_stats['blocked_id']}, blocked_country={filter_stats['blocked_country']}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
