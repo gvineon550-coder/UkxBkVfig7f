@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pages: write
+      id-token: write
 
     steps:
     - name: Checkout
@@ -193,9 +195,7 @@ jobs:
             "MyZenTV.fr": "Разное", "Avto24.ru": "Познавательные",
         }
 
-        # === РУЧНЫЕ ОВЕРРАЙДЫ ПО НОРМАЛИЗОВАННОМУ ИМЕНИ ===
         NAME_GROUP_OVERRIDES = {
-            # === DELETE (не должно быть в плейлисте) ===
             "ani": "DELETE", "ani tv": "DELETE",
             "carousel": "DELETE", "carousel international": "DELETE", "carousel sd": "DELETE",
             "gulli girl": "DELETE",
@@ -208,7 +208,6 @@ jobs:
             "smotrim 100 fakty": "DELETE", "smotrim 100": "DELETE",
             "rtvi": "DELETE", "rtvi us": "DELETE",
             "kapitan fantastika": "DELETE", "kapitan fantastika hd": "DELETE",
-            # === СЕРИАЛЫ НТВ ===
             "5 minut tishiny": "Сериалы НТВ",
             "balabol": "Сериалы НТВ",
             "nevskiy": "Сериалы НТВ",
@@ -217,7 +216,6 @@ jobs:
             "shef": "Сериалы НТВ",
             "skoraya pomoshch": "Сериалы НТВ",
             "ntv series": "Сериалы НТВ",
-            # === КИНО ===
             "black": "Кино", "black hd": "Кино",
             "red": "Кино", "red hd": "Кино",
             "start air": "Кино", "start air hd": "Кино",
@@ -233,9 +231,7 @@ jobs:
             "shokiruyushchee": "Кино", "shokiruyushchee hd": "Кино",
             "kinopremyera": "Кино", "kinopremyera hd": "Кино",
             "dushevnoe": "Кино", "dushevnoe hd": "Кино",
-            # === МУЗЫКАЛЬНЫЕ ===
             "hit": "Музыкальные", "hit hd": "Музыкальные",
-            # === РАЗВЛЕКАТЕЛЬНЫЕ ===
             "sarafan": "Развлекательные", "sarafan hd": "Развлекательные",
             "сарафан": "Развлекательные",
             "bober": "Развлекательные",
@@ -244,7 +240,6 @@ jobs:
             "fashion lifestyle": "Развлекательные",
             "fashion and lifestyle": "Развлекательные",
             "priklyucheniya": "Развлекательные", "priklyucheniya hd": "Развлекательные",
-            # === ПОЗНАВАТЕЛЬНЫЕ ===
             "domashnie zhivotnye": "Познавательные",
             "avto 24": "Познавательные", "avto24": "Познавательные",
             "lapki live": "Познавательные",
@@ -254,10 +249,8 @@ jobs:
             "наука": "Познавательные", "наука hd": "Познавательные",
             "nano": "Познавательные", "нано тв": "Познавательные",
             "food time": "Познавательные", "foodtime": "Познавательные",
-            # === ОБЩИЕ ===
             "ntv mir": "Общие", "ntv mir hd": "Общие",
             "domashniy": "Общие", "domashniy sd": "Общие",
-            # === РЕГИОНАЛЬНЫЕ ===
             "tochka rf": "Региональные",
             "channel 8": "Региональные", "channel 8 hd": "Региональные",
             "bst": "Региональные",
@@ -265,7 +258,6 @@ jobs:
             "abaza tv": "Региональные", "apsua tv": "Региональные",
             "belarus 4 gomel": "Региональные",
             "belarus 4 vitebsk": "Региональные",
-            # === РАЗНОЕ ===
             "doctor": "Разное",
             "city eden medzdrav": "Разное",
         }
@@ -306,7 +298,6 @@ jobs:
             "детский", "юный", "школьник", "boomerang", "смешарик", "fairy", "сказк",
             "mult", "mama",
             "гостях у сказки", "v gostyakh u skazki", "v gostyah u skazki",
-            "ani",
         ]
 
         TRASH_BLACKLIST = [
@@ -328,7 +319,6 @@ jobs:
 
         FOREIGN_MARKERS = []
 
-        BAD_DOMAINS_EXACT = ["localhost", "127.0.0.1"]
         BAD_DOMAINS_SUFFIX = [
             "cinerama.uz", "adf.ly", "shorte.st", "sh.st", "ouo.io",
             "linkvertise.com", "sub2unlock.com", "bit.ly", "tinyurl.com",
@@ -343,9 +333,39 @@ jobs:
         BAD_PORTS = (":22/", ":21/", ":23/", ":25/", ":110/", ":143/", ":3306/",
                      ":5432/", ":6379/", ":27017/", ":9200/", ":11211/")
 
+        TOKEN_PARAMS = [
+            "token=", "key=", "sign=", "signature=", "hash=", "expire=", "expires=",
+            "auth=", "access_token=", "api_key=", "secret=", "pass=", "password=",
+            "session=", "sid=", "uid=", "user_id=", "wmsAuthSign=", "md5=",
+            "ip=", "&e=", "?e=", "&s=", "?s=", "&scheme=",
+        ]
+
+        WHITELIST_DOMAINS = [
+            "rutube.ru",
+            "cdnvideo.ru",
+            "cdn.ngenix.net",
+            "smotrim.ru",
+            "1tv.ru",
+            "ntv.ru",
+            "vgtrk.com",
+            "rt.com",
+            "mirtv.ru",
+            "tvc.ru",
+            "tvzvezda.ru",
+            "matchtv.ru",
+            "rtvi.com",
+            "ntvplus.ru",
+            "mts.ru",
+            "beeline.ru",
+            "megafon.ru",
+            "rostelecom.ru",
+            "rt.ru",
+        ]
+
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
         filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0}
+        filter_url_samples = []
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
 
         def detect_encoding(raw_bytes):
@@ -541,24 +561,53 @@ jobs:
             if not url.lower().startswith("http"):
                 return True
             u = url.lower()
-            if "cinerama" in u:
-                return True
+
             p = urlparse(url)
             host = p.netloc.lower().split(":")[0]
-            if re.match(r'^\d{1,3}(\.\d{1,3}){3}$', host):
+
+            # СНАЧАЛА whitelist — не трогаем доверенные домены
+            for wd in WHITELIST_DOMAINS:
+                if host == wd or host.endswith("." + wd):
+                    return False
+
+            if "cinerama" in u:
                 return True
-            if host in BAD_DOMAINS_EXACT:
+
+            # Приватные IP
+            if re.match(r'^(127\.|10\.|192\.168\.|169\.254\.|0\.0\.0\.0)', host):
                 return True
+            if re.match(r'^172\.(1[6-9]|2[0-9]|3[0-1])\.', host):
+                return True
+            if re.match(r'^100\.(6[4-9]|[7-9][0-9]|1[0-1][0-9]|12[0-7])\.', host):
+                return True
+            if host in ("localhost", "127.0.0.1"):
+                return True
+
+            # Плохие домены
             for bad in BAD_DOMAINS_SUFFIX:
                 if host == bad or host.endswith("." + bad):
                     return True
+
+            # Битые расширения
             path_lower = p.path.lower()
             for ext in BAD_EXTENSIONS:
                 if path_lower.endswith(ext):
                     return True
+
+            # Технические порты
             for port in BAD_PORTS:
                 if port in u:
                     return True
+
+            # Токены (кроме whitelist — уже вернулись выше)
+            query = p.query.lower()
+            if query:
+                for tp in TOKEN_PARAMS:
+                    if tp in u:
+                        return True
+                if query.count("&") >= 3:
+                    return True
+
             return False
 
         def in_list(zone, lst):
@@ -629,7 +678,6 @@ jobs:
             override_used = 0
             name_override_used = 0
             epg_used = 0
-            samples = []
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -655,39 +703,35 @@ jobs:
 
                 z = f"{clean_name} {orig_group.lower()}"
 
-                # 1. DELETE по имени
                 if clean_name in NAME_GROUP_OVERRIDES and NAME_GROUP_OVERRIDES[clean_name] == "DELETE":
                     filter_stats["name_delete"] += 1
                     current_inf = ""
                     continue
 
-                # 2. Детские
                 if in_list(z, CHILD_BLACKLIST):
                     filter_stats["child"] += 1
                     current_inf = ""
                     continue
 
-                # 3. Мусор
                 if in_list(z, TRASH_BLACKLIST):
                     filter_stats["trash"] += 1
                     current_inf = ""
                     continue
 
-                # 4. Битые URL
                 if is_trash_url(line):
                     filter_stats["trash_url"] += 1
+                    if len(filter_url_samples) < 20:
+                        filter_url_samples.append(f"{name_match[:30]} | {line[:100]}")
                     current_inf = ""
                     continue
 
                 base_id = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
 
-                # 5. По ID
                 if base_id and base_id in BLOCKED_TVG_IDS:
                     filter_stats["blocked_id"] += 1
                     current_inf = ""
                     continue
 
-                # 6. По стране
                 country = country_by_id.get(base_id)
                 if not country:
                     found_id = api_names.get(clean_name)
@@ -704,19 +748,15 @@ jobs:
                         current_inf = ""
                         continue
 
-                # 7. EPG
                 epg_id, how = resolve_epg_id(name_match, by_name, by_translit, by_prefix)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
                 if epg_id:
                     epg_used += 1
-                if len(samples) < 6:
-                    samples.append(f"{name_match[:25]} → {epg_id or '(removed)'} [{how}]")
 
                 final_logo = orig_logo
                 if not final_logo and epg_id and epg_id in icons:
                     final_logo = icons[epg_id]
 
-                # 8. Категоризация
                 base_group = ""
                 if clean_name in NAME_GROUP_OVERRIDES:
                     base_group = NAME_GROUP_OVERRIDES[clean_name]
@@ -924,6 +964,12 @@ jobs:
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
 
+            if filter_url_samples:
+                print(f"\n===== TRASH_URL SAMPLES ({filter_stats['trash_url']} total) =====")
+                for s in filter_url_samples:
+                    print(f"   {s}")
+                print("===== END TRASH_URL SAMPLES =====\n")
+
             print("Loading cache...")
             cache = load_cache()
 
@@ -971,3 +1017,16 @@ jobs:
         git add cache.json epg_map.json 2>/dev/null || true
         git commit -m "Auto-update playlist" || echo "No changes"
         git push
+
+    - name: Wait for CDN
+      run: sleep 5
+
+    - name: Trigger Pages rebuild
+      run: |
+        echo "Triggering Pages rebuild..."
+        curl -s -X POST \
+          -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+          || echo "Rebuild request sent"
