@@ -27,6 +27,7 @@ jobs:
       run: |
         cat > main.py << 'PYEOF'
         import os
+        import io
         import re
         import json
         import time
@@ -46,6 +47,8 @@ jobs:
 
         EPG_SOURCES = [
             "https://epgshare01.online/epgshare01/epg_ripper_RU1.xml.gz",
+            "https://epgshare01.online/epgshare01/epg_ripper_RU2.xml.gz",
+            "https://epgshare01.online/epgshare01/epg_ripper_RU3.xml.gz",
             "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz",
             "https://iptvx.one/EPG",
             "https://epg.it999.ru/epg.xml.gz",
@@ -233,7 +236,7 @@ jobs:
 
         def download_file(url):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=40, stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=60, stream=True)
                 r.raise_for_status()
                 content = r.content
                 if content[:2] == b'\x1f\x8b':
@@ -253,8 +256,7 @@ jobs:
                 if txt and "<tv" in txt[:5000].lower():
                     n_channels = txt.count("<channel ")
                     print(f"   OK: {url} (~{n_channels} channels)")
-                    if n_channels >= 100:
-                        return txt, url
+                    return txt, url
                 print(f"   Skip: {url}")
             return None, EPG_SOURCES[0]
 
@@ -342,21 +344,22 @@ jobs:
             if not xml_text:
                 return by_id, by_name, all_names
             try:
-                root = ET.fromstring(xml_text)
-                for ch in root.findall('channel'):
-                    cid = ch.get('id')
-                    if not cid:
-                        continue
-                    names = []
-                    for dn in ch.findall('display-name'):
-                        if dn.text:
-                            n = clean_channel_name(dn.text)
-                            if n and len(n) >= 2:
-                                names.append(n)
-                                if n not in by_name:
-                                    by_name[n] = cid
-                                    all_names.append(n)
-                    by_id[cid] = names
+                stream = io.BytesIO(xml_text.encode('utf-8'))
+                for event, elem in ET.iterparse(stream, events=('end',)):
+                    if elem.tag == 'channel':
+                        cid = elem.get('id')
+                        if cid:
+                            names = []
+                            for dn in elem.findall('display-name'):
+                                if dn.text:
+                                    n = clean_channel_name(dn.text)
+                                    if n and len(n) >= 2:
+                                        names.append(n)
+                                        if n not in by_name:
+                                            by_name[n] = cid
+                                            all_names.append(n)
+                            by_id[cid] = names
+                        elem.clear()
             except Exception as e:
                 print(f"   XMLTV err: {e}")
             return by_id, by_name, all_names
