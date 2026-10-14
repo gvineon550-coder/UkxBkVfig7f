@@ -367,6 +367,7 @@ jobs:
         filter_stats = {"child": 0, "trash": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0, "name_delete": 0}
         filter_url_samples = []
         epg_stats = {"by_name": 0, "by_translit": 0, "by_prefix": 0, "no_match": 0, "from_cache": 0}
+        ru_name_stats = {"applied": 0, "candidates": 0}
 
         def detect_encoding(raw_bytes):
             head = raw_bytes[:500].lower()
@@ -415,6 +416,18 @@ jobs:
                 else:
                     out.append(ch)
             return "".join(out)
+
+        def has_cyrillic(s):
+            return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
+
+        def set_name_in_extinf(extinf, new_name):
+            """Заменяет имя канала после последней запятой."""
+            if not new_name:
+                return extinf
+            idx = extinf.rfind(",")
+            if idx < 0:
+                return extinf
+            return extinf[:idx + 1] + new_name
 
         def build_epg_map(xml_text):
             by_name = {}
@@ -519,10 +532,11 @@ jobs:
             cats = {}
             names_index = {}
             country_by_id = {}
+            ru_name_by_id = {}
             print(f"   Loading API: {API_CHANNELS}")
             txt = download_file(API_CHANNELS)
             if not txt:
-                return cats, names_index, country_by_id
+                return cats, names_index, country_by_id, ru_name_by_id
             try:
                 data = json.loads(txt)
                 for ch in data:
@@ -545,10 +559,16 @@ jobs:
                         for alt in alt_names:
                             if alt:
                                 names_index[normalize_v2(alt)] = cid
-                print(f"   API: cats={len(cats)}, names={len(names_index)}, countries={len(country_by_id)}")
+                        # RU-NAME-END: ищем русское имя
+                        all_names = ([ch_name] if ch_name else []) + list(alt_names)
+                        for nm in all_names:
+                            if nm and has_cyrillic(nm):
+                                ru_name_by_id[cid] = nm.strip()
+                                break
+                print(f"   API: cats={len(cats)}, names={len(names_index)}, countries={len(country_by_id)}, ru_names={len(ru_name_by_id)}")
             except Exception as e:
                 print(f"   API err: {e}")
-            return cats, names_index, country_by_id
+            return cats, names_index, country_by_id, ru_name_by_id
 
         def clean_url(url):
             p = urlparse(url)
@@ -561,11 +581,9 @@ jobs:
             if not url.lower().startswith("http"):
                 return True
             u = url.lower()
-
             p = urlparse(url)
             host = p.netloc.lower().split(":")[0]
 
-            # СНАЧАЛА whitelist — не трогаем доверенные домены
             for wd in WHITELIST_DOMAINS:
                 if host == wd or host.endswith("." + wd):
                     return False
@@ -573,7 +591,6 @@ jobs:
             if "cinerama" in u:
                 return True
 
-            # Приватные IP
             if re.match(r'^(127\.|10\.|192\.168\.|169\.254\.|0\.0\.0\.0)', host):
                 return True
             if re.match(r'^172\.(1[6-9]|2[0-9]|3[0-1])\.', host):
@@ -583,23 +600,19 @@ jobs:
             if host in ("localhost", "127.0.0.1"):
                 return True
 
-            # Плохие домены
             for bad in BAD_DOMAINS_SUFFIX:
                 if host == bad or host.endswith("." + bad):
                     return True
 
-            # Битые расширения
             path_lower = p.path.lower()
             for ext in BAD_EXTENSIONS:
                 if path_lower.endswith(ext):
                     return True
 
-            # Технические порты
             for port in BAD_PORTS:
                 if port in u:
                     return True
 
-            # Токены (кроме whitelist — уже вернулись выше)
             query = p.query.lower()
             if query:
                 for tp in TOKEN_PARAMS:
@@ -669,7 +682,7 @@ jobs:
             print(f"   Whitelist channels: {len(channels)}")
             return channels
 
-        def parse_m3u(content, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, source_name="", source_priority=0):
+        def parse_m3u(content, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, ru_name_by_id, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
@@ -678,6 +691,7 @@ jobs:
             override_used = 0
             name_override_used = 0
             epg_used = 0
+            ru_applied = 0
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -786,6 +800,23 @@ jobs:
                 final_tvg_id = epg_id if epg_id else ""
                 new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{final_logo}" group-title="{group}",{name_match}')
+
+                # RU-NAME-END: заменяем латинское имя на русское
+                if not has_cyrillic(name_match):
+                    iptv_org_id = api_names.get(clean_name)
+                    if iptv_org_id:
+                        ru_name = ru_name_by_id.get(iptv_org_id)
+                        if ru_name:
+                            new_inf = set_name_in_extinf(new_inf, ru_name)
+                            ru_applied += 1
+                    if not iptv_org_id:
+                        iptv_org_id = base_id
+                        if iptv_org_id:
+                            ru_name = ru_name_by_id.get(iptv_org_id)
+                            if ru_name:
+                                new_inf = set_name_in_extinf(new_inf, ru_name)
+                                ru_applied += 1
+
                 channels.append({
                     "inf": new_inf, "url": line, "name": name_match,
                     "clean_name": clean_name, "tvg_id": final_tvg_id,
@@ -793,8 +824,9 @@ jobs:
                     "source_priority": source_priority,
                 })
                 current_inf = ""
+            ru_name_stats["applied"] += ru_applied
             print(f"   [{source_name}] Total seen: {total_seen}")
-            print(f"   [{source_name}] API: {api_used}, overrides: {override_used}, name_overrides: {name_override_used}, EPG: {epg_used}")
+            print(f"   [{source_name}] API: {api_used}, overrides: {override_used}, name_overrides: {name_override_used}, EPG: {epg_used}, ru_names: {ru_applied}")
             return channels
 
         def dedup(channels):
@@ -894,6 +926,7 @@ jobs:
                      f"- Live channels: **{len(valid)}**",
                      f"- With EPG: {with_epg}",
                      f"- Whitelist channels: {wl_in_valid}",
+                     f"- RU-NAME applied: {ru_name_stats['applied']}",
                      f"- From cache: {cache_hits}",
                      f"- Active EPG: `{active_epg}`",
                      "", "## EPG Match Stats", "",
@@ -939,7 +972,7 @@ jobs:
             by_name, by_translit, by_prefix, icons = load_epg_map()
             print(f"   by_name={len(by_name)} by_translit={len(by_translit)} by_prefix={len(by_prefix)} icons={len(icons)}")
 
-            api_cats, api_names, country_by_id = load_api()
+            api_cats, api_names, country_by_id, ru_name_by_id = load_api()
             whitelist = load_whitelist()
 
             all_channels = []
@@ -949,7 +982,7 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, by_name, by_translit, by_prefix, icons, api_cats, api_names, country_by_id, ru_name_by_id, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
 
@@ -1000,7 +1033,7 @@ jobs:
                     f.write(f"{ch['url']}\n")
 
             generate_readme(valid, total_raw, total_dedup, EPG_HEADER, ua_stats, cache_hits, len(whitelist))
-            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)})")
+            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)}, ru_names_applied: {ru_name_stats['applied']})")
 
         if __name__ == "__main__":
             main()
