@@ -1404,71 +1404,6 @@
   "ua_name": "TiviMate",
   "ts": 1791942960
  },
- "https://stream8.cinerama.uz/1414/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943316
- },
- "https://stream8.cinerama.uz/1426/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943316
- },
- "https://stream8.cinerama.uz/1421/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943316
- },
- "https://stream8.cinerama.uz/1423/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943316
- },
- "https://stream8.cinerama.uz/1272/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943316
- },
- "https://stream8.cinerama.uz/1420/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943346
- },
- "https://stream8.cinerama.uz/1413/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943346
- },
- "https://stream8.cinerama.uz/1274/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943351
- },
- "https://stream8.cinerama.uz/1281/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943351
- },
- "https://stream8.cinerama.uz/1031/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943351
- },
- "https://stream8.cinerama.uz/1417/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943353
- },
- "https://stream8.cinerama.uz/1428/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943353
- },
- "https://stream8.cinerama.uz/1250/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791943353
- },
  "https://fs.uplink.kz/24KZ/mono.m3u8?token=onlinetv": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1609,11 +1544,6 @@
   "ua_name": "TiviMate",
   "ts": 1791944408
  },
- "https://stream8.cinerama.uz/1206/tracks-v1a1/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944407
- },
  "https://fs.uplink.kz/perviy_kanal_sng/mono.m3u8?token=onlinetv": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1719,11 +1649,6 @@
   "ua_name": "TiviMate",
   "ts": 1791944409
  },
- "https://stream8.cinerama.uz/1497/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944409
- },
  "http://stream.mcquack.net/157/index.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1770,16 +1695,6 @@
   "ts": 1791944411
  },
  "https://ngtrk.dc.beltelecom.by/ngtrk/smil:informacionnyy.smil/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944410
- },
- "https://stream8.cinerama.uz/1001/tracks-v1a1/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944410
- },
- "https://stream8.cinerama.uz/1431/tracks-v1a1/mono.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
   "ts": 1791944410
@@ -1849,11 +1764,6 @@
   "ua_name": "TiviMate",
   "ts": 1791944412
  },
- "https://stream8.cinerama.uz/1017/tracks-v1a1/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944411
- },
  "https://streaming.televizor-24-tochka.ru/live/211.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1894,11 +1804,6 @@
   "ua_name": "TiviMate",
   "ts": 1791944413
  },
- "https://stream8.cinerama.uz/1204/tracks-v1a1/mono.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944412
- },
  "http://stream.mcquack.net/357/index.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1924,22 +1829,12 @@
   "ua_name": "TiviMate",
   "ts": 1791944414
  },
- "https://stream8.cinerama.uz/1015/tracks-v1a1/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944414
- },
  "https://alpha.tv.online.tm/hls/ch007.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
   "ts": 1791944413
  },
  "https://ulytau.tv/hls/master.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791944414
- },
- "https://stream8.cinerama.uz/1016/tracks-v1a1/mono.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
   "ts": 1791944414
