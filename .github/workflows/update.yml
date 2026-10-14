@@ -31,6 +31,7 @@ jobs:
         import json
         import time
         import gzip
+        import difflib
         import requests
         import xml.etree.ElementTree as ET
         from tqdm import tqdm
@@ -49,12 +50,16 @@ jobs:
         ]
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
+        WHITELIST_FILE = "whitelist.m3u"
 
         OUTPUT_M3U = "clean_sorted_channels.m3u"
         CACHE_FILE = "cache.json"
         CACHE_TTL = 7 * 24 * 3600
         TIMEOUT = 6.0
         MAX_WORKERS = 25
+
+        FUZZY_CUTOFF = 0.88
+        FUZZY_MIN_LEN = 4
 
         USER_AGENTS = [
             ("TiviMate", "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"),
@@ -65,19 +70,12 @@ jobs:
         ]
 
         EMOJI = {
-            "Кино": "🎬",
-            "Сериалы": "📺",
-            "Спорт": "⚽",
-            "Познавательные": "🌍",
-            "Документальные": "🎥",
-            "Новостные": "📰",
-            "Музыкальные": "🎵",
-            "Развлекательные": "🎭",
-            "Общие": "📡",
-            "Региональные": "🏙",
-            "Религиозные": "🙏",
-            "Радио": "📻",
-            "Разное": "📦",
+            "Кино": "🎬", "Сериалы": "📺", "Спорт": "⚽",
+            "Познавательные": "🌍", "Документальные": "🎥",
+            "Новостные": "📰", "Музыкальные": "🎵",
+            "Развлекательные": "🎭", "Общие": "📡",
+            "Региональные": "🏙", "Религиозные": "🙏",
+            "Радио": "📻", "Разное": "📦",
         }
 
         BASE_GROUPS = list(EMOJI.keys())
@@ -97,182 +95,89 @@ jobs:
         BLOCKED_TVG_IDS = {"STSLove.ru"}
 
         CATEGORY_OVERRIDES = {
-            "2x2.ru": "Развлекательные",
-            "TNT.ru": "Развлекательные",
-            "TNT4.ru": "Развлекательные",
-            "TNT4International.ru": "Развлекательные",
-            "TNTInternational.ru": "Развлекательные",
-            "Friday.ru": "Развлекательные",
-            "FridayInternational.ru": "Развлекательные",
-            "U.ru": "Развлекательные",
-            "Che.ru": "Развлекательные",
-            "TV3.ru": "Развлекательные",
-            "Subbota.ru": "Развлекательные",
-            "TvoeTV.ru": "Развлекательные",
-            "TvoyeTVYumor.ru": "Развлекательные",
-            "PeretzInternational.ru": "Развлекательные",
-            "KrikTV.ru": "Развлекательные",
-            "VoprosyiOtvety.ru": "Развлекательные",
-            "Komediynoe.ru": "Развлекательные",
-            "Smotrim100Prazdnik.ru": "Развлекательные",
-            "CityEdenReceptyGurmana.ru": "Развлекательные",
-            "Kuhnya.ru": "Развлекательные",
+            "2x2.ru": "Развлекательные", "TNT.ru": "Развлекательные",
+            "TNT4.ru": "Развлекательные", "TNT4International.ru": "Развлекательные",
+            "TNTInternational.ru": "Развлекательные", "Friday.ru": "Развлекательные",
+            "FridayInternational.ru": "Развлекательные", "U.ru": "Развлекательные",
+            "Che.ru": "Развлекательные", "TV3.ru": "Развлекательные",
+            "Subbota.ru": "Развлекательные", "TvoeTV.ru": "Развлекательные",
+            "TvoyeTVYumor.ru": "Развлекательные", "PeretzInternational.ru": "Развлекательные",
+            "KrikTV.ru": "Развлекательные", "VoprosyiOtvety.ru": "Развлекательные",
+            "Komediynoe.ru": "Развлекательные", "Smotrim100Prazdnik.ru": "Развлекательные",
+            "CityEdenReceptyGurmana.ru": "Развлекательные", "Kuhnya.ru": "Развлекательные",
             "KulinarTV.ru": "Развлекательные",
-            "Kinokomedija.ru": "Кино",
-            "Komedia.ru": "Кино",
-            "vijuPlusComedy.ru": "Кино",
-            "Fox.ru": "Кино",
-            "FoxLife.ru": "Сериалы",
-            "Kinopokaz.ru": "Кино",
-            "Kinosemja.ru": "Кино",
-            "Kinouzhas.ru": "Кино",
-            "KinoHit.ru": "Кино",
-            "KinoBoevik.kz": "Кино",
-            "Mirovoekino.kz": "Кино",
-            "Muzhskoekino.ru": "Кино",
-            "RodnoeKino.ru": "Кино",
-            "RusskiyBestseller.ru": "Кино",
-            "RusskiyDetektiv.ru": "Кино",
-            "RusskiyIllusion.ru": "Кино",
-            "HorosheeKino.ru": "Кино",
-            "TV21International.ru": "Кино",
-            "StarCinema.ru": "Кино",
-            "StarFamily.ru": "Кино",
-            "DiscoveryChannel.ru": "Познавательные",
-            "TLC.ru": "Познавательные",
-            "FoodNetwork.ru": "Познавательные",
-            "Nano.ru": "Познавательные",
-            "AnimalPlanet.ru": "Познавательные",
-            "InvestigationDiscovery.ru": "Познавательные",
-            "vijuExplore.ru": "Познавательные",
-            "vijuNature.ru": "Познавательные",
-            "vijuPlusPlanet.ru": "Познавательные",
-            "V mire zhivotnykh": "Познавательные",
-            "Vmirezhivotnykh.ru": "Познавательные",
-            "BigPlanet.ru": "Познавательные",
-            "Zhivayapriroda.ru": "Познавательные",
-            "Dikayaokhota.ru": "Познавательные",
-            "Dikayarybalka.ru": "Познавательные",
-            "Okhotairybalka.ru": "Познавательные",
-            "Rybalkaiokhota.ru": "Познавательные",
-            "Rybolov.ru": "Познавательные",
-            "Ohotnikirybolov.ru": "Познавательные",
-            "RTDocumentary.ru": "Документальные",
-            "Smotrim100Fakty.ru": "Документальные",
-            "CityEdenKinoDok.ru": "Документальные",
-            "365daysTV.ru": "Документальные",
-            "Izvestia.ru": "Новостные",
-            "Mir24.ru": "Новостные",
-            "360.ru": "Новостные",
-            "360News.ru": "Новостные",
-            "RTRPlaneta.ru": "Новостные",
-            "RTBalkan.ru": "Новостные",
-            "CurrentTimeTV.cz": "Новостные",
-            "VestiFM.ru": "Новостные",
-            "Tolk.ru": "Новостные",
-            "SolovyovLive.ru": "Новостные",
-            "Moskva24.ru": "Новостные",
-            "MoskvaDoveriye.ru": "Новостные",
-            "VmesteRF.ru": "Новостные",
-            "PerviyInformationniy.by": "Новостные",
-            "Belarus24.by": "Новостные",
-            "24KZ.kz": "Новостные",
-            "AtamekenBusiness.kz": "Новостные",
-            "India.ru": "Новостные",
-            "ProBusiness.ru": "Новостные",
+            "Kinokomedija.ru": "Кино", "Komedia.ru": "Кино",
+            "vijuPlusComedy.ru": "Кино", "Fox.ru": "Кино", "FoxLife.ru": "Сериалы",
+            "Kinopokaz.ru": "Кино", "Kinosemja.ru": "Кино",
+            "Kinouzhas.ru": "Кино", "KinoHit.ru": "Кино", "KinoBoevik.kz": "Кино",
+            "Mirovoekino.kz": "Кино", "Muzhskoekino.ru": "Кино",
+            "RodnoeKino.ru": "Кино", "RusskiyBestseller.ru": "Кино",
+            "RusskiyDetektiv.ru": "Кино", "RusskiyIllusion.ru": "Кино",
+            "HorosheeKino.ru": "Кино", "TV21International.ru": "Кино",
+            "StarCinema.ru": "Кино", "StarFamily.ru": "Кино",
+            "DiscoveryChannel.ru": "Познавательные", "TLC.ru": "Познавательные",
+            "FoodNetwork.ru": "Познавательные", "Nano.ru": "Познавательные",
+            "AnimalPlanet.ru": "Познавательные", "InvestigationDiscovery.ru": "Познавательные",
+            "vijuExplore.ru": "Познавательные", "vijuNature.ru": "Познавательные",
+            "vijuPlusPlanet.ru": "Познавательные", "Vmirezhivotnykh.ru": "Познавательные",
+            "BigPlanet.ru": "Познавательные", "Zhivayapriroda.ru": "Познавательные",
+            "Dikayaokhota.ru": "Познавательные", "Dikayarybalka.ru": "Познавательные",
+            "Okhotairybalka.ru": "Познавательные", "Rybalkaiokhota.ru": "Познавательные",
+            "Rybolov.ru": "Познавательные", "Ohotnikirybolov.ru": "Познавательные",
+            "RTDocumentary.ru": "Документальные", "Smotrim100Fakty.ru": "Документальные",
+            "CityEdenKinoDok.ru": "Документальные", "365daysTV.ru": "Документальные",
+            "Izvestia.ru": "Новостные", "Mir24.ru": "Новостные", "360.ru": "Новостные",
+            "360News.ru": "Новостные", "RTRPlaneta.ru": "Новостные",
+            "RTBalkan.ru": "Новостные", "CurrentTimeTV.cz": "Новостные",
+            "VestiFM.ru": "Новостные", "Tolk.ru": "Новостные",
+            "SolovyovLive.ru": "Новостные", "Moskva24.ru": "Новостные",
+            "MoskvaDoveriye.ru": "Новостные", "VmesteRF.ru": "Новостные",
+            "PerviyInformationniy.by": "Новостные", "Belarus24.by": "Новостные",
+            "24KZ.kz": "Новостные", "AtamekenBusiness.kz": "Новостные",
+            "India.ru": "Новостные", "ProBusiness.ru": "Новостные",
             "PervyyRespublikanskiy.ru": "Новостные",
-            "NTV.ru": "Общие",
-            "NTVVitrina.ru": "Общие",
-            "Mir.ru": "Общие",
-            "Zvezda.ru": "Общие",
-            "ZvezdaPlus.ru": "Общие",
-            "Russia1.ru": "Общие",
-            "RussiaK.ru": "Общие",
-            "STS.ru": "Общие",
-            "ChannelOne.ru": "Общие",
-            "ChannelOneCIS.ru": "Общие",
-            "ChannelOneEurasia.kz": "Общие",
-            "OTR.ru": "Общие",
-            "TVCentrInternational.ru": "Общие",
-            "Belarus1.by": "Общие",
-            "Belarus2.by": "Общие",
-            "Belarus3.by": "Общие",
-            "STV.by": "Общие",
-            "Soyuzny.ru": "Общие",
-            "JibekJoly.kz": "Общие",
-            "Khabar.kz": "Общие",
-            "KTK.kz": "Общие",
-            "NTK.kz": "Общие",
-            "Channel7.kz": "Общие",
-            "AlmatyTV.kz": "Общие",
-            "RikaTV.kz": "Общие",
-            "SilkWay.kz": "Общие",
-            "Ulytau.kz": "Общие",
+            "NTV.ru": "Общие", "NTVVitrina.ru": "Общие", "Mir.ru": "Общие",
+            "Zvezda.ru": "Общие", "ZvezdaPlus.ru": "Общие",
+            "Russia1.ru": "Общие", "RussiaK.ru": "Общие", "STS.ru": "Общие",
+            "ChannelOne.ru": "Общие", "ChannelOneCIS.ru": "Общие",
+            "ChannelOneEurasia.kz": "Общие", "OTR.ru": "Общие",
+            "TVCentrInternational.ru": "Общие", "Belarus1.by": "Общие",
+            "Belarus2.by": "Общие", "Belarus3.by": "Общие", "STV.by": "Общие",
+            "Soyuzny.ru": "Общие", "JibekJoly.kz": "Общие",
+            "Khabar.kz": "Общие", "KTK.kz": "Общие", "NTK.kz": "Общие",
+            "Channel7.kz": "Общие", "AlmatyTV.kz": "Общие",
+            "RikaTV.kz": "Общие", "SilkWay.kz": "Общие", "Ulytau.kz": "Общие",
             "TDK42.kz": "Общие",
-            # Региональные
-            "Belgorod24.ru": "Региональные",
-            "Dagestan.ru": "Региональные",
-            "Sochi24.ru": "Региональные",
-            "SochiLive.ru": "Региональные",
-            "Groznyj.ru": "Региональные",
-            "Ingushetia.ru": "Региональные",
-            "OsetiyaIryston.ru": "Региональные",
-            "UgraTV.ru": "Региональные",
-            "NVKSakha.ru": "Региональные",
-            "Arkhyz24.ru": "Региональные",
-            "SamaraGIS.ru": "Региональные",
-            "AstrahanRuTV.ru": "Региональные",
-            "Astrahan24.ru": "Региональные",
-            "AstrahanRuSport.ru": "Региональные",
-            "MTVVolgograd.ru": "Региональные",
-            "Volga.ru": "Региональные",
-            "GuberniaSamara.ru": "Региональные",
-            "KurajTV.ru": "Региональные",
-            "Kuban24.ru": "Региональные",
-            "TelekanalKrasnodar.ru": "Региональные",
-            "TNVTatarstan.ru": "Региональные",
-            "YaPervyy.ru": "Региональные",
-            "Channel8Novosibirsk.ru": "Региональные",
-            "Channel8Krasnoyarsk.ru": "Региональные",
-            "NovgorOblTV.ru": "Региональные",
-            "NTK21.ru": "Региональные",
-            "Surgut24.ru": "Региональные",
-            "ShchyolkovskoeTV.ru": "Региональные",
-            "Telplus.ru": "Региональные",
-            "Enisey.ru": "Региональные",
-            "MirBelogorya.ru": "Региональные",
-            "Channel16.ru": "Региональные",
-            "86.ru": "Региональные",
-            "Channel12.ru": "Региональные",
-            "Channel10.ru": "Региональные",
-            "Channel8International.ru": "Региональные",
-            "S1.ru": "Региональные",
-            "Sever.ru": "Региональные",
-            "NikaTV.ru": "Региональные",
-            "NTM.ru": "Региональные",
-            "NTS.ru": "Региональные",
-            "TNVPlanet.ru": "Региональные",
-            "Prodvizhenie.ru": "Региональные",
-            "SanktPeterburg.ru": "Региональные",
+            "Belgorod24.ru": "Региональные", "Dagestan.ru": "Региональные",
+            "Sochi24.ru": "Региональные", "SochiLive.ru": "Региональные",
+            "Groznyj.ru": "Региональные", "Ingushetia.ru": "Региональные",
+            "OsetiyaIryston.ru": "Региональные", "UgraTV.ru": "Региональные",
+            "NVKSakha.ru": "Региональные", "Arkhyz24.ru": "Региональные",
+            "SamaraGIS.ru": "Региональные", "AstrahanRuTV.ru": "Региональные",
+            "Astrahan24.ru": "Региональные", "AstrahanRuSport.ru": "Региональные",
+            "MTVVolgograd.ru": "Региональные", "Volga.ru": "Региональные",
+            "GuberniaSamara.ru": "Региональные", "KurajTV.ru": "Региональные",
+            "Kuban24.ru": "Региональные", "TelekanalKrasnodar.ru": "Региональные",
+            "TNVTatarstan.ru": "Региональные", "YaPervyy.ru": "Региональные",
+            "Channel8Novosibirsk.ru": "Региональные", "Channel8Krasnoyarsk.ru": "Региональные",
+            "NovgorOblTV.ru": "Региональные", "NTK21.ru": "Региональные",
+            "Surgut24.ru": "Региональные", "ShchyolkovskoeTV.ru": "Региональные",
+            "Telplus.ru": "Региональные", "Enisey.ru": "Региональные",
+            "MirBelogorya.ru": "Региональные", "Channel16.ru": "Региональные",
+            "86.ru": "Региональные", "Channel12.ru": "Региональные",
+            "Channel10.ru": "Региональные", "Channel8International.ru": "Региональные",
+            "S1.ru": "Региональные", "Sever.ru": "Региональные",
+            "NikaTV.ru": "Региональные", "NTM.ru": "Региональные",
+            "NTS.ru": "Региональные", "TNVPlanet.ru": "Региональные",
+            "Prodvizhenie.ru": "Региональные", "SanktPeterburg.ru": "Региональные",
             "Vetta24.ru": "Региональные",
-            # Религиозные
-            "3ABNRussia.ru": "Религиозные",
-            "AngelTV.in": "Религиозные",
-            "HopeChannelRussia.ru": "Религиозные",
-            "HuzurTV.ru": "Религиозные",
-            "ManaTserkovOnlayn.pt": "Религиозные",
-            "Soyuz.ru": "Религиозные",
-            "TsargradTV.ru": "Религиозные",
-            "TVManaRusskiy.pt": "Религиозные",
-            # Радио
-            "Radio1.ru": "Радио",
-            "RadioMir.by": "Радио",
-            "RadioRossii.ru": "Радио",
-            # Развлекательные прочее
-            "CityEdenMedZdrav.ru": "Разное",
-            "BRIDGEClassic.ru": "Музыкальные",
-            "MyZenTV.fr": "Разное",
-            "Avto24.ru": "Разное",
+            "3ABNRussia.ru": "Религиозные", "AngelTV.in": "Религиозные",
+            "HopeChannelRussia.ru": "Религиозные", "HuzurTV.ru": "Религиозные",
+            "ManaTserkovOnlayn.pt": "Религиозные", "Soyuz.ru": "Религиозные",
+            "TsargradTV.ru": "Религиозные", "TVManaRusskiy.pt": "Религиозные",
+            "Radio1.ru": "Радио", "RadioMir.by": "Радио", "RadioRossii.ru": "Радио",
+            "CityEdenMedZdrav.ru": "Разное", "BRIDGEClassic.ru": "Музыкальные",
+            "MyZenTV.fr": "Разное", "Avto24.ru": "Разное",
         }
 
         API_CATEGORY_MAP = {
@@ -322,6 +227,7 @@ jobs:
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 
         filter_stats = {"child": 0, "trash": 0, "foreign": 0, "trash_url": 0, "blocked_country": 0, "blocked_id": 0}
+        epg_stats = {"exact_id": 0, "exact_name": 0, "fuzzy": 0, "none": 0}
 
         def download_file(url):
             try:
@@ -422,21 +328,56 @@ jobs:
             return ""
 
         def load_epg(xml_text):
-            ids_map = {}
+            """Строит три структуры:
+               - by_id: {epg_id: [normalized_names]}
+               - by_name: {normalized_name: epg_id}
+               - all_names: [все нормализованные имена] для fuzzy
+            """
+            by_id = {}
+            by_name = {}
+            all_names = []
             if not xml_text:
-                return ids_map
+                return by_id, by_name, all_names
             try:
                 root = ET.fromstring(xml_text)
                 for ch in root.findall('channel'):
                     cid = ch.get('id')
                     if not cid:
                         continue
+                    names = []
                     for dn in ch.findall('display-name'):
                         if dn.text:
-                            ids_map[clean_channel_name(dn.text)] = cid
+                            n = clean_channel_name(dn.text)
+                            if n and len(n) >= 2:
+                                names.append(n)
+                                if n not in by_name:
+                                    by_name[n] = cid
+                                    all_names.append(n)
+                    by_id[cid] = names
             except Exception as e:
                 print(f"   XMLTV err: {e}")
-            return ids_map
+            return by_id, by_name, all_names
+
+        def find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names):
+            """Ищет EPG ID: точное по tvg_id → точное по имени → fuzzy."""
+            # 1. Точное по tvg_id (без @)
+            base = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
+            if base and base in epg_by_id:
+                return base, "exact_id"
+            # 2. Точное по имени (как оно есть)
+            if clean_name in epg_by_name:
+                return epg_by_name[clean_name], "exact_name"
+            # 3. Точное по tvg_name
+            if orig_tvg_name:
+                cn2 = clean_channel_name(orig_tvg_name)
+                if cn2 and cn2 in epg_by_name:
+                    return epg_by_name[cn2], "exact_name"
+            # 4. Fuzzy только для имён длиной >= 4
+            if clean_name and len(clean_name) >= FUZZY_MIN_LEN:
+                match = difflib.get_close_matches(clean_name, epg_all_names, n=1, cutoff=FUZZY_CUTOFF)
+                if match:
+                    return epg_by_name[match[0]], "fuzzy"
+            return "", "none"
 
         def parse_attr(line, attr):
             m = re.search(rf'{attr}="([^"]*)"', line)
@@ -445,13 +386,59 @@ jobs:
         def get_base_id(tvg_id):
             return tvg_id.split("@")[0] if tvg_id else ""
 
-        def parse_m3u(content, ids_map, api_cats, api_names, country_by_id, source_name="", source_priority=0):
+        def load_whitelist():
+            repo_env = os.getenv("GITHUB_REPOSITORY", "")
+            if "/" not in repo_env:
+                print("   No GITHUB_REPOSITORY env, skip whitelist")
+                return []
+            user, repo = repo_env.split("/", 1)
+            url = f"https://raw.githubusercontent.com/{user}/{repo}/main/{WHITELIST_FILE}"
+            print(f"   Loading whitelist: {url}")
+            content = download_file(url)
+            if not content:
+                print("   Whitelist not found or empty, skip")
+                return []
+            channels = []
+            current_inf = ""
+            for raw in content.splitlines():
+                line = raw.strip()
+                if not line:
+                    continue
+                if line.startswith("#EXTINF:"):
+                    current_inf = line
+                    continue
+                if line.startswith("#"):
+                    continue
+                if not current_inf:
+                    continue
+                name_match = current_inf.rsplit(",", 1)[-1].strip()
+                orig_tvg_id = parse_attr(current_inf, "tvg-id")
+                orig_tvg_name = parse_attr(current_inf, "tvg-name") or name_match
+                orig_group = parse_attr(current_inf, "group-title") or "📌 Мои каналы"
+                orig_logo = parse_attr(current_inf, "tvg-logo")
+                new_inf = (f'#EXTINF:-1 tvg-id="{orig_tvg_id}" tvg-name="{orig_tvg_name}" '
+                           f'tvg-logo="{orig_logo}" group-title="{orig_group}",{name_match}')
+                channels.append({
+                    "inf": new_inf, "url": line, "name": name_match,
+                    "clean_name": clean_channel_name(name_match),
+                    "tvg_id": orig_tvg_id,
+                    "group": orig_group, "base_group": orig_group,
+                    "source_priority": -1, "is_whitelist": True,
+                    "working_ua": USER_AGENTS[0][1],
+                    "working_ua_name": USER_AGENTS[0][0],
+                })
+                current_inf = ""
+            print(f"   Whitelist channels: {len(channels)}")
+            return channels
+
+        def parse_m3u(content, epg_by_id, epg_by_name, epg_all_names, api_cats, api_names, country_by_id, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
             total_seen = 0
             api_used = 0
             override_used = 0
+            samples = []
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -494,8 +481,7 @@ jobs:
                     current_inf = ""
                     continue
 
-                tvg_id = orig_tvg_id or ids_map.get(clean_name, "")
-                base_id = get_base_id(tvg_id)
+                base_id = get_base_id(orig_tvg_id)
 
                 if base_id and base_id in BLOCKED_TVG_IDS:
                     filter_stats["blocked_id"] += 1
@@ -521,6 +507,12 @@ jobs:
                     current_inf = ""
                     continue
 
+                # === АВТОСОПОСТАВЛЕНИЕ EPG ===
+                epg_id, how = find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names)
+                epg_stats[how] = epg_stats.get(how, 0) + 1
+                if len(samples) < 5:
+                    samples.append(f"{name_match[:25]} → {epg_id or '—'} ({how})")
+
                 base_group = ""
                 if base_id and base_id in CATEGORY_OVERRIDES:
                     base_group = CATEGORY_OVERRIDES[base_id]
@@ -544,17 +536,22 @@ jobs:
                 else:
                     group = f"{emoji} {base_group}"
 
-                new_inf = (f'#EXTINF:-1 tvg-id="{tvg_id}" tvg-name="{orig_tvg_name}" '
+                # tvg_id из EPG (совпадает с программой) или чистый без @
+                final_tvg_id = epg_id if epg_id else base_id
+                new_inf = (f'#EXTINF:-1 tvg-id="{final_tvg_id}" tvg-name="{orig_tvg_name}" '
                            f'tvg-logo="{orig_logo}" group-title="{group}",{name_match}')
                 channels.append({
                     "inf": new_inf, "url": line, "name": name_match,
-                    "clean_name": clean_name, "tvg_id": tvg_id,
+                    "clean_name": clean_name, "tvg_id": final_tvg_id,
                     "group": group, "base_group": base_group,
                     "source_priority": source_priority,
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
             print(f"   [{source_name}] API used: {api_used}, overrides: {override_used}")
+            print(f"   [{source_name}] EPG match samples:")
+            for s in samples:
+                print(f"      {s}")
             return channels
 
         def dedup(channels):
@@ -588,6 +585,8 @@ jobs:
                 json.dump(cache, f, ensure_ascii=False, indent=1)
 
         def check_stream(channel, cache):
+            if channel.get("is_whitelist"):
+                return channel
             url = channel["url"]
             now = int(time.time())
             if url in cache and now - cache[url].get("ts", 0) < CACHE_TTL:
@@ -617,20 +616,26 @@ jobs:
             return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\d+)', s)]
 
         def sort_key(ch):
+            is_wl = 0 if ch.get("is_whitelist") else 1
+            if ch.get("is_whitelist"):
+                return (is_wl, 0, ch["group"].lower(), natural_key(ch["name"]))
             g = ch["group"]
             idx = CATEGORY_PRIORITY.index(g) if g in CATEGORY_PRIORITY else len(CATEGORY_PRIORITY)
-            return (idx, natural_key(ch["name"]))
+            return (is_wl, idx, "", natural_key(ch["name"]))
 
-        def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits):
+        def generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits, wl_count):
             stats = {}
             for g in BASE_GROUPS:
                 stats[f"{EMOJI[g]} {g}"] = 0
                 stats[f"{EMOJI[g]} {g} HD"] = 0
             with_epg = 0
+            wl_in_valid = 0
             for ch in valid:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
                 if ch["tvg_id"]:
                     with_epg += 1
+                if ch.get("is_whitelist"):
+                    wl_in_valid += 1
             now_str = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" in repo_env:
@@ -643,9 +648,17 @@ jobs:
                      f"- Total from source: {total_raw}",
                      f"- After dedup: {total_dedup}",
                      f"- Live channels: **{len(valid)}**",
+                     f"- Whitelist channels: {wl_in_valid}",
                      f"- With EPG: {with_epg}",
                      f"- From cache: {cache_hits}",
                      f"- Active EPG: `{active_epg}`",
+                     "", "## EPG Match Stats", "",
+                     "| Method | Count |",
+                     "| :--- | :---: |",
+                     f"| Exact ID | {epg_stats.get('exact_id', 0)} |",
+                     f"| Exact Name | {epg_stats.get('exact_name', 0)} |",
+                     f"| Fuzzy | {epg_stats.get('fuzzy', 0)} |",
+                     f"| No match | {epg_stats.get('none', 0)} |",
                      "", "## User-Agents", "", "| UA | Channels |", "| :--- | :---: |"]
             for name, count in sorted(ua_stats.items(), key=lambda x: -x[1]):
                 lines.append(f"| {name} | {count} |")
@@ -653,6 +666,15 @@ jobs:
             for g in BASE_GROUPS:
                 lines.append(f"| {EMOJI[g]} {g} HD | {stats[f'{EMOJI[g]} {g} HD']} |")
                 lines.append(f"| {EMOJI[g]} {g} | {stats[f'{EMOJI[g]} {g}']} |")
+            extra_groups = {}
+            for ch in valid:
+                g = ch["group"]
+                if g not in CATEGORY_PRIORITY and ch.get("is_whitelist"):
+                    extra_groups[g] = extra_groups.get(g, 0) + 1
+            if extra_groups:
+                lines += ["", "### Из whitelist", "", "| Category | Channels |", "| :--- | :---: |"]
+                for g, c in sorted(extra_groups.items(), key=lambda x: -x[1]):
+                    lines.append(f"| {g} | {c} |")
             lines += ["", "---", "", "## Links", "",
                       f"- Playlist: `{pages_url}`", f"- EPG: `{active_epg}`", ""]
             with open("README.md", "w", encoding="utf-8") as f:
@@ -661,10 +683,14 @@ jobs:
         def main():
             print("Loading EPG...")
             epg_text, active_epg = download_epg()
-            ids_map = load_epg(epg_text)
-            print(f"   EPG channels: {len(ids_map)}")
+            epg_by_id, epg_by_name, epg_all_names = load_epg(epg_text)
+            print(f"   EPG channels: {len(epg_by_id)}, unique names: {len(epg_all_names)}")
+            print(f"   EPG sample IDs: {list(epg_by_id.keys())[:5]}")
+            print(f"   EPG sample names: {epg_all_names[:5]}")
 
             api_cats, api_names, country_by_id = load_api()
+
+            whitelist = load_whitelist()
 
             all_channels = []
             for src in SOURCES:
@@ -673,14 +699,19 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, ids_map, api_cats, api_names, country_by_id, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, epg_by_id, epg_by_name, epg_all_names, api_cats, api_names, country_by_id, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
+
+            if whitelist:
+                all_channels.extend(whitelist)
+                print(f"   Whitelist added: {len(whitelist)} channels")
 
             total_raw = len(all_channels)
             print(f"Total before dedup: {total_raw}")
             print(f"Filtered by country: {filter_stats['blocked_country']}")
             print(f"Filtered by ID: {filter_stats['blocked_id']}")
+            print(f"EPG match: exact_id={epg_stats['exact_id']}, exact_name={epg_stats['exact_name']}, fuzzy={epg_stats['fuzzy']}, none={epg_stats['none']}")
             deduped = dedup(all_channels)
             total_dedup = len(deduped)
             print(f"After dedup: {total_dedup}")
@@ -695,12 +726,14 @@ jobs:
             cache_hits = sum(1 for c in valid if c.get("from_cache"))
             valid.sort(key=sort_key)
 
-            valid_urls = {c["url"] for c in valid}
+            valid_urls = {c["url"] for c in valid if not c.get("is_whitelist")}
             cache = {k: v for k, v in cache.items() if k in valid_urls}
             save_cache(cache)
 
             ua_stats = {}
             for c in valid:
+                if c.get("is_whitelist"):
+                    continue
                 n = c.get("working_ua_name", "Unknown")
                 ua_stats[n] = ua_stats.get(n, 0) + 1
 
@@ -712,8 +745,8 @@ jobs:
                     f.write(f"#EXTVLCOPT:http-user-agent={ch['working_ua']}\n")
                     f.write(f"{ch['url']}\n")
 
-            generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits)
-            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits})")
+            generate_readme(valid, total_raw, total_dedup, active_epg, ua_stats, cache_hits, len(whitelist))
+            print(f"Done: {len(valid)} live channels (cache hits: {cache_hits}, whitelist: {len(whitelist)})")
 
         if __name__ == "__main__":
             main()
