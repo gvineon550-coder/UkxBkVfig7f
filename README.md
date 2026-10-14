@@ -3,29 +3,29 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 03:41 UTC
+- Updated: 14.10.2026 03:46 UTC
 - Total from source: 782
-- After dedup: 383
-- Live channels: **303**
+- After dedup: 385
+- Live channels: **305**
 - Whitelist channels: 0
-- With EPG: 303
+- With EPG: 305
 - From cache: 303
-- Active EPG: `https://iptvx.one/EPG_LITE`
+- Active EPG: `https://epg.it999.ru/epg.xml.gz`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
 | Exact ID | 0 |
-| Exact Name | 122 |
-| Fuzzy | 17 |
-| No match | 643 |
+| Exact Name | 113 |
+| Fuzzy | 16 |
+| No match | 653 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| TiviMate | 299 |
+| TiviMate | 301 |
 | Chrome | 4 |
 
 ## Categories
@@ -44,11 +44,11 @@
 | 🎥 Документальные | 4 |
 | 📰 Новостные HD | 1 |
 | 📰 Новостные | 20 |
-| 🎵 Музыкальные HD | 0 |
+| 🎵 Музыкальные HD | 1 |
 | 🎵 Музыкальные | 23 |
 | 🎭 Развлекательные HD | 2 |
 | 🎭 Развлекательные | 29 |
-| 📡 Общие HD | 5 |
+| 📡 Общие HD | 6 |
 | 📡 Общие | 37 |
 | 🏙 Региональные HD | 2 |
 | 🏙 Региональные | 43 |
@@ -64,4 +64,4 @@
 ## Links
 
 - Playlist: `https://gvineon550-coder.github.io/lindsben_iptv-/clean_sorted_channels.m3u`
-- EPG: `https://iptvx.one/EPG_LITE`
+- EPG: `https://epg.it999.ru/epg.xml.gz`
