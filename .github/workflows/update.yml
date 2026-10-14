@@ -45,9 +45,10 @@ jobs:
         ]
 
         EPG_SOURCES = [
-            "https://epg.it999.ru/epg.xml.gz",
+            "https://epgshare01.online/epgshare01/epg_ripper_RU1.xml.gz",
+            "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz",
             "https://iptvx.one/EPG",
-            "https://iptvx.one/EPG_LITE",
+            "https://epg.it999.ru/epg.xml.gz",
         ]
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -232,7 +233,7 @@ jobs:
 
         def download_file(url):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=30, stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=40, stream=True)
                 r.raise_for_status()
                 content = r.content
                 if content[:2] == b'\x1f\x8b':
@@ -254,8 +255,7 @@ jobs:
                     print(f"   OK: {url} (~{n_channels} channels)")
                     if n_channels >= 100:
                         return txt, url
-                    else:
-                        print(f"   Too few channels, try next")
+                print(f"   Skip: {url}")
             return None, EPG_SOURCES[0]
 
         def load_api():
@@ -506,7 +506,7 @@ jobs:
 
                 epg_id, how = find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names)
                 epg_stats[how] = epg_stats.get(how, 0) + 1
-                if len(samples) < 5:
+                if len(samples) < 8:
                     samples.append(f"{name_match[:25]} → {epg_id or '—'} ({how})")
 
                 base_group = ""
@@ -680,8 +680,8 @@ jobs:
             epg_text, active_epg = download_epg()
             epg_by_id, epg_by_name, epg_all_names = load_epg(epg_text)
             print(f"   EPG channels: {len(epg_by_id)}, unique names: {len(epg_all_names)}")
-            print(f"   EPG sample IDs: {list(epg_by_id.keys())[:5]}")
-            print(f"   EPG sample names: {epg_all_names[:5]}")
+            print(f"   EPG sample IDs: {list(epg_by_id.keys())[:8]}")
+            print(f"   EPG sample names: {epg_all_names[:8]}")
 
             api_cats, api_names, country_by_id = load_api()
 
