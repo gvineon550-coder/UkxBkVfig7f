@@ -3,14 +3,14 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 11:16 UTC
-- Total from source: 1239
-- After dedup: 933
-- Live channels: **723**
-- With EPG: 523
+- Updated: 14.10.2026 11:34 UTC
+- Total from source: 1231
+- After dedup: 926
+- Live channels: **718**
+- With EPG: 524
 - Whitelist channels: 199
 - RU-NAME applied: 648
-- From cache: 523
+- From cache: 518
 - Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
@@ -20,7 +20,7 @@
 | by_name | 293 |
 | by_translit | 330 |
 | by_prefix | 38 |
-| no_match | 375 |
+| no_match | 367 |
 
 ## Filters
 
@@ -28,7 +28,7 @@
 | :--- | :---: |
 | child | 48 |
 | trash | 26 |
-| name_delete | 47 |
+| name_delete | 55 |
 | trash_url | 209 |
 | blocked_id | 14 |
 | blocked_country | 31 |
@@ -37,8 +37,8 @@
 
 | UA | Channels |
 | :--- | :---: |
-| Wink | 266 |
-| TiviMate | 252 |
+| Wink | 262 |
+| TiviMate | 251 |
 | Chrome | 4 |
 | AndroidTV | 2 |
 
@@ -59,9 +59,9 @@
 | 🎥 Документальные HD | 0 |
 | 🎥 Документальные | 7 |
 | 📰 Новостные HD | 5 |
-| 📰 Новостные | 42 |
+| 📰 Новостные | 36 |
 | 🎵 Музыкальные HD | 3 |
-| 🎵 Музыкальные | 38 |
+| 🎵 Музыкальные | 39 |
 | 🎭 Развлекательные HD | 5 |
 | 🎭 Развлекательные | 45 |
 | 📡 Общие HD | 18 |

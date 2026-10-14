@@ -1220,24 +1220,6 @@ http://176.118.197.101/RBK/index.m3u8
 #EXTINF:-1 tvg-id="rt-news" tvg-name="RT (720p)" tvg-logo="https://iptvx.one/picons/rt-news.png" group-title="📰 Новостные",RT (720p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://212.5.144.156:8080/rt/index.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT Balkan (1080p)" tvg-logo="" group-title="📰 Новостные",RT Balkan (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://rt-srb.rttv.com/dvr/rtbalkan/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT Balkan (1080p)" tvg-logo="" group-title="📰 Новостные",RT Balkan (1080p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://rt-srb.rttv.com/live/rtbalkan/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT en Espanol (576p)" tvg-logo="" group-title="📰 Новостные",RT en Espanol (576p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://streaming.thestream.cyou/live/46.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT en Espanol (576p)" tvg-logo="" group-title="📰 Новостные",RT en Espanol (576p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://streamtv.onliv3.online:1936/exito-tv/exito-tv/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT en Espanol (720p)" tvg-logo="" group-title="📰 Новостные",RT en Espanol (720p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://live-evg10.tv360.bitel.com.pe/bitel/rt/playlist.m3u8
-#EXTINF:-1 tvg-id="" tvg-name="RT en Espanol (1080p)" tvg-logo="" group-title="📰 Новостные",RT en Espanol (1080p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://168.196.127.137:6001/play/a0a9/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="RTN (United States)" tvg-logo="https://i.imgur.com/jjUzuLV.png" group-title="📰 Новостные",RTN (United States)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://4.59.210.197:8815/udp/127.0.0.1:6002
@@ -1310,6 +1292,9 @@ http://194.143.148.28:8080/RT_DOC/index.m3u8
 #EXTINF:-1 tvg-id="bridge-tv-classic" tvg-name="BRIDGE Classic (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-classic.png" group-title="🎵 Музыкальные",BRIDGE Classic (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/272/index.m3u8
+#EXTINF:-1 tvg-id="bridge-tv-classic" tvg-name="BRIDGE Classic (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-classic.png" group-title="🎵 Музыкальные",BRIDGE Classic (576p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://5.188.159.128:8070/Bridge_TV_Classic/index.m3u8
 #EXTINF:-1 tvg-id="bridge-tv-dance" tvg-name="BRIDGE Hits (576p)" tvg-logo="https://iptvx.one/picons/bridge-tv-dance.png" group-title="🎵 Музыкальные",BRIDGE Hits (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/320/index.m3u8

@@ -94,11 +94,6 @@
   "ua_name": "TiviMate",
   "ts": 1791942703
  },
- "https://rt-srb.rttv.com/dvr/rtbalkan/playlist.m3u8": {
-  "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
-  "ua_name": "TiviMate",
-  "ts": 1791942700
- },
  "http://stream.mcquack.net/135/index.m3u8": {
   "ua": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
   "ua_name": "TiviMate",
@@ -1634,16 +1629,6 @@
   "ua_name": "Wink",
   "ts": 1791956031
  },
- "https://streaming.thestream.cyou/live/46.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956031
- },
- "https://streamtv.onliv3.online:1936/exito-tv/exito-tv/playlist.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956032
- },
  "https://wisewatchoott.wiseplayout.com/RT/master.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -1669,11 +1654,6 @@
   "ua_name": "Wink",
   "ts": 1791956032
  },
- "https://rt-srb.rttv.com/live/rtbalkan/playlist.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956031
- },
  "http://stream.mcquack.net/118/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -1688,11 +1668,6 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791956032
- },
- "https://live-evg10.tv360.bitel.com.pe/bitel/rt/playlist.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791956031
  },
  "http://stream.mcquack.net/209/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
@@ -2329,11 +2304,6 @@
   "ua_name": "Wink",
   "ts": 1791974897
  },
- "http://168.196.127.137:6001/play/a0a9/index.m3u8": {
-  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
-  "ua_name": "Wink",
-  "ts": 1791974898
- },
  "http://31.131.139.253:9002/novoros/index.m3u8": {
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
@@ -2618,5 +2588,10 @@
   "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
   "ua_name": "Wink",
   "ts": 1791976489
+ },
+ "http://5.188.159.128:8070/Bridge_TV_Classic/index.m3u8": {
+  "ua": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "ua_name": "Wink",
+  "ts": 1791977563
  }
 }
