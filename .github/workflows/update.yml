@@ -50,6 +50,8 @@ jobs:
             "https://iptv-org.github.io/epg/countries/ru.xml",
         ]
 
+        API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
+
         OUTPUT_M3U = "clean_sorted_channels.m3u"
         CACHE_FILE = "cache.json"
         CACHE_TTL = 7 * 24 * 3600
@@ -58,13 +60,12 @@ jobs:
 
         USER_AGENTS = [
             ("TiviMate", "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)"),
-            ("VLC", "VLC/3.0.20 LibVLC/3.0.20"),
+            ("Wink", "Wink/2.4.1 (Linux; Android 11; Sony Smart TV)"),
+            ("ExoPlayer", "ExoPlayer/2.19.1 (Linux; Android 11)"),
             ("Chrome", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"),
-            ("okhttp", "okhttp/4.11.0"),
             ("Kodi", "Kodi/20.5 (Windows NT 10.0; Win64; x64) App_Bitness/64 Version/20.5.0"),
         ]
 
-        # Эмодзи для групп
         EMOJI = {
             "Кино": "🎬",
             "Сериалы": "📺",
@@ -85,7 +86,37 @@ jobs:
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g} HD")
             CATEGORY_PRIORITY.append(f"{EMOJI[g]} {g}")
 
-        # Расширенный маппинг категорий из EPG (русский + английский)
+        API_CATEGORY_MAP = {
+            "movies": "Кино",
+            "series": "Сериалы",
+            "sports": "Спорт",
+            "news": "Новостные",
+            "documentary": "Документальные",
+            "science": "Познавательные",
+            "education": "Познавательные",
+            "history": "Документальные",
+            "culture": "Познавательные",
+            "travel": "Познавательные",
+            "music": "Музыкальные",
+            "entertainment": "Развлекательные",
+            "comedy": "Развлекательные",
+            "general": "Общие",
+            "business": "Новостные",
+            "weather": "Новостные",
+            "animation": "Разное",
+            "kids": "Разное",
+            "family": "Разное",
+            "shopping": "Разное",
+            "religious": "Разное",
+            "lifestyle": "Развлекательные",
+            "cooking": "Развлекательные",
+            "auto": "Познавательные",
+            "outdoor": "Познавательные",
+            "relax": "Музыкальные",
+            "classic": "Кино",
+            "hobby": "Познавательные",
+        }
+
         EPG_CATEGORY_MAP = {
             "кино": "Кино", "фильм": "Кино", "кинофильм": "Кино", "movie": "Кино",
             "cinema": "Кино", "films": "Кино", "кинотеатр": "Кино",
@@ -153,6 +184,29 @@ jobs:
                     print(f"   OK: {url}")
                     return txt, url
             return None, EPG_SOURCES[0]
+
+        def load_api_categories():
+            cats = {}
+            print(f"   Loading API categories: {API_CHANNELS}")
+            txt = download_file(API_CHANNELS)
+            if not txt:
+                return cats
+            try:
+                data = json.loads(txt)
+                for ch in data:
+                    cid = ch.get("id")
+                    ch_cats = ch.get("categories", [])
+                    if not cid or not ch_cats:
+                        continue
+                    for c in ch_cats:
+                        mapped = API_CATEGORY_MAP.get(c.lower())
+                        if mapped:
+                            cats[cid] = mapped
+                            break
+                print(f"   API categories loaded: {len(cats)}")
+            except Exception as e:
+                print(f"   API err: {e}")
+            return cats
 
         def clean_url(url):
             p = urlparse(url)
@@ -229,12 +283,13 @@ jobs:
             m = re.search(rf'{attr}="([^"]*)"', line)
             return m.group(1) if m else ""
 
-        def parse_m3u(content, ids_map, cats_map, source_name="", source_priority=0):
+        def parse_m3u(content, ids_map, cats_map, api_cats_map, source_name="", source_priority=0):
             channels = []
             current_inf = ""
             extgrp = ""
             total_seen = 0
             epg_used = 0
+            api_used = 0
             for raw in content.splitlines():
                 line = raw.strip()
                 if not line:
@@ -283,9 +338,12 @@ jobs:
 
                 tvg_id = orig_tvg_id or ids_map.get(clean_name, "")
 
-                # ПРИОРИТЕТ: сначала EPG-категория, потом угадывание по имени
+                # ПРИОРИТЕТ: API → EPG → угадывание
                 base_group = ""
-                if tvg_id and tvg_id in cats_map:
+                if tvg_id and tvg_id in api_cats_map:
+                    base_group = api_cats_map[tvg_id]
+                    api_used += 1
+                if not base_group and tvg_id and tvg_id in cats_map:
                     base_group = cats_map[tvg_id]
                     epg_used += 1
                 if not base_group:
@@ -309,6 +367,7 @@ jobs:
                 })
                 current_inf = ""
             print(f"   [{source_name}] Total seen: {total_seen}")
+            print(f"   [{source_name}] API categories used: {api_used}")
             print(f"   [{source_name}] EPG categories used: {epg_used}")
             return channels
 
@@ -386,7 +445,7 @@ jobs:
                 stats[ch['group']] = stats.get(ch['group'], 0) + 1
                 if ch["tvg_id"]:
                     with_epg += 1
-            now = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
+            now_str = datetime.now(timezone.utc).strftime("%d.%m.%Y %H:%M UTC")
             repo_env = os.getenv("GITHUB_REPOSITORY", "")
             if "/" in repo_env:
                 user, repo = repo_env.split("/", 1)
@@ -394,7 +453,7 @@ jobs:
             else:
                 pages_url = f"https://YOUR_NICK.github.io/iptv/{OUTPUT_M3U}"
             lines = ["# IPTV Playlist", "", "Только русскоязычные каналы. Автообновление.", "", "## Dashboard",
-                     f"- Updated: {now}",
+                     f"- Updated: {now_str}",
                      f"- Total from source: {total_raw}",
                      f"- After dedup: {total_dedup}",
                      f"- Live channels: **{len(valid)}**",
@@ -419,6 +478,8 @@ jobs:
             ids_map, cats_map = load_epg(epg_text)
             print(f"   EPG channels: {len(ids_map)}, with categories: {len(cats_map)}")
 
+            api_cats_map = load_api_categories()
+
             all_channels = []
             for src in SOURCES:
                 print(f"Downloading {src['name']}...")
@@ -426,7 +487,7 @@ jobs:
                 if not m3u:
                     print(f"   Failed: {src['url']}")
                     continue
-                parsed = parse_m3u(m3u, ids_map, cats_map, src["name"], src["priority"])
+                parsed = parse_m3u(m3u, ids_map, cats_map, api_cats_map, src["name"], src["priority"])
                 print(f"   {src['name']}: {len(parsed)} channels")
                 all_channels.extend(parsed)
 
