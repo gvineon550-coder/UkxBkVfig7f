@@ -3,13 +3,14 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 10:50 UTC
+- Updated: 14.10.2026 11:16 UTC
 - Total from source: 1239
 - After dedup: 933
-- Live channels: **722**
+- Live channels: **723**
 - With EPG: 523
 - Whitelist channels: 199
-- From cache: 392
+- RU-NAME applied: 648
+- From cache: 523
 - Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
@@ -36,7 +37,7 @@
 
 | UA | Channels |
 | :--- | :---: |
-| Wink | 265 |
+| Wink | 266 |
 | TiviMate | 252 |
 | Chrome | 4 |
 | AndroidTV | 2 |
@@ -48,7 +49,7 @@
 | 🎬 Кино HD | 19 |
 | 🎬 Кино | 65 |
 | 📺 Сериалы HD | 3 |
-| 📺 Сериалы | 5 |
+| 📺 Сериалы | 6 |
 | 🎞 Сериалы НТВ HD | 0 |
 | 🎞 Сериалы НТВ | 8 |
 | ⚽ Спорт HD | 2 |
@@ -78,9 +79,8 @@
 
 | Category | Channels |
 | :--- | :---: |
-| Kinowalk | 159 |
+| Kinowalk | 161 |
 | Rutube | 38 |
-| Основные | 2 |
 
 ---
 
