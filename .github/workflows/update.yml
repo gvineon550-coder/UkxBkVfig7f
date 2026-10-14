@@ -47,11 +47,8 @@ jobs:
 
         EPG_SOURCES = [
             "https://epgshare01.online/epgshare01/epg_ripper_RU1.xml.gz",
-            "https://epgshare01.online/epgshare01/epg_ripper_RU2.xml.gz",
-            "https://epgshare01.online/epgshare01/epg_ripper_RU3.xml.gz",
-            "https://epgshare01.online/epgshare01/epg_ripper_ALL_SOURCES1.xml.gz",
             "https://iptvx.one/EPG",
-            "https://epg.it999.ru/epg.xml.gz",
+            "https://iptvx.one/EPG_LITE",
         ]
 
         API_CHANNELS = "https://iptv-org.github.io/api/channels.json"
@@ -236,7 +233,7 @@ jobs:
 
         def download_file(url):
             try:
-                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=60, stream=True)
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 60), stream=True)
                 r.raise_for_status()
                 content = r.content
                 if content[:2] == b'\x1f\x8b':
@@ -249,16 +246,50 @@ jobs:
                 print(f"   warn: {url} -> {e}")
                 return None
 
-        def download_epg():
+        def load_epg_stream(url):
+            """Потоковая загрузка и парсинг XML в один проход"""
+            by_id = {}
+            by_name = {}
+            all_names = []
+            print(f"   Streaming: {url}")
+            try:
+                r = requests.get(url, headers={"User-Agent": FAKE_BROWSER_UA}, timeout=(10, 180), stream=True)
+                r.raise_for_status()
+                raw = r.raw
+                if url.endswith(".gz"):
+                    raw = gzip.GzipFile(fileobj=raw)
+                count = 0
+                for event, elem in ET.iterparse(raw, events=('end',)):
+                    if elem.tag == 'channel':
+                        cid = elem.get('id')
+                        if cid:
+                            names = []
+                            for dn in elem.findall('display-name'):
+                                if dn.text:
+                                    n = clean_channel_name(dn.text)
+                                    if n and len(n) >= 2:
+                                        names.append(n)
+                                        if n not in by_name:
+                                            by_name[n] = cid
+                                            all_names.append(n)
+                            by_id[cid] = names
+                        elem.clear()
+                        count += 1
+                        if count % 1000 == 0:
+                            print(f"      parsed {count} channels...")
+                r.close()
+                print(f"   OK: {url} ({count} channels)")
+                return by_id, by_name, all_names
+            except Exception as e:
+                print(f"   err: {url} -> {e}")
+                return {}, {}, []
+
+        def load_epg_best():
             for url in EPG_SOURCES:
-                print(f"   Probing EPG: {url}")
-                txt = download_file(url)
-                if txt and "<tv" in txt[:5000].lower():
-                    n_channels = txt.count("<channel ")
-                    print(f"   OK: {url} (~{n_channels} channels)")
-                    return txt, url
-                print(f"   Skip: {url}")
-            return None, EPG_SOURCES[0]
+                by_id, by_name, all_names = load_epg_stream(url)
+                if len(by_id) >= 100:
+                    return by_id, by_name, all_names, url
+            return {}, {}, [], EPG_SOURCES[0]
 
         def load_api():
             cats = {}
@@ -336,33 +367,6 @@ jobs:
                     if kw in z:
                         return target
             return ""
-
-        def load_epg(xml_text):
-            by_id = {}
-            by_name = {}
-            all_names = []
-            if not xml_text:
-                return by_id, by_name, all_names
-            try:
-                stream = io.BytesIO(xml_text.encode('utf-8'))
-                for event, elem in ET.iterparse(stream, events=('end',)):
-                    if elem.tag == 'channel':
-                        cid = elem.get('id')
-                        if cid:
-                            names = []
-                            for dn in elem.findall('display-name'):
-                                if dn.text:
-                                    n = clean_channel_name(dn.text)
-                                    if n and len(n) >= 2:
-                                        names.append(n)
-                                        if n not in by_name:
-                                            by_name[n] = cid
-                                            all_names.append(n)
-                            by_id[cid] = names
-                        elem.clear()
-            except Exception as e:
-                print(f"   XMLTV err: {e}")
-            return by_id, by_name, all_names
 
         def find_epg_id(orig_tvg_id, orig_tvg_name, clean_name, epg_by_id, epg_by_name, epg_all_names):
             base = orig_tvg_id.split("@")[0] if orig_tvg_id else ""
@@ -680,8 +684,7 @@ jobs:
 
         def main():
             print("Loading EPG...")
-            epg_text, active_epg = download_epg()
-            epg_by_id, epg_by_name, epg_all_names = load_epg(epg_text)
+            epg_by_id, epg_by_name, epg_all_names, active_epg = load_epg_best()
             print(f"   EPG channels: {len(epg_by_id)}, unique names: {len(epg_all_names)}")
             print(f"   EPG sample IDs: {list(epg_by_id.keys())[:8]}")
             print(f"   EPG sample names: {epg_all_names[:8]}")
