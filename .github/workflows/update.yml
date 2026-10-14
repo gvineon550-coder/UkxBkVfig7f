@@ -101,6 +101,7 @@ jobs:
             "Khabar.kz", "NTK.kz", "Ulytau.kz", "SilkWay.kz",
             "24KZ.kz", "AtamekenBusiness.kz", "ChannelOneEurasia.kz",
             "RTBalkan.ru", "RTenEspanol.es", "RTEspanol.es",
+            "ViasatEpicDrama.ua", "312Kino.ua", "312TV.ua", "RTN.us",
         }
 
         NOISE_WORDS = {
@@ -200,6 +201,9 @@ jobs:
             "rt balkan": "DELETE",
             "rt en espanol": "DELETE",
             "rt en español": "DELETE",
+            "viasat epic drama ukraine": "DELETE",
+            "312 кино": "DELETE", "312 тв": "DELETE",
+            "rtn": "DELETE",
             "ani": "DELETE", "ani tv": "DELETE",
             "carousel": "DELETE", "carousel international": "DELETE", "carousel sd": "DELETE",
             "gulli girl": "DELETE",
@@ -363,6 +367,7 @@ jobs:
             "megafon.ru",
             "rostelecom.ru",
             "rt.ru",
+            "fs.uplink.kz",
         ]
 
         FAKE_BROWSER_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
