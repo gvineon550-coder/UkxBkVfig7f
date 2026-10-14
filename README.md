@@ -3,75 +3,84 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 10:13 UTC
-- Total from source: 865
-- After dedup: 608
-- Live channels: **477**
-- With EPG: 305
-- Whitelist channels: 0
-- From cache: 477
+- Updated: 14.10.2026 10:50 UTC
+- Total from source: 1239
+- After dedup: 933
+- Live channels: **722**
+- With EPG: 523
+- Whitelist channels: 199
+- From cache: 392
 - Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
 
 | Method | Count |
 | :--- | :---: |
-| by_name | 223 |
-| by_translit | 276 |
-| by_prefix | 30 |
-| no_match | 335 |
+| by_name | 293 |
+| by_translit | 330 |
+| by_prefix | 38 |
+| no_match | 375 |
 
 ## Filters
 
 | Reason | Count |
 | :--- | :---: |
-| child | 57 |
+| child | 48 |
 | trash | 26 |
 | name_delete | 47 |
-| trash_url | 373 |
-| blocked_id | 16 |
-| blocked_country | 26 |
+| trash_url | 209 |
+| blocked_id | 14 |
+| blocked_country | 31 |
 
 ## User-Agents
 
 | UA | Channels |
 | :--- | :---: |
-| TiviMate | 271 |
-| Wink | 202 |
+| Wink | 265 |
+| TiviMate | 252 |
 | Chrome | 4 |
+| AndroidTV | 2 |
 
 ## Categories
 
 | Category | Channels |
 | :--- | :---: |
-| 🎬 Кино HD | 13 |
-| 🎬 Кино | 72 |
-| 📺 Сериалы HD | 1 |
-| 📺 Сериалы | 2 |
+| 🎬 Кино HD | 19 |
+| 🎬 Кино | 65 |
+| 📺 Сериалы HD | 3 |
+| 📺 Сериалы | 5 |
 | 🎞 Сериалы НТВ HD | 0 |
 | 🎞 Сериалы НТВ | 8 |
-| ⚽ Спорт HD | 1 |
-| ⚽ Спорт | 30 |
-| 🌍 Познавательные HD | 10 |
-| 🌍 Познавательные | 32 |
+| ⚽ Спорт HD | 2 |
+| ⚽ Спорт | 31 |
+| 🌍 Познавательные HD | 12 |
+| 🌍 Познавательные | 30 |
 | 🎥 Документальные HD | 0 |
-| 🎥 Документальные | 10 |
+| 🎥 Документальные | 7 |
 | 📰 Новостные HD | 5 |
-| 📰 Новостные | 35 |
-| 🎵 Музыкальные HD | 2 |
-| 🎵 Музыкальные | 36 |
+| 📰 Новостные | 42 |
+| 🎵 Музыкальные HD | 3 |
+| 🎵 Музыкальные | 38 |
 | 🎭 Развлекательные HD | 5 |
-| 🎭 Развлекательные | 40 |
-| 📡 Общие HD | 16 |
-| 📡 Общие | 53 |
+| 🎭 Развлекательные | 45 |
+| 📡 Общие HD | 18 |
+| 📡 Общие | 76 |
 | 🏙 Региональные HD | 5 |
-| 🏙 Региональные | 47 |
+| 🏙 Региональные | 46 |
 | 🙏 Религиозные HD | 0 |
-| 🙏 Религиозные | 10 |
+| 🙏 Религиозные | 11 |
 | 📻 Радио HD | 0 |
 | 📻 Радио | 2 |
 | 📦 Разное HD | 0 |
-| 📦 Разное | 42 |
+| 📦 Разное | 45 |
+
+### Из whitelist
+
+| Category | Channels |
+| :--- | :---: |
+| Kinowalk | 159 |
+| Rutube | 38 |
+| Основные | 2 |
 
 ---
 
