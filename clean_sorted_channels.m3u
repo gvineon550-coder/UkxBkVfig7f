@@ -1787,6 +1787,9 @@ http://31.148.5.241/kanal_21/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Russia-1 (576p)" tvg-logo="" group-title="📡 Общие",Россия-1
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_2/index.m3u8
+#EXTINF:-1 tvg-id="" tvg-name="Russia-1 SD (576p)" tvg-logo="" group-title="📡 Общие",Россия-1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://109.207.243.18/2/index.m3u8
 #EXTINF:-1 tvg-id="" tvg-name="Russia-K (576p)" tvg-logo="" group-title="📡 Общие",Россия-К
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/229/index.m3u8

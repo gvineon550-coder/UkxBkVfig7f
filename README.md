@@ -3,15 +3,15 @@
 Только русскоязычные каналы. Автообновление.
 
 ## Dashboard
-- Updated: 14.10.2026 15:29 UTC
+- Updated: 15.10.2026 18:18 UTC
 - Total from source: 1251
 - After dedup: 947
-- Live channels: **739**
+- Live channels: **740**
 - With EPG: 535
 - Whitelist channels: 199
 - RU-NAME applied: 687
 - Renamed by tvg-id: 0
-- From cache: 533
+- From cache: 540
 - Active EPG: `https://iptvx.one/epg/epg_lite.xml.gz`
 
 ## EPG Match Stats
@@ -40,7 +40,7 @@
 
 | UA | Channels |
 | :--- | :---: |
-| Wink | 286 |
+| Wink | 287 |
 | TiviMate | 248 |
 | Chrome | 4 |
 | AndroidTV | 2 |
@@ -68,7 +68,7 @@
 | 🎭 Развлекательные HD | 5 |
 | 🎭 Развлекательные | 48 |
 | 📡 Общие HD | 17 |
-| 📡 Общие | 79 |
+| 📡 Общие | 80 |
 | 🏙 Региональные HD | 5 |
 | 🏙 Региональные | 47 |
 | 🙏 Религиозные HD | 0 |
