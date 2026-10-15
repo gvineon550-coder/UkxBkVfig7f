@@ -32,6 +32,83 @@ CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
 
+# ===== Правила по СЫРОЙ подстроке (не нормализованной) =====
+# Срабатывают на латиницу, дефисы, цифры. Проверяются первыми.
+RAW_KEYWORDS = (
+    # Федеральные (латиница и варианты)
+    ("channel one", "Федеральные"), ("channel one europa", "Федеральные"),
+    ("channel one hd", "Федеральные"), ("1tv", "Федеральные"),
+    ("ntv (russia)", "Федеральные"), ("ntv russia", "Федеральные"),
+    ("ntv mir", "Федеральные"), ("ntv pravo", "Федеральные"),
+    ("tv-3", "Федеральные"), ("tv 3", "Федеральные"),
+    ("tnt international", "Федеральные"), ("tnt4", "Федеральные"),
+    ("friday!", "Федеральные"), ("friday international", "Федеральные"),
+    ("sts international", "Федеральные"), ("sts kids", "Федеральные"),
+    ("mir kazakhstan", "Федеральные"), ("mir belarus", "Федеральные"),
+    ("о! international", "Федеральные"), ("o! international", "Федеральные"),
+    ("звезда плюс", "Федеральные"), ("солнце", "Федеральные"),
+    ("тв центр", "Федеральные"), ("tv centr", "Федеральные"),
+    # Новостные
+    ("rtr-planeta", "Новостные"), ("rtr planeta", "Новостные"),
+    ("красная линия", "Новостные"), ("вместе-рф", "Новостные"),
+    ("вместе рф", "Новостные"), ("дождь", "Новостные"),
+    ("соловьёв", "Новостные"), ("соловьев", "Новостные"),
+    ("думатв", "Новостные"), ("время", "Новостные"),
+    # Региональные
+    ("channel 8", "Региональные"), ("8 канал", "Региональные"),
+    ("yalta tv", "Региональные"), ("kentron tv", "Региональные"),
+    ("бст", "Региональные"), ("беларусь 4", "Региональные"),
+    ("волга", "Региональные"), ("губерния", "Региональные"),
+    ("дагестан", "Региональные"), ("мир белогорья", "Региональные"),
+    ("мир белагорья", "Региональные"), ("санкт-петербург", "Региональные"),
+    ("своё тв", "Региональные"), ("свое тв", "Региональные"),
+    ("север (", "Региональные"), ("тдк 42", "Региональные"),
+    ("тнв-планета", "Региональные"), ("тнв", "Региональные"),
+    ("югра-тв", "Региональные"), ("югра тв", "Региональные"),
+    # Кино
+    (".sci-fi", "Кино"), ("sci-fi", "Кино"), ("scifi", "Кино"),
+    ("sony тв", "Кино"), ("sony tv", "Кино"),
+    ("дом кино international", "Кино"), ("душевное", "Кино"),
+    ("нст", "Кино"), ("nst", "Кино"), ("победа", "Кино"),
+    ("прима", "Кино"),
+    # Детские
+    ("ani (", "Детские"), ("anime", "Детские"),
+    ("mult international", "Детские"), ("nicktoons", "Детские"),
+    ("sevimli tv", "Детские"), ("tiji", "Детские"),
+    ("детский", "Детские"), ("мультиландия", "Детские"),
+    ("супергерои", "Детские"),
+    # Познавательные
+    ("big planet", "Познавательные"), ("love nature", "Познавательные"),
+    ("travelxp", "Познавательные"), ("zooпарк", "Познавательные"),
+    ("большая азия", "Познавательные"), ("в мире животных", "Познавательные"),
+    ("дикая охота", "Познавательные"), ("дикая рыбалка", "Познавательные"),
+    ("дикий", "Познавательные"), ("живая планета", "Познавательные"),
+    ("живая природа", "Познавательные"), ("загородная жизнь", "Познавательные"),
+    ("лапки live", "Познавательные"), ("моя планета", "Познавательные"),
+    ("охота и рыбалка", "Познавательные"), ("охотник и рыболов", "Познавательные"),
+    ("приключения hd", "Познавательные"), ("просвещение", "Познавательные"),
+    ("рыбалка и охота", "Познавательные"), ("усадьба", "Познавательные"),
+    # Документальные
+    ("rt д", "Документальные"), ("rtd", "Документальные"),
+    ("неизвестная россия", "Документальные"),
+    # Музыкальные
+    ("мультимузыка", "Музыкальные"),
+    # Развлекательные
+    ("бобер", "Развлекательные"), ("magnat", "Развлекательные"),
+    ("o! (", "Развлекательные"), ("o! (576", "Развлекательные"),
+    ("витрина тв", "Развлекательные"), ("мой мир", "Развлекательные"),
+    ("продвижение", "Развлекательные"), ("рыжий", "Развлекательные"),
+    ("салям", "Развлекательные"), ("сарафан", "Развлекательные"),
+    ("теледом", "Развлекательные"), ("тонус тв", "Развлекательные"),
+    ("точка отрыва", "Развлекательные"), ("ювелирочка", "Развлекательные"),
+    # Религиозные
+    ("angel tv", "Религиозные"), ("радость моя", "Религиозные"),
+    # Разное
+    ("aq lvoy", "Разное"), ("aqlvoy", "Разное"),
+    ("myzen", "Разное"), ("tv pro", "Разное"),
+    ("инсайт", "Разное"), ("тооку", "Разное"),
+)
+
 CITY_HINTS = (
     "вологда","грозный","белгород","уфа","башкортостан","сочи","казань","татарстан",
     "краснодар","ростов","омск","самара","пермь","саратов","воронеж","тула","иркутск",
@@ -48,21 +125,6 @@ CITY_HINTS = (
     "архангел","череповец","кострома","иваново","владимир","калуга","ярослав",
     "рыбинск","орёл","симферополь"
 )
-FAMILY_RULES = (
-    ("нтв", "Федеральные"),
-    ("тнт", "Федеральные"),
-    ("стс", "Федеральные"),
-    ("рен", "Федеральные"),
-    ("пятниц", "Федеральные"),
-    ("россия 1", "Федеральные"),
-    ("россия 24", "Новостные"),
-    ("первый", "Федеральные"),
-    ("матч", "Спорт"),
-    ("discovery", "Познавательные"),
-    ("viasat", "Познавательные"),
-    ("tv1000", "Кино"),
-    ("кинопоказ", "Кино"),
-)
 
 NOISE = {"тв","tv","hd","uhd","fhd","sd","4k","1080p","720p","full","канал","channel","online","live","stream"}
 def norm_name(s):
@@ -77,7 +139,15 @@ def translit(s): return "".join(TRANSLIT.get(c, c) for c in (s or ""))
 def has_cyrillic(s): return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
 
 ATTR_RE = re.compile(r'([A-Za-z0-9_\-]+)="([^"]*)"')
-EXTINF_RE = re.compile(r'#EXTINF:-?\d+\s*(.*?),(.*)$')
+
+def split_extinf(line):
+    """Возвращает (attrs_str, name). Ищет первую запятую вне кавычек."""
+    in_quote = False
+    for i, ch in enumerate(line):
+        if ch == '"': in_quote = not in_quote
+        elif ch == ',' and not in_quote:
+            return line[:i], line[i+1:].strip()
+    return line, ""
 
 def parse_m3u(text):
     out, name, attrs = [], None, {}
@@ -85,8 +155,11 @@ def parse_m3u(text):
         line = raw.strip()
         if not line: continue
         if line.startswith("#EXTINF"):
-            m = EXTINF_RE.search(line)
-            if m: attrs, name = dict(ATTR_RE.findall(m.group(1))), m.group(2).strip()
+            # отрезаем префикс #EXTINF:-1
+            m = re.match(r'#EXTINF:-?\d+\s*(.*)$', line)
+            if m:
+                attrs_str, name = split_extinf(m.group(1))
+                attrs = dict(ATTR_RE.findall(attrs_str))
         elif line.startswith("#"): continue
         else:
             if name: out.append({"name": name, "url": line, "attrs": attrs})
@@ -290,7 +363,6 @@ def cmd_parse():
     trash_bl = CFG.get("trash_blacklist", [])
     clear_ids = set(OVERRIDES.get("clear_tvg_id", []))
 
-    # Whitelist первым — он неприкосновенен
     for w in wl:
         if w["url"] in seen: st["dup_wl"] += 1; continue
         seen.add(w["url"]); channels.append(w)
@@ -333,20 +405,26 @@ def cmd_parse():
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
     nn = norm_name(name)
+    # 0) RAW_KEYWORDS — по подстроке в сыром имени
+    for key, cat in RAW_KEYWORDS:
+        if key in low: return cat
+    # 1) override по tvg_id
     if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][tvg_id]
+    # 2) override по имени
     if nn in OVERRIDES.get("category_by_name", {}):
         return OVERRIDES["category_by_name"][nn]
+    # 3-4) API
     if tvg_id and tvg_id in api_cats: return api_cats[tvg_id]
     if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
-    for stem, cat in FAMILY_RULES:
-        if nn.startswith(stem) or (" " + stem + " ") in (" " + nn + " "):
-            return cat
+    # 5) города
     for city in CITY_HINTS:
         if city in nn: return "Региональные"
+    # 6) keywords
     for cat, kws in CAT_KW.items():
         for k in kws:
             if k in low: return cat
+    # 7) по group-title
     g = (group or "").lower()
     for cat in CATS:
         if cat.lower() in g: return cat
@@ -393,15 +471,8 @@ def cmd_categorize():
             if not ch.get("category"):
                 ch["category"] = ch.get("group") or "Whitelist"
             continue
-        ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
 
-        if not ch.get("tvg_id"):
-            eid, how = resolve_epg(ch["name"], bn, bt, bp)
-            if eid: ch["tvg_id"] = eid; epg_stats[how] += 1
-            else: epg_stats["no_match"] += 1
-        else:
-            epg_stats["already"] += 1
-
+        # === 1) Сначала RU-NAME ===
         if not has_cyrillic(ch["name"]):
             new_name, method = find_russian_name(
                 ch["name"], ch.get("tvg_id",""),
@@ -413,12 +484,27 @@ def cmd_categorize():
             else:
                 rename_stats["not_found"] += 1
 
+        # === 2) Потом EPG id ===
+        if not ch.get("tvg_id"):
+            eid, how = resolve_epg(ch["name"], bn, bt, bp)
+            if eid: ch["tvg_id"] = eid; epg_stats[how] += 1
+            else: epg_stats["no_match"] += 1
+        else:
+            epg_stats["already"] += 1
+
+        # === 3) Только теперь — категория (уже на русском имени) ===
+        ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
+
+        # 4) лого из EPG
         if not ch.get("logo") and ch.get("tvg_id") and ch["tvg_id"] in ic:
             ch["logo"] = ic[ch["tvg_id"]]
 
+        # 5) RENAME_BY_TVG_ID — поверх всего
         tid = ch.get("tvg_id","")
         if tid in OVERRIDES.get("rename_by_tvg_id", {}):
             ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
+            # пересчитать категорию после переименования
+            ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
 
     # Группировка
@@ -429,7 +515,6 @@ def cmd_categorize():
         else:
             groups[ch["name"].strip()].append(ch)
 
-    # merged = только НЕ-whitelist группы; wl_groups = whitelist
     merged = [v for k, v in groups.items() if not (isinstance(k, tuple) and k[0] == "WL")]
     wl_groups = [v for k, v in groups.items() if isinstance(k, tuple) and k[0] == "WL"]
 
@@ -613,7 +698,6 @@ def cmd_build():
     out_name = CFG.get("output_m3u", "clean_sorted_channels.m3u")
     (ROOT / out_name).write_text("\n".join(lines) + "\n", "utf-8")
     total_out = sum(len(v) for _, v in out_groups)
-    wl_out = sum(len(v) for g, v in out_groups if g in WL_GROUPS_ORDER or (g and g not in CATS and not any(e in g for e in EMOJI.values())))
     print(f"[build] {out_name}: {total_out} каналов в {len(out_groups)} группах")
 
     dash = {
