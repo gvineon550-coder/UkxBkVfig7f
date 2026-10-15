@@ -1,0 +1,16 @@
+{
+  "HlsWinkPlayer": "HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1",
+  "Wink": "WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36",
+  "TiviMate": "TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)",
+  "AndroidTV": "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "VLC": "VLC/3.0.20 LibVLC/3.0.20",
+  "SmartTV": "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36",
+  "Kodi": "Kodi/20.5 (Windows NT 10.0; Win64; x64) App_Bitness/64 Version/20.5",
+  "OTT": "OTT Navigator/1.7.1.2 (Linux; Android 11)",
+  "ExoPlayer": "ExoPlayerLib/2.18.1",
+  "Lavf": "Lavf/60.16.100",
+  "Chrome_Win": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+  "Safari_Mac": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15",
+  "Firefox": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+  "MXPlayer": "MXPlayer/1.71.6 (Linux; Android 11)"
+}

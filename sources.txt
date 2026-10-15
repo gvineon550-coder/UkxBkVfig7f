@@ -1,0 +1,3 @@
+# имя|url|приоритет
+RU-Streams|https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ru.m3u|0
+RU-Language|https://iptv-org.github.io/iptv/languages/rus.m3u|1

@@ -1,2 +1,18 @@
-<!DOCTYPE html>
-<html><body><h1>IPTV</h1></body></html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IPTV Dashboard</title>
+<style>body{font-family:system-ui;margin:1rem;max-width:640px}h1{font-size:1.3rem}
+.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:.35rem 0}
+a{color:#0366d6}</style></head><body>
+<h1>IPTV Dashboard</h1><div id="s">загрузка...</div>
+<script>fetch('dashboard.json').then(r=>r.json()).then(d=>{
+let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div>';
+h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
+h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
+h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
+h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
+h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
+h+='<h1 style="margin-top:1rem">Категории</h1>';
+for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
+h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
+document.getElementById('s').innerHTML=h;});</script></body></html>
