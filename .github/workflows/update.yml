@@ -38,7 +38,6 @@ jobs:
                   "ffprobe_timeout": 8,
                   "ffprobe_probesize": 32768,
                   "ffprobe_analyzeduration": 1000000,
-                  "fuzzy_threshold": 92,
                   "auto_cleanup": True,
                   "auto_cleanup_ready_ratio": 0.7,
                   "epg_url": "https://iptvx.one/epg/epg_lite.xml.gz",
@@ -55,20 +54,20 @@ jobs:
                       "VLC": 8, "SmartTV": 6, "Kodi": 5, "OTT": 5, "ExoPlayer": 4,
                       "Lavf": 3, "Chrome_Win": 3, "Safari_Mac": 2, "Firefox": 2, "MXPlayer": 2
                   },
-                  "category_order": ["Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Новостные","Музыкальные","Развлекательные","Общие","Региональные","Религиозные","Радио","Разное"],
-                  "category_emoji": {"Кино":"🎬","Сериалы":"📺","Сериалы НТВ":"🎞","Спорт":"⚽","Познавательные":"🌍","Документальные":"🎥","Новостные":"📰","Музыкальные":"🎵","Развлекательные":"🎭","Общие":"📡","Региональные":"🏙","Религиозные":"🙏","Радио":"📻","Разное":"📦"},
+                  "category_order": ["Федеральные","Новостные","Региональные","Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Детские","Религиозные","Радио","Разное"],
+                  "category_emoji": {"Федеральные":"📡","Новостные":"📰","Региональные":"🏙","Кино":"🎬","Сериалы":"📺","Сериалы НТВ":"🎞","Спорт":"⚽","Познавательные":"🌍","Документальные":"🎥","Музыкальные":"🎵","Развлекательные":"🎭","Детские":"🧸","Религиозные":"🙏","Радио":"📻","Разное":"📦"},
                   "category_keywords": {
-                      "Спорт": ["спорт","sport","футбол","football","хокке","hockey","матч","match","теннис","бокс","ufc","mma","арена","arena"],
-                      "Кино": ["кино","cinema","movie","фильм","film","боевик","комедия","ужас","детектив","премьера","blockbuster"],
-                      "Сериалы": ["сериал","series","serial","теленовелл"],
-                      "Новостные": ["news","новост","известия","рбк","вести","lenta","тасс"," 24"],
-                      "Музыкальные": ["music","музык","муз","mtv","vh1","ru.tv","шансон","europa plus","bridge"],
-                      "Развлекательные": ["тнт","tnt","пятница","развлек","юмор","comedy","2x2","шоу"],
-                      "Познавательные": ["science","наука","discovery","nat geo","history","истор","viasat","nano","nauka"],
-                      "Документальные": ["365","документ","documental","tlc","dmax","военн"],
-                      "Религиозные": ["религ","церков","православ","ислам","спас","soyuz","царь","3abn"],
-                      "Региональные": ["регион","област","город","край","республ"],
-                      "Радио": ["радио","radio"]
+                      "Новостные": ["новост","news","24","известия","рбк","вести","360","дождь","тасс","lenta","информ","вместе"],
+                      "Спорт": ["спорт","sport","футбол","football","матч","match","хокке","hockey","теннис","бокс","ufc","mma","арена","arena","биатлон"],
+                      "Кино": ["кино","cinema","movie","фильм","film","боевик","комедия","ужас","детектив","премьера","блокбастер","tv1000","кинопоказ","иллюзион","победа"],
+                      "Сериалы": ["сериал","series","serial","дорам","драма","мелодрам","теленовелл"],
+                      "Музыкальные": ["music","музык","муз","mtv","vh1","ru.tv","шансон","europa plus","bridge","top hit"],
+                      "Развлекательные": ["развлек","юмор","comedy","шоу","тнт","пятница","суббота","перец"],
+                      "Познавательные": ["science","наука","discovery","nat geo","history","истор","viasat","nano","животн","природа","охота","рыбалк","путешеств","365"],
+                      "Документальные": ["документ","documental","tlc","dmax","военн","биограф","катастроф"],
+                      "Религиозные": ["религ","церков","православ","ислам","спас","soyuz","царь","3abn","троиц"],
+                      "Радио": ["радио","radio"],
+                      "Детские": ["дет","мульт","kids","child","cartoon","nickelodeon","disney","карусел"]
                   },
                   "child_blacklist": ["детск","child","kids","cartoon","мульт","nickelodeon","nick jr","карусель","carousel","disney","baby","tiptop","boomerang","смешарик","мультик","gulli"],
                   "trash_blacklist": ["shop","магазин","ювелир","leomax","tts","teleshop","adult","18+","test","demo","промо","promo","backup","резерв","xxx","порно","эрот"]
@@ -92,28 +91,23 @@ jobs:
               "sources.txt": "# имя|url|приоритет\nRU-Streams|https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ru.m3u|0\nRU-Language|https://iptv-org.github.io/iptv/languages/rus.m3u|1\n",
               "overrides.json": {
                   "category_by_tvg_id": {
-                      "2x2.ru":"Развлекательные","TNT.ru":"Развлекательные","TNT4.ru":"Развлекательные",
-                      "TNTInternational.ru":"Развлекательные","Friday.ru":"Развлекательные","U.ru":"Развлекательные",
-                      "Che.ru":"Развлекательные","TV3.ru":"Развлекательные","Subbota.ru":"Развлекательные",
-                      "Kinopokaz.ru":"Кино","Kinokomedija.ru":"Кино","Komedia.ru":"Кино","Fox.ru":"Кино",
-                      "Kinosemja.ru":"Кино","Kinouzhas.ru":"Кино","KinoHit.ru":"Кино","Muzhskoekino.ru":"Кино",
-                      "RodnoeKino.ru":"Кино","RusskiyBestseller.ru":"Кино","RusskiyDetektiv.ru":"Кино",
-                      "RusskiyIllusion.ru":"Кино","HorosheeKino.ru":"Кино","StarCinema.ru":"Кино","StarFamily.ru":"Кино",
-                      "DiscoveryChannel.ru":"Познавательные","TLC.ru":"Познавательные","FoodNetwork.ru":"Познавательные",
-                      "Nano.ru":"Познавательные","AnimalPlanet.ru":"Познавательные","InvestigationDiscovery.ru":"Познавательные",
-                      "Vmirezhivotnykh.ru":"Познавательные","BigPlanet.ru":"Познавательные","Zhivayapriroda.ru":"Познавательные",
-                      "Dikayaokhota.ru":"Познавательные","Dikayarybalka.ru":"Познавательные","Okhotairybalka.ru":"Познавательные",
-                      "Rybolov.ru":"Познавательные","Ohotnikirybolov.ru":"Познавательные","Avto24.ru":"Познавательные",
-                      "RTDocumentary.ru":"Документальные","365daysTV.ru":"Документальные",
-                      "Izvestia.ru":"Новостные","Mir24.ru":"Новостные","360.ru":"Новостные","360News.ru":"Новостные",
-                      "RTRPlaneta.ru":"Новостные","VestiFM.ru":"Новостные","Tolk.ru":"Новостные","SolovyovLive.ru":"Новостные",
+                      "ChannelOne.ru":"Федеральные","ChannelOneCIS.ru":"Федеральные","Russia1.ru":"Федеральные",
+                      "RussiaK.ru":"Федеральные","NTV.ru":"Федеральные","NTVVitrina.ru":"Федеральные",
+                      "5kanal.ru":"Федеральные","5Kanal.ru":"Федеральные","TVCentrInternational.ru":"Федеральные",
+                      "TVC.ru":"Федеральные","Zvezda.ru":"Федеральные","ZvezdaPlus.ru":"Федеральные",
+                      "OTR.ru":"Федеральные","Mir.ru":"Федеральные","STS.ru":"Федеральные",
+                      "TNT.ru":"Федеральные","TNT4.ru":"Федеральные","TNTInternational.ru":"Федеральные",
+                      "RENTV.ru":"Федеральные","Friday.ru":"Федеральные","U.ru":"Федеральные",
+                      "2x2.ru":"Федеральные","Che.ru":"Федеральные","TV3.ru":"Федеральные",
+                      "Subbota.ru":"Федеральные","Domashniy.ru":"Федеральные","MuzTV.ru":"Федеральные",
+                      "Spas.ru":"Религиозные",
+                      "Russia24.ru":"Новостные","Mir24.ru":"Новостные","360.ru":"Новостные",
+                      "360News.ru":"Новостные","Izvestia.ru":"Новостные","RBK.ru":"Новостные",
+                      "VestiFM.ru":"Новостные","Tolk.ru":"Новостные","SolovyovLive.ru":"Новостные",
                       "Moskva24.ru":"Новостные","MoskvaDoveriye.ru":"Новостные","VmesteRF.ru":"Новостные",
-                      "PerviyInformationniy.by":"Новостные","Belarus24.by":"Новостные","India.ru":"Новостные",
-                      "ProBusiness.ru":"Новостные","PervyyRespublikanskiy.ru":"Новостные",
-                      "NTV.ru":"Общие","NTVVitrina.ru":"Общие","Mir.ru":"Общие","Zvezda.ru":"Общие","ZvezdaPlus.ru":"Общие",
-                      "Russia1.ru":"Общие","RussiaK.ru":"Общие","STS.ru":"Общие","ChannelOne.ru":"Общие",
-                      "ChannelOneCIS.ru":"Общие","OTR.ru":"Общие","TVCentrInternational.ru":"Общие",
-                      "Belarus1.by":"Общие","Belarus2.by":"Общие","Belarus3.by":"Общие","STV.by":"Общие","Soyuzny.ru":"Общие",
+                      "RT.ru":"Новостные","PerviyInformationniy.by":"Новостные","Belarus24.by":"Новостные",
+                      "India.ru":"Новостные","ProBusiness.ru":"Новостные","PervyyRespublikanskiy.ru":"Новостные",
+                      "RTRPlaneta.ru":"Новостные",
                       "Belgorod24.ru":"Региональные","Dagestan.ru":"Региональные","Sochi24.ru":"Региональные",
                       "SochiLive.ru":"Региональные","Groznyj.ru":"Региональные","Ingushetia.ru":"Региональные",
                       "OsetiyaIryston.ru":"Региональные","UgraTV.ru":"Региональные","NVKSakha.ru":"Региональные",
@@ -122,36 +116,54 @@ jobs:
                       "TNVTatarstan.ru":"Региональные","Channel8Novosibirsk.ru":"Региональные","NTK21.ru":"Региональные",
                       "Surgut24.ru":"Региональные","Enisey.ru":"Региональные","MirBelogorya.ru":"Региональные",
                       "Prodvizhenie.ru":"Региональные","SanktPeterburg.ru":"Региональные","Vetta24.ru":"Региональные",
+                      "Kinopokaz.ru":"Кино","Kinokomedija.ru":"Кино","Komedia.ru":"Кино","Fox.ru":"Кино",
+                      "Kinosemja.ru":"Кино","Kinouzhas.ru":"Кино","KinoHit.ru":"Кино","Muzhskoekino.ru":"Кино",
+                      "RodnoeKino.ru":"Кино","RusskiyBestseller.ru":"Кино","RusskiyDetektiv.ru":"Кино",
+                      "RusskiyIllusion.ru":"Кино","HorosheeKino.ru":"Кино","StarCinema.ru":"Кино","StarFamily.ru":"Кино",
+                      "DomKino.ru":"Кино","Kinoliving.ru":"Кино","KinoTV.ru":"Кино",
+                      "DiscoveryChannel.ru":"Познавательные","TLC.ru":"Познавательные","FoodNetwork.ru":"Познавательные",
+                      "Nano.ru":"Познавательные","AnimalPlanet.ru":"Познавательные","InvestigationDiscovery.ru":"Познавательные",
+                      "Vmirezhivotnykh.ru":"Познавательные","BigPlanet.ru":"Познавательные","Zhivayapriroda.ru":"Познавательные",
+                      "Dikayaokhota.ru":"Познавательные","Dikayarybalka.ru":"Познавательные","Okhotairybalka.ru":"Познавательные",
+                      "Rybolov.ru":"Познавательные","Ohotnikirybolov.ru":"Познавательные","Avto24.ru":"Познавательные",
+                      "RTDocumentary.ru":"Документальные","365daysTV.ru":"Документальные",
+                      "BRIDGEClassic.ru":"Музыкальные",
                       "3ABNRussia.ru":"Религиозные","AngelTV.in":"Религиозные","HopeChannelRussia.ru":"Религиозные",
                       "HuzurTV.ru":"Религиозные","Soyuz.ru":"Религиозные","TsargradTV.ru":"Религиозные",
-                      "Radio1.ru":"Радио","RadioRossii.ru":"Радио","BRIDGEClassic.ru":"Музыкальные",
+                      "Radio1.ru":"Радио","RadioRossii.ru":"Радио",
                       "MyZenTV.fr":"Разное","CityEdenMedZdrav.ru":"Разное"
                   },
                   "category_by_name": {
-                      "rt balkan":"DELETE","rt en espanol":"DELETE","rt en español":"DELETE",
-                      "viasat epic drama ukraine":"DELETE","312 кино":"DELETE","312 тв":"DELETE","rtn":"DELETE",
-                      "ani":"DELETE","ani tv":"DELETE","carousel":"DELETE","carousel international":"DELETE",
-                      "gulli girl":"DELETE","mult":"DELETE","mult hd":"DELETE","mult tv":"DELETE","мульт":"DELETE",
-                      "mama":"DELETE","mama tv":"DELETE","v gostyakh u skazki":"DELETE","v gostyah u skazki":"DELETE",
-                      "гостях у сказки":"DELETE","smotrim 100 klassika":"DELETE","smotrim 100 lyubov":"DELETE",
-                      "smotrim 100 muzhskoe":"DELETE","smotrim 100 prazdnik":"DELETE","smotrim 100 fakty":"DELETE",
-                      "smotrim 100":"DELETE","rtvi":"DELETE","rtvi us":"DELETE","kapitan fantastika":"DELETE",
-                      "кино uhd":"Кино","5 minut tishiny":"Сериалы НТВ","balabol":"Сериалы НТВ","nevskiy":"Сериалы НТВ",
-                      "perviy otdel":"Сериалы НТВ","pes":"Сериалы НТВ","shef":"Сериалы НТВ","skoraya pomoshch":"Сериалы НТВ",
-                      "ntv series":"Сериалы НТВ","black":"Кино","red":"Кино","start air":"Кино","sci fi":"Кино",
-                      "fan":"Кино","nst":"Кино","нст":"Кино","nastoyashchee strashnoe":"Кино","настоящее страшное":"Кино",
-                      "pobeda":"Кино","победа":"Кино","nashe":"Кино","nashe muzhskoe":"Кино","ostrosyuzhetnoe":"Кино",
-                      "premialnoe":"Кино","shokiruyushchee":"Кино","kinopremyera":"Кино","dushevnoe":"Кино",
-                      "hit":"Музыкальные","sarafan":"Развлекательные","сарафан":"Развлекательные","bober":"Развлекательные",
-                      "insayt tv":"Развлекательные","life tv":"Развлекательные","fashion lifestyle":"Развлекательные",
-                      "priklyucheniya":"Развлекательные","domashnie zhivotnye":"Познавательные","avto 24":"Познавательные",
-                      "avto24":"Познавательные","lapki live":"Познавательные","v mire zhivotnykh":"Познавательные",
-                      "moya stikhiya":"Познавательные","nauka":"Познавательные","наука":"Познавательные","nano":"Познавательные",
-                      "нано тв":"Познавательные","food time":"Познавательные","foodtime":"Познавательные",
-                      "ntv mir":"Общие","domashniy":"Общие","tochka rf":"Региональные","channel 8":"Региональные",
-                      "bst":"Региональные","mir belogorya":"Региональные","abaza tv":"Региональные","apsua tv":"Региональные",
-                      "belarus 4 gomel":"Региональные","belarus 4 vitebsk":"Региональные","doctor":"Разное",
-                      "city eden medzdrav":"Разное"
+                      "нтв":"Федеральные","первый":"Федеральные","первый канал":"Федеральные",
+                      "россия 1":"Федеральные","россия 1 hd":"Федеральные","пятый канал":"Федеральные",
+                      "тв центр":"Федеральные","звезда":"Федеральные","звезда hd":"Федеральные",
+                      "отр":"Федеральные","мир":"Федеральные","стс":"Федеральные","стс hd":"Федеральные",
+                      "тнт":"Федеральные","тнт hd":"Федеральные","тнт4":"Федеральные",
+                      "рен тв":"Федеральные","рен-тв":"Федеральные","пятница":"Федеральные",
+                      "пятница hd":"Федеральные","ю":"Федеральные","2х2":"Федеральные","2x2":"Федеральные",
+                      "че":"Федеральные","тв3":"Федеральные","тв-3":"Федеральные","суббота":"Федеральные",
+                      "домашний":"Федеральные","муз-тв":"Федеральные","музтв":"Федеральные","карусель":"Федеральные",
+                      "россия 24":"Новостные","россия 24 hd":"Новостные","мир 24":"Новостные",
+                      "360":"Новостные","360 новости":"Новостные","известия":"Новостные","рбк":"Новостные",
+                      "вести fm":"Новостные","толк":"Новостные","соловьев live":"Новостные",
+                      "москва 24":"Новостные","москва доверие":"Новостные","вместе-рф":"Новостные",
+                      "rt":"Новостные","rt news":"Новостные",
+                      "вологда":"Региональные","вологда 24":"Региональные","грозный":"Региональные",
+                      "грозный тв":"Региональные","белгород 24":"Региональные","белгород":"Региональные",
+                      "уфа":"Региональные","башкортостан 24":"Региональные","сочи 24":"Региональные",
+                      "сочи":"Региональные","казань":"Региональные","татарстан 24":"Региональные",
+                      "краснодар":"Региональные","краснодар 24":"Региональные","ростов":"Региональные",
+                      "омск":"Региональные","омск тв":"Региональные","самара 24":"Региональные",
+                      "пермь":"Региональные","саратов 24":"Региональные","воронеж":"Региональные",
+                      "тула":"Региональные","иркутск":"Региональные","томск":"Региональные",
+                      "тверь":"Региональные","мурманск":"Региональные","архангельск":"Региональные",
+                      "калининград":"Региональные","ставрополь":"Региональные","махачкала":"Региональные",
+                      "владикавказ":"Региональные","якутск":"Региональные","хабаровск":"Региональные",
+                      "владивосток":"Региональные","югра":"Региональные","сургут 24":"Региональные",
+                      "тюмень":"Региональные","челябинск":"Региональные","оренбург":"Региональные",
+                      "крым 24":"Региональные","севастополь 24":"Региональные",
+                      "rt balkan":"DELETE","rt en espanol":"DELETE","312 кино":"DELETE","mult":"DELETE",
+                      "v gostyakh u skazki":"DELETE","smotrim 100":"DELETE","rtvi":"DELETE","kapitan fantastika":"DELETE"
                   },
                   "rename_by_tvg_id": {"kino-tv-pl":"Кино ТВ","kinopokaz":"Кинопоказ"},
                   "clear_tvg_id": ["tv21plus"]
@@ -169,17 +181,18 @@ jobs:
           }
           for name, data in files.items():
               p = pathlib.Path(name)
-              if p.exists():
+              if p.exists() and name in ("useragents.json", "sources.txt"):
+                  print("kept:", name)
                   continue
               if isinstance(data, str):
                   p.write_text(data, "utf-8")
               else:
                   p.write_text(json.dumps(data, ensure_ascii=False, indent=2), "utf-8")
-              print("created:", name)
+              print("created/updated:", name)
           PYEOF
 
       - name: Run parser + checker + builder
-        run: python app.py all
+        run: python -u app.py all
 
       - name: Commit
         run: |
