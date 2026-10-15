@@ -41,16 +41,12 @@ CITY_HINTS = (
     "брянск","смоленск","псков","новгород","карелия","коми","бурятия","тыва","хакасия",
     "алтай","камчатка","сахалин","приморье","амур","магадан","салехард","нижневартовск",
     "курган","магнитогорск","сибирь","урал","дагестан","ингушетия","осетия","кабард",
-    "калмык","марий","мордов","чуваш","удмурт","башк","рязан","липецк","тамбов","пенз",
+    "калмык","марий","мордов","чуваш","удмурт","башк","рязан","тамбов","пенз",
     "ульянов","чебоксар","саранск","ставропол","элист","барнаул","кемеров","новокузнец",
     "краснояр","абакан","кызыл","горно-алтай","биробидж","благовещен","южно-сахалин",
-    "петропавлов","анадыр","нальчик","черкесск","майкоп","мурман","петрозаводск","сыктывкар",
-    "архангел","великий новгород","вологда","череповец","кострома","иваново","владимир",
-    "тула","калуга","тверь","ярослав","рыбинск","смоленск","брянск","орёл","курск",
-    "белгород","воронеж","липецк","тамбов","рязан","саранск","пенза","саратов",
-    "волгоград","астрахань","элиста","ростов","краснодар","сочи","ставрополь",
-    "махачкала","грозный","владикавказ","нальчик","черкесск","майкоп","симферополь",
-    "севастополь","курск","орёл"
+    "петропавлов","анадыр","нальчик","черкесск","майкоп","петрозаводск","сыктывкар",
+    "архангел","череповец","кострома","иваново","владимир","калуга","ярослав",
+    "рыбинск","орёл","симферополь"
 )
 FAMILY_RULES = (
     ("нтв", "Федеральные"),
@@ -139,7 +135,6 @@ def download(url, timeout=180, gz=False):
         print(f"  dl {url}: {e}"); return None
 
 def build_epg_map(xml_text):
-    """by_name, by_translit, by_prefix, icons, ru_display (cid→кириллица)."""
     bn, bt, bp, ic, ru = {}, {}, {}, {}, {}
     if not xml_text: return bn, bt, bp, ic, ru
     try:
@@ -295,6 +290,7 @@ def cmd_parse():
     trash_bl = CFG.get("trash_blacklist", [])
     clear_ids = set(OVERRIDES.get("clear_tvg_id", []))
 
+    # Whitelist первым — он неприкосновенен
     for w in wl:
         if w["url"] in seen: st["dup_wl"] += 1; continue
         seen.add(w["url"]); channels.append(w)
@@ -362,7 +358,6 @@ def categorize(name, group, tvg_id, api_cats, api_names):
     return "Разное"
 
 def find_russian_name(name, tvg_id, bn, bt, bp, ru_display, api_names, ru_names):
-    """5 способов найти кириллическое имя."""
     if tvg_id and tvg_id in ru_display:
         return ru_display[tvg_id], "epg_by_id"
     cid, _ = resolve_epg(name, bn, bt, bp)
@@ -426,6 +421,7 @@ def cmd_categorize():
             ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
             rename_stats["override"] += 1
 
+    # Группировка
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
@@ -433,7 +429,8 @@ def cmd_categorize():
         else:
             groups[ch["name"].strip()].append(ch)
 
-    merged = list(groups.values())
+    # merged = только НЕ-whitelist группы; wl_groups = whitelist
+    merged = [v for k, v in groups.items() if not (isinstance(k, tuple) and k[0] == "WL")]
     wl_groups = [v for k, v in groups.items() if isinstance(k, tuple) and k[0] == "WL"]
 
     def best(grp):
@@ -461,7 +458,8 @@ def cmd_categorize():
             "is_whitelist": main.get("is_whitelist", False),
         })
     p.write_text(json.dumps({"updated": now_msk(), "channels": final}, ensure_ascii=False), "utf-8")
-    print(f"[cat] групп {len(merged)+len(wl_groups)} -> {len(final)}, с резервом: {fallbacks}")
+    wl_count = sum(1 for c in final if c.get("is_whitelist"))
+    print(f"[cat] групп {len(merged)+len(wl_groups)} -> {len(final)}, whitelist {wl_count}, с резервом: {fallbacks}")
     print(f"[cat] EPG: {dict(epg_stats)}")
     print(f"[cat] RU-NAME: {dict(rename_stats)}")
 
@@ -536,7 +534,8 @@ def cmd_check():
     if not p.exists(): print("нет channels.json"); return
     channels = json.loads(p.read_text("utf-8"))["channels"]
     to_check = [c for c in channels if not c.get("is_whitelist")]
-    print(f"   whitelist {len(channels)-len(to_check)} пропускаем, проверяем {len(to_check)}")
+    wl_count = len(channels) - len(to_check)
+    print(f"   whitelist {wl_count} пропускаем, проверяем {len(to_check)}")
 
     cp = DATA / "ua_cache.json"
     ua_cache = json.loads(cp.read_text("utf-8")) if cp.exists() else {}
@@ -590,7 +589,6 @@ def cmd_build():
         items = by_cat.get(cat, [])
         if items: out_groups.append((f"{EMOJI.get(cat,'')} {cat}", items))
 
-    # === Список неклассифицированных — для ручной правки overrides.json ===
     unmatched = sorted({c["name"] for c in by_cat.get("Разное", [])})
     (DATA / "unmatched.json").write_text(
         json.dumps({"updated": now_msk(), "count": len(unmatched), "channels": unmatched},
@@ -615,6 +613,7 @@ def cmd_build():
     out_name = CFG.get("output_m3u", "clean_sorted_channels.m3u")
     (ROOT / out_name).write_text("\n".join(lines) + "\n", "utf-8")
     total_out = sum(len(v) for _, v in out_groups)
+    wl_out = sum(len(v) for g, v in out_groups if g in WL_GROUPS_ORDER or (g and g not in CATS and not any(e in g for e in EMOJI.values())))
     print(f"[build] {out_name}: {total_out} каналов в {len(out_groups)} группах")
 
     dash = {
