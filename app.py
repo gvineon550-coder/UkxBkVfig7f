@@ -32,10 +32,9 @@ CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
 
-# ===== Правила по СЫРОЙ подстроке (не нормализованной) =====
-# Срабатывают на латиницу, дефисы, цифры. Проверяются первыми.
 RAW_KEYWORDS = (
-    # Федеральные (латиница и варианты)
+    ("нтв", "Федеральные"), ("рен тв", "Федеральные"), ("рен-тв", "Федеральные"),
+    ("рен ", "Федеральные"), ("стс", "Федеральные"), ("тнт", "Федеральные"),
     ("channel one", "Федеральные"), ("channel one europa", "Федеральные"),
     ("channel one hd", "Федеральные"), ("1tv", "Федеральные"),
     ("ntv (russia)", "Федеральные"), ("ntv russia", "Федеральные"),
@@ -48,13 +47,11 @@ RAW_KEYWORDS = (
     ("о! international", "Федеральные"), ("o! international", "Федеральные"),
     ("звезда плюс", "Федеральные"), ("солнце", "Федеральные"),
     ("тв центр", "Федеральные"), ("tv centr", "Федеральные"),
-    # Новостные
     ("rtr-planeta", "Новостные"), ("rtr planeta", "Новостные"),
     ("красная линия", "Новостные"), ("вместе-рф", "Новостные"),
     ("вместе рф", "Новостные"), ("дождь", "Новостные"),
     ("соловьёв", "Новостные"), ("соловьев", "Новостные"),
     ("думатв", "Новостные"), ("время", "Новостные"),
-    # Региональные
     ("channel 8", "Региональные"), ("8 канал", "Региональные"),
     ("yalta tv", "Региональные"), ("kentron tv", "Региональные"),
     ("бст", "Региональные"), ("беларусь 4", "Региональные"),
@@ -65,19 +62,16 @@ RAW_KEYWORDS = (
     ("север (", "Региональные"), ("тдк 42", "Региональные"),
     ("тнв-планета", "Региональные"), ("тнв", "Региональные"),
     ("югра-тв", "Региональные"), ("югра тв", "Региональные"),
-    # Кино
     (".sci-fi", "Кино"), ("sci-fi", "Кино"), ("scifi", "Кино"),
     ("sony тв", "Кино"), ("sony tv", "Кино"),
     ("дом кино international", "Кино"), ("душевное", "Кино"),
     ("нст", "Кино"), ("nst", "Кино"), ("победа", "Кино"),
     ("прима", "Кино"),
-    # Детские
     ("ani (", "Детские"), ("anime", "Детские"),
     ("mult international", "Детские"), ("nicktoons", "Детские"),
     ("sevimli tv", "Детские"), ("tiji", "Детские"),
     ("детский", "Детские"), ("мультиландия", "Детские"),
     ("супергерои", "Детские"),
-    # Познавательные
     ("big planet", "Познавательные"), ("love nature", "Познавательные"),
     ("travelxp", "Познавательные"), ("zooпарк", "Познавательные"),
     ("большая азия", "Познавательные"), ("в мире животных", "Познавательные"),
@@ -88,12 +82,9 @@ RAW_KEYWORDS = (
     ("охота и рыбалка", "Познавательные"), ("охотник и рыболов", "Познавательные"),
     ("приключения hd", "Познавательные"), ("просвещение", "Познавательные"),
     ("рыбалка и охота", "Познавательные"), ("усадьба", "Познавательные"),
-    # Документальные
     ("rt д", "Документальные"), ("rtd", "Документальные"),
     ("неизвестная россия", "Документальные"),
-    # Музыкальные
     ("мультимузыка", "Музыкальные"),
-    # Развлекательные
     ("бобер", "Развлекательные"), ("magnat", "Развлекательные"),
     ("o! (", "Развлекательные"), ("o! (576", "Развлекательные"),
     ("витрина тв", "Развлекательные"), ("мой мир", "Развлекательные"),
@@ -101,11 +92,8 @@ RAW_KEYWORDS = (
     ("салям", "Развлекательные"), ("сарафан", "Развлекательные"),
     ("теледом", "Развлекательные"), ("тонус тв", "Развлекательные"),
     ("точка отрыва", "Развлекательные"), ("ювелирочка", "Развлекательные"),
-    # Религиозные
     ("angel tv", "Религиозные"), ("радость моя", "Религиозные"),
-    # Разное
-    ("aq lvoy", "Разное"), ("aqlvoy", "Разное"),
-    ("myzen", "Разное"), ("tv pro", "Разное"),
+    ("aqlvoy", "Разное"), ("myzen", "Разное"), ("tv pro", "Разное"),
     ("инсайт", "Разное"), ("тооку", "Разное"),
 )
 
@@ -138,10 +126,22 @@ def translit(s): return "".join(TRANSLIT.get(c, c) for c in (s or ""))
 
 def has_cyrillic(s): return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
 
+def extract_suffix_from_tvg(tvg_id):
+    """@Plus2 → '+2', @HD → 'HD', @SD → '' (SD не считаем суффиксом)."""
+    if not tvg_id or "@" not in tvg_id: return ""
+    sfx = tvg_id.split("@", 1)[1]
+    low = sfx.lower()
+    if low == "sd": return ""
+    if low.startswith("plus"):
+        num = low.replace("plus", "")
+        if num.isdigit(): return f"+{num}"
+    if low in ("hd", "fhd", "uhd", "4k", "1080p", "720p"):
+        return sfx.upper()
+    return sfx
+
 ATTR_RE = re.compile(r'([A-Za-z0-9_\-]+)="([^"]*)"')
 
 def split_extinf(line):
-    """Возвращает (attrs_str, name). Ищет первую запятую вне кавычек."""
     in_quote = False
     for i, ch in enumerate(line):
         if ch == '"': in_quote = not in_quote
@@ -155,7 +155,6 @@ def parse_m3u(text):
         line = raw.strip()
         if not line: continue
         if line.startswith("#EXTINF"):
-            # отрезаем префикс #EXTINF:-1
             m = re.match(r'#EXTINF:-?\d+\s*(.*)$', line)
             if m:
                 attrs_str, name = split_extinf(m.group(1))
@@ -338,7 +337,6 @@ async def fetch_src(session, name, url):
     except Exception as e:
         print(f"[src] {name}: {e}"); return name, None
 
-# ============ PARSE ============
 def cmd_parse():
     print("=== PARSE ===")
     sources = load_sources()
@@ -401,30 +399,23 @@ def cmd_parse():
     DATA.joinpath("channels.json").write_text(json.dumps({"updated": now_msk(), "channels": channels}, ensure_ascii=False), "utf-8")
     print(f"[parse] итого {len(channels)}, фильтры: {dict(st)}")
 
-# ============ CATEGORIZE ============
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
     nn = norm_name(name)
-    # 0) RAW_KEYWORDS — по подстроке в сыром имени
     for key, cat in RAW_KEYWORDS:
         if key in low: return cat
-    # 1) override по tvg_id
-    if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
-        return OVERRIDES["category_by_tvg_id"][tvg_id]
-    # 2) override по имени
+    base_id = tvg_id.split("@")[0] if tvg_id else ""
+    if base_id and base_id in OVERRIDES.get("category_by_tvg_id", {}):
+        return OVERRIDES["category_by_tvg_id"][base_id]
     if nn in OVERRIDES.get("category_by_name", {}):
         return OVERRIDES["category_by_name"][nn]
-    # 3-4) API
-    if tvg_id and tvg_id in api_cats: return api_cats[tvg_id]
+    if base_id and base_id in api_cats: return api_cats[base_id]
     if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
-    # 5) города
     for city in CITY_HINTS:
         if city in nn: return "Региональные"
-    # 6) keywords
     for cat, kws in CAT_KW.items():
         for k in kws:
             if k in low: return cat
-    # 7) по group-title
     g = (group or "").lower()
     for cat in CATS:
         if cat.lower() in g: return cat
@@ -436,23 +427,34 @@ def categorize(name, group, tvg_id, api_cats, api_names):
     return "Разное"
 
 def find_russian_name(name, tvg_id, bn, bt, bp, ru_display, api_names, ru_names):
-    if tvg_id and tvg_id in ru_display:
-        return ru_display[tvg_id], "epg_by_id"
+    base_id = tvg_id.split("@")[0] if tvg_id else ""
+    suffix = extract_suffix_from_tvg(tvg_id)
+    # 1) по base_id → ru_display (СОХРАНЯЯ суффикс)
+    if base_id and base_id in ru_display:
+        base_name = ru_display[base_id]
+        return (f"{base_name} {suffix}".strip() if suffix else base_name), "epg_by_base_id"
+    # 2) resolve_epg по имени
     cid, _ = resolve_epg(name, bn, bt, bp)
     if cid and cid in ru_display:
-        return ru_display[cid], "epg_by_name"
-    api_cid = api_names.get(norm_name(name)) or tvg_id
+        base_name = ru_display[cid]
+        return (f"{base_name} {suffix}".strip() if suffix else base_name), "epg_by_name"
+    # 3) API
+    api_cid = api_names.get(norm_name(name)) or base_id
     if api_cid and api_cid in ru_names:
-        return ru_names[api_cid], "api"
+        base_name = ru_names[api_cid]
+        return (f"{base_name} {suffix}".strip() if suffix else base_name), "api"
     if cid and cid in ru_names:
-        return ru_names[cid], "api_by_epg_id"
+        base_name = ru_names[cid]
+        return (f"{base_name} {suffix}".strip() if suffix else base_name), "api_by_epg_id"
     tr = translit(norm_name(name))
     if tr and tr in bt:
         cid2 = bt[tr]
         if cid2 in ru_display:
-            return ru_display[cid2], "epg_by_translit"
+            base_name = ru_display[cid2]
+            return (f"{base_name} {suffix}".strip() if suffix else base_name), "epg_by_translit"
         if cid2 in ru_names:
-            return ru_names[cid2], "api_by_translit"
+            base_name = ru_names[cid2]
+            return (f"{base_name} {suffix}".strip() if suffix else base_name), "api_by_translit"
     return None, None
 
 def cmd_categorize():
@@ -471,8 +473,6 @@ def cmd_categorize():
             if not ch.get("category"):
                 ch["category"] = ch.get("group") or "Whitelist"
             continue
-
-        # === 1) Сначала RU-NAME ===
         if not has_cyrillic(ch["name"]):
             new_name, method = find_russian_name(
                 ch["name"], ch.get("tvg_id",""),
@@ -483,31 +483,21 @@ def cmd_categorize():
                 rename_stats[method] += 1
             else:
                 rename_stats["not_found"] += 1
-
-        # === 2) Потом EPG id ===
         if not ch.get("tvg_id"):
             eid, how = resolve_epg(ch["name"], bn, bt, bp)
             if eid: ch["tvg_id"] = eid; epg_stats[how] += 1
             else: epg_stats["no_match"] += 1
         else:
             epg_stats["already"] += 1
-
-        # === 3) Только теперь — категория (уже на русском имени) ===
         ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
-
-        # 4) лого из EPG
         if not ch.get("logo") and ch.get("tvg_id") and ch["tvg_id"] in ic:
             ch["logo"] = ic[ch["tvg_id"]]
-
-        # 5) RENAME_BY_TVG_ID — поверх всего
         tid = ch.get("tvg_id","")
         if tid in OVERRIDES.get("rename_by_tvg_id", {}):
             ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
-            # пересчитать категорию после переименования
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
 
-    # Группировка
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
@@ -548,7 +538,6 @@ def cmd_categorize():
     print(f"[cat] EPG: {dict(epg_stats)}")
     print(f"[cat] RU-NAME: {dict(rename_stats)}")
 
-# ============ CHECK ============
 def pick_ua(host, ua_cache):
     saved = ua_cache.get(host)
     order = []
@@ -620,25 +609,41 @@ def cmd_check():
     channels = json.loads(p.read_text("utf-8"))["channels"]
     to_check = [c for c in channels if not c.get("is_whitelist")]
     wl_count = len(channels) - len(to_check)
-    print(f"   whitelist {wl_count} пропускаем, проверяем {len(to_check)}")
+    total = len(to_check)
+    print(f"   whitelist {wl_count} пропускаем, проверяем {total}", flush=True)
 
     cp = DATA / "ua_cache.json"
     ua_cache = json.loads(cp.read_text("utf-8")) if cp.exists() else {}
     results = {}
+    done = [0]
+    ok_count = [0]
     sem = asyncio.Semaphore(CFG.get("concurrency", 100))
+    session_holder = [None]
+    loop_holder = [None]
+
+    async def worker(c):
+        await check_one(session_holder[0], c, sem, ua_cache, results, loop_holder[0])
+        done[0] += 1
+        if results.get(c["name"], {}).get("ok"): ok_count[0] += 1
+        if done[0] % 50 == 0 or done[0] == total:
+            pct = done[0] * 100 // total
+            bar_len = 30
+            filled = bar_len * done[0] // total
+            bar = "█" * filled + "░" * (bar_len - filled)
+            print(f"   [{bar}] {done[0]}/{total} ({pct}%) живых: {ok_count[0]}", flush=True)
 
     async def go():
-        loop = asyncio.get_event_loop()
+        loop_holder[0] = asyncio.get_event_loop()
         async with aiohttp.ClientSession() as s:
-            await asyncio.gather(*(check_one(s, c, sem, ua_cache, results, loop) for c in to_check))
+            session_holder[0] = s
+            await asyncio.gather(*(worker(c) for c in to_check))
     asyncio.run(go())
 
     cp.write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
     DATA.joinpath("check.json").write_text(json.dumps({"updated": now_msk(), "results": results}, ensure_ascii=False), "utf-8")
     ok = sum(1 for r in results.values() if r.get("ok"))
-    print(f"[check] {ok}/{len(to_check)} живых")
+    print(f"[check] {ok}/{total} живых")
 
-# ============ BUILD ============
 def cmd_build():
     print("=== BUILD ===")
     p = DATA / "channels.json"
