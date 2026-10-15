@@ -198,7 +198,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash || true
           git pull --rebase || true
+          git stash pop || true
           git add clean_sorted_channels.m3u README.md index.html dashboard.json
           git add config.json useragents.json sources.txt overrides.json blocklist.json 2>/dev/null || true
           git add data 2>/dev/null || true
