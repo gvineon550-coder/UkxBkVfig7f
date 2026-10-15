@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""IPTV: parse + categorize + EPG + check + build. One file."""
+"""IPTV: parse + categorize + EPG + RU-NAME + check + build. One file."""
 import asyncio, aiohttp, json, re, sys, gzip, io, random, subprocess, time, os
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
-from difflib import SequenceMatcher
 from collections import defaultdict, Counter
 from urllib.parse import urlparse
+from difflib import SequenceMatcher
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parent
@@ -26,12 +26,47 @@ UA_POOL = _load(ROOT / "useragents.json")
 OVERRIDES = _load(ROOT / "overrides.json")
 BLOCKLIST = _load(ROOT / "blocklist.json")
 
-CATS = CFG.get("category_order", ["Кино","Сериалы","Спорт","Новостные","Музыкальные","Развлекательные","Познавательные","Документальные","Общие","Региональные","Религиозные","Разное"])
+CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Детские","Религиозные","Радио","Разное"])
 EMOJI = CFG.get("category_emoji", {})
 CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
-THRESH = CFG.get("fuzzy_threshold", 92)
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
+
+CITY_HINTS = (
+    "вологда","грозный","белгород","уфа","башкортостан","сочи","казань","татарстан",
+    "краснодар","ростов","омск","самара","пермь","саратов","воронеж","тула","иркутск",
+    "томск","тверь","мурманск","архангельск","калининград","ставрополь","махачкала",
+    "владикавказ","якутск","хабаровск","владивосток","югра","сургут","тюмень","челябинск",
+    "оренбург","крым","севастополь","донбасс","астрахань","волгоград","липецк","курск",
+    "брянск","смоленск","псков","новгород","карелия","коми","бурятия","тыва","хакасия",
+    "алтай","камчатка","сахалин","приморье","амур","магадан","салехард","нижневартовск",
+    "курган","магнитогорск","сибирь","урал","дагестан","ингушетия","осетия","кабард",
+    "калмык","марий","мордов","чуваш","удмурт","башк","рязан","липецк","тамбов","пенз",
+    "ульянов","чебоксар","саранск","ставропол","элист","барнаул","кемеров","новокузнец",
+    "краснояр","абакан","кызыл","горно-алтай","биробидж","благовещен","южно-сахалин",
+    "петропавлов","анадыр","нальчик","черкесск","майкоп","мурман","петрозаводск","сыктывкар",
+    "архангел","великий новгород","вологда","череповец","кострома","иваново","владимир",
+    "тула","калуга","тверь","ярослав","рыбинск","смоленск","брянск","орёл","курск",
+    "белгород","воронеж","липецк","тамбов","рязан","саранск","пенза","саратов",
+    "волгоград","астрахань","элиста","ростов","краснодар","сочи","ставрополь",
+    "махачкала","грозный","владикавказ","нальчик","черкесск","майкоп","симферополь",
+    "севастополь","курск","орёл"
+)
+FAMILY_RULES = (
+    ("нтв", "Федеральные"),
+    ("тнт", "Федеральные"),
+    ("стс", "Федеральные"),
+    ("рен", "Федеральные"),
+    ("пятниц", "Федеральные"),
+    ("россия 1", "Федеральные"),
+    ("россия 24", "Новостные"),
+    ("первый", "Федеральные"),
+    ("матч", "Спорт"),
+    ("discovery", "Познавательные"),
+    ("viasat", "Познавательные"),
+    ("tv1000", "Кино"),
+    ("кинопоказ", "Кино"),
+)
 
 NOISE = {"тв","tv","hd","uhd","fhd","sd","4k","1080p","720p","full","канал","channel","online","live","stream"}
 def norm_name(s):
@@ -42,6 +77,8 @@ def norm_name(s):
 
 TRANSLIT = {"а":"a","б":"b","в":"v","г":"g","д":"d","е":"e","ё":"e","ж":"zh","з":"z","и":"i","й":"y","к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f","х":"kh","ц":"ts","ч":"ch","ш":"sh","щ":"shch","ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya","ї":"i","є":"e","і":"i","ґ":"g"}
 def translit(s): return "".join(TRANSLIT.get(c, c) for c in (s or ""))
+
+def has_cyrillic(s): return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
 
 ATTR_RE = re.compile(r'([A-Za-z0-9_\-]+)="([^"]*)"')
 EXTINF_RE = re.compile(r'#EXTINF:-?\d+\s*(.*?),(.*)$')
@@ -102,8 +139,9 @@ def download(url, timeout=180, gz=False):
         print(f"  dl {url}: {e}"); return None
 
 def build_epg_map(xml_text):
-    bn, bt, bp, ic = {}, {}, {}, {}
-    if not xml_text: return bn, bt, bp, ic
+    """by_name, by_translit, by_prefix, icons, ru_display (cid→кириллица)."""
+    bn, bt, bp, ic, ru = {}, {}, {}, {}, {}
+    if not xml_text: return bn, bt, bp, ic, ru
     try:
         stream = io.BytesIO(xml_text.encode("utf-8"))
         for _, el in ET.iterparse(stream, events=("end",)):
@@ -114,36 +152,47 @@ def build_epg_map(xml_text):
                     if icon is not None and icon.get("src"): ic[cid] = icon.get("src")
                     for dn in el.findall("display-name"):
                         if dn.text:
-                            nn = norm_name(dn.text)
+                            orig = dn.text.strip()
+                            if orig and cid not in ru and has_cyrillic(orig):
+                                ru[cid] = orig
+                            nn = norm_name(orig)
                             if nn and len(nn) >= 2:
                                 bn.setdefault(nn, cid)
                                 tr = translit(nn)
                                 if tr: bt.setdefault(tr, cid)
-                                if len(nn[:5]) >= 3: bp.setdefault(nn[:5], []).append((nn, cid))
+                                if len(nn[:6]) >= 3: bp.setdefault(nn[:6], []).append((nn, cid))
                 el.clear()
-        print(f"   EPG: {len(bn)} имён, {len(ic)} иконок")
+        print(f"   EPG: {len(bn)} имён, {len(ic)} иконок, {len(bp)} префиксов, {len(ru)} кириллических имён")
     except Exception as e:
         print(f"   EPG err: {e}")
-    return bn, bt, bp, ic
+    return bn, bt, bp, ic, ru
 
+EPG_VER = 24
 def load_epg_map():
     p = DATA / "epg_map.json"
     ttl = CFG.get("epg_ttl_hours", 168) * 3600
     if p.exists():
         try:
             d = json.loads(p.read_text("utf-8"))
-            if d.get("version") == 23 and time.time() - d.get("ts", 0) < ttl:
+            if d.get("version") == EPG_VER and time.time() - d.get("ts", 0) < ttl:
                 print("   EPG из кэша")
-                return d["by_name"], d["by_translit"], {k: [tuple(x) for x in v] for k, v in d["by_prefix"].items()}, d.get("icons", {})
+                return (d["by_name"], d["by_translit"],
+                        {k: [tuple(x) for x in v] for k, v in d["by_prefix"].items()},
+                        d.get("icons", {}), d.get("ru_display", {}))
         except: pass
     print(f"   DL EPG: {CFG.get('epg_url','')}")
     txt = download(CFG.get("epg_url",""), gz=True) or download(CFG.get("epg_url_fallback",""), gz=True)
-    if not txt: return {}, {}, {}, {}
-    bn, bt, bp, ic = build_epg_map(txt)
+    if not txt: return {}, {}, {}, {}, {}
+    bn, bt, bp, ic, ru = build_epg_map(txt)
     try:
-        p.write_text(json.dumps({"version":23, "ts":int(time.time()), "by_name":bn, "by_translit":bt, "by_prefix":{k:list(v) for k,v in bp.items()}, "icons":ic}, ensure_ascii=False), "utf-8")
+        p.write_text(json.dumps({
+            "version": EPG_VER, "ts": int(time.time()),
+            "by_name": bn, "by_translit": bt,
+            "by_prefix": {k: list(v) for k, v in bp.items()},
+            "icons": ic, "ru_display": ru
+        }, ensure_ascii=False), "utf-8")
     except Exception as e: print(f"   save: {e}")
-    return bn, bt, bp, ic
+    return bn, bt, bp, ic, ru
 
 def resolve_epg(name, bn, bt, bp):
     nn = norm_name(name)
@@ -151,9 +200,20 @@ def resolve_epg(name, bn, bt, bp):
     if nn in bn: return bn[nn], "by_name"
     tr = translit(nn)
     if tr and tr in bt: return bt[tr], "by_translit"
-    if len(nn[:5]) >= 3 and nn[:5] in bp:
-        c = bp[nn[:5]]
+    if len(nn[:6]) >= 3 and nn[:6] in bp:
+        c = bp[nn[:6]]
+        if len(c) == 1: return c[0][1], "by_prefix1"
         if len(c) <= 3: return c[0][1], "by_prefix"
+    first2 = " ".join(nn.split()[:2])
+    for key in (first2, nn[:4], nn[:3]):
+        if len(key) < 3: continue
+        bucket = bp.get(key)
+        if not bucket: continue
+        best, best_r = None, 0
+        for nm, cid in bucket:
+            r = SequenceMatcher(None, nn, nm).ratio() * 100
+            if r > best_r: best_r, best = r, cid
+        if best and best_r >= 88: return best, "by_fuzzy"
     return "", "no_match"
 
 def load_api():
@@ -171,7 +231,7 @@ def load_api():
     if not txt: return {}, {}, {}, {}
     cats, names, countries, ru_names = {}, {}, {}, {}
     try:
-        m = {"movies":"Кино","series":"Сериалы","sports":"Спорт","news":"Новостные","documentary":"Документальные","science":"Познавательные","education":"Познавательные","history":"Документальные","culture":"Познавательные","travel":"Познавательные","music":"Музыкальные","entertainment":"Развлекательные","comedy":"Развлекательные","general":"Общие","business":"Новостные","weather":"Новостные","kids":"Разное","family":"Разное","religious":"Религиозные","lifestyle":"Развлекательные","cooking":"Познавательные","auto":"Познавательные"}
+        m = {"movies":"Кино","series":"Сериалы","sports":"Спорт","news":"Новостные","documentary":"Документальные","science":"Познавательные","education":"Познавательные","history":"Документальные","culture":"Познавательные","travel":"Познавательные","music":"Музыкальные","entertainment":"Развлекательные","comedy":"Развлекательные","general":"Федеральные","business":"Новостные","weather":"Новостные","kids":"Детские","family":"Детские","religious":"Религиозные","lifestyle":"Развлекательные","cooking":"Познавательные","auto":"Познавательные"}
         for ch in json.loads(txt):
             cid = ch.get("id")
             if not cid: continue
@@ -182,7 +242,7 @@ def load_api():
             if nm: names[norm_name(nm)] = cid
             for alt in (ch.get("alt_names") or []): names[norm_name(alt)] = cid
             for n in ([nm] if nm else []) + list(ch.get("alt_names") or []):
-                if n and re.search(r'[а-яА-ЯёЁ]', n): ru_names[cid] = n.strip(); break
+                if n and has_cyrillic(n): ru_names[cid] = n.strip(); break
         p.write_text(json.dumps({"ts":int(time.time()),"cats":cats,"names":names,"countries":countries,"ru_names":ru_names}, ensure_ascii=False), "utf-8")
     except Exception as e: print(f"   API err: {e}")
     return cats, names, countries, ru_names
@@ -210,11 +270,12 @@ async def fetch_src(session, name, url):
     except Exception as e:
         print(f"[src] {name}: {e}"); return name, None
 
+# ============ PARSE ============
 def cmd_parse():
     print("=== PARSE ===")
     sources = load_sources()
     if not sources: print("sources.txt пустой"); return
-    bn, bt, bp, _ = load_epg_map()
+    bn, bt, bp, _, ru = load_epg_map()
     api_cats, api_names, countries, ru_names = load_api()
     wl = load_whitelist()
 
@@ -233,6 +294,10 @@ def cmd_parse():
     child_bl = CFG.get("child_blacklist", [])
     trash_bl = CFG.get("trash_blacklist", [])
     clear_ids = set(OVERRIDES.get("clear_tvg_id", []))
+
+    for w in wl:
+        if w["url"] in seen: st["dup_wl"] += 1; continue
+        seen.add(w["url"]); channels.append(w)
 
     for (sname, _, prio), (_, text) in zip(sources, results):
         if not text: continue
@@ -265,29 +330,57 @@ def cmd_parse():
             kept += 1
         print(f"[parse] {sname}: {kept}")
 
-    for w in wl:
-        if w["url"] in seen: st["dup_wl"] += 1; continue
-        seen.add(w["url"]); channels.append(w)
-
     DATA.joinpath("channels.json").write_text(json.dumps({"updated": now_msk(), "channels": channels}, ensure_ascii=False), "utf-8")
     print(f"[parse] итого {len(channels)}, фильтры: {dict(st)}")
 
+# ============ CATEGORIZE ============
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
+    nn = norm_name(name)
     if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][tvg_id]
-    nn = norm_name(name)
     if nn in OVERRIDES.get("category_by_name", {}):
         return OVERRIDES["category_by_name"][nn]
+    if tvg_id and tvg_id in api_cats: return api_cats[tvg_id]
+    if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
+    for stem, cat in FAMILY_RULES:
+        if nn.startswith(stem) or (" " + stem + " ") in (" " + nn + " "):
+            return cat
+    for city in CITY_HINTS:
+        if city in nn: return "Региональные"
     for cat, kws in CAT_KW.items():
         for k in kws:
             if k in low: return cat
-    if tvg_id and tvg_id in api_cats: return api_cats[tvg_id]
-    if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
     g = (group or "").lower()
     for cat in CATS:
         if cat.lower() in g: return cat
+    if "sport" in g: return "Спорт"
+    if "news" in g: return "Новостные"
+    if "kids" in g or "child" in g: return "Детские"
+    if "movie" in g or "cinema" in g: return "Кино"
+    if "region" in g: return "Региональные"
     return "Разное"
+
+def find_russian_name(name, tvg_id, bn, bt, bp, ru_display, api_names, ru_names):
+    """5 способов найти кириллическое имя."""
+    if tvg_id and tvg_id in ru_display:
+        return ru_display[tvg_id], "epg_by_id"
+    cid, _ = resolve_epg(name, bn, bt, bp)
+    if cid and cid in ru_display:
+        return ru_display[cid], "epg_by_name"
+    api_cid = api_names.get(norm_name(name)) or tvg_id
+    if api_cid and api_cid in ru_names:
+        return ru_names[api_cid], "api"
+    if cid and cid in ru_names:
+        return ru_names[cid], "api_by_epg_id"
+    tr = translit(norm_name(name))
+    if tr and tr in bt:
+        cid2 = bt[tr]
+        if cid2 in ru_display:
+            return ru_display[cid2], "epg_by_translit"
+        if cid2 in ru_names:
+            return ru_names[cid2], "api_by_translit"
+    return None, None
 
 def cmd_categorize():
     print("=== CATEGORIZE ===")
@@ -295,41 +388,52 @@ def cmd_categorize():
     if not p.exists(): print("нет channels.json"); return
     channels = json.loads(p.read_text("utf-8"))["channels"]
     api_cats, api_names, _, ru_names = load_api()
-    bn, bt, bp, ic = load_epg_map()
+    bn, bt, bp, ic, ru_display = load_epg_map()
+
+    epg_stats = Counter()
+    rename_stats = Counter()
 
     for ch in channels:
+        if ch.get("is_whitelist"):
+            if not ch.get("category"):
+                ch["category"] = ch.get("group") or "Whitelist"
+            continue
         ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
+
         if not ch.get("tvg_id"):
-            eid, _ = resolve_epg(ch["name"], bn, bt, bp)
-            if eid: ch["tvg_id"] = eid
+            eid, how = resolve_epg(ch["name"], bn, bt, bp)
+            if eid: ch["tvg_id"] = eid; epg_stats[how] += 1
+            else: epg_stats["no_match"] += 1
+        else:
+            epg_stats["already"] += 1
+
+        if not has_cyrillic(ch["name"]):
+            new_name, method = find_russian_name(
+                ch["name"], ch.get("tvg_id",""),
+                bn, bt, bp, ru_display, api_names, ru_names
+            )
+            if new_name:
+                ch["name"] = new_name
+                rename_stats[method] += 1
+            else:
+                rename_stats["not_found"] += 1
+
         if not ch.get("logo") and ch.get("tvg_id") and ch["tvg_id"] in ic:
             ch["logo"] = ic[ch["tvg_id"]]
-        if not ch.get("is_whitelist") and not re.search(r'[а-яА-ЯёЁ]', ch["name"]):
-            cid = api_names.get(norm_name(ch["name"])) or ch.get("tvg_id","")
-            if cid and cid in ru_names:
-                ch["name"] = ru_names[cid]
+
         tid = ch.get("tvg_id","")
         if tid in OVERRIDES.get("rename_by_tvg_id", {}):
             ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
+            rename_stats["override"] += 1
 
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
             groups[("WL", ch["url"])].append(ch)
         else:
-            groups[norm_name(ch["name"])].append(ch)
+            groups[ch["name"].strip()].append(ch)
 
-    keys = sorted([k for k in groups if not (isinstance(k, tuple) and k[0] == "WL")])
-    used, merged = set(), []
-    for i, k in enumerate(keys):
-        if k in used: continue
-        grp = list(groups[k]); used.add(k)
-        for j in range(i+1, len(keys)):
-            k2 = keys[j]
-            if k2 in used or abs(len(k2) - len(k)) > 8: continue
-            if SequenceMatcher(None, k, k2).ratio() * 100 >= THRESH:
-                grp.extend(groups[k2]); used.add(k2)
-        merged.append(grp)
+    merged = list(groups.values())
     wl_groups = [v for k, v in groups.items() if isinstance(k, tuple) and k[0] == "WL"]
 
     def best(grp):
@@ -358,7 +462,10 @@ def cmd_categorize():
         })
     p.write_text(json.dumps({"updated": now_msk(), "channels": final}, ensure_ascii=False), "utf-8")
     print(f"[cat] групп {len(merged)+len(wl_groups)} -> {len(final)}, с резервом: {fallbacks}")
+    print(f"[cat] EPG: {dict(epg_stats)}")
+    print(f"[cat] RU-NAME: {dict(rename_stats)}")
 
+# ============ CHECK ============
 def pick_ua(host, ua_cache):
     saved = ua_cache.get(host)
     order = []
@@ -410,10 +517,8 @@ async def check_one(session, ch, sem, ua_cache, results, loop):
 def migrate_cache():
     old = ROOT / "cache.json"
     if not old.exists(): return
-    try:
-        d = json.loads(old.read_text("utf-8"))
-    except Exception:
-        return
+    try: d = json.loads(old.read_text("utf-8"))
+    except Exception: return
     mapping = {"Wink":"Wink","TiviMate":"TiviMate","Chrome":"Chrome_Win",
                "AndroidTV":"AndroidTV","VLC":"VLC","SmartTV":"SmartTV"}
     new = {}
@@ -449,6 +554,7 @@ def cmd_check():
     ok = sum(1 for r in results.values() if r.get("ok"))
     print(f"[check] {ok}/{len(to_check)} живых")
 
+# ============ BUILD ============
 def cmd_build():
     print("=== BUILD ===")
     p = DATA / "channels.json"
@@ -484,6 +590,15 @@ def cmd_build():
         items = by_cat.get(cat, [])
         if items: out_groups.append((f"{EMOJI.get(cat,'')} {cat}", items))
 
+    # === Список неклассифицированных — для ручной правки overrides.json ===
+    unmatched = sorted({c["name"] for c in by_cat.get("Разное", [])})
+    (DATA / "unmatched.json").write_text(
+        json.dumps({"updated": now_msk(), "count": len(unmatched), "channels": unmatched},
+                   ensure_ascii=False, indent=2),
+        "utf-8"
+    )
+    print(f"[build] Разное: {len(unmatched)} -> data/unmatched.json")
+
     lines = ['#EXTM3U url-tvg="' + CFG.get("epg_url", "") + '"']
     for grp_name, items in out_groups:
         for c in items:
@@ -509,6 +624,7 @@ def cmd_build():
         "with_fallback": sum(1 for c in channels if len(c["urls"]) > 1),
         "whitelist": sum(1 for c in channels if c.get("is_whitelist")),
         "ua_hosts": len(ua_cache),
+        "unmatched": len(unmatched),
         "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS},
     }
     (ROOT / "dashboard.json").write_text(json.dumps(dash, ensure_ascii=False, indent=2), "utf-8")
@@ -527,9 +643,11 @@ h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
 h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
 h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
+h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
 for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
 h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
+h+='<p><a href="data/unmatched.json">data/unmatched.json</a></p>';
 document.getElementById('s').innerHTML=h;});</script></body></html>"""
     (ROOT / "index.html").write_text(idx, "utf-8")
 
@@ -543,11 +661,15 @@ document.getElementById('s').innerHTML=h;});</script></body></html>"""
           f"- Живых: **{dash['alive']}**",
           f"- Whitelist: {dash['whitelist']}",
           f"- С резервными ссылками: {dash['with_fallback']}",
-          f"- UA-хостов: {dash['ua_hosts']}", "",
+          f"- UA-хостов: {dash['ua_hosts']}",
+          f"- В «Разное» (требует разбора): {dash['unmatched']}", "",
           "## Категории", "", "| Категория | Каналов |", "|---|---|"]
     for cat in CATS:
         rd.append(f"| {EMOJI.get(cat,'')} {cat} | {dash['categories'].get(cat,0)} |")
-    rd += ["", "## Ссылки", "", f"- Плейлист: `{pages}`", f"- EPG: `{CFG.get('epg_url','')}`", ""]
+    rd += ["", "## Ссылки", "",
+           f"- Плейлист: `{pages}`",
+           f"- EPG: `{CFG.get('epg_url','')}`",
+           f"- Неклассифицированные: `data/unmatched.json`", ""]
     (ROOT / "README.md").write_text("\n".join(rd), "utf-8")
 
 def main():
