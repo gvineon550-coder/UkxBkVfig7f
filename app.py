@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""IPTV: parse + categorize + EPG + RU-NAME + check + build. One file."""
+"""IPTV: parse + categorize + EPG + RU-NAME + check + build + uptime. One file."""
 import asyncio, aiohttp, json, re, sys, gzip, io, random, subprocess, time, os
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
@@ -26,11 +26,14 @@ UA_POOL = _load(ROOT / "useragents.json")
 OVERRIDES = _load(ROOT / "overrides.json")
 BLOCKLIST = _load(ROOT / "blocklist.json")
 
-CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Детские","Религиозные","Радио","Разное"])
+CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Религиозные","Радио","Разное"])
 EMOJI = CFG.get("category_emoji", {})
 CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
+
+MIN_CHECKS = CFG.get("auto_cleanup_min_checks", 3)
+MIN_UPTIME = CFG.get("auto_cleanup_min_uptime", 50)
 
 RAW_KEYWORDS = (
     ("нтв", "Федеральные"), ("рен тв", "Федеральные"), ("рен-тв", "Федеральные"),
@@ -67,7 +70,10 @@ RAW_KEYWORDS = (
     ("sony тв", "Кино"), ("sony tv", "Кино"),
     ("дом кино international", "Кино"), ("душевное", "Кино"),
     ("нст", "Кино"), ("nst", "Кино"), ("победа", "Кино"),
-    ("прима", "Кино"),
+    ("прима", "Кино"), ("black", "Кино"), ("red", "Кино"),
+    ("start air", "Кино"), ("start world", "Кино"),
+    ("кинопремьера", "Кино"), ("настоящее страшное", "Кино"),
+    ("премиальное", "Кино"), ("шокирующее", "Кино"),
     ("ani (", "Детские"), ("anime", "Детские"),
     ("mult international", "Детские"), ("мульт international", "Детские"),
     ("nicktoons", "Детские"), ("sevimli tv", "Детские"), ("tiji", "Детские"),
@@ -87,7 +93,7 @@ RAW_KEYWORDS = (
     ("рыбалка и охота", "Познавательные"), ("усадьба", "Познавательные"),
     ("rt д", "Документальные"), ("rtd", "Документальные"),
     ("неизвестная россия", "Документальные"),
-    ("мультимузыка", "Музыкальные"),
+    ("мультимузыка", "Музыкальные"), ("hit", "Музыкальные"),
     ("бобер", "Развлекательные"), ("magnat", "Развлекательные"),
     ("o! (", "Развлекательные"), ("o! (576", "Развлекательные"),
     ("витрина тв", "Развлекательные"), ("мой мир", "Развлекательные"),
@@ -117,6 +123,11 @@ CITY_HINTS = (
     "петропавлов","анадыр","нальчик","черкесск","майкоп","петрозаводск","сыктывкар",
     "архангел","череповец","кострома","иваново","владимир","калуга","ярослав",
     "рыбинск","орёл","симферополь"
+)
+
+# Сырые подстроки в имени канала (до нормализации) → DELETE
+RAW_DELETE = (
+    "латвия", "latvia", "360 latvia",
 )
 
 NOISE = {"тв","tv","hd","uhd","fhd","sd","4k","1080p","720p","full","канал","channel","online","live","stream"}
@@ -380,10 +391,16 @@ def cmd_parse():
         for ch in parse_m3u(text):
             n, u, a = ch["name"], ch["url"], ch["attrs"]
             if is_junk_url(u): st["junk_url"] += 1; continue
+
             low = n.lower()
+            # === RAW_DELETE — проверяем сырое имя ДО нормализации ===
+            if any(k in low for k in RAW_DELETE):
+                st["name_del"] += 1; continue
+
             if any(x in low for x in child_bl): st["child"] += 1; continue
             if any(x in low for x in trash_bl): st["trash"] += 1; continue
             if norm_name(n) in name_del: st["name_del"] += 1; continue
+
             tid = a.get("tvg-id", "")
             base_id = tid.split("@")[0] if tid else ""
             if base_id in blocked_ids: st["blocked_id"] += 1; continue
@@ -497,7 +514,6 @@ def cmd_categorize():
             epg_stats["already"] += 1
         ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
 
-        # Лого: пробуем полный tvg_id → base_id → resolve_epg по имени
         if not ch.get("logo"):
             tid = ch.get("tvg_id","")
             base_tid = tid.split("@")[0] if tid else ""
@@ -516,7 +532,6 @@ def cmd_categorize():
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
 
-    # Развёртка URL в отдельные каналы с [host]
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
@@ -635,6 +650,39 @@ def migrate_cache():
     DATA.joinpath("ua_cache.json").write_text(json.dumps(new, ensure_ascii=False, indent=1), "utf-8")
     print(f"[migrate] cache.json -> data/ua_cache.json, хостов: {len(new)}")
 
+def load_history():
+    p = DATA / "history.json"
+    if p.exists():
+        try:
+            d = json.loads(p.read_text("utf-8"))
+            return d.get("channels", {}), d.get("updated", "")
+        except Exception as e:
+            print(f"  history.json: {e}")
+    return {}, ""
+
+def save_history(hist):
+    (DATA / "history.json").write_text(
+        json.dumps({"updated": now_msk(), "channels": hist}, ensure_ascii=False, indent=1),
+        "utf-8"
+    )
+
+def update_history(hist, results):
+    for name, r in results.items():
+        rec = hist.get(name) or {"checks": 0, "ok": 0, "last_seen": ""}
+        rec["checks"] = rec.get("checks", 0) + 1
+        if r.get("ok"):
+            rec["ok"] = rec.get("ok", 0) + 1
+            rec["last_seen"] = now_msk()
+        hist[name] = rec
+    return hist
+
+def uptime_of(hist, name):
+    rec = hist.get(name) or {}
+    checks = rec.get("checks", 0)
+    ok = rec.get("ok", 0)
+    if checks == 0: return 0, 0
+    return int(ok * 100 / checks), checks
+
 def cmd_check():
     print("=== CHECK ===")
     if (ROOT / "cache.json").exists() and not (DATA / "ua_cache.json").exists():
@@ -676,8 +724,20 @@ def cmd_check():
 
     cp.write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
     DATA.joinpath("check.json").write_text(json.dumps({"updated": now_msk(), "results": results}, ensure_ascii=False), "utf-8")
+
+    hist, _ = load_history()
+    hist = update_history(hist, results)
+    save_history(hist)
+
     ok = sum(1 for r in results.values() if r.get("ok"))
     print(f"[check] {ok}/{total} живых")
+
+    ready = [(n, *uptime_of(hist, n)) for n in results]
+    if ready:
+        valid = [(u, c) for _, u, c in ready if c > 0]
+        if valid:
+            avg_up = int(sum(u for u, _ in valid) / len(valid))
+            print(f"[check] история: {len(hist)} записей, средний аптайм {avg_up}%")
 
 def cmd_build():
     print("=== BUILD ===")
@@ -691,13 +751,45 @@ def cmd_build():
     if (DATA / "ua_cache.json").exists():
         ua_cache = json.loads((DATA / "ua_cache.json").read_text("utf-8"))
 
-    # ===== АВТООЧИСТКА =====
-    total = len(channels)
-    checked = sum(1 for c in channels if c["name"] in check)
-    if CFG.get("auto_cleanup") and total and checked / total >= CFG.get("auto_cleanup_ready_ratio", 0.7):
-        before = total
-        channels = [c for c in channels if c.get("is_whitelist") or check.get(c["name"], {}).get("ok", True)]
-        print(f"[build] автоочистка: удалено {before - len(channels)} мёртвых")
+    hist, _ = load_history()
+
+    # ===== АВТООЧИСТКА ПО АПТАЙМУ + 2 МЁРТВЫХ ПОДРЯД =====
+    do_cleanup = CFG.get("auto_cleanup", True)
+    removed_dead, kept_alive, kept_new = 0, 0, 0
+    if do_cleanup:
+        consec_dead = hist.get("_consecutive_dead") or {}
+        new_consec = {}
+        survivors = []
+        for c in channels:
+            if c.get("is_whitelist"):
+                survivors.append(c); continue
+            name = c["name"]
+            r = check.get(name, {})
+            is_dead_now = (r and not r.get("ok"))
+            prev_dead = consec_dead.get(name, 0)
+            new_consec[name] = (prev_dead + 1) if is_dead_now else 0
+
+            up, ch_count = uptime_of(hist, name)
+
+            remove = False
+            if ch_count == 0:
+                remove = False
+            elif new_consec[name] >= 2:
+                remove = True
+            elif ch_count >= MIN_CHECKS and up < MIN_UPTIME:
+                remove = True
+            else:
+                if ch_count >= MIN_CHECKS: kept_alive += 1
+                else: kept_new += 1
+
+            if remove:
+                removed_dead += 1
+            else:
+                survivors.append(c)
+        channels = survivors
+        hist["_consecutive_dead"] = new_consec
+        save_history(hist)
+        print(f"[build] автоочистка: удалено {removed_dead} (2+ мёртв подряд или аптайм < {MIN_UPTIME}%), стабильных {kept_alive}, новых {kept_new}")
 
     out_groups = []
     for grp in WL_GROUPS_ORDER:
@@ -743,6 +835,11 @@ def cmd_build():
     total_out = sum(len(v) for _, v in out_groups)
     print(f"[build] {out_name}: {total_out} каналов в {len(out_groups)} группах")
 
+    uptimes = [u for n in check for u, cnt in [uptime_of(hist, n)] if cnt > 0]
+    avg_uptime = int(sum(uptimes) / len(uptimes)) if uptimes else 0
+    stable = sum(1 for n in check if uptime_of(hist, n)[0] >= 80 and uptime_of(hist, n)[1] >= MIN_CHECKS)
+    unstable = sum(1 for n in check if MIN_UPTIME <= uptime_of(hist, n)[0] < 80 and uptime_of(hist, n)[1] >= MIN_CHECKS)
+
     dash = {
         "updated": now_msk(),
         "total": len(channels),
@@ -751,6 +848,11 @@ def cmd_build():
         "whitelist": sum(1 for c in channels if c.get("is_whitelist")),
         "ua_hosts": len(ua_cache),
         "unmatched": len(unmatched),
+        "avg_uptime": avg_uptime,
+        "stable_channels": stable,
+        "unstable_channels": unstable,
+        "dead_removed": removed_dead,
+        "history_records": len(hist),
         "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS},
     }
     (ROOT / "dashboard.json").write_text(json.dumps(dash, ensure_ascii=False, indent=2), "utf-8")
@@ -767,12 +869,17 @@ let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div
 h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
 h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
-h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
 h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
 h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
+h+='<div class="row"><b>Средний аптайм</b><span>'+d.avg_uptime+'%</span></div>';
+h+='<div class="row"><b>Стабильных (≥80%)</b><span>'+d.stable_channels+'</span></div>';
+h+='<div class="row"><b>Нестабильных</b><span>'+d.unstable_channels+'</span></div>';
+h+='<div class="row"><b>Удалено мёртвых</b><span>'+d.dead_removed+'</span></div>';
+h+='<div class="row"><b>Записей в истории</b><span>'+d.history_records+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
 for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
 h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
+h+='<p><a href="data/history.json">data/history.json</a></p>';
 document.getElementById('s').innerHTML=h;});</script></body></html>"""
     (ROOT / "index.html").write_text(idx, "utf-8")
 
@@ -785,16 +892,22 @@ document.getElementById('s').innerHTML=h;});</script></body></html>"""
           f"- Всего: {dash['total']}",
           f"- Живых: **{dash['alive']}**",
           f"- Whitelist: {dash['whitelist']}",
-          f"- С резервными ссылками: {dash['with_fallback']}",
           f"- UA-хостов: {dash['ua_hosts']}",
           f"- В «Разное» (требует разбора): {dash['unmatched']}", "",
+          "## Аптайм", "",
+          f"- Средний аптайм: **{dash['avg_uptime']}%**",
+          f"- Стабильных (≥80%): {dash['stable_channels']}",
+          f"- Нестабильных ({MIN_UPTIME}–79%): {dash['unstable_channels']}",
+          f"- Удалено мёртвых: {dash['dead_removed']}",
+          f"- Записей в истории: {dash['history_records']}", "",
           "## Категории", "", "| Категория | Каналов |", "|---|---|"]
     for cat in CATS:
         rd.append(f"| {EMOJI.get(cat,'')} {cat} | {dash['categories'].get(cat,0)} |")
     rd += ["", "## Ссылки", "",
            f"- Плейлист: `{pages}`",
            f"- EPG: `{CFG.get('epg_url','')}`",
-           f"- Неклассифицированные: `data/unmatched.json`", ""]
+           f"- Неклассифицированные: `data/unmatched.json`",
+           f"- История аптайма: `data/history.json`", ""]
     (ROOT / "README.md").write_text("\n".join(rd), "utf-8")
 
 def main():
