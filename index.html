@@ -10,8 +10,8 @@ let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div
 h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
 h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
-h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
-h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
+h+='<div class="row"><b>С логотипом</b><span>'+d.with_logo+'</span></div>';
+h+='<div class="row"><b>Без логотипа</b><span>'+d.without_logo+'</span></div>';
 h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
 for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
