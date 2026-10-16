@@ -54,8 +54,8 @@ jobs:
                       "VLC": 8, "SmartTV": 6, "Kodi": 5, "OTT": 5, "ExoPlayer": 4,
                       "Lavf": 3, "Chrome_Win": 3, "Safari_Mac": 2, "Firefox": 2, "MXPlayer": 2
                   },
-                  "category_order": ["Федеральные","Новостные","Региональные","Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Детские","Религиозные","Радио","Разное"],
-                  "category_emoji": {"Федеральные":"📡","Новостные":"📰","Региональные":"🏙","Кино":"🎬","Сериалы":"📺","Сериалы НТВ":"🎞","Спорт":"⚽","Познавательные":"🌍","Документальные":"🎥","Музыкальные":"🎵","Развлекательные":"🎭","Детские":"🧸","Религиозные":"🙏","Радио":"📻","Разное":"📦"},
+                  "category_order": ["Федеральные","Новостные","Региональные","Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Религиозные","Радио","Разное"],
+                  "category_emoji": {"Федеральные":"📡","Новостные":"📰","Региональные":"🏙","Кино":"🎬","Сериалы":"📺","Сериалы НТВ":"🎞","Спорт":"⚽","Познавательные":"🌍","Документальные":"🎥","Музыкальные":"🎵","Развлекательные":"🎭","Религиозные":"🙏","Радио":"📻","Разное":"📦"},
                   "category_keywords": {
                       "Новостные": ["новост","news","24","известия","рбк","вести","360","дождь","тасс","lenta","информ","вместе"],
                       "Спорт": ["спорт","sport","футбол","football","матч","match","хокке","hockey","теннис","бокс","ufc","mma","арена","arena","биатлон"],
@@ -66,10 +66,9 @@ jobs:
                       "Познавательные": ["science","наука","discovery","nat geo","history","истор","viasat","nano","животн","природа","охота","рыбалк","путешеств","365"],
                       "Документальные": ["документ","documental","tlc","dmax","военн","биограф","катастроф"],
                       "Религиозные": ["религ","церков","православ","ислам","спас","soyuz","царь","3abn","троиц"],
-                      "Радио": ["радио","radio"],
-                      "Детские": ["дет","мульт","kids","child","cartoon","nickelodeon","disney","карусел"]
+                      "Радио": ["радио","radio"]
                   },
-                  "child_blacklist": ["детск","child","kids","cartoon","мульт","nickelodeon","nick jr","карусель","carousel","disney","baby","tiptop","boomerang","смешарик","мультик","gulli"],
+                  "child_blacklist": ["детск","детвора","детское","дети","child","kids","kid ","cartoon","мульт","nickelodeon","nick jr","nickjr","nicktoons","карусель","carousel","disney","дисней","baby","tiptop","boomerang","смешарик","мультик","gulli","gulli girl","junior","джуниор","малыш","умка","clan","jimjam","jim jam","tiji","аниме","anime","ani ","мультиландия","мультимания","мультимузыка","капитан фантастика","радость моя","уникум","discovery kids","улыбка","маша и медведь","фиксики","барбоскины","черепашки ниндзя"],
                   "trash_blacklist": ["shop","магазин","ювелир","leomax","tts","teleshop","adult","18+","test","demo","промо","promo","backup","резерв","xxx","порно","эрот"]
               },
               "useragents.json": {
@@ -121,7 +120,7 @@ jobs:
                       "RodnoeKino.ru":"Кино","RusskiyBestseller.ru":"Кино","RusskiyDetektiv.ru":"Кино",
                       "RusskiyIllusion.ru":"Кино","HorosheeKino.ru":"Кино","StarCinema.ru":"Кино","StarFamily.ru":"Кино",
                       "DomKino.ru":"Кино","Kinoliving.ru":"Кино","KinoTV.ru":"Кино",
-                      "black.ru":"Кино","red.ru":"Кино","STARTAir.ru":"Кино","scifi.ru":"Кино",
+                      "black.ru":"Кино","red.ru":"Кино","STARTAir.ru":"Кино","STARTWorld.ru":"Кино","scifi.ru":"Кино",
                       "NST.ru":"Кино","Premialnoe.ru":"Кино","Shokiruyushchee.ru":"Кино",
                       "Kinopremyera.ru":"Кино","Dushevnoe.ru":"Кино","Nastoyashcheestrashnoe.ru":"Кино",
                       "DiscoveryChannel.ru":"Познавательные","TLC.ru":"Познавательные","FoodNetwork.ru":"Познавательные",
@@ -137,14 +136,14 @@ jobs:
                       "MyZenTV.fr":"Разное","CityEdenMedZdrav.ru":"Разное"
                   },
                   "category_by_name": {
-                      "black":"Кино","red":"Кино","start air":"Кино","sci fi":"Кино","scifi":"Кино",
+                      "black":"Кино","red":"Кино","start air":"Кино","start world":"Кино","sci fi":"Кино","scifi":"Кино",
                       "нст":"Кино","nst":"Кино","кинопремьера":"Кино","kinopremyera":"Кино",
                       "душевное":"Кино","dushevnoe":"Кино",
                       "настоящее страшное":"Кино","nastoyashchee strashnoe":"Кино",
                       "премиальное":"Кино","premialnoe":"Кино",
                       "шокирующее":"Кино","shokiruyushchee":"Кино",
                       "hit":"Музыкальные","хит":"Музыкальные",
-                      "бо́бер":"Развлекательные","бобер":"Развлекательные","bober":"Развлекательные",
+                      "бобер":"Развлекательные","bober":"Развлекательные",
                       "сарафан":"Развлекательные","sarafan":"Развлекательные",
                       "нтв":"Федеральные","первый":"Федеральные","первый канал":"Федеральные",
                       "россия 1":"Федеральные","россия 1 hd":"Федеральные","пятый канал":"Федеральные",
@@ -187,7 +186,7 @@ jobs:
                   "blocked_tvg_ids": ["STSLove.ru","Blokbaster.ru","TV21International.ru","Ostrosyuzhetnoye.ru","Smotrim100Fakty.ru","Smotrim100Prazdnik.ru","Smotrim100Lyubov.ru","Smotrim100Muzhskoe.ru","Smotrim100Klassika.ru","RTVi.ru","RTViUS.us","Channel9.il","DW.de","ArmeniaTVSatellite.am","LifeTV.ee","TBNBaltia.ee","RadioMir.by","AlmatyTV.kz","Channel7.kz","JibekJoly.kz","KTK.kz","Khabar.kz","NTK.kz","Ulytau.kz","SilkWay.kz","24KZ.kz","AtamekenBusiness.kz","ChannelOneEurasia.kz","RTBalkan.ru","RTenEspanol.es","RTEspanol.es","ViasatEpicDrama.ua","312Kino.ua","312TV.ua","RTN.us"],
                   "blocked_url_hosts": ["46.53.200.153","176.118.197.101","178.134.1.158","vod.tuva.ru","kino-1.catcast.tv"],
                   "blocked_urls_exact": ["https://stream.smotrim.ru/hls2/russia_k/playlist_5.m3u8"],
-                  "bad_domains_suffix": ["adf.ly","shorte.st","sh.st","ouo.io","linkvertise.com","sub2unlock.com","bit.ly","tinyurl.com","goo.gl","clck.ru","vk.cc","cutt.ly","rb.gy","is.gd"],
+                  "bad_domains_suffix": ["cinerama.uz","adf.ly","shorte.st","sh.st","ouo.io","linkvertise.com","sub2unlock.com","bit.ly","tinyurl.com","goo.gl","clck.ru","vk.cc","cutt.ly","rb.gy","is.gd"],
                   "bad_extensions": [".jpg",".jpeg",".png",".gif",".webp",".bmp",".svg",".ico",".html",".htm",".php",".asp",".aspx",".jsp",".zip",".rar",".7z",".tar",".gz",".exe",".dmg",".apk",".deb",".rpm"],
                   "bad_ports": [":22/",":21/",":23/",":25/",":110/",":143/",":3306/",":5432/",":6379/",":27017/",":9200/",":11211/"],
                   "fake_domains": ["local","test","invalid","example","localhost"],
