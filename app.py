@@ -32,7 +32,7 @@ CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
 
-API_VER = 2  # ← увеличил, чтобы форсировать перезакачку api_cache с логотипами
+API_VER = 3  # v3: отдельная загрузка logos.json
 
 RAW_KEYWORDS = (
     ("нтв", "Федеральные"), ("рен тв", "Федеральные"), ("рен-тв", "Федеральные"),
@@ -305,11 +305,11 @@ def load_api():
     if p.exists():
         try:
             d = json.loads(p.read_text("utf-8"))
-            if d.get("version") == API_VER and time.time() - d.get("ts", 0) < ttl:
+            if d.get("version") == API_VER and time.time() - d.get("ts", 0) < ttl and d.get("logos"):
                 print(f"   API из кэша (logos: {len(d.get('logos',{}))})")
                 return d["cats"], d["names"], d["countries"], d["ru_names"], d.get("logos", {})
         except: pass
-    print("   DL API")
+    print("   DL API channels")
     txt = download(CFG.get("api_url",""))
     if not txt: return {}, {}, {}, {}, {}
     cats, names, countries, ru_names, logos = {}, {}, {}, {}, {}
@@ -319,7 +319,6 @@ def load_api():
             cid = ch.get("id")
             if not cid: continue
             if ch.get("country"): countries[cid] = ch["country"]
-            if ch.get("logo"): logos[cid] = ch["logo"]
             for c in (ch.get("categories") or []):
                 if c.lower() in m: cats[cid] = m[c.lower()]; break
             nm = ch.get("name")
@@ -327,13 +326,30 @@ def load_api():
             for alt in (ch.get("alt_names") or []): names[norm_name(alt)] = cid
             for n in ([nm] if nm else []) + list(ch.get("alt_names") or []):
                 if n and has_cyrillic(n): ru_names[cid] = n.strip(); break
+    except Exception as e: print(f"   API channels err: {e}")
+
+    print("   DL API logos")
+    txt2 = download("https://iptv-org.github.io/api/logos.json")
+    if txt2:
+        try:
+            for rec in json.loads(txt2):
+                cid = rec.get("channel")
+                url = rec.get("url")
+                if cid and url:
+                    if cid not in logos or (".svg" in logos[cid] and ".svg" not in url):
+                        logos[cid] = url
+            print(f"   API: {len(logos)} логотипов")
+        except Exception as e:
+            print(f"   API logos err: {e}")
+
+    try:
         p.write_text(json.dumps({
             "version": API_VER, "ts": int(time.time()),
             "cats": cats, "names": names, "countries": countries,
             "ru_names": ru_names, "logos": logos
         }, ensure_ascii=False), "utf-8")
-        print(f"   API: {len(logos)} логотипов")
-    except Exception as e: print(f"   API err: {e}")
+    except Exception as e:
+        print(f"   API save err: {e}")
     return cats, names, countries, ru_names, logos
 
 def load_sources():
@@ -516,23 +532,18 @@ def cmd_categorize():
             epg_stats["already"] += 1
         ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
 
-        # ===== 4 УРОВНЯ ЛОГОТИПОВ =====
         if not ch.get("logo"):
             tid = ch.get("tvg_id","")
             base_tid = tid.split("@")[0] if tid else ""
-            # 1) EPG по точному tvg_id / base_id
             for cand in (tid, base_tid):
                 if cand and cand in ic:
                     ch["logo"] = ic[cand]; logo_stats["epg"] += 1; break
-            # 2) API logos по base_id
             if not ch.get("logo") and base_tid and base_tid in api_logos:
                 ch["logo"] = api_logos[base_tid]; logo_stats["api_by_base_id"] += 1
-            # 3) API logos по имени
             if not ch.get("logo"):
                 api_cid = api_names.get(norm_name(ch["name"]))
                 if api_cid and api_cid in api_logos:
                     ch["logo"] = api_logos[api_cid]; logo_stats["api_by_name"] += 1
-            # 4) resolve_epg → EPG icon
             if not ch.get("logo"):
                 eid2, _ = resolve_epg(ch["name"], bn, bt, bp)
                 if eid2 and eid2 in ic:
@@ -754,7 +765,6 @@ def cmd_build():
     )
     print(f"[build] Разное: {len(unmatched)} -> data/unmatched.json")
 
-    # Статистика логотипов
     with_logo = sum(1 for c in channels if c.get("logo"))
     without_logo = len(channels) - with_logo
 
