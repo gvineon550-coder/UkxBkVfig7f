@@ -10,11 +10,9 @@ let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div
 h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
 h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
-h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
 h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
 h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
 for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
 h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
-h+='<p><a href="data/unmatched.json">data/unmatched.json</a></p>';
 document.getElementById('s').innerHTML=h;});</script></body></html>

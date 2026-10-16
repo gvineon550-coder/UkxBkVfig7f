@@ -596,330 +596,392 @@ https://bl.rutube.ru/livestream/f27b804a6f805cb66ff83d4930bd17ff/index.m3u8?s=mE
 #EXTINF:-1 tvg-id="FX" tvg-logo="https://raw.githubusercontent.com/gvineon550-coder/bl_logos/main/%D1%84%D0%BE%D0%BA%D1%81.png" group-title="Rutube",FX
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://bl.rutube.ru/livestream/bcf8e82a331067e567f765d65ed52b21/index.m3u8?s=6U2H53WuJxFduCItVrD7Qg&e=2090673740&scheme=https
-#EXTINF:-1 tvg-id="2x2.ru@SD" tvg-logo="" group-title="📡 Федеральные",Дважды два
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://bl.rutube.ru/livestream/392b4686b770bae2da6bf5ac4574add5/index.m3u8?e=2068731801&s=tenr-yHXUv1wibfka78s2A&scheme=https
+#EXTINF:-1 tvg-id="2x2.ru@SD" tvg-logo="" group-title="📡 Федеральные",Дважды два [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/187/index.m3u8
+#EXTINF:-1 tvg-id="2x2.ru@SD" tvg-logo="" group-title="📡 Федеральные",Дважды два [flussonic.mkpnet.ru]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://flussonic.mkpnet.ru/tv-17540fb90079a865/video.m3u8
+#EXTINF:-1 tvg-id="2x2.ru@SD" tvg-logo="" group-title="📡 Федеральные",Дважды два [185.23.80.23]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://185.23.80.23:8080/2x2/index.m3u8
-#EXTINF:-1 tvg-id="ChannelOne.ru@SD" tvg-logo="" group-title="📡 Федеральные",Channel One (576p)
+#EXTINF:-1 tvg-id="ChannelOne.ru@SD" tvg-logo="" group-title="📡 Федеральные",Channel One (576p) [45.153.24.78]
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://45.153.24.78/1TV/index.m3u8
+#EXTINF:-1 tvg-id="ChannelOne.ru@SD" tvg-logo="" group-title="📡 Федеральные",Channel One (576p) [178.217.49.7]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.217.49.7/1/index.m3u8
-http://45.145.32.13:20440/pervyj_kanal/index.m3u8?token=test
+#EXTINF:-1 tvg-id="ChannelOne.ru@SD" tvg-logo="" group-title="📡 Федеральные",Channel One (576p) [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_1/index.m3u8
-#EXTINF:-1 tvg-id="ChannelOne.ru@HD" tvg-logo="" group-title="📡 Федеральные",Channel One HD (720p)
+#EXTINF:-1 tvg-id="Domashniy.ru@SD" tvg-logo="" group-title="📡 Федеральные",Dомашний [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-https://edge1.1internet.tv/dash-live2/streams/1tv-dvr/1tvdash.mpd
-https://stream8.cinerama.uz/1214/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Domashniy.ru@SD" tvg-logo="" group-title="📡 Федеральные",Dомашний
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/227/index.m3u8
+#EXTINF:-1 tvg-id="Domashniy.ru@SD" tvg-logo="" group-title="📡 Федеральные",Dомашний [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/domashniy/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Domashniy.ru@SD" tvg-logo="" group-title="📡 Федеральные",Dомашний [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_14/index.m3u8
-#EXTINF:-1 tvg-id="tnt-music" tvg-logo="https://iptvx.one/picons/tnt-music.png" group-title="📡 Федеральные",ТНТ-Music
+#EXTINF:-1 tvg-id="tnt-music" tvg-logo="https://iptvx.one/picons/tnt-music.png" group-title="📡 Федеральные",ТНТ-Music [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/TNT_MUSIC_HD/video.m3u8
 http://stream.mcquack.net/317/index.m3u8
-https://stream8.cinerama.uz/1272/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Friday.ru@SD" tvg-logo="" group-title="📡 Федеральные",Пятница!
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Friday.ru@SD" tvg-logo="" group-title="📡 Федеральные",Пятница! [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/181/index.m3u8
+#EXTINF:-1 tvg-id="Friday.ru@SD" tvg-logo="" group-title="📡 Федеральные",Пятница! [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/Pyatnica/index.m3u8
+#EXTINF:-1 tvg-id="Friday.ru@SD" tvg-logo="" group-title="📡 Федеральные",Пятница! [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_16/index.m3u8
-#EXTINF:-1 tvg-id="Mir.ru@SD" tvg-logo="https://i.imgur.com/AqWaJT8.png" group-title="📡 Федеральные",Мир
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://cdn4.skygo.mn/live/disk1/MIR/HLSv3-FTA/MIR.m3u8
+#EXTINF:-1 tvg-id="Mir.ru@SD" tvg-logo="" group-title="📡 Федеральные",Мир [45.153.24.78]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://45.153.24.78/MIR/index.m3u8
+#EXTINF:-1 tvg-id="Mir.ru@SD" tvg-logo="" group-title="📡 Федеральные",Мир [tvcdn01.oktv.kz]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://tvcdn01.oktv.kz/tv/mir/index.m3u8
-https://stream8.cinerama.uz/1218/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="Mir.ru@SD" tvg-logo="" group-title="📡 Федеральные",Мир [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/mir/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Mir.ru@SD" tvg-logo="" group-title="📡 Федеральные",Мир [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_18/index.m3u8
 #EXTINF:-1 tvg-id="Mir.ru@HD" tvg-logo="" group-title="📡 Федеральные",Мир HD
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mirtv_2500/playlist.m3u8
 #EXTINF:-1 tvg-id="Mir.ru@Kazakhstan" tvg-logo="" group-title="📡 Федеральные",Мир Kazakhstan
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://tvcdn01.esilnet.kz/tv/mir/index.m3u8
-#EXTINF:-1 tvg-id="MuzTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Муз-ТВ
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://46.32.176.50/muztv/index.m3u8
-http://185.71.81.6:8080/20/index.m3u8
-http://hls127.freeott.top:8080/MUZ_TV/video.m3u8
-http://stream.mcquack.net/86/index.m3u8
-https://stream8.cinerama.uz/1200/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/muz_tv/mono.m3u8?token=onlinetv
-http://31.148.5.241/kanal_20/index.m3u8
-#EXTINF:-1 tvg-id="NTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1023/tracks-v1a1/mono.m3u8
-http://45.153.24.78/NTV/index.m3u8
-https://cdn.ntv.ru/ntv-spb/index.m3u8
-http://31.148.5.241/kanal_4/index.m3u8
-#EXTINF:-1 tvg-id="NTV.ru@HD" tvg-logo="" group-title="📡 Федеральные",НТВ HD
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://bl.rutube.ru/livestream/c37cd74192c6bc3d6cd6077c0c4fd686/index.m3u8?e=2077050299&s=HSWg81JrQ3OqmwuWkEIDAQ&scheme=https
+http://tvcdn01.esilnet.kz/tv/mir/index.m3u8
+#EXTINF:-1 tvg-id="MuzTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Муз-ТВ [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/86/index.m3u8
+#EXTINF:-1 tvg-id="MuzTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Муз-ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/muz_tv/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="MuzTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Муз-ТВ [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/kanal_20/index.m3u8
+#EXTINF:-1 tvg-id="NTV.ru@HD" tvg-logo="" group-title="📡 Федеральные",НТВ HD [cdn-dvr.ntv.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/ntv0_hd/index.m3u8
+#EXTINF:-1 tvg-id="NTV.ru@HD" tvg-logo="" group-title="📡 Федеральные",НТВ HD [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/ntv/index.m3u8
-#EXTINF:-1 tvg-id="NTVMir.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ-Мир
+#EXTINF:-1 tvg-id="NTVMir.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ-Мир [5.188.159.128]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/ntvmir_TV/index.m3u8
+#EXTINF:-1 tvg-id="NTVMir.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ-Мир [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/ntv_mir/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="NTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ [cdn.ntv.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+https://cdn.ntv.ru/ntv-spb/index.m3u8
+#EXTINF:-1 tvg-id="NTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/kanal_4/index.m3u8
 #EXTINF:-1 tvg-id="NTVSeries.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ Сериал
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/301/index.m3u8
 #EXTINF:-1 tvg-id="NTVVitrina.ru@SD" tvg-logo="" group-title="📡 Федеральные",НТВ Витрина
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/vitrina/index.m3u8
-#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Рен ТВ
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/REN-TV/index.m3u8
-http://185.23.80.23:8080/REN/index.m3u8
-http://45.145.32.13:20440/ren_tv/index.m3u8?token=test
-http://flussonic.linkintel.ru/ren_tv/index.m3u8
-http://31.148.5.241/kanal_11/index.m3u8
-#EXTINF:-1 tvg-id="Russia1.ru@SD" tvg-logo="https://i.imgur.com/Osd2JHL.png" group-title="📡 Федеральные",Россия-1
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://vgtrkregion-reg.cdnvideo.ru/vgtrk/maykop/russia1-hd/index.m3u8
-https://stream8.cinerama.uz/1020/tracks-v1a1/mono.m3u8
-http://109.207.243.18/2/index.m3u8
-http://31.148.5.241/kanal_2/index.m3u8
-#EXTINF:-1 tvg-id="Russia1.ru@HD" tvg-logo="" group-title="📡 Федеральные",Россия-1 HD
+#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Рен ТВ [185.23.80.23]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://185.23.80.23:8080/REN/index.m3u8
+#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Рен ТВ [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+http://flussonic.linkintel.ru/ren_tv/index.m3u8
+#EXTINF:-1 tvg-id="RENTV.ru@SD" tvg-logo="" group-title="📡 Федеральные",Рен ТВ [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/kanal_11/index.m3u8
+#EXTINF:-1 tvg-id="Russia1.ru@HD" tvg-logo="" group-title="📡 Федеральные",Россия-1 HD [stream.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/russia_hd/playlist_6.m3u8
+#EXTINF:-1 tvg-id="Russia1.ru@HD" tvg-logo="" group-title="📡 Федеральные",Россия-1 HD [live.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live.smotrim.ru/vgtrk/0/russia1-hd/index.m3u8
-#EXTINF:-1 tvg-id="RussiaK.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-К
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Russia1.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-1 [109.207.243.18]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://109.207.243.18/2/index.m3u8
+#EXTINF:-1 tvg-id="Russia1.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-1 [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/kanal_2/index.m3u8
+#EXTINF:-1 tvg-id="RussiaK.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-К [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/229/index.m3u8
-https://stream8.cinerama.uz/1048/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="RussiaK.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-К [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/rossia_k/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="RussiaK.ru@SD" tvg-logo="" group-title="📡 Федеральные",Россия-К [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_6/index.m3u8
 #EXTINF:-1 tvg-id="RusskiyBestseller.ru@SD" tvg-logo="" group-title="📡 Федеральные",Русский бестселлер
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/208/index.m3u8
-#EXTINF:-1 tvg-id="Solnce.ru@SD" tvg-logo="" group-title="📡 Федеральные",Солнце
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Solnce/index.m3u8
-http://46.32.176.50/solnce/index.m3u8
+http://stream.mcquack.net/208/index.m3u8
+#EXTINF:-1 tvg-id="Solnce.ru@SD" tvg-logo="" group-title="📡 Федеральные",Солнце [217.114.191.150]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://217.114.191.150/Solnce/index.m3u8
+#EXTINF:-1 tvg-id="Solnce.ru@SD" tvg-logo="" group-title="📡 Федеральные",Солнце [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/118/index.m3u8
+#EXTINF:-1 tvg-id="Solnce.ru@SD" tvg-logo="" group-title="📡 Федеральные",Солнце [tv.mediacdn.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://tv.mediacdn.ru/live/solntse/playlist.m3u8
-#EXTINF:-1 tvg-id="STS.ru@SD" tvg-logo="" group-title="📡 Федеральные",СТС
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTINF:-1 tvg-id="STS.ru@SD" tvg-logo="" group-title="📡 Федеральные",СТС [tshift-1.telecoma.tv]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://tshift-1.telecoma.tv/sts/index.m3u8
-http://45.153.24.78/STS/index.m3u8
+#EXTINF:-1 tvg-id="STS.ru@SD" tvg-logo="" group-title="📡 Федеральные",СТС [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/sts/index.m3u8
+#EXTINF:-1 tvg-id="STS.ru@SD" tvg-logo="" group-title="📡 Федеральные",СТС [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/sts/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="STS.ru@SD" tvg-logo="" group-title="📡 Федеральные",СТС [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_13/index.m3u8
 #EXTINF:-1 tvg-id="STS.ru@HD" tvg-logo="" group-title="📡 Федеральные",СТС HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/138/index.m3u8
-#EXTINF:-1 tvg-id="Subbota.ru@SD" tvg-logo="" group-title="📡 Федеральные",Суббота!
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://bl.rutube.ru/livestream/310744c10a5809da38aa445c952976da/index.m3u8?e=2066519758&s=dmUf6BUQzDBTwtQOseAfog&scheme=https
-http://217.114.191.150/Subbota/index.m3u8
-http://46.32.176.50/subbota/index.m3u8
-#EXTINF:-1 tvg-id="Subbota.ru@HD" tvg-logo="" group-title="📡 Федеральные",Суббота! HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/269/index.m3u8
-#EXTINF:-1 tvg-id="TNT.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/135/index.m3u8
-http://flussonic.linkintel.ru/tnt/index.m3u8
-http://31.148.5.241/kanal_19/index.m3u8
-#EXTINF:-1 tvg-id="TVCentr.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Tv_Center/video.m3u8
-http://185.71.81.6:8080/10/index.m3u8
+http://stream.mcquack.net/138/index.m3u8
+#EXTINF:-1 tvg-id="Subbota.ru@SD" tvg-logo="" group-title="📡 Федеральные",Суббота! [217.114.191.150]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://217.114.191.150/Subbota/index.m3u8
+#EXTINF:-1 tvg-id="Subbota.ru@HD" tvg-logo="" group-title="📡 Федеральные",Суббота! HD
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/269/index.m3u8
+#EXTINF:-1 tvg-id="TNT.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/135/index.m3u8
+#EXTINF:-1 tvg-id="TNT.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+http://flussonic.linkintel.ru/tnt/index.m3u8
+#EXTINF:-1 tvg-id="TNT.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/kanal_19/index.m3u8
+#EXTINF:-1 tvg-id="TVCentr.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр [tvc-hls.cdnvideo.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://tvc-hls.cdnvideo.ru/tvc-res/smil:vd9221.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="TVCentr.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/tvc/index.m3u8
-https://stream8.cinerama.uz/1025/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="TVCentr.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/tvc/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="TVCentr.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_10/index.m3u8
-#EXTINF:-1 tvg-id="TV3.ru@Belarus" tvg-logo="" group-title="📡 Федеральные",TV-3 (576p)
+#EXTINF:-1 tvg-id="TV3.ru@Belarus" tvg-logo="" group-title="📡 Федеральные",TV-3 (576p) [178.124.179.122]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/TB-3/index.m3u8
+#EXTINF:-1 tvg-id="TV3.ru@SD" tvg-logo="" group-title="📡 Федеральные",TV-3 (576p) [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/tv-3/index.m3u8
+#EXTINF:-1 tvg-id="TV3.ru@SD" tvg-logo="" group-title="📡 Федеральные",TV-3 (576p) [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_15/index.m3u8
 #EXTINF:-1 tvg-id="U.ru@SD" tvg-logo="" group-title="📡 Федеральные",U (720p)
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://bl.rutube.ru/livestream/5c9327074e25ca86f3111d4085cbbb65/index.m3u8?e=2066519758&s=9cPc1rCGu6M932eqrifRhQ&scheme=https
-#EXTINF:-1 tvg-id="U.ru@SD" tvg-logo="" group-title="📡 Федеральные",U (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="U.ru@SD" tvg-logo="" group-title="📡 Федеральные",U (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/230/index.m3u8
+#EXTINF:-1 tvg-id="U.ru@SD" tvg-logo="" group-title="📡 Федеральные",U (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/u/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Zvezda.ru@SD" tvg-logo="" group-title="📡 Федеральные",Звезда
+#EXTINF:-1 tvg-id="Zvezda.ru@SD" tvg-logo="" group-title="📡 Федеральные",Звезда [51.158.144.33]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://51.158.144.33:2021/zvezda/index.m3u8
-https://stream8.cinerama.uz/1050/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="Zvezda.ru@SD" tvg-logo="" group-title="📡 Федеральные",Звезда [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/zvezda/index.m3u8
+#EXTINF:-1 tvg-id="Zvezda.ru@SD" tvg-logo="" group-title="📡 Федеральные",Звезда [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/zvezda/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Zvezda.ru@SD" tvg-logo="" group-title="📡 Федеральные",Звезда [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_17/index.m3u8
-#EXTINF:-1 tvg-id="Zvezda.ru@HD" tvg-logo="https://i.imgur.com/4PAcpfM.png" group-title="📡 Федеральные",Звезда HD
+#EXTINF:-1 tvg-id="Zvezda.ru@HD" tvg-logo="" group-title="📡 Федеральные",Звезда HD [tvchannelstream1.tvzvezda.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist.m3u8
+#EXTINF:-1 tvg-id="Zvezda.ru@HD" tvg-logo="https://i.imgur.com/4PAcpfM.png" group-title="📡 Федеральные",Звезда HD [tvzvezda.bonus-tv.ru]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://tvzvezda.bonus-tv.ru/cdn/tvzvezda/playlist.m3u8
-https://tvchannelstream1.tvzvezda.ru/cdn/tvzvezda/playlist.m3u8
 #EXTINF:-1 tvg-id="Solnce.ru@SD" tvg-logo="" group-title="📡 Федеральные",Солнце (576p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tv.mediacdn.ru/live/solntse/playlist.m3u8
 #EXTINF:-1 tvg-id="Che.ru@SD" tvg-logo="" group-title="📡 Федеральные",Че
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/che/index.m3u8
-#EXTINF:-1 tvg-id="OTR.ru@SD" tvg-logo="" group-title="📡 Федеральные",ОТР
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="OTR.ru@SD" tvg-logo="" group-title="📡 Федеральные",ОТР [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/otr/index.m3u8
+#EXTINF:-1 tvg-id="OTR.ru@SD" tvg-logo="" group-title="📡 Федеральные",ОТР [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_9/index.m3u8
-#EXTINF:-1 tvg-id="TNT4.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ4
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="TNT4.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ4 [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/tnt4/index.m3u8
+#EXTINF:-1 tvg-id="TNT4.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ4 [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/106/index.m3u8
 #EXTINF:-1 tvg-id="TV3.ru@HD" tvg-logo="" group-title="📡 Федеральные",TV-3 HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/136/index.m3u8
 #EXTINF:-1 tvg-id="TNT4International.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТНТ4 International
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/tnt4/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="RENTVInternational.ru@SD" tvg-logo="" group-title="📡 Федеральные",РенТВ International
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/ren/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="O.ru@International" tvg-logo="" group-title="📡 Федеральные",О! International
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/o/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="TVCentrInternational.ru@SD" tvg-logo="" group-title="📡 Федеральные",ТВ Центр International
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1281/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="ChannelOneCIS.ru@SD" tvg-logo="" group-title="📡 Федеральные",Первый СНГ
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/perviy_kanal_sng/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TNTInternational.ru@Belarus" tvg-logo="" group-title="📡 Федеральные",ТНТ International Belarus
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 http://05cea6e8.ucomist.net/iptv/VK7YCHHWNDD8XC/15230/index.m3u8
 #EXTINF:-1 tvg-id="ChannelOne.ru@Europa" tvg-logo="" group-title="📡 Федеральные",Первый канал Europa
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://streaming.thestream.cyou/live/210-req_offset_28000000-req_window_0-1k_v5.m3u8
 #EXTINF:-1 tvg-id="NTV.ru@Plus1" tvg-logo="https://i.imgur.com/9r1BKzK.png" group-title="📡 Федеральные",НТВ +1
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/ntv1/playlist.m3u8
 #EXTINF:-1 tvg-id="NTV.ru@Plus2" tvg-logo="https://i.imgur.com/9r1BKzK.png" group-title="📡 Федеральные",НТВ +2
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/ntv2/playlist.m3u8
 #EXTINF:-1 tvg-id="NTV.ru@Plus4" tvg-logo="https://i.imgur.com/9r1BKzK.png" group-title="📡 Федеральные",НТВ +4
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/ntv4/playlist.m3u8
 #EXTINF:-1 tvg-id="NTV.ru@Plus7" tvg-logo="https://i.imgur.com/9r1BKzK.png" group-title="📡 Федеральные",НТВ +7
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/ntv7/playlist.m3u8
 #EXTINF:-1 tvg-id="ZvezdaPlus.ru@HD" tvg-logo="https://i.imgur.com/NNmjD9Z.png" group-title="📡 Федеральные",Звезда Плюс HD
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tvzvezda.bonus-tv.ru/cdn/zvezdaplus/playlist.m3u8
-#EXTINF:-1 tvg-id="360.ru@SD" tvg-logo="" group-title="📰 Новостные",360 (Латвия)
+#EXTINF:-1 tvg-id="360.ru@SD" tvg-logo="" group-title="📰 Новостные",360 (Латвия) [cdn-evacoder-tv.facecast.io]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://cdn-evacoder-tv.facecast.io/evacoder_hls_hi/CkxfR1xNUAJwTgtXTBZTAJli/index.m3u8
+#EXTINF:-1 tvg-id="360.ru@SD" tvg-logo="" group-title="📰 Новостные",360 (Латвия) [streaming.thestream.cyou]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://streaming.thestream.cyou/live/7000.m3u8
+#EXTINF:-1 tvg-id="360.ru@SD" tvg-logo="" group-title="📰 Новостные",360 (Латвия) [edge-tv-ll.facecast.io]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://edge-tv-ll.facecast.io/evacoder_hls_hi/UBZfFgtKB1JwTwoDERNQVGGs/0.m3u8
-#EXTINF:-1 tvg-id="360News.ru@SD" tvg-logo="https://i.imgur.com/YXDeX8q.png" group-title="📰 Новостные",360° Новости
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-03-srt.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="360News.ru@SD" tvg-logo="" group-title="📰 Новостные",360° Новости [edge-tv-ll.facecast.io]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://edge-tv-ll.facecast.io/evacoder_hls_hi/UBZfFgtKB1JwTwoDERNQVGGs/index.m3u8
+#EXTINF:-1 tvg-id="360News.ru@SD" tvg-logo="https://i.imgur.com/YXDeX8q.png" group-title="📰 Новостные",360° Новости [live-vgtrksmotrim.cdnvideo.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-03-srt.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="Mir24.ru@SD" tvg-logo="" group-title="📰 Новостные",Мир 24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/mir_24/index.m3u8
-https://stream8.cinerama.uz/1219/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Moskva24.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва-24
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTINF:-1 tvg-id="Moskva24.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва-24 [stream.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls/givc8/playlist.m3u8?entity=channel&id=798&sign=37881ef2e289f062ceff0dca6c24dc58
+#EXTINF:-1 tvg-id="Moskva24.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва-24 [stream.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/givc9/playlist_4.m3u8
+#EXTINF:-1 tvg-id="Moskva24.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва-24 [stream.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/moscow_24/playlist_3.m3u8
-http://45.145.32.13:20440/moskva24/index.m3u8?token=test
+#EXTINF:-1 tvg-id="Moskva24.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва-24 [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/moskva24/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="MoskvaDoveriye.ru@SD" tvg-logo="" group-title="📰 Новостные",Москва. Доверие
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/doverie/playlist_3.m3u8
 #EXTINF:-1 tvg-id="ProBusiness.ru@SD" tvg-logo="" group-title="📰 Новостные",PRODеньги
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://tv-streaming.bsh.ru:21938/probusiness/probusiness.stream/playlist.m3u8
 #EXTINF:-1 tvg-id="RT.ru@SD" tvg-logo="" group-title="📰 Новостные",RT (720p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://212.5.144.156:8080/rt/index.m3u8
-#EXTINF:-1 tvg-id="RT.ru@HD" tvg-logo="" group-title="📰 Новостные",RT HD (1080p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/RT_HD/index.m3u8
+#EXTINF:-1 tvg-id="RT.ru@HD" tvg-logo="" group-title="📰 Новостные",RT HD (1080p) [wisewatchoott.wiseplayout.com]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://wisewatchoott.wiseplayout.com/RT/master.m3u8
-#EXTINF:-1 tvg-id="Russia24.ru@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Rossiya-24_Logo.svg/960px-Rossiya-24_Logo.svg.png" group-title="📰 Новостные",Россия-24
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-https://vgtrkregion-reg.cdnvideo.ru/vgtrk/habarovsk/russia24-sd/index.m3u8
+#EXTINF:-1 tvg-id="Russia24.ru@SD" tvg-logo="" group-title="📰 Новостные",Россия-24 [stream.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/russia24nl_smotrim/playlist_5.m3u8
-https://stream8.cinerama.uz/1021/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="Russia24.ru@SD" tvg-logo="" group-title="📰 Новостные",Россия-24 [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/rossia_24/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Russia24.ru@SD" tvg-logo="" group-title="📰 Новостные",Россия-24 [dmi3y-tv.online]
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 http://dmi3y-tv.online/hls/smotrim/T2/CH_RUSSIA24_INT.m3u8
+#EXTINF:-1 tvg-id="Russia24.ru@SD" tvg-logo="" group-title="📰 Новостные",Россия-24 [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_7/index.m3u8
-#EXTINF:-1 tvg-id="Russia24.ru@HD" tvg-logo="" group-title="📰 Новостные",Россия-24 HD
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://77.232.131.211/Rossiya24/index.m3u8
-https://vgtrkregion-reg.cdnvideo.ru/vgtrk/0/russia24-hd/index.m3u8
+#EXTINF:-1 tvg-id="Russia24.ru@HD" tvg-logo="" group-title="📰 Новостные",Россия-24 HD [live.smotrim.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live.smotrim.ru/vgtrk/0/russia24-hd/index.m3u8
 #EXTINF:-1 tvg-id="SolovyovLive.ru@SD" tvg-logo="" group-title="📰 Новостные",Соловьёв Live
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/solovievlive/playlist_6.m3u8
-#EXTINF:-1 tvg-id="T24.ru@SD" tvg-logo="" group-title="📰 Новостные",Т24
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="T24.ru@SD" tvg-logo="" group-title="📰 Новостные",Т24 [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/209/index.m3u8
-https://stream8.cinerama.uz/1037/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="T24.ru@SD" tvg-logo="" group-title="📰 Новостные",Т24 [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/tehno_24/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="VestiFM.ru@HD" tvg-logo="" group-title="📰 Новостные",Вести FM HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://stream.smotrim.ru/hls2/vesti_fm/playlist_4.m3u8
-#EXTINF:-1 tvg-id="VmesteRF.ru@SD" tvg-logo="https://i.imgur.com/KI1qZNc.png" group-title="📰 Новостные",Вместе-РФ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://qcpdqumitwf.a.trbcdn.net/livemastersrt/pr4mw_lvie-vmesterf-srt.smil/playlist.m3u8
-https://streaming.thestream.cyou/live/7006.m3u8
-#EXTINF:-1 tvg-id="Vremya.ru@SD" tvg-logo="https://i.imgur.com/jZlj3ga.png" group-title="📰 Новостные",Время
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://cdn4.skygo.mn/live/disk1/Vremya/HLSv3-FTA/Vremya.m3u8
-http://stream.mcquack.net/237/index.m3u8
-https://fs.uplink.kz/vremya/mono.m3u8?token=onlinetv
-http://88.212.15.19/live/test_vremya/playlist.m3u8
-#EXTINF:-1 tvg-id="Izvestia.ru@SD" tvg-logo="" group-title="📰 Новостные",Известия (1080p)
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+https://stream.smotrim.ru/hls2/vesti_fm/playlist_4.m3u8
+#EXTINF:-1 tvg-id="VmesteRF.ru@SD" tvg-logo="" group-title="📰 Новостные",Вместе-РФ [streaming.thestream.cyou]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+https://streaming.thestream.cyou/live/7006.m3u8
+#EXTINF:-1 tvg-id="VmesteRF.ru@SD" tvg-logo="https://i.imgur.com/KI1qZNc.png" group-title="📰 Новостные",Вместе-РФ [qcpdqumitwf.a.trbcdn.net]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+https://qcpdqumitwf.a.trbcdn.net/livemastersrt/pr4mw_lvie-vmesterf-srt.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="Vremya.ru@SD" tvg-logo="" group-title="📰 Новостные",Время [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/237/index.m3u8
+#EXTINF:-1 tvg-id="Vremya.ru@SD" tvg-logo="" group-title="📰 Новостные",Время [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/vremya/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Izvestia.ru@SD" tvg-logo="" group-title="📰 Новостные",Известия (1080p)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://igi-hls.cdnvideo.ru/igi/igi_tcode/playlist.m3u8
 #EXTINF:-1 tvg-id="RedLine.ru@SD" tvg-logo="" group-title="📰 Новостные",Красная линия (480p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://s55766.cdn.ngenix.net/s55766-media-origin/rline_high/index.m3u8
 #EXTINF:-1 tvg-id="RedLine.ru@SD" tvg-logo="" group-title="📰 Новостные",Красная линия (288p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://s55766.cdn.ngenix.net/s55766-media-origin/rline_low/index.m3u8
 #EXTINF:-1 tvg-id="Mir24.ru@SD" tvg-logo="" group-title="📰 Новостные",Мир 24 (1080p)
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://hls.mirtv.cdnvideo.ru/mirtv-parampublish/mir24_2500/playlist.m3u8
 #EXTINF:-1 tvg-id="GovoritMoskva.ru@SD" tvg-logo="" group-title="📰 Новостные",Радио Говорит Москва (Веб-камера) (720p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://video.govoritmoskva.ru/rufm/index.m3u8
 #EXTINF:-1 tvg-id="RBKTV.ru@SD" tvg-logo="" group-title="📰 Новостные",РБК (560p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://92.50.128.180/utv/1358/index.m3u8
-#EXTINF:-1 tvg-id="RBKTV.ru@SD" tvg-logo="" group-title="📰 Новостные",РБК (СПБ) (576p)
-#EXTVLCOPT:http-user-agent=Kodi/20.5 (Windows NT 10.0; Win64; x64) App_Bitness/64 Version/20.5
-https://online-video.rbc.ru/spb/rbctv_spb.m3u8
+#EXTINF:-1 tvg-id="RBKTV.ru@SD" tvg-logo="" group-title="📰 Новостные",РБК-ТВ
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0
+http://online-video.rbc.ru/online2/rbctv.m3u8
 #EXTINF:-1 tvg-id="S1.ru@SD" tvg-logo="" group-title="📰 Новостные",С1 (Сургут) (1080p) [Not 24/7]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://sitv.ru/hls/stv.m3u8
 #EXTINF:-1 tvg-id="TKR.ru@SD" tvg-logo="" group-title="📰 Новостные",ТКР (Рязань) (1080p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://live.tkr.cdnvideo.ru/tkr/tkr.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="Tolk.ru@HD" tvg-logo="" group-title="📰 Новостные",Толк HD (720p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://live-tolknews.cdnvideo.ru/tolknews/stream/playlist.m3u8
 #EXTINF:-1 tvg-id="ShchyolkovskoeTV.ru@SD" tvg-logo="" group-title="📰 Новостные",Щёлковское ТВ (576p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36
 http://stream0.tv41.ru/live.m3u8
 #EXTINF:-1 tvg-id="DumaTV.ru@SD" tvg-logo="" group-title="📰 Новостные",ДумаТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://185.23.80.23:8080/DumaTV/index.m3u8
 #EXTINF:-1 tvg-id="RTRPlaneta.ru@CIS" tvg-logo="" group-title="📰 Новостные",РТР-Планета CIS
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/rtr_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="India.ru@SD" tvg-logo="" group-title="📰 Новостные",India (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/india/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="NovorossiyaTV.ru@SD" tvg-logo="" group-title="📰 Новостные",Новороссия ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
@@ -931,520 +993,532 @@ http://31.131.139.253:9002/oplot_hd/index.m3u8
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.131.141.195:8000/play/a006/index.m3u8
 #EXTINF:-1 tvg-id="Belarus24.by@SD" tvg-logo="https://i.imgur.com/BP7tY6F.png" group-title="📰 Новостные",Беларусь-24
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://ott-7.sevstar.net/belarus24/index.m3u8
 #EXTINF:-1 tvg-id="Belarus24.by@HD" tvg-logo="https://i.imgur.com/BP7tY6F.png" group-title="📰 Новостные",Беларусь-24 HD
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus24.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="CurrentTimeTV.cz@SD" tvg-logo="https://i.imgur.com/hKo8ApU.png" group-title="📰 Новостные",Настоящее Время
+#EXTVLCOPT:http-user-agent=MXPlayer/1.71.6 (Linux; Android 11)
+https://rfe-ingest.akamaized.net/hls/live/2033043/tvmc05/master.m3u8
 #EXTINF:-1 tvg-id="EuronewsRussian.fr@SD" tvg-logo="https://i.imgur.com/8t9mdg9.png" group-title="📰 Новостные",Евроновости
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://cdn-euronews.akamaized.net/live/eds/euronews-ru/25071/index.m3u8
 #EXTINF:-1 tvg-id="KrikTV.ru@SD" tvg-logo="https://i.imgur.com/rtuChZR.png" group-title="📰 Новостные",Крик-ТВ
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://cdn-01.bonus-tv.ru/kriktv_edge/playlist.m3u8
 #EXTINF:-1 tvg-id="PerviyInformationniy.by@HD" tvg-logo="https://i.imgur.com/eIiXRAI.png" group-title="📰 Новостные",Первый информационный HD
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ngtrk.dc.beltelecom.by/ngtrk/smil:informacionnyy.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="PervyyRespublikanskiy.ru@SD" tvg-logo="https://i.imgur.com/ti4OMBv.png" group-title="📰 Новостные",Первый Республиканский
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=ExoPlayerLib/2.18.1
 https://streaming.televizor-24-tochka.ru/live/27.m3u8
 #EXTINF:-1 tvg-id="RTRPlaneta.ru@Asia" tvg-logo="https://i.imgur.com/0YEahxs.png" group-title="📰 Новостные",РТР-Планета Asia
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=ExoPlayerLib/2.18.1
 https://streaming.televizor-24-tochka.ru/live/211.m3u8
 #EXTINF:-1 tvg-id="RTRPlaneta.ru@Europe" tvg-logo="https://i.imgur.com/0YEahxs.png" group-title="📰 Новостные",РТР-Планета Europe
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls/planeta_rtr_euro/playlist.m3u8?entity=channel&id=510&sign=5c0ac65d75140fac2fd938d77c92138d
 #EXTINF:-1 tvg-id="TVRain.nl@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Tvrain.svg/960px-Tvrain.svg.png" group-title="📰 Новостные",Дождь
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://wl.tvrain.tv/transcode/ngrp:ses_all/playlist.m3u8
-#EXTINF:-1 tvg-id="UzReportTV.uz@SD" tvg-logo="https://i.imgur.com/Bch2RHc.jpg" group-title="📰 Новостные",UzReport TV (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1015/tracks-v1a1/playlist.m3u8
-#EXTINF:-1 tvg-id="Channel8.ru@SD" tvg-logo="" group-title="🏙 Региональные",Channel 8 (576p)
+#EXTINF:-1 tvg-id="Channel8.ru@SD" tvg-logo="" group-title="🏙 Региональные",Channel 8 (576p) [45.11.139.43]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://45.11.139.43:8555/8kanal/index.m3u8
-http://hls127.freeott.top:8080/8_KANAL/video.m3u8
+#EXTINF:-1 tvg-id="Channel8.ru@SD" tvg-logo="" group-title="🏙 Региональные",Channel 8 (576p) [tshift-1.telecoma.tv]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://tshift-1.telecoma.tv/8channel/index.m3u8
+#EXTINF:-1 tvg-id="Channel8.ru@SD" tvg-logo="" group-title="🏙 Региональные",Channel 8 (576p) [v4.proofix.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://v4.proofix.ru/okino-tv/index.m3u8
+#EXTINF:-1 tvg-id="Channel8.ru@SD" tvg-logo="" group-title="🏙 Региональные",Channel 8 (576p) [v4.proofix.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://v4.proofix.ru/8tv-russia/index.m3u8
 #EXTINF:-1 tvg-id="Channel8Krasnoyarsk.ru@HD" tvg-logo="" group-title="🏙 Региональные",8 канал Красноярск HD
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://tshift-1.telecoma.tv/8channel/tracks-v1a1/mono.ts.m3u8
 #EXTINF:-1 tvg-id="Channel8Novosibirsk.ru@SD" tvg-logo="" group-title="🏙 Региональные",8 канал Новосибирск
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-8knsk.cdnvideo.ru/8knsk/stream1/playlist.m3u8
 #EXTINF:-1 tvg-id="Enisey.ru@SD" tvg-logo="" group-title="🏙 Региональные",Енисей
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://tshift-1.telecoma.tv/enisei/index.m3u8
 #EXTINF:-1 tvg-id="Groznyj.ru@SD" tvg-logo="" group-title="🏙 Региональные",Грозный
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://balancer.facecast.io/evacoder_hls_hi/UUMLQVAYVlZyH14GRENQVV0G/2/720-3.m3u8
 #EXTINF:-1 tvg-id="SanktPeterburg.ru@HD" tvg-logo="" group-title="🏙 Региональные",Санкт-Петербург HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/ext_spbtv/playlist_5.m3u8
 #EXTINF:-1 tvg-id="SochiLive.ru@HD" tvg-logo="" group-title="🏙 Региональные",Sochi Live HD (720p) [Not 24/7]
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://serv30.vintera.tv:8081/sochi/sochi_stream/playlist.m3u8
-#EXTINF:-1 tvg-id="TNVPlanet.ru@SD" tvg-logo="" group-title="🏙 Региональные",ТНВ-Планета
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1062/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/tnv/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TNVTatarstan.ru@SD" tvg-logo="" group-title="🏙 Региональные",ТНВ
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://user91229.clients-cdnnow.ru/hls/user91229_1.m3u8
 #EXTINF:-1 tvg-id="Astrahan24.ru@SD" tvg-logo="" group-title="🏙 Региональные",Астрахань 24 (720p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://streaming.astrakhan.ru/astrakhan24/playlist.m3u8
 #EXTINF:-1 tvg-id="Belgorod24.ru@SD" tvg-logo="" group-title="🏙 Региональные",Белгород 24 (1080p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://belnovosti.cdn.easyhoster.ru:8443/stream.m3u8
 #EXTINF:-1 tvg-id="Vetta24.ru@SD" tvg-logo="" group-title="🏙 Региональные",Ветта 24 (Пермь) (576p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://serv24.vintera.tv:8081/vetta/vetta_office/playlist.m3u8
 #EXTINF:-1 tvg-id="Volga.ru@SD" tvg-logo="" group-title="🏙 Региональные",Волга (HD)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tele2dvrnat01-02.cdnvideo.ru/stream/NAT_Volga/hls/1920x1080@4504/playlist.m3u8
 #EXTINF:-1 tvg-id="GuberniaSamara.ru@SD" tvg-logo="" group-title="🏙 Региональные",Губерния (Самара) (576p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://live.guberniatv.cdnvideo.ru/guberniatv/guberniatv.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="Enisey.ru@SD" tvg-logo="" group-title="🏙 Региональные",Енисей (1080p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://hls-eniseytv.cdnvideo.ru/eniseytv/stream1/playlist.m3u8
 #EXTINF:-1 tvg-id="MirBelogorya.ru@SD" tvg-logo="" group-title="🏙 Региональные",Мир Белагорья (720p) [Geo-blocked]
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://mirbelogorya.ru:8080/mirbelogorya/index.m3u8
 #EXTINF:-1 tvg-id="MirBelogorya.ru@SD" tvg-logo="" group-title="🏙 Региональные",Мир Белогорья (720p) [Geo-blocked]
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://stream.tvbelgorod.ru:8080/mirbelogorya/index.m3u8
 #EXTINF:-1 tvg-id="NVKSakha.ru@SD" tvg-logo="" group-title="🏙 Региональные",НВК Саха (1080p) [Not 24/7]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://live-saha.cdnvideo.ru/saha/saha/playlist.m3u8
 #EXTINF:-1 tvg-id="SamaraGIS.ru@SD" tvg-logo="" group-title="🏙 Региональные",Самара ГИС (1080p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://tv.samaragis.ru/new/new/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Sever.ru@SD" tvg-logo="" group-title="🏙 Региональные",Север (Нарьян-Мар)
-#EXTVLCOPT:http-user-agent=MXPlayer/1.71.6 (Linux; Android 11)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://2vko9pchwon.a.trbcdn.net/livemaster/8ilgc_cw63ucn03p.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="Sochi24.ru@SD" tvg-logo="" group-title="🏙 Региональные",Сочи 24 HD (720p)
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://serv30.vintera.tv:8081/sochi/sochi24_tv/playlist.m3u8
 #EXTINF:-1 tvg-id="YaltaTV.ru@SD" tvg-logo="" group-title="🏙 Региональные",Yalta TV (480p) [Geo-blocked]
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://195.26.83.96:7029/play/a006
 #EXTINF:-1 tvg-id="Channel8International.ru@SD" tvg-logo="" group-title="🏙 Региональные",8 канал International
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://live-11cinema.cdnvideo.net/11cinemanet/11cinemanet/playlist.m3u8
 #EXTINF:-1 tvg-id="Kuban24.ru@MaikopskoyeTelevidenie" tvg-logo="" group-title="🏙 Региональные",Кубань 24 MaikopskoyeTelevidenie
 #EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 http://dmi3y-tv.online/hls/zabava/region/MAYK/CH_MAYKOP.m3u8
 #EXTINF:-1 tvg-id="Arkhyz24.ru@SD" tvg-logo="https://i.imgur.com/blAtdkJ.png" group-title="🏙 Региональные",Архыз 24
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://live.mediacdn.ru/sr1/arhis24/playlist.m3u8
 #EXTINF:-1 tvg-id="Belarus4.by@Gomel" tvg-logo="https://i.imgur.com/XNkQrMr.png" group-title="🏙 Региональные",Беларусь 4 Гомель Gomel
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live.dc.beltelecom.by/trkgomel/trkgomel.stream/playlist.m3u8
 #EXTINF:-1 tvg-id="Belarus4.by@Vitebsk" tvg-logo="https://i.imgur.com/XNkQrMr.png" group-title="🏙 Региональные",Беларусь 4 Витебск Vitebsk
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ngtrk.dc.beltelecom.by/vtv/bt4.stream/playlist.m3u8
 #EXTINF:-1 tvg-id="BST.ru@SD" tvg-logo="https://i.imgur.com/IDotHmQ.png" group-title="🏙 Региональные",БСТ
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://bsttv.bonus-tv.ru/cdn/bst/playlist.m3u8
 #EXTINF:-1 tvg-id="Dagestan.ru@SD" tvg-logo="https://i.imgur.com/jumkRvc.png" group-title="🏙 Региональные",Дагестан
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://dagestan.mediacdn.ru/cdn/dagestan/playlist.m3u8
 #EXTINF:-1 tvg-id="Ingushetia.ru@SD" tvg-logo="https://i.imgur.com/Fw2Hkk4.png" group-title="🏙 Региональные",Ингушетия
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ingushetia.mediacdn.ru/cdn/ingushetia/playlist.m3u8
 #EXTINF:-1 tvg-id="KentronTV.am@SD" tvg-logo="https://i.imgur.com/eCaxBFn.png" group-title="🏙 Региональные",Kentron TV (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/39/index.m3u8
 #EXTINF:-1 tvg-id="Kuban24.ru@SD" tvg-logo="https://i.imgur.com/atzrXcz.png" group-title="🏙 Региональные",Кубань 24
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36
 https://rt-sth-krdar-htlive.cdn.ngenix.net/hls/CH_R04_KUBAN24/variant.m3u8
 #EXTINF:-1 tvg-id="NTK21.ru@HD" tvg-logo="https://i.imgur.com/W9s1flH.png" group-title="🏙 Региональные",НТК 21 HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://s97982.cdn.ngenix.net/hls/CH_R79_OTT_DV_HVSK_NTK/variant.m3u8
 #EXTINF:-1 tvg-id="Surgut24.ru@SD" tvg-logo="https://i.imgur.com/OxvqXMt.png" group-title="🏙 Региональные",Сургут 24
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://sitv.ru/vgtrk/stv.m3u8
 #EXTINF:-1 tvg-id="SvoyoTV.ru@SD" tvg-logo="https://i.imgur.com/3cP2fmX.png" group-title="🏙 Региональные",Своё ТВ
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://svoetv.mediacdn.ru/cdn/svoetv/playlist.m3u8
 #EXTINF:-1 tvg-id="TDK42.kz@SD" tvg-logo="https://i.imgur.com/iVhdcS7.png" group-title="🏙 Региональные",ТДК 42
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-tdk42kz.cdnvideo.ru/tdk42kz/tdk42kz_720.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="TelekanalKrasnodar.ru@HD" tvg-logo="https://i.imgur.com/YVtutzp.png" group-title="🏙 Региональные",Телеканал Краснодар HD
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://live-tvkrasnodar.cdnvideo.ru/tvkrasnodar/tvkrasnodar.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="UgraTV.ru@SD" tvg-logo="https://i.imgur.com/561FRwI.png" group-title="🏙 Региональные",Югра-ТВ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-ugratv.cdnvideo.ru/ugratv/ugratv/playlist.m3u8
-#EXTINF:-1 tvg-id="red.ru@SD" tvg-logo="" group-title="🎬 Кино",Sony ТВ HD
+#EXTINF:-1 tvg-id="red.ru@SD" tvg-logo="" group-title="🎬 Кино",Sony ТВ HD [5.188.159.128]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/RED/index.m3u8
+#EXTINF:-1 tvg-id="red.ru@SD" tvg-logo="" group-title="🎬 Кино",Sony ТВ HD [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/69/index.m3u8
 #EXTINF:-1 tvg-id="scifi.ru@SD" tvg-logo="" group-title="🎬 Кино",.sci-fi (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/180/index.m3u8
 #EXTINF:-1 tvg-id="AmediaHit.ru@SD" tvg-logo="" group-title="🎬 Кино",Amedia Hit (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/162/index.m3u8
-#EXTINF:-1 tvg-id="Cinema.ru@SD" tvg-logo="" group-title="🎬 Кино",Cinema
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://catchup.videoline.ru/cinema/playlist.m3u8
-https://stream8.cinerama.uz/1227/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Domkino.ru@SD" tvg-logo="" group-title="🎬 Кино",Дом кино
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Domkino.ru@SD" tvg-logo="" group-title="🎬 Кино",Дом кино [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/236/index.m3u8
-https://stream8.cinerama.uz/1054/tracks-v1a1/mono.m3u8
-http://88.212.15.19/live/test_dom_kino/playlist.m3u8
-#EXTINF:-1 tvg-id="DomkinoPremium.ru@HD" tvg-logo="" group-title="🎬 Кино",Дом кино Премиум HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="DomkinoPremium.ru@HD" tvg-logo="" group-title="🎬 Кино",Дом кино Премиум HD [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/108/index.m3u8
+#EXTINF:-1 tvg-id="DomkinoPremium.ru@HD" tvg-logo="" group-title="🎬 Кино",Дом кино Премиум HD [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/dom_kino_premium/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Dorama.ru@SD" tvg-logo="" group-title="🎬 Кино",Дорама
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1273/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/dorama/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Dorama.ru@HD" tvg-logo="" group-title="🎬 Кино",Дорама HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/412/index.m3u8
 #EXTINF:-1 tvg-id="Dushevnoe.ru@HD" tvg-logo="" group-title="🎬 Кино",Душевное SD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/213/index.m3u8
 #EXTINF:-1 tvg-id="Evrokino.ru@HD" tvg-logo="" group-title="🎬 Кино",Еврокино HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/385/index.m3u8
 #EXTINF:-1 tvg-id="FAN.ru@SD" tvg-logo="" group-title="🎬 Кино",FAN (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/420/index.m3u8
 #EXTINF:-1 tvg-id="Fox.ru@SD" tvg-logo="" group-title="🎬 Кино",Fox Россия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/182/index.m3u8
-#EXTINF:-1 tvg-id="Hit.ru@HD" tvg-logo="" group-title="🎬 Кино",Hit HD (1080p)
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/XitHD/video.m3u8
+http://stream.mcquack.net/182/index.m3u8
+#EXTINF:-1 tvg-id="Hit.ru@HD" tvg-logo="" group-title="🎬 Кино",Hit HD (1080p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/363/index.m3u8
 #EXTINF:-1 tvg-id="HorosheeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Хорошее кино
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://live-rian.cdnvideo.ru/rian/rus-radio/playlist.m3u8
-#EXTINF:-1 tvg-id="IndiyskoyeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Индийское кино
+#EXTINF:-1 tvg-id="IndiyskoyeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Индийское кино [188.113.190.12]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://188.113.190.12/329/index.m3u8
-http://stream.mcquack.net/104/index.m3u8
-https://stream8.cinerama.uz/1060/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/indiyskoe_kino/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="KinoTV.ru@SD" tvg-logo="https://i.imgur.com/sMpamNO.png" group-title="🎬 Кино",Кино UHD
+#EXTINF:-1 tvg-id="IndiyskoyeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Индийское кино [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Kino_TV_HD/index.m3u8
+http://stream.mcquack.net/104/index.m3u8
+#EXTINF:-1 tvg-id="IndiyskoyeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Индийское кино [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/indiyskoe_kino/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="KinoTV.ru@SD" tvg-logo="" group-title="🎬 Кино",Кино UHD [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/221/index.m3u8
+#EXTINF:-1 tvg-id="KinoTV.ru@SD" tvg-logo="" group-title="🎬 Кино",Кино UHD [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/kino-tv/index.m3u8
-#EXTINF:-1 tvg-id="KinoHit.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинохит
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="KinoHit.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинохит [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/126/index.m3u8
-https://stream8.cinerama.uz/1055/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="KinoHit.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинохит [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinohit/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Kinokomedija.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинокомедия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Kinokomedija.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинокомедия [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/265/index.m3u8
+#EXTINF:-1 tvg-id="Kinokomedija.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинокомедия [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinokomedia/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Kinomix.ru@SD" tvg-logo="" group-title="🎬 Кино",Киномикс
+#EXTINF:-1 tvg-id="Kinomix.ru@SD" tvg-logo="" group-title="🎬 Кино",Киномикс [93.170.254.17]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://93.170.254.17/Kinomiks/index.m3u8
+#EXTINF:-1 tvg-id="Kinomix.ru@SD" tvg-logo="" group-title="🎬 Кино",Киномикс [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/133/index.m3u8
+#EXTINF:-1 tvg-id="Kinomix.ru@SD" tvg-logo="" group-title="🎬 Кино",Киномикс [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinomix/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Kinopokaz.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинопоказ SD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/64/index.m3u8
-https://stream8.cinerama.uz/1057/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Kinopremyera.ru@SD" tvg-logo="" group-title="🎬 Кино",Кинопремьера
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/KINOPREMIERA/index.m3u8
-https://stream8.cinerama.uz/1207/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Kinosemja.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносемья
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/170/index.m3u8
-https://fs.uplink.kz/kinosemya/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Kinoseriya.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносерия
+#EXTINF:-1 tvg-id="Kinosemja.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносемья [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Kinoseriya_HD/video.m3u8
+http://stream.mcquack.net/170/index.m3u8
+#EXTINF:-1 tvg-id="Kinosemja.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносемья [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/kinosemya/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Kinoseriya.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносерия [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinoseria/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Kinosvidanie.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносвидание
+#EXTINF:-1 tvg-id="Kinosvidanie.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносвидание [5.188.159.128]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/kinosvidanie/index.m3u8
+#EXTINF:-1 tvg-id="Kinosvidanie.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносвидание [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/171/index.m3u8
-https://stream8.cinerama.uz/1203/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="Kinosvidanie.ru@SD" tvg-logo="" group-title="🎬 Кино",Киносвидание [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinosvidanie/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Kinouzhas.ru@SD" tvg-logo="" group-title="🎬 Кино",Киноужас
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Kinouzhas.ru@SD" tvg-logo="" group-title="🎬 Кино",Киноужас [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/278/index.m3u8
+#EXTINF:-1 tvg-id="Kinouzhas.ru@SD" tvg-logo="" group-title="🎬 Кино",Киноужас [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinouzhas/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Komedia.ru@SD" tvg-logo="" group-title="🎬 Кино",Комедия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/68/index.m3u8
-#EXTINF:-1 tvg-id="MosfilmGoldCollection.ru@SD" tvg-logo="" group-title="🎬 Кино",Мосфильм Золотая коллекция
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.222.235.15/mosfilm/index.m3u8
-http://hls127.freeott.top:8080/Mosfilm/video.m3u8
+http://stream.mcquack.net/68/index.m3u8
+#EXTINF:-1 tvg-id="MosfilmGoldCollection.ru@SD" tvg-logo="" group-title="🎬 Кино",Мосфильм Золотая коллекция [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/369/index.m3u8
+#EXTINF:-1 tvg-id="MosfilmGoldCollection.ru@SD" tvg-logo="" group-title="🎬 Кино",Мосфильм Золотая коллекция [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/mosfilm/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Muzhskoekino.ru@SD" tvg-logo="" group-title="🎬 Кино",Мужское кино HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Muzhskoekino.ru@SD" tvg-logo="" group-title="🎬 Кино",Мужское кино HD [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/107/index.m3u8
+#EXTINF:-1 tvg-id="Muzhskoekino.ru@SD" tvg-logo="" group-title="🎬 Кино",Мужское кино HD [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/muzhskoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Nashe.ru@HD" tvg-logo="" group-title="🎬 Кино",#НАШЕ music HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/217/index.m3u8
 #EXTINF:-1 tvg-id="Nashemuzhskoe.ru@HD" tvg-logo="" group-title="🎬 Кино",Наше Мужское HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/362/index.m3u8
-#EXTINF:-1 tvg-id="NasheNovoeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Наше новое кино
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Nashe_Novoe_Kino_HD/video.m3u8
-https://stream8.cinerama.uz/1051/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="NasheNovoeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Наше новое кино [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/nashe_novoe_kino/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Nostalgia.ru@SD" tvg-logo="" group-title="🎬 Кино",Nostalgia (576p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Nostalgiya/video.m3u8
+#EXTINF:-1 tvg-id="Nostalgia.ru@SD" tvg-logo="" group-title="🎬 Кино",Nostalgia (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/nostalgia/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="NST.ru@SD" tvg-logo="" group-title="🎬 Кино",НСТ
+#EXTINF:-1 tvg-id="NST.ru@SD" tvg-logo="" group-title="🎬 Кино",НСТ [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/HCTV/video.m3u8
 http://stream.mcquack.net/207/index.m3u8
 #EXTINF:-1 tvg-id="Patriot.ru@SD" tvg-logo="" group-title="🎬 Кино",Патриот
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/static/playlist_4.m3u8
 #EXTINF:-1 tvg-id="Premialnoe.ru@HD" tvg-logo="" group-title="🎬 Кино",Премиальное SD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/421/index.m3u8
-#EXTINF:-1 tvg-id="RodnoeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Родное кино
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="RodnoeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Родное кино [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/242/index.m3u8
-https://stream8.cinerama.uz/1052/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="RodnoeKino.ru@SD" tvg-logo="" group-title="🎬 Кино",Родное кино [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/rodnoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="RusskiyDetektiv.ru@SD" tvg-logo="" group-title="🎬 Кино",Русский детектив
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/204/index.m3u8
-#EXTINF:-1 tvg-id="Russkiyroman.ru@SD" tvg-logo="https://i.imgur.com/cQN0P2B.png" group-title="🎬 Кино",Русский роман
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Russkiy_Roman_HD/index.m3u8
+http://stream.mcquack.net/204/index.m3u8
+#EXTINF:-1 tvg-id="Russkiyroman.ru@SD" tvg-logo="" group-title="🎬 Кино",Русский роман [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/266/index.m3u8
 #EXTINF:-1 tvg-id="Shokiruyushchee.ru@HD" tvg-logo="" group-title="🎬 Кино",Шокирующее SD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/75/index.m3u8
 #EXTINF:-1 tvg-id="StarCinema.ru@SD" tvg-logo="" group-title="🎬 Кино",Star Cinema Россия
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://dash2.antik.sk/live/test_star_cinema_atktv/playlist.m3u8
 #EXTINF:-1 tvg-id="StarFamily.ru@SD" tvg-logo="" group-title="🎬 Кино",Star Family Россия
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://dash2.antik.sk/live/test_star_family_atktv/playlist.m3u8
-#EXTINF:-1 tvg-id="STARTAir.ru@SD" tvg-logo="" group-title="🎬 Кино",START Air (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="STARTAir.ru@SD" tvg-logo="" group-title="🎬 Кино",START Air (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/128/index.m3u8
+#EXTINF:-1 tvg-id="STARTAir.ru@SD" tvg-logo="" group-title="🎬 Кино",START Air (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/start_air/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="vijuTV1000.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="vijuTV1000.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/110/index.m3u8
+#EXTINF:-1 tvg-id="vijuTV1000.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/viju_tv1000/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="vijuTV1000action.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 action (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="vijuTV1000action.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 action (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/100/index.m3u8
+#EXTINF:-1 tvg-id="vijuTV1000action.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 action (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/viju_tv1000_action/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="vijuTV1000action.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 action
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1225/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="vijuTV1000russkoe.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 Русское
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1058/tracks-v1a1/mono.m3u8
-https://stream8.cinerama.uz/1059/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/viju_tv1000_russkoe/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="vijuPlusMegahit.ru@HD" tvg-logo="" group-title="🎬 Кино",viju+ Megahit HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/200/index.m3u8
 #EXTINF:-1 tvg-id="vijuPlusPremiere.ru@HD" tvg-logo="" group-title="🎬 Кино",viju+ Premiere HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/202/index.m3u8
 #EXTINF:-1 tvg-id="Prima.ru@SD" tvg-logo="" group-title="🎬 Кино",Прима (1080p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://tele2dvrnat01-02.cdnvideo.ru/stream/NAT_Prima/hls/index.m3u8
-#EXTINF:-1 tvg-id="Pobeda.ru@SD" tvg-logo="" group-title="🎬 Кино",Победа
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://94.155.93.182/POBEDA_HD/index.m3u8
+#EXTINF:-1 tvg-id="Pobeda.ru@SD" tvg-logo="" group-title="🎬 Кино",Победа [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/pobeda/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="AmediaHit.ru@SD" tvg-logo="" group-title="🎬 Кино",Amedia Hit (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/amedia-hit/index.m3u8
 #EXTINF:-1 tvg-id="Cinema.ru@SD" tvg-logo="" group-title="🎬 Кино",Cinema (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/cinema/index.m3u8
 #EXTINF:-1 tvg-id="Domkino.ru@International" tvg-logo="" group-title="🎬 Кино",Дом кино International International
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/dom_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Evrokino.ru@SD" tvg-logo="" group-title="🎬 Кино",Еврокино
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/eurokino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Kinopremyera.ru@HD" tvg-logo="" group-title="🎬 Кино",Кинопремьера HD
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinopremiera_hd/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="vijuTV1000russkoe.ru@SD" tvg-logo="" group-title="🎬 Кино",viju TV1000 Русское
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_tv1000_russkoe/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="RusskiyIllusion.ru@SD" tvg-logo="" group-title="🎬 Кино",Русский Иллюзион
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/russkiy_illusion/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Dorama.ru@SD" tvg-logo="" group-title="🎬 Кино",Дорама
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/dorama/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="STARTWorld.ru@SD" tvg-logo="" group-title="🎬 Кино",START World (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/start_world/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TV21.ru@SD" tvg-logo="" group-title="🎬 Кино",ТВ-21+
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/tvxxi/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Quadro.ru@4K" tvg-logo="" group-title="🎬 Кино",Quadro (2160p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://57.128.231.171:8080/316/index.m3u8
-#EXTINF:-1 tvg-id="BollywoodHD.ro@Russia" tvg-logo="https://i.imgur.com/scDKOLS.png" group-title="🎬 Кино",Bollywood HD Russia (576p)
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15
-https://xykt-fix.github.io/cinerama_edge01/hls/BOLLYWOOD_RU/Movie009.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoAction.ru@HD" tvg-logo="https://i.imgur.com/uuzuvD0.png" group-title="🎬 Кино",Сити Эдем КиноЭкшен HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/41333/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoArt.ru@HD" tvg-logo="https://i.imgur.com/67CWCtz.png" group-title="🎬 Кино",Сити Эдем КиноАрт HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/38398/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoAsia.ru@HD" tvg-logo="https://i.imgur.com/gaket4B.png" group-title="🎬 Кино",Сити Эдем КиноАзия HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/34393/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoDetektiv.ru@HD" tvg-logo="https://i.imgur.com/9rKHwBV.png" group-title="🎬 Кино",Сити Эдем КиноДетектив HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/41327/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoDrama.ru@HD" tvg-logo="https://i.imgur.com/29ddffh.png" group-title="🎬 Кино",Сити Эдем КиноДрама HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/45269/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoFantastika.ru@HD" tvg-logo="https://i.imgur.com/I64FeIO.png" group-title="🎬 Кино",Сити Эдем КиноФантастика HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/45268/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoKlassika.ru@HD" tvg-logo="https://i.imgur.com/0qGCS1S.png" group-title="🎬 Кино",Сити Эдем КиноКлассика HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/34185/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoKomediya.ru@HD" tvg-logo="https://i.imgur.com/Aga2XVA.png" group-title="🎬 Кино",Сити Эдем КиноКомедия HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/41331/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenKinoMistika.ru@HD" tvg-logo="https://i.imgur.com/s1Pid0K.png" group-title="🎬 Кино",Сити Эдем КиноМистика HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/40783/index.m3u8
 #EXTINF:-1 tvg-id="KinoBoevik.kz@SD" tvg-logo="https://kt.server-img.lfstrm.tv/images/channel_logos/logo_66b351f01f828dca40d006b3.png" group-title="🎬 Кино",КиноБоевик
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kinoboevik/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Mirovoekino.kz@SD" tvg-logo="https://tele2.server-img.lfstrm.tv/images/channel_logos/logo_65c24031d8bec399a7aa2226.png" group-title="🎬 Кино",Мировое кино
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/mirovoe_kino/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="5minuttishiny.ru@SD" tvg-logo="" group-title="📺 Сериалы",Пять минут тишины
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/5_minut_tishiny/index.m3u8
 #EXTINF:-1 tvg-id="Balabol.ru@SD" tvg-logo="" group-title="📺 Сериалы",Балабол
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Balabol/index.m3u8
 #EXTINF:-1 tvg-id="FoxLife.ru@SD" tvg-logo="" group-title="📺 Сериалы",Fox Life Россия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/129/index.m3u8
 #EXTINF:-1 tvg-id="Nevskiy.ru@SD" tvg-logo="" group-title="📺 Сериалы",Невский
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Nevskiy/index.m3u8
 #EXTINF:-1 tvg-id="Perviyotdel.ru@SD" tvg-logo="" group-title="📺 Сериалы",Первый отдел
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Perviy_otdel/index.m3u8
 #EXTINF:-1 tvg-id="Pes.ru@SD" tvg-logo="" group-title="📺 Сериалы",Пес HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Pes/index.m3u8
 #EXTINF:-1 tvg-id="Shef.ru@SD" tvg-logo="" group-title="📺 Сериалы",Шеф
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Shef/index.m3u8
 #EXTINF:-1 tvg-id="Skorayapomoshch.ru@SD" tvg-logo="" group-title="📺 Сериалы",Скорая помощь
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn-dvr.ntv.ru/Skoraja_pomosh/index.m3u8
 #EXTINF:-1 tvg-id="vijuPlusSerial.ru@HD" tvg-logo="" group-title="📺 Сериалы",viju+ Serial HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/311/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenTeleNovella.ru@HD" tvg-logo="https://i.imgur.com/mT5liTh.png" group-title="📺 Сериалы",Сити Эдем ТелеНовелла HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/46209/index.m3u8
 #EXTINF:-1 tvg-id="SmotrimChestnyyDetektiv.ru@SD" tvg-logo="https://cdn-st3.smotrim.ru/vh/pictures/svg/444/241/8.svg" group-title="📺 Сериалы",Смотрим Честный Детектив
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://live-vgtrksmotrim.cdnvideo.ru/vgtrksmotrim/smotrim-live-01.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="ViasatEpicDrama.uk@Ukraine" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/e/e1/Viasat_Epic_Drama_2026.svg" group-title="📺 Сериалы",Viasat Epic Drama Ukraine (576p)
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://195.189.60.253/118/index.m3u8
-#EXTINF:-1 tvg-id="BoksTV.ru@SD" tvg-logo="https://i.imgur.com/R1UjyfX.png" group-title="⚽ Спорт",Бокс ТВ
+#EXTINF:-1 tvg-id="BoksTV.ru@SD" tvg-logo="" group-title="⚽ Спорт",Бокс ТВ [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Boks_TV/index.m3u8
 http://stream.mcquack.net/154/index.m3u8
-#EXTINF:-1 tvg-id="ExtremeSportsChannel.ru@SD" tvg-logo="" group-title="⚽ Спорт",Extreme Sports Channel (576p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://46.32.176.50/extremesport/index.m3u8
+#EXTINF:-1 tvg-id="ExtremeSportsChannel.ru@SD" tvg-logo="" group-title="⚽ Спорт",Extreme Sports Channel (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/extreme_sports/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="KHL.ru@SD" tvg-logo="https://i.imgur.com/RgdHdOV.png" group-title="⚽ Спорт",КХЛ ТВ
+#EXTINF:-1 tvg-id="KHL.ru@SD" tvg-logo="" group-title="⚽ Спорт",КХЛ ТВ [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/KHL_TV/index.m3u8
 http://stream.mcquack.net/166/index.m3u8
+#EXTINF:-1 tvg-id="KHL.ru@SD" tvg-logo="" group-title="⚽ Спорт",КХЛ ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/telekanal_khl/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="KHLPrime.ru@SD" tvg-logo="" group-title="⚽ Спорт",КХЛ HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/178/index.m3u8
-https://fs.uplink.kz/khl_prime/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="MatchArena.ru@SD" tvg-logo="https://i.imgur.com/udTzwzu.png" group-title="⚽ Спорт",Матч! Арена
+#EXTINF:-1 tvg-id="KHLPrime.ru@SD" tvg-logo="" group-title="⚽ Спорт",КХЛ HD [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Match_Arena_HD/index.m3u8
+http://stream.mcquack.net/178/index.m3u8
+#EXTINF:-1 tvg-id="KHLPrime.ru@SD" tvg-logo="" group-title="⚽ Спорт",КХЛ HD [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/khl_prime/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="MatchArena.ru@SD" tvg-logo="" group-title="⚽ Спорт",Матч! Арена [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/163/index.m3u8
 #EXTINF:-1 tvg-id="MatchBoets.ru@SD" tvg-logo="" group-title="⚽ Спорт",Матч! Боец
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/112/index.m3u8
-#EXTINF:-1 tvg-id="MatchIgra.ru@SD" tvg-logo="https://i.imgur.com/5XWpF19.png" group-title="⚽ Спорт",Матч! Игра
+#EXTINF:-1 tvg-id="MatchIgra.ru@SD" tvg-logo="" group-title="⚽ Спорт",Матч! Игра [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Match_Igra_HD/index.m3u8
 http://stream.mcquack.net/188/index.m3u8
-#EXTINF:-1 tvg-id="MatchStrana.ru@SD" tvg-logo="https://i.imgur.com/X02s2UE.png" group-title="⚽ Спорт",Матч! Страна
+#EXTINF:-1 tvg-id="MatchStrana.ru@SD" tvg-logo="" group-title="⚽ Спорт",Матч! Страна [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Match_Strana/index.m3u8
 http://stream.mcquack.net/143/index.m3u8
-http://ukr.ukrainske.tv/134/keytvainua/video.m3u8
-#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/169/index.m3u8
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [flussonic.linkintel.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://flussonic.linkintel.ru/match/index.m3u8
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/match/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [45.132.87.69]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://45.132.87.69:8080/match/index.m3u8
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [tv.tuva.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tv.tuva.ru/machtv/index.m3u8
+#EXTINF:-1 tvg-id="MatchUltra.ru@4K" tvg-logo="" group-title="⚽ Спорт",Матч! Ультра 4K [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_3/index.m3u8
-#EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="" group-title="⚽ Спорт",MMA-TV.com
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1226/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="OkkoFutbol.ru@SD" tvg-logo="" group-title="⚽ Спорт",Окко.Футбол
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/491/index.m3u8
+#EXTINF:-1 tvg-id="OkkoFutbol.ru@SD" tvg-logo="" group-title="⚽ Спорт",Окко.Футбол [178.124.179.122]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/Setanta1/index.m3u8
 #EXTINF:-1 tvg-id="OkkoPrajmSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",Okko Прайм Спорт
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/493/index.m3u8
 #EXTINF:-1 tvg-id="Sportivnyy.ru@SD" tvg-logo="" group-title="⚽ Спорт",Спортивный
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-3.otcnet.ru/sportivny/index.m3u8
-#EXTINF:-1 tvg-id="UDAR.ru@SD" tvg-logo="" group-title="⚽ Спорт",Удар
+#EXTINF:-1 tvg-id="UDAR.ru@SD" tvg-logo="" group-title="⚽ Спорт",Удар [5.188.159.128]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/udar/index.m3u8
-http://stream.mcquack.net/279/index.m3u8
-#EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",viju+ Sport (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/333/index.m3u8
-https://fs.uplink.kz/viju_sport/mono.m3u8?token=onlinetv
-http://31.148.5.241/Viasat_Sport/index.m3u8
-#EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",viju+ Sport
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1229/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="" group-title="⚽ Спорт",MMA-TV.com (576p)
+#EXTINF:-1 tvg-id="UDAR.ru@SD" tvg-logo="" group-title="⚽ Спорт",Удар [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://45.145.32.13:20440/mmatv/index.m3u8?token=test
+http://stream.mcquack.net/279/index.m3u8
+#EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",viju+ Sport (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/333/index.m3u8
+#EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",viju+ Sport (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/viju_sport/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="vijuPlusSport.ru@SD" tvg-logo="" group-title="⚽ Спорт",viju+ Sport (576p) [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+http://31.148.5.241/Viasat_Sport/index.m3u8
+#EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="" group-title="⚽ Спорт",MMA-TV.com (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/mma/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="MatchPlaneta.ru@SD" tvg-logo="" group-title="⚽ Спорт",Матч! Планета
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/match_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="SetantaSports1.ru@HD" tvg-logo="" group-title="⚽ Спорт",Сетанта Спорт HD
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/setanta_sports_1_hd/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Belarus5.by@SD" tvg-logo="https://i.imgur.com/NJsRFud.png" group-title="⚽ Спорт",Беларусь 5 HD
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
@@ -1453,124 +1527,91 @@ https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus5.smil/playlist.m3u8
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/BT5/index.m3u8
 #EXTINF:-1 tvg-id="MMATVcom.ru@SD" tvg-logo="https://i.imgur.com/QhdxNsB.png" group-title="⚽ Спорт",MMA-TV.com (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://streams2.sofast.tv/vglive-sk-462904/playlist.m3u8
 #EXTINF:-1 tvg-id="SetantaSports1Eurasia.ie@SD" tvg-logo="https://i.imgur.com/zlJK7ca.png" group-title="⚽ Спорт",Setanta Sports 1 Eurasia (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/234/index.m3u8
 #EXTINF:-1 tvg-id="SetantaSports2Eurasia.ie@SD" tvg-logo="https://i.imgur.com/ouHunnK.png" group-title="⚽ Спорт",Setanta Sports 2 Eurasia (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/235/index.m3u8
-#EXTINF:-1 tvg-id="TraceSportStars.fr@Russia" tvg-logo="https://i.imgur.com/FabFP5A.png" group-title="⚽ Спорт",Trace Sport Stars Russia (720p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1274/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="ART.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Арт
+#EXTINF:-1 tvg-id="ART.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Арт [89.104.114.24]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://89.104.114.24:8080/art/index.m3u8
+#EXTINF:-1 tvg-id="ART.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Арт [185.23.80.23]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://185.23.80.23:8080/ART/index.m3u8
-#EXTINF:-1 tvg-id="AutoPlus.ru@SD" tvg-logo="https://i.imgur.com/sVc8cFt.png" group-title="🌍 Познавательные",Авто Плюс
+#EXTINF:-1 tvg-id="Avto24.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Авто24 [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Avto_Plus/index.m3u8
-https://stream8.cinerama.uz/1036/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Avto24.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Авто24
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://stream.mcquack.net/78/index.m3u8
+#EXTINF:-1 tvg-id="Avto24.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Авто24 [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/avto24/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="DaVinci.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Да Винчи
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="DaVinci.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Да Винчи [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/238/index.m3u8
-https://stream8.cinerama.uz/1231/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="DaVinci.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Да Винчи [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/da_vinci/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Dikayaokhota.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Дикая охота HD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/274/index.m3u8
 #EXTINF:-1 tvg-id="Dikayarybalka.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Дикая рыбалка HD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/275/index.m3u8
-#EXTINF:-1 tvg-id="Dikij.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Дикий
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Dikiy/video.m3u8
-https://stream3.cinerama.uz/1230/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Doctor.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Doctor (576i)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1409/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Drive.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Драйв
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1421/tracks-v1a1/mono.m3u8
+http://stream.mcquack.net/275/index.m3u8
 #EXTINF:-1 tvg-id="FoodTime.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Еда HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/216/index.m3u8
-#EXTINF:-1 tvg-id="GlazamiTurista.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Глазами туриста
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1423/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Kuhnya.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Кухня
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/179/index.m3u8
-https://stream8.cinerama.uz/1236/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="KulinarTV.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Кулинар HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://api.alpaca.t62a.com/hls/9110/stream0.m3u8
-#EXTINF:-1 tvg-id="MoyaPlaneta.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Моя Планета
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://91.226.120.120/chid210/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="MoyaPlaneta.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Моя Планета [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/124/index.m3u8
+#EXTINF:-1 tvg-id="MoyaPlaneta.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Моя Планета [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/moya_planeta/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Moyastikhiya.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Моя стихия HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/141/index.m3u8
 #EXTINF:-1 tvg-id="Nano.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Нано
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/419/index.m3u8
-#EXTINF:-1 tvg-id="Ohotnikirybolov.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Охотник и рыболов
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1413/tracks-v1a1/mono.m3u8
-http://stream.mcquack.net/264/index.m3u8
 #EXTINF:-1 tvg-id="Ohotnikirybolov.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Охотник и рыболов HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/194/index.m3u8
 #EXTINF:-1 tvg-id="Okhotairybalka.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Охота и рыбалка
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/155/index.m3u8
-https://stream8.cinerama.uz/1038/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Priklyucheniya.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Приключения HD HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/198/index.m3u8
 #EXTINF:-1 tvg-id="Prosveshchenie.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Просвещение
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://cdn-01.bonus-tv.ru/prosveschenie_edge/index.m3u8
 #EXTINF:-1 tvg-id="RTGTV.ru@HD" tvg-logo="" group-title="🌍 Познавательные",RTG TV HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/164/index.m3u8
-#EXTINF:-1 tvg-id="Telecafe.ru@SD" tvg-logo="https://i.imgur.com/1H3h1HL.png" group-title="🌍 Познавательные",Телекафе
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://cdn4.skygo.mn/live/disk1/Telecafe/HLSv3-FTA/Telecafe.m3u8
-https://stream8.cinerama.uz/1035/tracks-v1a1/mono.m3u8
-http://stream.mcquack.net/314/index.m3u8
-https://fs.uplink.kz/telecafe/mono.m3u8?token=onlinetv
-http://88.212.15.19/live/test_telecafe_tv/playlist.m3u8
+#EXTINF:-1 tvg-id="Rybolov.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Охотник и рыболов
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/264/index.m3u8
 #EXTINF:-1 tvg-id="Usadba.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Усадьба
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/211/index.m3u8
-https://stream8.cinerama.uz/1427/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Vmirezhivotnykh.ru@SD" tvg-logo="" group-title="🌍 Познавательные",В мире животных HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/241/index.m3u8
-#EXTINF:-1 tvg-id="ZagorodnayaZhizn.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Загородная жизнь
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-http://185.57.68.33/40/index.m3u8
-https://stream8.cinerama.uz/1044/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Zhivayapriroda.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Живая природа
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/83/index.m3u8
 #EXTINF:-1 tvg-id="Zhivayapriroda.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Живая природа HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/225/index.m3u8
-#EXTINF:-1 tvg-id="Zoopark.ru@SD" tvg-logo="" group-title="🌍 Познавательные",ZooПарк
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1417/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/zoopark/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="BigAsia.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Большая Азия (720p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://live-bigasia.cdnvideo.ru/bigasia/bigasia.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="Nano.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Нано ТВ HD (576p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
@@ -1578,304 +1619,309 @@ http://s1.tv-nano.com/Nano_rec/index.m3u8
 #EXTINF:-1 tvg-id="Nano.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Нано HD
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://185.23.80.23:8080/NANO_HD/index.m3u8
+#EXTINF:-1 tvg-id="Telecafe.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Телекафе [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/314/index.m3u8
+#EXTINF:-1 tvg-id="Telecafe.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Телекафе [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/telecafe/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Doctor.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Doctor (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/80/index.m3u8
-#EXTINF:-1 tvg-id="TravelPlusAdventure.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Travel+Adventure HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="TravelPlusAdventure.ru@HD" tvg-logo="" group-title="🌍 Познавательные",Travel+Adventure HD (1080p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/206/index.m3u8
-http://77.232.131.211/TravelAdventureHD/index.m3u8
-#EXTINF:-1 tvg-id="Priklyucheniya.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Приключения HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1420/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="ZhivayaPlaneta.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Живая планета
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1250/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="BigPlanet.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Big Planet (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/big_planet/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Zoopark.ru@SD" tvg-logo="" group-title="🌍 Познавательные",ZooПарк
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/zoopark/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="LapkiLive.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Лапки Live
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/lapki_live/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Rybalkaiokhota.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Рыбалка и охота
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/ohota_i_ribalka/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="DiscoveryChannel.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Discovery Центральная Европа
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/177/index.m3u8
 #EXTINF:-1 tvg-id="InvestigationDiscovery.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Investigation Discovery (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/205/index.m3u8
 #EXTINF:-1 tvg-id="TLC.ru@SD" tvg-logo="" group-title="🌍 Познавательные",TLC Россия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/168/index.m3u8
 #EXTINF:-1 tvg-id="AnimalPlanet.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Animal Planet (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/114/index.m3u8
 #EXTINF:-1 tvg-id="FoodNetwork.ru@SD" tvg-logo="" group-title="🌍 Познавательные",Food Network (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/298/index.m3u8
 #EXTINF:-1 tvg-id="Belarus3.by@HD" tvg-logo="https://i.imgur.com/JkcDycn.png" group-title="🌍 Познавательные",Беларусь 3 HD HD
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus3.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="CityEdenAutoGid.ru@HD" tvg-logo="https://i.imgur.com/qpe8L27.png" group-title="🌍 Познавательные",Сити Эдем АвтоГид HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/47515/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenReceptyGurmana.ru@HD" tvg-logo="https://i.imgur.com/wR0pvRc.png" group-title="🌍 Познавательные",Сити Эдем Рецепты Гурмана HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/47516/index.m3u8
 #EXTINF:-1 tvg-id="LoveNature.ca@SD" tvg-logo="https://tv.lovenature.com/wp-content/uploads/2024/10/LoveNature2024_Logo_full_colour-copy.png" group-title="🌍 Познавательные",Love Nature (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://aegis-cloudfront-1.tubi.video/6d6d0f24-8445-4b4c-bdf6-44f9e38beaa4/playlist.m3u8
 #EXTINF:-1 tvg-id="LoveNature.ca@HD" tvg-logo="https://tv.lovenature.com/wp-content/uploads/2024/10/LoveNature2024_Logo_full_colour-copy.png" group-title="🌍 Познавательные",Love Nature HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://mumbai-edge.smartplaytv.in/LoveNature/index.m3u8
 #EXTINF:-1 tvg-id="OstWest24.de@SD" tvg-logo="https://i.imgur.com/voeQ6x1.png" group-title="🌍 Познавательные",Ost West 24 (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/455/index.m3u8
 #EXTINF:-1 tvg-id="Travelxp.in@Russia" tvg-logo="https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_TRAVELXP/images/LOGO_HD/image.png" group-title="🌍 Познавательные",Travelxp Russia (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/451/index.m3u8
-#EXTINF:-1 tvg-id="365daysTV.ru@SD" tvg-logo="" group-title="🎥 Документальные",365 дней ТВ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="365daysTV.ru@SD" tvg-logo="" group-title="🎥 Документальные",365 дней ТВ [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/70/index.m3u8
-https://stream8.cinerama.uz/1242/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="365daysTV.ru@SD" tvg-logo="" group-title="🎥 Документальные",365 дней ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/365_dney/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Istoriya.ru@SD" tvg-logo="" group-title="🎥 Документальные",История
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Istoriya/video.m3u8
+#EXTINF:-1 tvg-id="Istoriya.ru@SD" tvg-logo="" group-title="🎥 Документальные",История [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/istoriya/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="NationalGeographic.ru@SD" tvg-logo="" group-title="🎥 Документальные",National Geographic (Украина, Литва, СНГ)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/116/index.m3u8
-https://fs.uplink.kz/nat_geo/mono.m3u8?token=onlinetv
-http://dtv.vol.net.ua/National_Geographic-HD/index.m3u8
-#EXTINF:-1 tvg-id="Nauka.ru@SD" tvg-logo="https://i.imgur.com/ZZxzueO.png" group-title="🎥 Документальные",Наука
+#EXTINF:-1 tvg-id="NationalGeographic.ru@SD" tvg-logo="" group-title="🎥 Документальные",National Geographic (Украина, Литва, СНГ) [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Nauka_2.0/index.m3u8
+http://stream.mcquack.net/116/index.m3u8
+#EXTINF:-1 tvg-id="NationalGeographic.ru@SD" tvg-logo="" group-title="🎥 Документальные",National Geographic (Украина, Литва, СНГ) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/nat_geo/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Nauka.ru@SD" tvg-logo="" group-title="🎥 Документальные",Наука [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/125/index.m3u8
-http://45.145.32.13:20440/nauka/index.m3u8?token=test
-#EXTINF:-1 tvg-id="TochkaRF.ru@SD" tvg-logo="" group-title="🎥 Документальные",Точка.РФ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="TochkaRF.ru@SD" tvg-logo="" group-title="🎥 Документальные",Точка.РФ [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/161/index.m3u8
-http://45.145.32.13:20440/hdl/index.m3u8?token=test
-#EXTINF:-1 tvg-id="vijuExplore.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju Explore (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="vijuExplore.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju Explore (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/239/index.m3u8
+#EXTINF:-1 tvg-id="vijuExplore.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju Explore (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/viju_explore/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="vijuHistory.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju History (576p)
+#EXTINF:-1 tvg-id="vijuHistory.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju History (576p) [178.124.179.122]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/HistoryHD/index.m3u8
+#EXTINF:-1 tvg-id="vijuHistory.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju History (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/101/index.m3u8
+#EXTINF:-1 tvg-id="vijuHistory.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju History (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/viju_history/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="vijuNature.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju Nature
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1228/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="vijuPlusPlanet.ru@HD" tvg-logo="" group-title="🎥 Документальные",viju+ Planet HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/240/index.m3u8
 #EXTINF:-1 tvg-id="UnknownRussia.ru@HD" tvg-logo="" group-title="🎥 Документальные",Неизвестная Россия HD
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://185.23.80.23:8080/NeizvestnayaRossia/index.m3u8
-#EXTINF:-1 tvg-id="Arsenal.ru@SD" tvg-logo="" group-title="🎥 Документальные",Арсенал ТВ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1414/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="vijuNature.ru@SD" tvg-logo="" group-title="🎥 Документальные",viju Nature (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/viju_nature/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="NationalGeographicWild.ru@SD" tvg-logo="" group-title="🎥 Документальные",National Geographic Wild (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/nat_geo_wild/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="CityEdenKinoDok.ru@HD" tvg-logo="https://i.imgur.com/itRbMX3.png" group-title="🎥 Документальные",Сити Эдем КиноДок HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/38354/index.m3u8
 #EXTINF:-1 tvg-id="RTDocumentary.ru@Russian" tvg-logo="https://i.imgur.com/aeu5zIC.png" group-title="🎥 Документальные",RT Д Русский Russian
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://rt-doc.rttv.com/dvr/rtdru/playlist.m3u8
 #EXTINF:-1 tvg-id="UnknownRussia.ru@SD" tvg-logo="https://i.imgur.com/W7ste2f.png" group-title="🎥 Документальные",Неизвестная Россия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cdn.ntv.ru/unknown_russia/playlist.m3u8
-#EXTINF:-1 tvg-id="BRIDGE.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="BRIDGE.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/318/index.m3u8
+#EXTINF:-1 tvg-id="BRIDGE.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE (576p) [194.143.148.28]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://194.143.148.28:8080/RT_DOC/index.m3u8
-#EXTINF:-1 tvg-id="BRIDGEClassic.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Classic (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="BRIDGEClassic.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Classic (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/272/index.m3u8
+#EXTINF:-1 tvg-id="BRIDGEClassic.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Classic (576p) [5.188.159.128]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/Bridge_TV_Classic/index.m3u8
+#EXTINF:-1 tvg-id="BRIDGEClassic.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Classic (576p) [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/bridge_classic/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="BRIDGEDeluxe.ru@HD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Deluxe HD (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/92/index.m3u8
-#EXTINF:-1 tvg-id="BRIDGEHits.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Hits (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="BRIDGEHits.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Hits (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/320/index.m3u8
+#EXTINF:-1 tvg-id="BRIDGEHits.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",BRIDGE Hits (576p) [5.188.159.128]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://5.188.159.128:8070/Bridge_TV_Hits/index.m3u8
 #EXTINF:-1 tvg-id="ClassicMusic.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Classic Music (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/312/index.m3u8
 #EXTINF:-1 tvg-id="DanceHits80.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",DanceHits80
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://dancehits80.denvs.ru:8080/index.m3u8
-#EXTINF:-1 tvg-id="EuropaPlusTV.ru@SD" tvg-logo="https://i.imgur.com/GLc4qrc.png" group-title="🎵 Музыкальные",Европа Плюс ТВ
+#EXTINF:-1 tvg-id="EuropaPlusTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Европа Плюс ТВ [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Europa_Plus_HD/index.m3u8
 http://stream.mcquack.net/184/index.m3u8
-https://fs.uplink.kz/europa_plus/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Maidan.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Майдан
+#EXTINF:-1 tvg-id="EuropaPlusTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Европа Плюс ТВ [fs.uplink.kz]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
-https://live-maidantv.cdnvideo.ru/maidantv/maidantv.smil/playlist.m3u8
-http://hls127.freeott.top:8080/Maydan/video.m3u8
-#EXTINF:-1 tvg-id="Multimuzyka.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Мультимузыка
+https://fs.uplink.kz/europa_plus/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Maidan.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Майдан [live-maidantv.cdnvideo.ru]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Mult_Muzika/video.m3u8
+https://live-maidantv.cdnvideo.ru/maidantv/maidantv.smil/playlist.m3u8
+#EXTINF:-1 tvg-id="Multimuzyka.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Мультимузыка [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/82/index.m3u8
 #EXTINF:-1 tvg-id="MuzykaLive.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Музыка Live
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/303/index.m3u8
-#EXTINF:-1 tvg-id="MuzykaPervogo.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Музыка Первого
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="MuzykaPervogo.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Музыка Первого [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/153/index.m3u8
-https://stream8.cinerama.uz/1201/tracks-v1a1/mono.m3u8
-http://88.212.15.19/live/test_muzyka_pervogo/playlist.m3u8
-https://stream8.cinerama.uz/1267/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="RUTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",РУ.ТВ
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
-https://bl.rutube.ru/livestream/b1eb8e90d7e636677b3eb73b4fcbb717/index.m3u8?e=2069285076&s=d-E-bxKy2v3EEJ94RQX9CA&scheme=https
-https://stream8.cinerama.uz/1202/tracks-v1a1/mono.m3u8
+#EXTINF:-1 tvg-id="RUTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",РУ.ТВ [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/109/index.m3u8
+#EXTINF:-1 tvg-id="RUTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",РУ.ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/RuTV/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="RussianMusicBox.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Russian MusicBox (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/319/index.m3u8
-#EXTINF:-1 tvg-id="ShansonTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ
+#EXTINF:-1 tvg-id="ShansonTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ [streaming.thestream.cyou]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://streaming.thestream.cyou/live/7009.m3u8
+#EXTINF:-1 tvg-id="ShansonTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ [catchup.videoline.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://catchup.videoline.ru/shanson/index.m3u8
-http://hls127.freeott.top:8080/Shanson_Tv/video.m3u8
+#EXTINF:-1 tvg-id="ShansonTV.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Шансон ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/shanson/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Zhara.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Жара
+#EXTINF:-1 tvg-id="Zhara.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Жара [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Zhara/video.m3u8
 http://stream.mcquack.net/386/index.m3u8
+#EXTINF:-1 tvg-id="Zhara.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Жара [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/zhara/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="MuzSoyuz.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Муз союз (576p)
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz2/muzsoyuz.6fw0-58xp-acts-esy0/playlist.m3u8
 #EXTINF:-1 tvg-id="RadioShanson.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Радио Шансон (720p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://chanson-video.hostingradio.ru:8080/hls/chansonabr/live.m3u8
 #EXTINF:-1 tvg-id="StranaFM.ru@SD" tvg-logo="" group-title="🎵 Музыкальные",Страна FM (720p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://live.stranafm.cdnvideo.ru/stranafm/stranafm_hd.sdp/playlist.m3u8
 #EXTINF:-1 tvg-id="CityEdenBirmaPlay.ru@HD" tvg-logo="https://i.imgur.com/38Q5L5W.png" group-title="🎵 Музыкальные",Сити Эдем Бирма Play HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/34364/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenClassicMusic.ru@HD" tvg-logo="https://i.imgur.com/l7BE8l6.png" group-title="🎵 Музыкальные",Сити Эдем Классическая Музыка HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/47400/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenPlay.ru@HD" tvg-logo="https://i.imgur.com/ozEqob9.png" group-title="🎵 Музыкальные",Сити Эдем Play HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/34100/index.m3u8
 #EXTINF:-1 tvg-id="CityEdenSirtakiTV.ru@HD" tvg-logo="https://i.imgur.com/V3MTfyc.png" group-title="🎵 Музыкальные",Сити Эдем Сиртаки ТВ HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/46421/index.m3u8
 #EXTINF:-1 tvg-id="FirstMusicChannel.by@SD" tvg-logo="https://i.imgur.com/YdyFJrl.png" group-title="🎵 Музыкальные",Первый Музыкальный Канал
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://rtmp.one.by:1300
 #EXTINF:-1 tvg-id="HitFM.md@SD" tvg-logo="https://i.imgur.com/QwqM5j6.png" group-title="🎵 Музыкальные",Hit FM
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://hitfm.nfthost.net/hls/hitfm/live_all/playlist.m3u8
 #EXTINF:-1 tvg-id="StranaFM.ru@SD" tvg-logo="https://i.imgur.com/WsPlKJJ.png" group-title="🎵 Музыкальные",Телеканал Радио Страна ФМ
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-stranafm.cdnvideo.ru/stranafm/smil:stranafm.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="black.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",.black (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/263/index.m3u8
 #EXTINF:-1 tvg-id="FashionLifeStyle.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",HDFASHION Lifestyle (Украина, Германия)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/119/index.m3u8
 #EXTINF:-1 tvg-id="Komediynoe.ru@HD" tvg-logo="" group-title="🎭 Развлекательные",Комедийное HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/74/index.m3u8
-#EXTINF:-1 tvg-id="KVNTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",КВН ТВ
+#EXTINF:-1 tvg-id="KVNTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",КВН ТВ [178.124.179.122]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://178.124.179.122:8080/KVN-TV/index.m3u8
+#EXTINF:-1 tvg-id="KVNTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",КВН ТВ [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/kvn_tv/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="Moymir.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Мой мир
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://moymir.ru/hls/onair.m3u8
 #EXTINF:-1 tvg-id="O.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",O! (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/60/index.m3u8
-#EXTINF:-1 tvg-id="PeretzInternational.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Перец International
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="PeretzInternational.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Перец International [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/121/index.m3u8
+#EXTINF:-1 tvg-id="PeretzInternational.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Перец International [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/perec/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Prodvizhenie.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Продвижение
+#EXTINF:-1 tvg-id="Prodvizhenie.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Продвижение [streaming.astrakhan.ru]
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://streaming.astrakhan.ru/proastrakhanhd/index.m3u8
+#EXTINF:-1 tvg-id="Prodvizhenie.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Продвижение [origin5.mediacdn.ru]
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://origin5.mediacdn.ru/live/prodvizhenie_new/index.m3u8
-#EXTINF:-1 tvg-id="Ryzhiy.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Рыжий
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1407/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Sarafan.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Сарафан
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Sarafan.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Сарафан [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/81/index.m3u8
+#EXTINF:-1 tvg-id="Sarafan.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Сарафан [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/sarafan/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TeleDom.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Теледом
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://iam-profi.ru/hls-live/livepkgr/_definst_/liveevent/td720.m3u8
 #EXTINF:-1 tvg-id="vijuPlusComedy.ru@HD" tvg-logo="" group-title="🎭 Развлекательные",viju+ Comedy HD (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/201/index.m3u8
 #EXTINF:-1 tvg-id="VitrinaTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Витрина ТВ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-11cinema.cdnvideo.ru/11cinema/11cinema/playlist.m3u8
 #EXTINF:-1 tvg-id="VoprosyiOtvety.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Вопросы и ответы
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/76/index.m3u8
 #EXTINF:-1 tvg-id="OtkritiymirZdorove.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Открытый мир. Здоровье (576p)
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://v4.proofix.ru/0mir/index.m3u8
 #EXTINF:-1 tvg-id="TvoeTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Твое TV HD (1080p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tvoetv.space:8080/tvoetv/index.m3u8
 #EXTINF:-1 tvg-id="TvoyeTVYumor.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Твое ТВ Юмор (1080p)
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://tvoetv.space:8080/tvoetv_humor/index.m3u8
 #EXTINF:-1 tvg-id="Tonus.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Тонус ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://194.143.148.28:8080/Mir24/index.m3u8
-#EXTINF:-1 tvg-id="Tochkaotryva.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Точка отрыва
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1031/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/tochka_otriva/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="ZdorovoeTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Здоровое ТВ
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1428/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="DomashnieZhivotnye.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Домашние животные
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1426/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/domashnie_zhivotnie/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Poehali.ru@SD" tvg-logo="https://i.imgur.com/ZNCpbII.png" group-title="🎭 Развлекательные",Поехали!
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Poehali/index.m3u8
+#EXTINF:-1 tvg-id="Poehali.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Поехали! [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/poehali/mono.m3u8?token=onlinetv
-http://88.212.15.19/live/test_poehali/playlist.m3u8
 #EXTINF:-1 tvg-id="Oruzhie.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Оружие
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/oruzhie/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="Bober.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Бобер
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTINF:-1 tvg-id="Tochkaotryva.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Точка отрыва
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/tochka_otriva/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="Bober.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Бобер [fs.uplink.kz]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/bober/mono.m3u8?token=onlinetv
-http://88.212.15.19/live/test_bober/playlist.m3u8
 #EXTINF:-1 tvg-id="FashionTV.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",FashionTV (1080p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 http://fashionlive.mediacdn.ru/cdn/fashiontv/playlist.m3u8
 #EXTINF:-1 tvg-id="FridayInternational.ru@Kazakhstan" tvg-logo="" group-title="🎭 Развлекательные",Пятница! International Kazakhstan
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/bolshaya_pyatnica/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="DomashnieZhivotnye.ru@SD" tvg-logo="" group-title="🎭 Развлекательные",Домашние животные
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/domashnie_zhivotnie/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="312TV.kg@SD" tvg-logo="https://i.ibb.co/S6sZvqk/iLSGi6c.png" group-title="🎭 Развлекательные",312 ТВ
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://176.126.166.43:1935/live/312musik/playlist.m3u8
@@ -1883,124 +1929,98 @@ http://176.126.166.43:1935/live/312musik/playlist.m3u8
 #EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://ngtrk.dc.beltelecom.by/ngtrk/smil:belarus2.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="ETVPlus.ee@SD" tvg-logo="https://upload.wikimedia.org/wikipedia/commons/a/a2/ETV%2B_logo.png" group-title="🎭 Развлекательные",ETV+ (720p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
 https://sb.err.ee/live/etvpluss.m3u8
 #EXTINF:-1 tvg-id="Magnat.ru@SD" tvg-logo="https://i.imgur.com/r485aZL.png" group-title="🎭 Развлекательные",Magnat (1080p)
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://s1.tv-nano.com/Magnat_HD_5119705/video.m3u8
-#EXTINF:-1 tvg-id="MakonTV.uz@SD" tvg-logo="https://i.imgur.com/vCc0ED1.png" group-title="🎭 Развлекательные",Makon TV (576i)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1497/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="OTVPrim.ru@SD" tvg-logo="https://i.imgur.com/2zd8trG.png" group-title="🎭 Развлекательные",ОТВ-Прим
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://jz2lo90hnpy.a.trbcdn.net/livemaster/yo8gr_live-5gorrrfpouq.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="Salyam.ru@SD" tvg-logo="https://i.imgur.com/FfULLr1.png" group-title="🎭 Развлекательные",Салям
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://bsttv.bonus-tv.ru/cdn/salyam/playlist.m3u8
 #EXTINF:-1 tvg-id="Yuvelirochka.ru@SD" tvg-logo="https://i.imgur.com/IcWtXCZ.png" group-title="🎭 Развлекательные",Ювелирочка
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-uvelirochka.cdnvideo.ru/uvelirochka/uvelirochka_720p3/playlist.m3u8
-#EXTINF:-1 tvg-id="ZorTV.uz@SD" tvg-logo="https://i.imgur.com/NuzyhVM.png" group-title="🎭 Развлекательные",Zo'r TV (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1016/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Ani.ru@SD" tvg-logo="" group-title="🧸 Детские",Ani (576p)
+#EXTINF:-1 tvg-id="Ani.ru@SD" tvg-logo="" group-title="🧸 Детские",Ani (576p) [stream.mcquack.net]
 #EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://46.32.176.50/anitv/index.m3u8
 http://stream.mcquack.net/306/index.m3u8
-http://flussonic.linkintel.ru/Ani/index.m3u8
-#EXTINF:-1 tvg-id="Multilandia.ru@SD" tvg-logo="" group-title="🧸 Детские",Мультиландия
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1440/tracks-v1a1/mono.m3u8
-https://fs.uplink.kz/multilandia/mono.m3u8?token=onlinetv
-#EXTINF:-1 tvg-id="NicktoonsCIS.ru@SD" tvg-logo="" group-title="🧸 Детские",Nicktoons CIS (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1502/playlist.m3u8
-#EXTINF:-1 tvg-id="SuperGeroi.ru@SD" tvg-logo="" group-title="🧸 Детские",Супергерои
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Malish_TV/index.m3u8
+#EXTINF:-1 tvg-id="SuperGeroi.ru@SD" tvg-logo="" group-title="🧸 Детские",Супергерои [109.94.1.3]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://109.94.1.3:8080/132/index.m3u8
-#EXTINF:-1 tvg-id="TiJi.ru@SD" tvg-logo="" group-title="🧸 Детские",TiJi (576p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="TiJi.ru@SD" tvg-logo="" group-title="🧸 Детские",TiJi (576p) [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/111/index.m3u8
-https://live-3.otcnet.ru/Tiji/index.m3u8
-https://stream8.cinerama.uz/1441/tracks-v1a1/mono.m3u8
-http://flussonic.linkintel.ru/tiji/index.m3u8
-#EXTINF:-1 tvg-id="Detskiy.ru@SD" tvg-logo="" group-title="🧸 Детские",Детский
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1033/tracks-v1a1/mono.m3u8
-http://45.145.32.13:20440/unikum/index.m3u8?token=test
-#EXTINF:-1 tvg-id="SevimliTV.uz@SD" tvg-logo="https://i.imgur.com/iMwzRlr.png" group-title="🧸 Детские",Sevimli TV (1080p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1017/tracks-v1a1/playlist.m3u8
-#EXTINF:-1 tvg-id="RadostMoya.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Радость моя
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://31.148.48.15/Radost_moya/index.m3u8
+#EXTINF:-1 tvg-id="Multilandia.ru@SD" tvg-logo="" group-title="🧸 Детские",Мультиландия
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+https://fs.uplink.kz/multilandia/mono.m3u8?token=onlinetv
+#EXTINF:-1 tvg-id="RadostMoya.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Радость моя [radm.mediacdn.ru]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://radm.mediacdn.ru/cdn/radost/playlist_sdhigh.m3u8
-#EXTINF:-1 tvg-id="Spas.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Спас
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
-http://hls127.freeott.top:8080/Spas/video.m3u8
+#EXTINF:-1 tvg-id="Spas.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Спас [tvspas.mediacdn.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://tvspas.mediacdn.ru/cdn/spas/playlist.m3u8
+#EXTINF:-1 tvg-id="Spas.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Спас [31.148.5.241]
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://31.148.5.241/kanal_12/index.m3u8
-#EXTINF:-1 tvg-id="HopeChannelRussia.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Надежда (720p)
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="HopeChannelRussia.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Надежда (720p) [live-tvhope.cdnvideo.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://live-tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8
+#EXTINF:-1 tvg-id="HopeChannelRussia.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Надежда (720p) [tvhope.cdnvideo.ru]
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://tvhope.cdnvideo.ru/tvhope-pull/tvhope_1/playlist.m3u8
 #EXTINF:-1 tvg-id="Soyuz.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Союз (576p)
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://hls-tvsoyuz.cdnvideo.ru/tvsoyuz/soyuz/playlist.m3u8
 #EXTINF:-1 tvg-id="3ABNRussia.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Три Ангела (720p)
-#EXTVLCOPT:http-user-agent=MXPlayer/1.71.6 (Linux; Android 11)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://hls.tv.3angels.ru/stream.m3u8
 #EXTINF:-1 tvg-id="HuzurTV.ru@SD" tvg-logo="" group-title="🙏 Религиозные",Хузур ТВ (1080p) [Not 24/7]
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://hls-mycdn08724960135.cdnvideo.ru/mycdn08724960135/stream1/playlist.m3u8
 #EXTINF:-1 tvg-id="AngelTV.in@Russian" tvg-logo="https://i.imgur.com/qKLEGU7.png" group-title="🙏 Религиозные",Angel TV Russian (720p)
-#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+#EXTVLCOPT:http-user-agent=OTT Navigator/1.7.1.2 (Linux; Android 11)
 https://janya-digimix.akamaized.net/vglive-sk-955415/russia/ngrp:angelrussia_all/playlist.m3u8
 #EXTINF:-1 tvg-id="ManaTserkovOnlayn.pt@SD" tvg-logo="https://i.imgur.com/PruXLqS.png" group-title="🙏 Религиозные",Мана Церковь Онлайн
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://w2.manasat.com/tserkov-online/smil:tserkov-online.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="TVManaRusskiy.pt@SD" tvg-logo="https://i.imgur.com/fACHqmY.png" group-title="🙏 Религиозные",ТВ МАНА Русский
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://w1.manasat.com/tvmana-leste/smil:tvmana-leste.smil/playlist.m3u8
 #EXTINF:-1 tvg-id="RadioRossii.ru@HD" tvg-logo="" group-title="📻 Радио",Радио России HD
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://stream.smotrim.ru/hls2/radio_rus/playlist_4.m3u8
 #EXTINF:-1 tvg-id="InsaytTV.ru@4K" tvg-logo="" group-title="📦 Разное",Инсайт ТВ 4K
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1416/tracks-v1a1/mono.m3u8
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/361/index.m3u8
-#EXTINF:-1 tvg-id="Mama.ru@SD" tvg-logo="" group-title="📦 Разное",Мама
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTINF:-1 tvg-id="Mama.ru@SD" tvg-logo="" group-title="📦 Разное",Мама [stream.mcquack.net]
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/79/index.m3u8
-http://flussonic.linkintel.ru/mama/index.m3u8
-https://stream8.cinerama.uz/1244/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="Retro.ru@SD" tvg-logo="" group-title="📦 Разное",Ретро
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-http://stream.mcquack.net/191/index.m3u8
-https://stream8.cinerama.uz/1047/tracks-v1a1/mono.m3u8
-#EXTINF:-1 tvg-id="SmileTV.ru@SD" tvg-logo="" group-title="📦 Разное",Smile TV (720p)
+#EXTINF:-1 tvg-id="Mama.ru@SD" tvg-logo="" group-title="📦 Разное",Мама [flussonic.linkintel.ru]
 #EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+http://flussonic.linkintel.ru/mama/index.m3u8
+#EXTINF:-1 tvg-id="Retro.ru@SD" tvg-logo="" group-title="📦 Разное",Ретро
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
+http://stream.mcquack.net/191/index.m3u8
+#EXTINF:-1 tvg-id="SmileTV.ru@SD" tvg-logo="" group-title="📦 Разное",Smile TV (720p)
+#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
 https://5d23269b3ec0c.streamlock.net/WEB_Smilik/ngrp:Smilik.stream-adaptive/playlist.m3u8
-https://stream8.cinerama.uz/1425/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="Tooku.ru@SD" tvg-logo="" group-title="📦 Разное",Тооку
 #EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 http://live-saha.cdnvideo.ru/saha/tooky/playlist.m3u8
 #EXTINF:-1 tvg-id="TVPRO.ru@SD" tvg-logo="" group-title="📦 Разное",TV PRO
-#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 http://rtmp.tvpro-online.ru/hls/ch1.m3u8
 #EXTINF:-1 tvg-id="Mult.ru@International" tvg-logo="" group-title="📦 Разное",Мульт International
-#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
+#EXTVLCOPT:http-user-agent=WINK/RT_(Android_TV/11)_WinkPlayer_AppleWebKit/537.36
 https://fs.uplink.kz/mult/mono.m3u8?token=onlinetv
 #EXTINF:-1 tvg-id="TravelChannel.ru@SD" tvg-logo="" group-title="📦 Разное",Travel Channel Европа HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 http://stream.mcquack.net/231/index.m3u8
-#EXTINF:-1 tvg-id="Aqlvoy.uz@SD" tvg-logo="https://i.imgur.com/ekF5cAi.png" group-title="📦 Разное",Aqlvoy
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
-https://stream8.cinerama.uz/1205/tracks-v1a1/mono.m3u8
 #EXTINF:-1 tvg-id="CityEdenMedZdrav.ru@HD" tvg-logo="https://i.imgur.com/BM4E0Kr.png" group-title="📦 Разное",Сити Эдем МедЗдрав HD
-#EXTVLCOPT:http-user-agent=TiviMate/4.7.0 (Linux; Android 11; Sony Smart TV)
+#EXTVLCOPT:http-user-agent=HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1
 https://cityeden.catcast.tv/content/47519/index.m3u8
 #EXTINF:-1 tvg-id="MyZenTV.fr@SD" tvg-logo="https://i.imgur.com/fIi8o0C.png" group-title="📦 Разное",MyZen TV (1080p)
-#EXTVLCOPT:http-user-agent=Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36
+#EXTVLCOPT:http-user-agent=VLC/3.0.20 LibVLC/3.0.20
 https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01255-secomcofites-my-myzen-en-plex/playlist.m3u8
