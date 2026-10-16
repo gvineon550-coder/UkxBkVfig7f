@@ -127,7 +127,6 @@ def translit(s): return "".join(TRANSLIT.get(c, c) for c in (s or ""))
 def has_cyrillic(s): return bool(re.search(r'[а-яА-ЯёЁ]', s or ''))
 
 def extract_suffix_from_tvg(tvg_id):
-    """@Plus2 → '+2', @HD → 'HD', @SD → '' (SD не считаем суффиксом)."""
     if not tvg_id or "@" not in tvg_id: return ""
     sfx = tvg_id.split("@", 1)[1]
     low = sfx.lower()
@@ -168,12 +167,17 @@ def parse_m3u(text):
 PRIV_RE = re.compile(r'^https?://(localhost|127\.|0\.0\.0\.0|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.)')
 FAKE_RE = re.compile(r'\.(local|test|invalid|example|localhost)(\b|:|/)', re.I)
 BAD_EXT = tuple(BLOCKLIST.get("bad_extensions", [".html",".zip",".exe",".apk",".jpg",".png",".gif"]))
+BAD_DOMAINS = tuple(BLOCKLIST.get("bad_domains_suffix", []))
 
 def is_junk_url(u):
     if not u or not re.match(r'^https?://', u): return True
     if PRIV_RE.search(u): return True
     if FAKE_RE.search(u): return True
     if u.lower().split("?")[0].endswith(BAD_EXT): return True
+    host = urlparse(u).netloc.lower().split(":")[0]
+    for bd in BAD_DOMAINS:
+        if host == bd or host.endswith("." + bd):
+            return True
     return False
 
 def load_whitelist():
@@ -429,16 +433,13 @@ def categorize(name, group, tvg_id, api_cats, api_names):
 def find_russian_name(name, tvg_id, bn, bt, bp, ru_display, api_names, ru_names):
     base_id = tvg_id.split("@")[0] if tvg_id else ""
     suffix = extract_suffix_from_tvg(tvg_id)
-    # 1) по base_id → ru_display (СОХРАНЯЯ суффикс)
     if base_id and base_id in ru_display:
         base_name = ru_display[base_id]
         return (f"{base_name} {suffix}".strip() if suffix else base_name), "epg_by_base_id"
-    # 2) resolve_epg по имени
     cid, _ = resolve_epg(name, bn, bt, bp)
     if cid and cid in ru_display:
         base_name = ru_display[cid]
         return (f"{base_name} {suffix}".strip() if suffix else base_name), "epg_by_name"
-    # 3) API
     api_cid = api_names.get(norm_name(name)) or base_id
     if api_cid and api_cid in ru_names:
         base_name = ru_names[api_cid]
@@ -505,8 +506,24 @@ def cmd_categorize():
         else:
             groups[ch["name"].strip()].append(ch)
 
-    merged = [v for k, v in groups.items() if not (isinstance(k, tuple) and k[0] == "WL")]
+    merged_raw = [v for k, v in groups.items() if not (isinstance(k, tuple) and k[0] == "WL")]
     wl_groups = [v for k, v in groups.items() if isinstance(k, tuple) and k[0] == "WL"]
+
+    def host_of(u):
+        try:
+            return urlparse(u).netloc.lower().split(":")[0]
+        except Exception:
+            return "unknown"
+
+    merged = []
+    for grp in merged_raw:
+        if len(grp) == 1:
+            merged.append(grp)
+        else:
+            for c in grp:
+                new = dict(c)
+                new["name"] = f'{c["name"]} [{host_of(c["url"])}]'
+                merged.append([new])
 
     def best(grp):
         return sorted(grp, key=lambda c: (-1 if c.get("is_whitelist") else 0,
@@ -534,7 +551,7 @@ def cmd_categorize():
         })
     p.write_text(json.dumps({"updated": now_msk(), "channels": final}, ensure_ascii=False), "utf-8")
     wl_count = sum(1 for c in final if c.get("is_whitelist"))
-    print(f"[cat] групп {len(merged)+len(wl_groups)} -> {len(final)}, whitelist {wl_count}, с резервом: {fallbacks}")
+    print(f"[cat] каналов {len(merged)+len(wl_groups)} -> {len(final)}, whitelist {wl_count}, с резервом: {fallbacks}")
     print(f"[cat] EPG: {dict(epg_stats)}")
     print(f"[cat] RU-NAME: {dict(rename_stats)}")
 
@@ -729,13 +746,11 @@ let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div
 h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
 h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
-h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
 h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
 h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
 for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
 h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
-h+='<p><a href="data/unmatched.json">data/unmatched.json</a></p>';
 document.getElementById('s').innerHTML=h;});</script></body></html>"""
     (ROOT / "index.html").write_text(idx, "utf-8")
 
@@ -748,7 +763,6 @@ document.getElementById('s').innerHTML=h;});</script></body></html>"""
           f"- Всего: {dash['total']}",
           f"- Живых: **{dash['alive']}**",
           f"- Whitelist: {dash['whitelist']}",
-          f"- С резервными ссылками: {dash['with_fallback']}",
           f"- UA-хостов: {dash['ua_hosts']}",
           f"- В «Разное» (требует разбора): {dash['unmatched']}", "",
           "## Категории", "", "| Категория | Каналов |", "|---|---|"]
