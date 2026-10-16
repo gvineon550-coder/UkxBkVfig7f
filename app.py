@@ -62,22 +62,25 @@ RAW_KEYWORDS = (
     ("север (", "Региональные"), ("тдк 42", "Региональные"),
     ("тнв-планета", "Региональные"), ("тнв", "Региональные"),
     ("югра-тв", "Региональные"), ("югра тв", "Региональные"),
+    ("тооку", "Региональные"), ("tooku", "Региональные"),
     (".sci-fi", "Кино"), ("sci-fi", "Кино"), ("scifi", "Кино"),
     ("sony тв", "Кино"), ("sony tv", "Кино"),
     ("дом кино international", "Кино"), ("душевное", "Кино"),
     ("нст", "Кино"), ("nst", "Кино"), ("победа", "Кино"),
     ("прима", "Кино"),
     ("ani (", "Детские"), ("anime", "Детские"),
-    ("mult international", "Детские"), ("nicktoons", "Детские"),
-    ("sevimli tv", "Детские"), ("tiji", "Детские"),
-    ("детский", "Детские"), ("мультиландия", "Детские"),
-    ("супергерои", "Детские"),
+    ("mult international", "Детские"), ("мульт international", "Детские"),
+    ("nicktoons", "Детские"), ("sevimli tv", "Детские"), ("tiji", "Детские"),
+    ("детский", "Детские"), ("мультиландия", "Детские"), ("супергерои", "Детские"),
     ("big planet", "Познавательные"), ("love nature", "Познавательные"),
-    ("travelxp", "Познавательные"), ("zooпарк", "Познавательные"),
+    ("travelxp", "Познавательные"), ("travel channel", "Познавательные"),
+    ("zooпарк", "Познавательные"), ("myzen", "Познавательные"),
     ("большая азия", "Познавательные"), ("в мире животных", "Познавательные"),
     ("дикая охота", "Познавательные"), ("дикая рыбалка", "Познавательные"),
     ("дикий", "Познавательные"), ("живая планета", "Познавательные"),
     ("живая природа", "Познавательные"), ("загородная жизнь", "Познавательные"),
+    ("инсайт", "Познавательные"), ("медздрав", "Познавательные"),
+    ("medzdrav", "Познавательные"),
     ("лапки live", "Познавательные"), ("моя планета", "Познавательные"),
     ("охота и рыбалка", "Познавательные"), ("охотник и рыболов", "Познавательные"),
     ("приключения hd", "Познавательные"), ("просвещение", "Познавательные"),
@@ -90,11 +93,13 @@ RAW_KEYWORDS = (
     ("витрина тв", "Развлекательные"), ("мой мир", "Развлекательные"),
     ("продвижение", "Развлекательные"), ("рыжий", "Развлекательные"),
     ("салям", "Развлекательные"), ("сарафан", "Развлекательные"),
+    ("smile tv", "Развлекательные"),
     ("теледом", "Развлекательные"), ("тонус тв", "Развлекательные"),
     ("точка отрыва", "Развлекательные"), ("ювелирочка", "Развлекательные"),
+    ("мама", "Развлекательные"), ("ретро", "Развлекательные"),
+    ("tv pro", "Развлекательные"),
     ("angel tv", "Религиозные"), ("радость моя", "Религиозные"),
-    ("aqlvoy", "Разное"), ("myzen", "Разное"), ("tv pro", "Разное"),
-    ("инсайт", "Разное"), ("тооку", "Разное"),
+    ("aqlvoy", "Разное"),
 )
 
 CITY_HINTS = (
@@ -491,14 +496,27 @@ def cmd_categorize():
         else:
             epg_stats["already"] += 1
         ch["category"] = categorize(ch["name"], ch.get("group",""), ch.get("tvg_id",""), api_cats, api_names)
-        if not ch.get("logo") and ch.get("tvg_id") and ch["tvg_id"] in ic:
-            ch["logo"] = ic[ch["tvg_id"]]
+
+        # Лого: пробуем полный tvg_id → base_id → resolve_epg по имени
+        if not ch.get("logo"):
+            tid = ch.get("tvg_id","")
+            base_tid = tid.split("@")[0] if tid else ""
+            for cand in (tid, base_tid):
+                if cand and cand in ic:
+                    ch["logo"] = ic[cand]
+                    break
+            if not ch.get("logo"):
+                eid2, _ = resolve_epg(ch["name"], bn, bt, bp)
+                if eid2 and eid2 in ic:
+                    ch["logo"] = ic[eid2]
+
         tid = ch.get("tvg_id","")
         if tid in OVERRIDES.get("rename_by_tvg_id", {}):
             ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
 
+    # Развёртка URL в отдельные каналы с [host]
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
@@ -673,10 +691,13 @@ def cmd_build():
     if (DATA / "ua_cache.json").exists():
         ua_cache = json.loads((DATA / "ua_cache.json").read_text("utf-8"))
 
+    # ===== АВТООЧИСТКА =====
     total = len(channels)
     checked = sum(1 for c in channels if c["name"] in check)
     if CFG.get("auto_cleanup") and total and checked / total >= CFG.get("auto_cleanup_ready_ratio", 0.7):
+        before = total
         channels = [c for c in channels if c.get("is_whitelist") or check.get(c["name"], {}).get("ok", True)]
+        print(f"[build] автоочистка: удалено {before - len(channels)} мёртвых")
 
     out_groups = []
     for grp in WL_GROUPS_ORDER:
@@ -746,6 +767,7 @@ let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div
 h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
 h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
 h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
+h+='<div class="row"><b>С резервом</b><span>'+d.with_fallback+'</span></div>';
 h+='<div class="row"><b>UA-хостов</b><span>'+d.ua_hosts+'</span></div>';
 h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
 h+='<h1 style="margin-top:1rem">Категории</h1>';
@@ -763,6 +785,7 @@ document.getElementById('s').innerHTML=h;});</script></body></html>"""
           f"- Всего: {dash['total']}",
           f"- Живых: **{dash['alive']}**",
           f"- Whitelist: {dash['whitelist']}",
+          f"- С резервными ссылками: {dash['with_fallback']}",
           f"- UA-хостов: {dash['ua_hosts']}",
           f"- В «Разное» (требует разбора): {dash['unmatched']}", "",
           "## Категории", "", "| Категория | Каналов |", "|---|---|"]
