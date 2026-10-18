@@ -8,9 +8,9 @@
   "auto_cleanup_ready_ratio": 0.7,
   "epg_url": "https://iptvx.one/epg/epg_lite.xml.gz",
   "epg_url_fallback": "http://iptvx.one/epg/epg_lite.xml.gz",
-  "epg_ttl_hours": 168,
+  "epg_ttl_hours": 336,
   "api_url": "https://iptv-org.github.io/api/channels.json",
-  "api_ttl_hours": 168,
+  "api_ttl_hours": 336,
   "output_m3u": "clean_sorted_channels.m3u",
   "whitelist_file": "whitelist.m3u",
   "whitelist_groups_order": [
