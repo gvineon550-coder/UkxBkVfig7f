@@ -1,19 +1,19 @@
 {
-  "updated": "2026-10-30 00:29 MSK",
-  "total": 477,
-  "alive": 279,
+  "updated": "2026-10-30 00:59 MSK",
+  "total": 474,
+  "alive": 278,
   "with_fallback": 0,
   "whitelist": 192,
   "ua_hosts": 187,
   "unmatched": 0,
-  "with_logo": 473,
+  "with_logo": 470,
   "without_logo": 4,
-  "deleted": 250,
-  "rehabilitated": 4,
+  "deleted": 251,
+  "rehabilitated": 2,
   "epg_match": {
     "whitelist": 192,
     "fallback": 40,
-    "direct": 230,
+    "direct": 227,
     "fuzzy_85": 3,
     "fuzzy_81": 3,
     "fuzzy_88": 1,
@@ -25,37 +25,32 @@
   },
   "recent_dead": [
     {
-      "name": "РБК (СПБ) (576p)",
-      "last_ok": "2026-10-30 00:09 MSK",
+      "name": "Шансон ТВ (512p) [Geo-blocked]",
+      "last_ok": "2026-10-30 00:29 MSK",
       "fails": 1
     },
     {
-      "name": "Ю [bl.rutube.ru]",
-      "last_ok": "2026-10-30 00:09 MSK",
-      "fails": 1
-    },
-    {
-      "name": "Bollywood HD Russia (576p)",
-      "last_ok": "2026-10-30 00:09 MSK",
+      "name": "ARTN TV (1080p) [Not 24/7]",
+      "last_ok": "2026-10-30 00:29 MSK",
       "fails": 1
     },
     {
       "name": "ЯПервый HD",
       "last_ok": "2026-10-30 00:09 MSK",
-      "fails": 1
+      "fails": 2
     }
   ],
   "categories": {
-    "Федеральные": 85,
+    "Федеральные": 83,
     "Новостные": 34,
-    "Кино": 42,
+    "Кино": 47,
     "Сериалы": 3,
     "Сериалы НТВ": 7,
     "Спорт": 16,
     "Познавательные": 38,
     "Документальные": 9,
-    "Музыкальные": 22,
-    "Развлекательные": 24,
+    "Музыкальные": 18,
+    "Развлекательные": 22,
     "Радио": 2,
     "Разное": 0
   }
