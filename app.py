@@ -27,11 +27,13 @@ UA_POOL = _load(ROOT / "useragents.json")
 OVERRIDES = _load(ROOT / "overrides.json")
 BLOCKLIST = _load(ROOT / "blocklist.json")
 
-CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Религиозные","Радио","Разное"])
+CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Религиозные","Радио","Разное"])
 EMOJI = CFG.get("category_emoji", {})
 CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
+MAX_CONSECUTIVE_FAILS = CFG.get("max_consecutive_fails", 2)
+DROP_CATS = set(CFG.get("drop_categories", []))
 
 API_VER = 3
 RAW_KEYWORDS = (
@@ -180,12 +182,15 @@ PRIV_RE = re.compile(r'^https?://(localhost|127\.|0\.0\.0\.0|10\.|192\.168\.|172
 FAKE_RE = re.compile(r'\.(local|test|invalid|example|localhost)(\b|:|/)', re.I)
 BAD_EXT = tuple(BLOCKLIST.get("bad_extensions", [".html",".zip",".exe",".apk",".jpg",".png",".gif"]))
 BAD_DOMAINS = tuple(BLOCKLIST.get("bad_domains_suffix", []))
+BAD_PORTS = tuple(BLOCKLIST.get("bad_ports", []))
 
 def is_junk_url(u):
     if not u or not re.match(r'^https?://', u): return True
     if PRIV_RE.search(u): return True
     if FAKE_RE.search(u): return True
     if u.lower().split("?")[0].endswith(BAD_EXT): return True
+    for bp in BAD_PORTS:
+        if bp in u: return True
     host = urlparse(u).netloc.lower().split(":")[0]
     for bd in BAD_DOMAINS:
         if host == bd or host.endswith("." + bd):
@@ -429,7 +434,7 @@ def cmd_parse():
             seen.add(u)
             channels.append({
                 "name": n, "url": u,
-                "tvg_id": "" if base_id in clear_ids else tid,
+                "tvg_id": "" if base_id in clear_ids or tid in clear_ids else tid,
                 "tvg_name": a.get("tvg-name",""),
                 "logo": a.get("tvg-logo",""),
                 "group": a.get("group-title",""),
@@ -445,6 +450,8 @@ def cmd_parse():
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
     nn = norm_name(name)
+    if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
+        return OVERRIDES["category_by_tvg_id"][tvg_id]
     for key, cat in RAW_KEYWORDS:
         if key in low: return cat
     base_id = tvg_id.split("@")[0] if tvg_id else ""
@@ -566,7 +573,8 @@ def cmd_categorize():
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override_by_base"] += 1
 
-    channels = [ch for ch in channels if ch.get("category") != "DELETE"]
+    drop_cats = {"DELETE"} | DROP_CATS
+    channels = [ch for ch in channels if ch.get("category") not in drop_cats]
 
     groups = defaultdict(list)
     for ch in channels:
@@ -699,6 +707,13 @@ def migrate_cache():
     DATA.joinpath("ua_cache.json").write_text(json.dumps(new, ensure_ascii=False, indent=1), "utf-8")
     print(f"[migrate] cache.json -> data/ua_cache.json, хостов: {len(new)}")
 
+def load_history():
+    p = DATA / "history.json"
+    if p.exists():
+        try: return json.loads(p.read_text("utf-8"))
+        except: pass
+    return {}
+
 def cmd_check():
     print("=== CHECK ===")
     if (ROOT / "cache.json").exists() and not (DATA / "ua_cache.json").exists():
@@ -742,6 +757,19 @@ def cmd_check():
 
     cp.write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
     DATA.joinpath("check.json").write_text(json.dumps({"updated": now_msk(), "results": results}, ensure_ascii=False), "utf-8")
+
+    history = load_history()
+    for name, r in results.items():
+        prev = history.get(name, {})
+        if r.get("ok"):
+            history[name] = {"fail_count": 0, "last_ok": now_msk()}
+        else:
+            history[name] = {
+                "fail_count": prev.get("fail_count", 0) + 1,
+                "last_ok": prev.get("last_ok", ""),
+            }
+    DATA.joinpath("history.json").write_text(json.dumps(history, ensure_ascii=False, indent=1), "utf-8")
+
     ok = sum(1 for r in results.values() if r.get("ok"))
     print(f"[check] {ok}/{total} живых")
 
@@ -756,8 +784,8 @@ def cmd_build():
     ua_cache = {}
     if (DATA / "ua_cache.json").exists():
         ua_cache = json.loads((DATA / "ua_cache.json").read_text("utf-8"))
+    history = load_history()
 
-    # Загружаем EPG, чтобы знать все реально существующие ID
     epg_bn, epg_bt, epg_bp, epg_ic, epg_ru = load_epg_map()
     epg_ids = set()
     epg_ids.update(epg_bn.values())
@@ -770,8 +798,14 @@ def cmd_build():
                 epg_ids.add(item[1])
     print(f"[build] EPG IDs: {len(epg_ids)}")
 
+    def clean_name_for_fuzzy(name):
+        n = name.lower()
+        n = re.sub(r'\(.*?\)|\[.*?\]', ' ', n)
+        n = re.sub(r'\b(hd|fhd|uhd|4k|1080p|720p|sd)\b', ' ', n)
+        n = re.sub(r'\b(international|europa|europe|cis|asia|russia|kazakhstan)\b', ' ', n)
+        return re.sub(r'\s+', ' ', n).strip()
+
     def pick_epg_id(tid, name):
-        """Возвращает ID, который реально есть в EPG."""
         candidates = []
         if tid:
             candidates.append(tid)
@@ -780,15 +814,14 @@ def cmd_build():
         eid, _ = resolve_epg(name, epg_bn, epg_bt, epg_bp)
         if eid:
             candidates.append(eid)
-        # Прямые кандидаты
         for c in candidates:
             if c in epg_ids:
                 return c, "direct"
-        # Fuzzy по вариантам имени
-        nn = norm_name(name)
+
+        nn = clean_name_for_fuzzy(name)
         if nn:
             variants = [nn]
-            for prefix in ("viju ", "viacom ", "viasat "):
+            for prefix in ("viasat ", "mtv ", "discovery ", "nat geo "):
                 if nn.startswith(prefix):
                     v = nn[len(prefix):]
                     if len(v) >= 4:
@@ -800,19 +833,30 @@ def cmd_build():
                     if abs(len(key) - len(variant)) > 12: continue
                     r = SequenceMatcher(None, variant, key).ratio() * 100
                     if r > best_r: best_r, best = r, cid
-                if best and best_r >= 85:
+                if best and best_r >= 80:
                     return best, f"fuzzy_{int(best_r)}"
-        # Fallback
+
         if tid and "@" in tid:
             return tid.split("@")[0], "fallback"
         return tid or "", "fallback"
 
-    total = len(channels)
-    checked = sum(1 for c in channels if c["name"] in check)
-    if CFG.get("auto_cleanup") and total and checked / total >= CFG.get("auto_cleanup_ready_ratio", 0.7):
-        before = total
-        channels = [c for c in channels if c.get("is_whitelist") or check.get(c["name"], {}).get("ok", True)]
-        print(f"[build] автоочистка: удалено {before - len(channels)} мёртвых")
+    before = len(channels)
+    kept_channels, rehab = [], []
+    for c in channels:
+        if c.get("is_whitelist"):
+            kept_channels.append(c); continue
+        r = check.get(c["name"])
+        if not r:
+            kept_channels.append(c); continue
+        if r.get("ok"):
+            kept_channels.append(c); continue
+        fc = history.get(c["name"], {}).get("fail_count", 1)
+        if fc < MAX_CONSECUTIVE_FAILS:
+            kept_channels.append(c); rehab.append(c["name"])
+    channels = kept_channels
+    deleted = before - len(channels)
+    if CFG.get("auto_cleanup"):
+        print(f"[build] автоочистка: удалено {deleted} мёртвых, реабилитировано {len(rehab)}")
 
     out_groups = []
     for grp in WL_GROUPS_ORDER:
@@ -825,10 +869,9 @@ def cmd_build():
     by_cat = defaultdict(list)
     for c in channels:
         if c.get("is_whitelist"): continue
-        r = check.get(c["name"])
-        if r and not r.get("ok"): continue
         by_cat[c["category"]].append(c)
     for cat in CATS:
+        if cat in DROP_CATS: continue
         items = by_cat.get(cat, [])
         if items: out_groups.append((f"{EMOJI.get(cat,'')} {cat}", items))
 
@@ -870,6 +913,11 @@ def cmd_build():
     print(f"[build] логотипы: {with_logo} с лого, {without_logo} без")
     print(f"[build] EPG match: {dict(epg_pick_stats)}")
 
+    recent_dead = sorted(
+        [(n, h) for n, h in history.items() if h.get("fail_count", 0) >= 1 and h.get("last_ok")],
+        key=lambda x: x[1].get("last_ok", ""), reverse=True
+    )[:10]
+
     dash = {
         "updated": now_msk(),
         "total": len(channels),
@@ -880,30 +928,104 @@ def cmd_build():
         "unmatched": len(unmatched),
         "with_logo": with_logo,
         "without_logo": without_logo,
+        "deleted": deleted,
+        "rehabilitated": len(rehab),
         "epg_match": dict(epg_pick_stats),
-        "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS},
+        "recent_dead": [{"name": n, "last_ok": h.get("last_ok",""), "fails": h.get("fail_count",0)} for n, h in recent_dead if h.get("fail_count",0) >= 1],
+        "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS if cat not in DROP_CATS},
     }
     (ROOT / "dashboard.json").write_text(json.dumps(dash, ensure_ascii=False, indent=2), "utf-8")
 
-    idx = """<!doctype html><html lang="ru"><head><meta charset="utf-8">
+    idx = """<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IPTV Dashboard</title>
-<style>body{font-family:system-ui;margin:1rem;max-width:640px}h1{font-size:1.3rem}
-.row{display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding:.35rem 0}
-a{color:#0366d6}</style></head><body>
-<h1>IPTV Dashboard</h1><div id="s">загрузка...</div>
-<script>fetch('dashboard.json').then(r=>r.json()).then(d=>{
-let h='<div class="row"><b>Обновлено</b><span>'+d.updated+'</span></div>';
-h+='<div class="row"><b>Всего</b><span>'+d.total+'</span></div>';
-h+='<div class="row"><b>Живых</b><span>'+d.alive+'</span></div>';
-h+='<div class="row"><b>Whitelist</b><span>'+d.whitelist+'</span></div>';
-h+='<div class="row"><b>С логотипом</b><span>'+d.with_logo+'</span></div>';
-h+='<div class="row"><b>Без логотипа</b><span>'+d.without_logo+'</span></div>';
-h+='<div class="row"><b>Разное</b><span>'+d.unmatched+'</span></div>';
-h+='<h1 style="margin-top:1rem">Категории</h1>';
-for(const[k,v] of Object.entries(d.categories))h+='<div class="row">'+k+'<span>'+v+'</span></div>';
-h+='<p style="margin-top:1rem"><a href="clean_sorted_channels.m3u">clean_sorted_channels.m3u</a></p>';
-document.getElementById('s').innerHTML=h;});</script></body></html>"""
+<style>
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#2ea043; --accent-soft:#238636; --danger:#f85149; --warn:#d29922; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:clamp(1rem,4vw,2.5rem); max-width:1100px; margin:0 auto; }
+  h1 { font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .25rem; font-weight:700; letter-spacing:-.02em; }
+  h2 { font-size:clamp(1.1rem,2vw,1.35rem); margin:2rem 0 1rem; font-weight:600; }
+  .subtitle { color:var(--muted); margin:0 0 2rem; font-size:.95rem; }
+  .grid { display:grid; gap:1rem; }
+  .stats { grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); }
+  .stat { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; }
+  .stat-label { color:var(--muted); font-size:.8rem; text-transform:uppercase; letter-spacing:.04em; }
+  .stat-value { font-size:clamp(1.4rem,3vw,1.9rem); font-weight:700; margin-top:.25rem; }
+  .stat.ok .stat-value { color:var(--accent); }
+  .stat.dead .stat-value { color:var(--danger); }
+  .progress { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; margin-top:1rem; }
+  .progress-label { display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:.5rem; }
+  .progress-label b { color:var(--accent); }
+  .progress-bar { height:10px; background:#21262d; border-radius:999px; overflow:hidden; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent-soft),var(--accent)); transition:width .6s ease; }
+  .cats { grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); }
+  .cat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.8rem 1rem; display:flex; justify-content:space-between; align-items:center; font-size:.92rem; }
+  .cat-name { color:var(--text); }
+  .cat-count { color:var(--muted); font-weight:600; font-variant-numeric:tabular-nums; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; margin-top:1rem; }
+  .card h3 { margin:0 0 .75rem; font-size:1rem; font-weight:600; }
+  .list { list-style:none; padding:0; margin:0; }
+  .list li { display:flex; justify-content:space-between; padding:.4rem 0; border-bottom:1px solid #21262d; font-size:.88rem; }
+  .list li:last-child { border-bottom:none; }
+  .list .muted { color:var(--muted); font-variant-numeric:tabular-nums; }
+  .btn { display:inline-block; margin-top:1.5rem; padding:.75rem 1.25rem; background:var(--accent-soft); color:#fff; text-decoration:none; border-radius:8px; font-weight:600; font-size:.92rem; }
+  .footer { margin-top:2rem; color:var(--muted); font-size:.8rem; text-align:center; }
+</style>
+</head>
+<body>
+  <h1>📺 IPTV Dashboard</h1>
+  <p class="subtitle">Только русскоязычные каналы. Автообновление.</p>
+  <div id="app"><p class="subtitle">Загрузка...</p></div>
+<script>
+fetch('dashboard.json').then(r => r.json()).then(d => {
+  const total = d.total || 0, alive = d.alive || 0;
+  const pct = total > 0 ? Math.round(alive / total * 100) : 0;
+  const dead = total - alive;
+  const catsHtml = Object.entries(d.categories || {}).filter(([k, v]) => v > 0)
+    .map(([k, v]) => `<div class="cat"><span class="cat-name">${k}</span><span class="cat-count">${v}</span></div>`).join('');
+  const deadHtml = (d.recent_dead || []).length
+    ? d.recent_dead.map(x => `<li><span>${x.name}</span><span class="muted">${x.last_ok || '—'}</span></li>`).join('')
+    : '<li><span class="muted">Все каналы живы 🎉</span></li>';
+  const fuzzyCount = Object.entries(d.epg_match || {}).filter(([k]) => k.startsWith('fuzzy')).reduce((a, [, v]) => a + v, 0);
+  document.getElementById('app').innerHTML = `
+    <div class="grid stats">
+      <div class="stat"><div class="stat-label">Обновлено</div><div class="stat-value" style="font-size:.95rem;font-weight:500">${d.updated}</div></div>
+      <div class="stat"><div class="stat-label">Всего</div><div class="stat-value">${total}</div></div>
+      <div class="stat ok"><div class="stat-label">Живых</div><div class="stat-value">${alive}</div></div>
+      <div class="stat dead"><div class="stat-label">Мёртвых</div><div class="stat-value">${dead}</div></div>
+      <div class="stat"><div class="stat-label">Whitelist</div><div class="stat-value">${d.whitelist || 0}</div></div>
+      <div class="stat ok"><div class="stat-label">С логотипом</div><div class="stat-value">${d.with_logo || 0}</div></div>
+    </div>
+    <div class="progress">
+      <div class="progress-label"><span>Живучесть плейлиста</span><span><b>${pct}%</b></span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    </div>
+    <h2>Категории</h2>
+    <div class="grid cats">${catsHtml}</div>
+    <div class="card"><h3>⚠️ Недавно пропавшие каналы</h3><ul class="list">${deadHtml}</ul></div>
+    <div class="card">
+      <h3>🛠️ Статистика пайплайна</h3>
+      <ul class="list">
+        <li><span>Удалено мёртвых</span><span class="muted">${d.deleted || 0}</span></li>
+        <li><span>Реабилитировано</span><span class="muted">${d.rehabilitated || 0}</span></li>
+        <li><span>Хостов в UA-кэше</span><span class="muted">${d.ua_hosts || 0}</span></li>
+        <li><span>Каналов в «Разное»</span><span class="muted">${d.unmatched || 0}</span></li>
+        <li><span>EPG найдено напрямую</span><span class="muted">${(d.epg_match && d.epg_match.direct) || 0}</span></li>
+        <li><span>EPG найдено через fuzzy</span><span class="muted">${fuzzyCount}</span></li>
+      </ul>
+    </div>
+    <a class="btn" href="clean_sorted_channels.m3u">📥 Скачать плейлист</a>
+    <p class="footer">Автообновление: каждые 3 дня · GitHub Actions</p>
+  `;
+}).catch(e => {
+  document.getElementById('app').innerHTML = '<p class="subtitle">Ошибка загрузки dashboard.json: ' + e + '</p>';
+});
+</script>
+</body>
+</html>"""
     (ROOT / "index.html").write_text(idx, "utf-8")
 
     repo = os.getenv("GITHUB_REPOSITORY", "gvineon550-coder/lindsben_iptv-")
@@ -920,6 +1042,7 @@ document.getElementById('s').innerHTML=h;});</script></body></html>"""
           f"- В «Разное»: {dash['unmatched']}", "",
           "## Категории", "", "| Категория | Каналов |", "|---|---|"]
     for cat in CATS:
+        if cat in DROP_CATS: continue
         rd.append(f"| {EMOJI.get(cat,'')} {cat} | {dash['categories'].get(cat,0)} |")
     rd += ["", "## Ссылки", "",
            f"- Плейлист: `{pages}`",
