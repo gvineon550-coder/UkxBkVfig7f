@@ -450,22 +450,30 @@ def cmd_parse():
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
     nn = norm_name(name)
+    # 1. Полный tvg_id из overrides (приоритет над RAW_KEYWORDS)
     if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][tvg_id]
-    for key, cat in RAW_KEYWORDS:
-        if key in low: return cat
+    # 2. Базовый tvg_id без суффикса (@SD/@HD) — тоже из overrides
     base_id = tvg_id.split("@")[0] if tvg_id else ""
     if base_id and base_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][base_id]
+    # 3. Сырые ключевые слова в названии
+    for key, cat in RAW_KEYWORDS:
+        if key in low: return cat
+    # 4. Название из overrides
     if nn in OVERRIDES.get("category_by_name", {}):
         return OVERRIDES["category_by_name"][nn]
+    # 5. API категории
     if base_id and base_id in api_cats: return api_cats[base_id]
     if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
+    # 6. Регионы
     for city in CITY_HINTS:
         if city in nn: return "Региональные"
+    # 7. Ключевые слова из config.json
     for cat, kws in CAT_KW.items():
         for k in kws:
             if k in low: return cat
+    # 8. По group-title
     g = (group or "").lower()
     for cat in CATS:
         if cat.lower() in g: return cat
@@ -840,8 +848,6 @@ def cmd_build():
             return tid.split("@")[0], "fallback"
         return tid or "", "fallback"
 
-    # Автоочистка с УМНОЙ реабилитацией:
-    # реабилитируем только если канал раньше был живым (last_ok != "")
     before = len(channels)
     kept_channels, rehab = [], []
     for c in channels:
@@ -857,7 +863,6 @@ def cmd_build():
         fc = prev.get("fail_count", 1)
         if fc < MAX_CONSECUTIVE_FAILS and was_alive:
             kept_channels.append(c); rehab.append(c["name"])
-        # иначе — удалён (не добавляем)
     channels = kept_channels
     deleted = before - len(channels)
     if CFG.get("auto_cleanup"):
