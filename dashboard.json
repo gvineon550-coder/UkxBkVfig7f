@@ -1,44 +1,62 @@
 {
-  "updated": "2026-10-30 00:09 MSK",
-  "total": 727,
-  "alive": 281,
+  "updated": "2026-10-30 00:29 MSK",
+  "total": 477,
+  "alive": 279,
   "with_fallback": 0,
   "whitelist": 192,
   "ua_hosts": 187,
-  "unmatched": 8,
-  "with_logo": 723,
+  "unmatched": 0,
+  "with_logo": 473,
   "without_logo": 4,
-  "deleted": 0,
-  "rehabilitated": 252,
+  "deleted": 250,
+  "rehabilitated": 4,
   "epg_match": {
     "whitelist": 192,
-    "fallback": 84,
-    "direct": 405,
-    "fuzzy_83": 6,
-    "fuzzy_85": 6,
-    "fuzzy_80": 5,
-    "fuzzy_93": 3,
-    "fuzzy_81": 5,
-    "fuzzy_100": 4,
-    "fuzzy_84": 1,
-    "fuzzy_82": 1,
+    "fallback": 40,
+    "direct": 230,
+    "fuzzy_85": 3,
+    "fuzzy_81": 3,
     "fuzzy_88": 1,
-    "fuzzy_95": 2,
+    "fuzzy_95": 1,
+    "fuzzy_100": 1,
+    "fuzzy_93": 1,
+    "fuzzy_80": 1,
     "fuzzy_87": 1
   },
-  "recent_dead": [],
+  "recent_dead": [
+    {
+      "name": "РБК (СПБ) (576p)",
+      "last_ok": "2026-10-30 00:09 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Ю [bl.rutube.ru]",
+      "last_ok": "2026-10-30 00:09 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Bollywood HD Russia (576p)",
+      "last_ok": "2026-10-30 00:09 MSK",
+      "fails": 1
+    },
+    {
+      "name": "ЯПервый HD",
+      "last_ok": "2026-10-30 00:09 MSK",
+      "fails": 1
+    }
+  ],
   "categories": {
-    "Федеральные": 152,
-    "Новостные": 55,
-    "Кино": 91,
-    "Сериалы": 6,
+    "Федеральные": 85,
+    "Новостные": 34,
+    "Кино": 42,
+    "Сериалы": 3,
     "Сериалы НТВ": 7,
-    "Спорт": 38,
-    "Познавательные": 59,
-    "Документальные": 22,
-    "Музыкальные": 45,
-    "Развлекательные": 38,
+    "Спорт": 16,
+    "Познавательные": 38,
+    "Документальные": 9,
+    "Музыкальные": 22,
+    "Развлекательные": 24,
     "Радио": 2,
-    "Разное": 9
+    "Разное": 0
   }
 }
