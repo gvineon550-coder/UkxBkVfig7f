@@ -840,6 +840,8 @@ def cmd_build():
             return tid.split("@")[0], "fallback"
         return tid or "", "fallback"
 
+    # Автоочистка с УМНОЙ реабилитацией:
+    # реабилитируем только если канал раньше был живым (last_ok != "")
     before = len(channels)
     kept_channels, rehab = [], []
     for c in channels:
@@ -850,9 +852,12 @@ def cmd_build():
             kept_channels.append(c); continue
         if r.get("ok"):
             kept_channels.append(c); continue
-        fc = history.get(c["name"], {}).get("fail_count", 1)
-        if fc < MAX_CONSECUTIVE_FAILS:
+        prev = history.get(c["name"], {})
+        was_alive = prev.get("last_ok", "") != ""
+        fc = prev.get("fail_count", 1)
+        if fc < MAX_CONSECUTIVE_FAILS and was_alive:
             kept_channels.append(c); rehab.append(c["name"])
+        # иначе — удалён (не добавляем)
     channels = kept_channels
     deleted = before - len(channels)
     if CFG.get("auto_cleanup"):
