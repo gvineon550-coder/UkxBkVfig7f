@@ -1,5 +1,11 @@
 {
   "category_by_tvg_id": {
+    "Smotrim100Fakty.ru": "Познавательные",
+    "Smotrim100Prazdnik.ru": "Развлекательные",
+    "Smotrim100Lyubov.ru": "Развлекательные",
+    "Smotrim100Muzhskoe.ru": "Развлекательные",
+    "Smotrim100Klassika.ru": "Кино",
+    "Smotrim100Detskoe.ru": "Детские",
     "ChannelOne.ru": "Федеральные",
     "ChannelOneCIS.ru": "Федеральные",
     "Russia1.ru": "Федеральные",
@@ -247,7 +253,6 @@
     "312 кино": "DELETE",
     "mult": "DELETE",
     "v gostyakh u skazki": "DELETE",
-    "smotrim 100": "DELETE",
     "rtvi": "DELETE",
     "kapitan fantastika": "DELETE",
     "360 латвия": "DELETE",
