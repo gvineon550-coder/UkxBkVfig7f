@@ -41,6 +41,8 @@ jobs:
                   "ffprobe_analyzeduration": 1000000,
                   "auto_cleanup": True,
                   "auto_cleanup_ready_ratio": 0.7,
+                  "max_consecutive_fails": 2,
+                  "drop_categories": ["Религиозные", "Региональные"],
                   "epg_url": "https://iptvx.one/epg/epg_lite.xml.gz",
                   "epg_url_fallback": "http://iptvx.one/epg/epg_lite.xml.gz",
                   "epg_ttl_hours": 336,
@@ -70,7 +72,7 @@ jobs:
                       "Радио": ["радио","radio"]
                   },
                   "child_blacklist": ["детск","детвора","детское","дети","child","kids","kid ","cartoon","мульт","nickelodeon","nick jr","nickjr","nicktoons","карусель","carousel","disney","дисней","baby","tiptop","boomerang","смешарик","мультик","gulli","gulli girl","junior","джуниор","малыш","умка","clan","jimjam","jim jam","tiji","аниме","anime","ani ","мультиландия","мультимания","мультимузыка","капитан фантастика","радость моя","уникум","discovery kids","улыбка","маша и медведь","фиксики","барбоскины","черепашки ниндзя"],
-                  "trash_blacklist": ["shop","магазин","ювелир","leomax","tts","teleshop","adult","18+","test","demo","промо","promo","backup","резерв","xxx","порно","эрот"]
+                  "trash_blacklist": ["shop","магазин","ювелир","ювелирочка","магнат","leomax","tts","teleshop","adult","18+","test","demo","промо","promo","backup","резерв","xxx","порно","эрот"]
               },
               "useragents.json": {
                   "HlsWinkPlayer": "HlsWinkPlayer/3.0.2 (Linux; Android 11; Wink) ExoPlayerLib/2.18.1",
@@ -94,6 +96,15 @@ jobs:
                       "Smotrim100Fakty.ru":"Познавательные","Smotrim100Prazdnik.ru":"Развлекательные",
                       "Smotrim100Lyubov.ru":"Развлекательные","Smotrim100Muzhskoe.ru":"Развлекательные",
                       "Smotrim100Klassika.ru":"Кино","Smotrim100Detskoe.ru":"Детские",
+                      "Mir.ru@Kazakhstan":"DELETE",
+                      "Nevskiy.ru":"Сериалы НТВ","Pes.ru":"Сериалы НТВ",
+                      "Shef.ru":"Сериалы НТВ","Balabol.ru":"Сериалы НТВ",
+                      "Skorayapomoshch.ru":"Сериалы НТВ","Perviyotdel.ru":"Сериалы НТВ",
+                      "5minuttishiny.ru":"Сериалы НТВ",
+                      "LoveNature.ca":"Познавательные","Magnat.ru":"Развлекательные",
+                      "Rus.ru":"Федеральные","TVPRO.ru":"Развлекательные",
+                      "TVRUS.de":"Развлекательные","TVRUSPlus.de":"Развлекательные",
+                      "Oplot2.ru":"Новостные","Svoboda.ru":"Новостные",
                       "ChannelOne.ru":"Федеральные","ChannelOneCIS.ru":"Федеральные","Russia1.ru":"Федеральные",
                       "RussiaK.ru":"Федеральные","NTV.ru":"Федеральные","NTVVitrina.ru":"Федеральные",
                       "5kanal.ru":"Федеральные","5Kanal.ru":"Федеральные","TVCentrInternational.ru":"Федеральные",
@@ -177,6 +188,8 @@ jobs:
                       "владивосток":"Региональные","югра":"Региональные","сургут 24":"Региональные",
                       "тюмень":"Региональные","челябинск":"Региональные","оренбург":"Региональные",
                       "крым 24":"Региональные","севастополь 24":"Региональные",
+                      "с1":"DELETE","ткр":"DELETE","щёлковское":"DELETE",
+                      "крик-тв":"DELETE","продвижение":"DELETE",
                       "rt balkan":"DELETE","rt en espanol":"DELETE","312 кино":"DELETE","mult":"DELETE",
                       "v gostyakh u skazki":"DELETE","rtvi":"DELETE","kapitan fantastika":"DELETE",
                       "360 латвия":"DELETE","наше music":"DELETE","патриот":"DELETE","прима":"DELETE",
@@ -201,7 +214,7 @@ jobs:
                       "ETVPlus.ee":"ЕТВ+","Eurosport1.fr":"Eurosport 1","Eurosport2.fr":"Eurosport 2",
                       "FILMBOXPlusOne.pl":"FILMBOX+","FirstMusicChannel.by":"Первый музыкальный",
                       "Gagsnetwork.us":"Gagsnetwork","HitFM.md":"Хит FM","Hollywood.ru":"Hollywood",
-                      "KidZoneMax.ee":"KidZone Max","LoveNature.ca":"Love Nature","LuxeTV.lu":"Luxe TV",
+                      "KidZoneMax.ee":"KidZone Max","LoveNature.ca":"Лав Нейчур","LuxeTV.lu":"Luxe TV",
                       "Magnat.ru":"Магнат","Mangystay.kz":"Мангистау","Moldova1.md":"Молдова 1",
                       "Moldova2.md":"Молдова 2","Music.kg":"Музыка","MuzzOne.kz":"MuzzOne",
                       "MyZenTV.fr":"MyZen TV","NewChannelPop.ca":"Новый канал Pop","NextTV.kg":"Некст ТВ",
@@ -218,13 +231,14 @@ jobs:
                       "NationalGeographicWild.ru":"National Geographic Wild","TLC.ru":"TLC",
                       "AnimalPlanet.ru":"Animal Planet","FoodNetwork.ru":"Food Network",
                       "InvestigationDiscovery.ru":"Investigation Discovery","StarCinema.ru":"Star Cinema",
-                      "StarFamily.ru":"Star Family","Zoopark.ru":"ZooПарк"
+                      "StarFamily.ru":"Star Family","Zoopark.ru":"ZooПарк",
+                      "Oplot2.ru":"Оплот 2","Svoboda.ru":"Свобода"
                   },
-                  "clear_tvg_id": ["tv21plus"]
+                  "clear_tvg_id": ["tv21plus","NTV.ru@Plus1","NTV.ru@Plus2","NTV.ru@Plus4","NTV.ru@Plus7","Mir.ru@Kazakhstan","tro"]
               },
               "blocklist.json": {
                   "blocked_tvg_ids": ["STSLove.ru","Blokbaster.ru","TV21International.ru","Ostrosyuzhetnoye.ru","RTVi.ru","RTViUS.us","Channel9.il","DW.de","ArmeniaTVSatellite.am","LifeTV.ee","TBNBaltia.ee","RadioMir.by","AlmatyTV.kz","Channel7.kz","JibekJoly.kz","KTK.kz","Khabar.kz","NTK.kz","Ulytau.kz","SilkWay.kz","24KZ.kz","AtamekenBusiness.kz","ChannelOneEurasia.kz","RTBalkan.ru","RTenEspanol.es","RTEspanol.es","ViasatEpicDrama.ua","312Kino.ua","312TV.ua","RTN.us"],
-                  "blocked_url_hosts": ["46.53.200.153","176.118.197.101","178.134.1.158","vod.tuva.ru","kino-1.catcast.tv"],
+                  "blocked_url_hosts": ["46.53.200.153","176.118.197.101","178.134.1.158","vod.tuva.ru","kino-1.catcast.tv","178.124.179.122","178.217.49.7","45.153.24.78","5.188.159.128","185.23.80.23","109.207.243.18","217.114.191.150","194.143.148.28","46.46.143.222","91.214.48.158","78.62.9.23","212.5.144.156","45.11.139.43","88.212.15.50","93.170.254.17","188.113.190.12","89.104.114.24","185.57.68.33","178.76.68.60","213.91.179.28","91.224.16.9","45.132.87.69","31.148.5.241","31.131.139.253","31.131.141.195","88.212.7.14","tv.tuva.ru","rtmp.one.by","trk555.tv","cdn.rostelekom-tv.xyz","iam-profi.ru","tvoetv.space","5d23269b3ec0c.streamlock.net","api.alpaca.t62a.com","uiptv.do.am","edge-tv-ll.facecast.io","balancer.facecast.io","cdn-evacoder-tv.facecast.io","streaming.thestream.cyou","catchup.videoline.ru","bl.webcaster.pro","v4.proofix.ru"],
                   "blocked_urls_exact": ["https://stream.smotrim.ru/hls2/russia_k/playlist_5.m3u8"],
                   "bad_domains_suffix": ["cinerama.uz","adf.ly","shorte.st","sh.st","ouo.io","linkvertise.com","sub2unlock.com","bit.ly","tinyurl.com","goo.gl","clck.ru","vk.cc","cutt.ly","rb.gy","is.gd"],
                   "bad_extensions": [".jpg",".jpeg",".png",".gif",".webp",".bmp",".svg",".ico",".html",".htm",".php",".asp",".aspx",".jsp",".zip",".rar",".7z",".tar",".gz",".exe",".dmg",".apk",".deb",".rpm"],
