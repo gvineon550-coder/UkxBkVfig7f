@@ -15,6 +15,7 @@ permissions:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
@@ -90,6 +91,12 @@ jobs:
               "sources.txt": "# имя|url|приоритет\nRU-Streams|https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ru.m3u|0\nRU-Language|https://iptv-org.github.io/iptv/languages/rus.m3u|1\n",
               "overrides.json": {
                   "category_by_tvg_id": {
+                      "Smotrim100Fakty.ru":"Познавательные",
+                      "Smotrim100Prazdnik.ru":"Развлекательные",
+                      "Smotrim100Lyubov.ru":"Развлекательные",
+                      "Smotrim100Muzhskoe.ru":"Развлекательные",
+                      "Smotrim100Klassika.ru":"Кино",
+                      "Smotrim100Detskoe.ru":"Детские",
                       "ChannelOne.ru":"Федеральные","ChannelOneCIS.ru":"Федеральные","Russia1.ru":"Федеральные",
                       "RussiaK.ru":"Федеральные","NTV.ru":"Федеральные","NTVVitrina.ru":"Федеральные",
                       "5kanal.ru":"Федеральные","5Kanal.ru":"Федеральные","TVCentrInternational.ru":"Федеральные",
@@ -174,7 +181,7 @@ jobs:
                       "тюмень":"Региональные","челябинск":"Региональные","оренбург":"Региональные",
                       "крым 24":"Региональные","севастополь 24":"Региональные",
                       "rt balkan":"DELETE","rt en espanol":"DELETE","312 кино":"DELETE","mult":"DELETE",
-                      "v gostyakh u skazki":"DELETE","smotrim 100":"DELETE","rtvi":"DELETE","kapitan fantastika":"DELETE",
+                      "v gostyakh u skazki":"DELETE","rtvi":"DELETE","kapitan fantastika":"DELETE",
                       "360 латвия":"DELETE","наше music":"DELETE","патриот":"DELETE","прима":"DELETE",
                       "квн":"DELETE","viasat epic drama ukraine":"DELETE","русский детектив":"DELETE",
                       "русский роман":"DELETE","наше мужское":"DELETE"
@@ -183,7 +190,7 @@ jobs:
                   "clear_tvg_id": ["tv21plus"]
               },
               "blocklist.json": {
-                  "blocked_tvg_ids": ["STSLove.ru","Blokbaster.ru","TV21International.ru","Ostrosyuzhetnoye.ru","Smotrim100Fakty.ru","Smotrim100Prazdnik.ru","Smotrim100Lyubov.ru","Smotrim100Muzhskoe.ru","Smotrim100Klassika.ru","RTVi.ru","RTViUS.us","Channel9.il","DW.de","ArmeniaTVSatellite.am","LifeTV.ee","TBNBaltia.ee","RadioMir.by","AlmatyTV.kz","Channel7.kz","JibekJoly.kz","KTK.kz","Khabar.kz","NTK.kz","Ulytau.kz","SilkWay.kz","24KZ.kz","AtamekenBusiness.kz","ChannelOneEurasia.kz","RTBalkan.ru","RTenEspanol.es","RTEspanol.es","ViasatEpicDrama.ua","312Kino.ua","312TV.ua","RTN.us"],
+                  "blocked_tvg_ids": ["STSLove.ru","Blokbaster.ru","TV21International.ru","Ostrosyuzhetnoye.ru","RTVi.ru","RTViUS.us","Channel9.il","DW.de","ArmeniaTVSatellite.am","LifeTV.ee","TBNBaltia.ee","RadioMir.by","AlmatyTV.kz","Channel7.kz","JibekJoly.kz","KTK.kz","Khabar.kz","NTK.kz","Ulytau.kz","SilkWay.kz","24KZ.kz","AtamekenBusiness.kz","ChannelOneEurasia.kz","RTBalkan.ru","RTenEspanol.es","RTEspanol.es","ViasatEpicDrama.ua","312Kino.ua","312TV.ua","RTN.us"],
                   "blocked_url_hosts": ["46.53.200.153","176.118.197.101","178.134.1.158","vod.tuva.ru","kino-1.catcast.tv"],
                   "blocked_urls_exact": ["https://stream.smotrim.ru/hls2/russia_k/playlist_5.m3u8"],
                   "bad_domains_suffix": ["cinerama.uz","adf.ly","shorte.st","sh.st","ouo.io","linkvertise.com","sub2unlock.com","bit.ly","tinyurl.com","goo.gl","clck.ru","vk.cc","cutt.ly","rb.gy","is.gd"],
@@ -195,7 +202,8 @@ jobs:
           }
           for name, data in files.items():
               p = pathlib.Path(name)
-              if p.exists() and name in ("useragents.json", "sources.txt"):
+              # Защита конфигов от затирания
+              if p.exists() and name in ("useragents.json", "sources.txt", "config.json", "overrides.json", "blocklist.json"):
                   print("kept:", name)
                   continue
               if isinstance(data, str):
