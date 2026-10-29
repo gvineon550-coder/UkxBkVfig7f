@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """IPTV: parse + categorize + EPG + RU-NAME + check + build. One file."""
-import asyncio, aiohttp, json, re, sys, gzip, io, random, subprocess, time, os
+import asyncio, aiohttp, json, re, sys, gzip, io, subprocess, time, os
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from collections import defaultdict, Counter
 from urllib.parse import urlparse
 from difflib import SequenceMatcher
 import xml.etree.ElementTree as ET
+import concurrent.futures
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"; DATA.mkdir(exist_ok=True)
@@ -32,8 +33,7 @@ CAT_KW = CFG.get("category_keywords", {})
 UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
 
-API_VER = 3  # v3: отдельная загрузка logos.json
-
+API_VER = 3
 RAW_KEYWORDS = (
     ("нтв", "Федеральные"), ("рен тв", "Федеральные"), ("рен-тв", "Федеральные"),
     ("рен ", "Федеральные"), ("стс", "Федеральные"), ("тнт", "Федеральные"),
@@ -557,6 +557,9 @@ def cmd_categorize():
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
 
+    # Отсеиваем каналы, помеченные как DELETE
+    channels = [ch for ch in channels if ch.get("category") != "DELETE"]
+
     groups = defaultdict(list)
     for ch in channels:
         if ch.get("is_whitelist"):
@@ -616,18 +619,25 @@ def cmd_categorize():
 
 def pick_ua(host, ua_cache):
     saved = ua_cache.get(host)
-    order = []
-    if saved and saved in UA_POOL: order.append(saved)
-    keys = [k for k in UA_POOL if k not in order]
-    if "HlsWinkPlayer" in keys:
-        keys.remove("HlsWinkPlayer"); order.append("HlsWinkPlayer")
-    random.shuffle(keys)
-    order += sorted(keys, key=lambda k: -UA_W.get(k, 1))
-    return order
+    # Сортируем по весу
+    keys = sorted(UA_POOL.keys(), key=lambda k: (-UA_W.get(k, 1), k))
+    if saved and saved in UA_POOL:
+        keys.remove(saved)
+        keys.insert(0, saved)
+    return keys
 
 def ffprobe_ok(url, ua):
+    host = urlparse(url).netloc.lower()
+    headers = f"User-Agent: {ua}\r\n"
+    # Стелс
+    if "wink" in host: headers += "Referer: https://wink.ru/\r\n"
+    elif "rutube" in host: headers += "Referer: https://rutube.ru/\r\n"
+    else: headers += "Referer: https://yandex.ru/\r\n"
+
     cmd = ["ffprobe","-hide_banner","-loglevel","error","-of","json",
-           "-select_streams","v:0","-show_entries","stream=codec_name,width,height",
+           "-select_streams", "v:0", # Проверка только видео (радио отсеивается)
+           "-show_entries", "stream=codec_name,width,height",
+           "-headers", headers,
            "-probesize", str(CFG.get("ffprobe_probesize", 32768)),
            "-analyzeduration", str(CFG.get("ffprobe_analyzeduration", 1000000)),
            "-rw_timeout", str(int(CFG.get("ffprobe_timeout", 8) * 1_000_000)),
@@ -639,23 +649,36 @@ def ffprobe_ok(url, ua):
     except Exception: return False
 
 async def http_pre(session, url, ua):
+    host = urlparse(url).netloc.lower()
+    headers = {"User-Agent": ua, "Range": "bytes=0-2048"}
+    
+    # Стелс
+    if "wink" in host:
+        headers["Referer"] = "https://wink.ru/"
+        headers["Origin"] = "https://wink.ru"
+    elif "rutube" in host:
+        headers["Referer"] = "https://rutube.ru/"
+        headers["Origin"] = "https://rutube.ru"
+    else:
+        headers["Referer"] = "https://yandex.ru/"
+
     try:
-        h = {"User-Agent": ua, "Range": "bytes=0-2048"}
-        async with session.get(url, headers=h, timeout=aiohttp.ClientTimeout(total=CFG.get("http_timeout", 8)), allow_redirects=True) as r:
+        async with session.get(url, headers=headers, timeout=aiohttp.ClientTimeout(total=CFG.get("http_timeout", 8)), allow_redirects=True) as r:
             if r.status not in (200, 206): return False
             ct = r.headers.get("Content-Type","").lower()
             if ("text" in ct or "html" in ct) and "mpegurl" not in ct: return False
             return True
     except Exception: return False
 
-async def check_one(session, ch, sem, ua_cache, results, loop):
+async def check_one(session, ch, sem, ua_cache, results, loop, executor):
     async with sem:
         for u in ch["urls"]:
             host = urlparse(u).netloc.lower().split(":")[0]
             for k in pick_ua(host, ua_cache):
                 ua = UA_POOL[k]
                 if not await http_pre(session, u, ua): continue
-                ok = await loop.run_in_executor(None, ffprobe_ok, u, ua)
+                # Используем ограниченный пул потоков
+                ok = await loop.run_in_executor(executor, ffprobe_ok, u, ua)
                 if ok:
                     ua_cache[host] = k
                     results[ch["name"]] = {"ok": True, "url": u, "ua": k}
@@ -696,9 +719,11 @@ def cmd_check():
     sem = asyncio.Semaphore(CFG.get("concurrency", 100))
     session_holder = [None]
     loop_holder = [None]
+    # Ограничиваем количество одновременных ffprobe
+    executor_holder = [concurrent.futures.ThreadPoolExecutor(max_workers=20)]
 
     async def worker(c):
-        await check_one(session_holder[0], c, sem, ua_cache, results, loop_holder[0])
+        await check_one(session_holder[0], c, sem, ua_cache, results, loop_holder[0], executor_holder[0])
         done[0] += 1
         if results.get(c["name"], {}).get("ok"): ok_count[0] += 1
         if done[0] % 50 == 0 or done[0] == total:
@@ -709,11 +734,12 @@ def cmd_check():
             print(f"   [{bar}] {done[0]}/{total} ({pct}%) живых: {ok_count[0]}", flush=True)
 
     async def go():
-        loop_holder[0] = asyncio.get_event_loop()
+        loop_holder[0] = asyncio.get_running_loop()
         async with aiohttp.ClientSession() as s:
             session_holder[0] = s
             await asyncio.gather(*(worker(c) for c in to_check))
     asyncio.run(go())
+    executor_holder[0].shutdown()
 
     cp.write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
     DATA.joinpath("check.json").write_text(json.dumps({"updated": now_msk(), "results": results}, ensure_ascii=False), "utf-8")
