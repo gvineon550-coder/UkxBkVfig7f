@@ -757,6 +757,56 @@ def cmd_build():
     if (DATA / "ua_cache.json").exists():
         ua_cache = json.loads((DATA / "ua_cache.json").read_text("utf-8"))
 
+    # Загружаем EPG, чтобы знать все реально существующие ID
+    epg_bn, epg_bt, epg_bp, epg_ic, epg_ru = load_epg_map()
+    epg_ids = set()
+    epg_ids.update(epg_bn.values())
+    epg_ids.update(epg_bt.values())
+    epg_ids.update(epg_ic.keys())
+    epg_ids.update(epg_ru.keys())
+    for lst in epg_bp.values():
+        for item in lst:
+            if isinstance(item, (list, tuple)) and len(item) >= 2:
+                epg_ids.add(item[1])
+    print(f"[build] EPG IDs: {len(epg_ids)}")
+
+    def pick_epg_id(tid, name):
+        """Возвращает ID, который реально есть в EPG."""
+        candidates = []
+        if tid:
+            candidates.append(tid)
+            if "@" in tid:
+                candidates.append(tid.split("@")[0])
+        eid, _ = resolve_epg(name, epg_bn, epg_bt, epg_bp)
+        if eid:
+            candidates.append(eid)
+        # Прямые кандидаты
+        for c in candidates:
+            if c in epg_ids:
+                return c, "direct"
+        # Fuzzy по вариантам имени
+        nn = norm_name(name)
+        if nn:
+            variants = [nn]
+            for prefix in ("viju ", "viacom ", "viasat "):
+                if nn.startswith(prefix):
+                    v = nn[len(prefix):]
+                    if len(v) >= 4:
+                        variants.append(v)
+            for variant in variants:
+                if len(variant) < 4: continue
+                best, best_r = None, 0
+                for key, cid in epg_bn.items():
+                    if abs(len(key) - len(variant)) > 12: continue
+                    r = SequenceMatcher(None, variant, key).ratio() * 100
+                    if r > best_r: best_r, best = r, cid
+                if best and best_r >= 85:
+                    return best, f"fuzzy_{int(best_r)}"
+        # Fallback
+        if tid and "@" in tid:
+            return tid.split("@")[0], "fallback"
+        return tid or "", "fallback"
+
     total = len(channels)
     checked = sum(1 for c in channels if c["name"] in check)
     if CFG.get("auto_cleanup") and total and checked / total >= CFG.get("auto_cleanup_ready_ratio", 0.7):
@@ -793,7 +843,7 @@ def cmd_build():
     with_logo = sum(1 for c in channels if c.get("logo"))
     without_logo = len(channels) - with_logo
 
-    QUALITY_SUFFIXES = {"sd", "hd", "fhd", "uhd", "4k", "1080p", "720p"}
+    epg_pick_stats = Counter()
     lines = ['#EXTM3U url-tvg="' + CFG.get("epg_url", "") + '"']
     for grp_name, items in out_groups:
         for c in items:
@@ -802,12 +852,12 @@ def cmd_build():
             host = urlparse(u).netloc.lower().split(":")[0]
             ua = UA_POOL.get(ua_cache.get(host, "VLC"), "")
             tid = c.get("tvg_id", "")
-            # Отрезаем ТОЛЬКО суффиксы качества, а региональные (@Plus1, @Kazakhstan и т.д.) оставляем
-            if tid and "@" in tid:
-                base, sfx = tid.split("@", 1)
-                clean_tid = base if sfx.lower() in QUALITY_SUFFIXES else tid
-            else:
+            if c.get("is_whitelist"):
                 clean_tid = tid
+                how = "whitelist"
+            else:
+                clean_tid, how = pick_epg_id(tid, c["name"])
+            epg_pick_stats[how] += 1
             logo = c.get("logo", "")
             lines.append(f'#EXTINF:-1 tvg-id="{clean_tid}" tvg-logo="{logo}" group-title="{grp_name}",{c["name"]}')
             if ua: lines.append(f'#EXTVLCOPT:http-user-agent={ua}')
@@ -818,6 +868,7 @@ def cmd_build():
     total_out = sum(len(v) for _, v in out_groups)
     print(f"[build] {out_name}: {total_out} каналов в {len(out_groups)} группах")
     print(f"[build] логотипы: {with_logo} с лого, {without_logo} без")
+    print(f"[build] EPG match: {dict(epg_pick_stats)}")
 
     dash = {
         "updated": now_msk(),
@@ -829,6 +880,7 @@ def cmd_build():
         "unmatched": len(unmatched),
         "with_logo": with_logo,
         "without_logo": without_logo,
+        "epg_match": dict(epg_pick_stats),
         "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS},
     }
     (ROOT / "dashboard.json").write_text(json.dumps(dash, ensure_ascii=False, indent=2), "utf-8")
