@@ -1,12 +1,14 @@
 {
-  "updated": "2026-10-29 19:01 MSK",
-  "count": 6,
+  "updated": "2026-10-30 00:09 MSK",
+  "count": 8,
   "channels": [
-    "Oplot 2 (720p) [Geo-blocked]",
-    "Svoboda",
-    "Магнат",
-    "Русь",
-    "ТВ ПРО",
-    "ТВРУС"
+    "Ocean-TV",
+    "Univer TV [cdn.universmotri.ru]",
+    "Зоо ТВ",
+    "Некст ТВ",
+    "Про Любовь",
+    "РЖД ТВ (1080p) [Geo-blocked]",
+    "Семь",
+    "Точка"
   ]
 }
