@@ -552,10 +552,19 @@ def cmd_categorize():
                 logo_stats["no_logo"] += 1
 
         tid = ch.get("tvg_id","")
-        if tid in OVERRIDES.get("rename_by_tvg_id", {}):
-            ch["name"] = OVERRIDES["rename_by_tvg_id"][tid]
+        base_tid = tid.split("@")[0] if tid else ""
+        rename_map = OVERRIDES.get("rename_by_tvg_id", {})
+        
+        if tid in rename_map:
+            ch["name"] = rename_map[tid]
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override"] += 1
+        elif base_tid and base_tid in rename_map:
+            suffix = extract_suffix_from_tvg(tid)
+            new_name = rename_map[base_tid]
+            ch["name"] = f"{new_name} {suffix}".strip() if suffix else new_name
+            ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
+            rename_stats["override_by_base"] += 1
 
     # Отсеиваем каналы, помеченные как DELETE
     channels = [ch for ch in channels if ch.get("category") != "DELETE"]
@@ -619,7 +628,6 @@ def cmd_categorize():
 
 def pick_ua(host, ua_cache):
     saved = ua_cache.get(host)
-    # Сортируем по весу
     keys = sorted(UA_POOL.keys(), key=lambda k: (-UA_W.get(k, 1), k))
     if saved and saved in UA_POOL:
         keys.remove(saved)
@@ -629,13 +637,11 @@ def pick_ua(host, ua_cache):
 def ffprobe_ok(url, ua):
     host = urlparse(url).netloc.lower()
     headers = f"User-Agent: {ua}\r\n"
-    # Стелс
     if "wink" in host: headers += "Referer: https://wink.ru/\r\n"
     elif "rutube" in host: headers += "Referer: https://rutube.ru/\r\n"
-    else: headers += "Referer: https://yandex.ru/\r\n"
 
     cmd = ["ffprobe","-hide_banner","-loglevel","error","-of","json",
-           "-select_streams", "v:0", # Проверка только видео (радио отсеивается)
+           "-select_streams", "v:0",
            "-show_entries", "stream=codec_name,width,height",
            "-headers", headers,
            "-probesize", str(CFG.get("ffprobe_probesize", 32768)),
@@ -651,16 +657,12 @@ def ffprobe_ok(url, ua):
 async def http_pre(session, url, ua):
     host = urlparse(url).netloc.lower()
     headers = {"User-Agent": ua, "Range": "bytes=0-2048"}
-    
-    # Стелс
     if "wink" in host:
         headers["Referer"] = "https://wink.ru/"
         headers["Origin"] = "https://wink.ru"
     elif "rutube" in host:
         headers["Referer"] = "https://rutube.ru/"
         headers["Origin"] = "https://rutube.ru"
-    else:
-        headers["Referer"] = "https://yandex.ru/"
 
     try:
         async with session.get(url, headers=headers, timeout=aiohttp.ClientTimeout(total=CFG.get("http_timeout", 8)), allow_redirects=True) as r:
@@ -677,7 +679,6 @@ async def check_one(session, ch, sem, ua_cache, results, loop, executor):
             for k in pick_ua(host, ua_cache):
                 ua = UA_POOL[k]
                 if not await http_pre(session, u, ua): continue
-                # Используем ограниченный пул потоков
                 ok = await loop.run_in_executor(executor, ffprobe_ok, u, ua)
                 if ok:
                     ua_cache[host] = k
@@ -719,7 +720,6 @@ def cmd_check():
     sem = asyncio.Semaphore(CFG.get("concurrency", 100))
     session_holder = [None]
     loop_holder = [None]
-    # Ограничиваем количество одновременных ffprobe
     executor_holder = [concurrent.futures.ThreadPoolExecutor(max_workers=20)]
 
     async def worker(c):
