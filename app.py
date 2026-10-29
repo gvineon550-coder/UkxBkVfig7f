@@ -566,7 +566,6 @@ def cmd_categorize():
             ch["category"] = categorize(ch["name"], ch.get("group",""), tid, api_cats, api_names)
             rename_stats["override_by_base"] += 1
 
-    # Отсеиваем каналы, помеченные как DELETE
     channels = [ch for ch in channels if ch.get("category") != "DELETE"]
 
     groups = defaultdict(list)
@@ -794,6 +793,7 @@ def cmd_build():
     with_logo = sum(1 for c in channels if c.get("logo"))
     without_logo = len(channels) - with_logo
 
+    QUALITY_SUFFIXES = {"sd", "hd", "fhd", "uhd", "4k", "1080p", "720p"}
     lines = ['#EXTM3U url-tvg="' + CFG.get("epg_url", "") + '"']
     for grp_name, items in out_groups:
         for c in items:
@@ -802,8 +802,14 @@ def cmd_build():
             host = urlparse(u).netloc.lower().split(":")[0]
             ua = UA_POOL.get(ua_cache.get(host, "VLC"), "")
             tid = c.get("tvg_id", "")
+            # Отрезаем ТОЛЬКО суффиксы качества, а региональные (@Plus1, @Kazakhstan и т.д.) оставляем
+            if tid and "@" in tid:
+                base, sfx = tid.split("@", 1)
+                clean_tid = base if sfx.lower() in QUALITY_SUFFIXES else tid
+            else:
+                clean_tid = tid
             logo = c.get("logo", "")
-            lines.append(f'#EXTINF:-1 tvg-id="{tid}" tvg-logo="{logo}" group-title="{grp_name}",{c["name"]}')
+            lines.append(f'#EXTINF:-1 tvg-id="{clean_tid}" tvg-logo="{logo}" group-title="{grp_name}",{c["name"]}')
             if ua: lines.append(f'#EXTVLCOPT:http-user-agent={ua}')
             for u2 in c["urls"]: lines.append(u2)
 
