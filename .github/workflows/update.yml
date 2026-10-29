@@ -2,7 +2,7 @@ name: Update IPTV Playlist
 
 on:
   schedule:
-    - cron: '0 3 * * 0'
+    - cron: '0 3 */3 * *' # Раз в 3 дня в 03:00 UTC
   workflow_dispatch:
 
 concurrency:
@@ -91,12 +91,9 @@ jobs:
               "sources.txt": "# имя|url|приоритет\nRU-Streams|https://raw.githubusercontent.com/iptv-org/iptv/master/streams/ru.m3u|0\nRU-Language|https://iptv-org.github.io/iptv/languages/rus.m3u|1\n",
               "overrides.json": {
                   "category_by_tvg_id": {
-                      "Smotrim100Fakty.ru":"Познавательные",
-                      "Smotrim100Prazdnik.ru":"Развлекательные",
-                      "Smotrim100Lyubov.ru":"Развлекательные",
-                      "Smotrim100Muzhskoe.ru":"Развлекательные",
-                      "Smotrim100Klassika.ru":"Кино",
-                      "Smotrim100Detskoe.ru":"Детские",
+                      "Smotrim100Fakty.ru":"Познавательные","Smotrim100Prazdnik.ru":"Развлекательные",
+                      "Smotrim100Lyubov.ru":"Развлекательные","Smotrim100Muzhskoe.ru":"Развлекательные",
+                      "Smotrim100Klassika.ru":"Кино","Smotrim100Detskoe.ru":"Детские",
                       "ChannelOne.ru":"Федеральные","ChannelOneCIS.ru":"Федеральные","Russia1.ru":"Федеральные",
                       "RussiaK.ru":"Федеральные","NTV.ru":"Федеральные","NTVVitrina.ru":"Федеральные",
                       "5kanal.ru":"Федеральные","5Kanal.ru":"Федеральные","TVCentrInternational.ru":"Федеральные",
@@ -186,7 +183,35 @@ jobs:
                       "квн":"DELETE","viasat epic drama ukraine":"DELETE","русский детектив":"DELETE",
                       "русский роман":"DELETE","наше мужское":"DELETE"
                   },
-                  "rename_by_tvg_id": {"kino-tv-pl":"Кино ТВ","kinopokaz":"Кинопоказ"},
+                  "rename_by_tvg_id": {
+                      "ChannelOne.ru":"Первый канал","Channel8.ru":"8 канал","Cinema.ru":"Кино",
+                      "ClassicMusic.ru":"Классическая музыка","DanceHits80.ru":"Танцевальные хиты 80-х",
+                      "ExtremeSportsChannel.ru":"Экстремальные виды спорта","FAN.ru":"ФАН","FashionLifeStyle.ru":"Мода и стиль",
+                      "Hit.ru":"Хит","OceanTV.ru":"Океан ТВ","RT.ru":"РТ","RTGTV.ru":"РТГ ТВ",
+                      "SONGTVRussia.ru":"Сонг ТВ","STARTAir.ru":"СТАРТ Эйр","STARTWorld.ru":"СТАРТ Мир",
+                      "TV1000RussianKinoGlobal.ru":"TV1000 Русское кино Global","TVPRO.ru":"ТВ ПРО",
+                      "TV3.ru":"ТВ-3","U.ru":"Ю","UniverTV.ru":"Универ ТВ","vijuExplore.ru":"viju Explore",
+                      "vijuHistory.ru":"viju History","vijuTV1000.ru":"viju TV1000","vijuTV1000action.ru":"viju TV1000 action",
+                      "vijuPlusComedy.ru":"viju+ Comedy","vijuPlusMegahit.ru":"viju+ Megahit","vijuPlusPlanet.ru":"viju+ Planet",
+                      "vijuPlusPremiere.ru":"viju+ Premiere","vijuPlusSerial.ru":"viju+ Serial","vijuPlusSport.ru":"viju+ Sport",
+                      "AmediaHit.ru":"Amedia Hit","AmediaPremium.ru":"Amedia Premium","AngelTV.in":"Ангел ТВ",
+                      "BRIDGE.ru":"BRIDGE","BRIDGEClassic.ru":"BRIDGE Classic","BRIDGEDeluxe.ru":"BRIDGE Deluxe",
+                      "BRIDGEHits.ru":"BRIDGE Hits","DocuBox.nl":"ДокуБокс","ETVPlus.ee":"ЕТВ+",
+                      "Eurosport1.fr":"Евроспорт 1","Eurosport2.fr":"Евроспорт 2","FILMBOXPlusOne.pl":"ФИЛЬМБОКС+",
+                      "FirstMusicChannel.by":"Первый музыкальный","Gagsnetwork.us":"Гэгснетворк","HitFM.md":"Хит FM",
+                      "Hollywood.ru":"Голливуд","KidZoneMax.ee":"КидЗон Макс","LoveNature.ca":"Лав Нейчур",
+                      "LuxeTV.lu":"Люкс ТВ","Magnat.ru":"Магнат","Mangystay.kz":"Мангистау","Moldova1.md":"Молдова 1",
+                      "Moldova2.md":"Молдова 2","Music.kg":"Музыка","MuzzOne.kz":"МузВан","MyZenTV.fr":"МайЗен ТВ",
+                      "NewChannelPop.ca":"Новый канал Поп","NextTV.kg":"Некст ТВ","O.ru":"О!","QonaevMedia.kz":"Конаев Медиа",
+                      "Seven.ru":"Семь","SetantaSports1Eurasia.ie":"Сетанта Спорт 1","SetantaSports2Eurasia.ie":"Сетанта Спорт 2",
+                      "SilkWayCinema.kz":"Шелковый путь Кино","SmileTV.ru":"Смайл ТВ","SochiLive.ru":"Сочи Лайв",
+                      "TravelChannel.ru":"Travel Channel Европа","TravelPlusAdventure.ru":"Путешествия и приключения",
+                      "Travelxp.in":"Travelxp Россия","TV1KG.kg":"ТВ1 КГ","TV15.kg":"ТВ15","TVRUS.de":"ТВРУС",
+                      "TVRUSPlus.de":"ТВРУС+","VIVARussia.ru":"ВИВА Россия","Channel5.ru":"Пятый канал",
+                      "Channel5International.ru":"Пятый канал International","Channel10.ru":"Десятка","Channel12.ru":"12 канал",
+                      "Channel16.ru":"К16","Rus.ru":"Русь","Gorodskoytelekanal.ru":"Городской телеканал",
+                      "kino-tv-pl":"Кино ТВ","kinopokaz":"Кинопоказ"
+                  },
                   "clear_tvg_id": ["tv21plus"]
               },
               "blocklist.json": {
@@ -202,7 +227,6 @@ jobs:
           }
           for name, data in files.items():
               p = pathlib.Path(name)
-              # Защита конфигов от затирания
               if p.exists() and name in ("useragents.json", "sources.txt", "config.json", "overrides.json", "blocklist.json"):
                   print("kept:", name)
                   continue
