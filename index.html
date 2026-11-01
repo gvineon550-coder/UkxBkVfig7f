@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IPTV Dashboard</title>
 <style>
-  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#2ea043; --accent-soft:#238636; --danger:#f85149; --warn:#d29922; }
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#2ea043; --accent-soft:#238636; --danger:#f85149; }
   * { box-sizing: border-box; }
   body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:clamp(1rem,4vw,2.5rem); max-width:1100px; margin:0 auto; }
-  h1 { font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .25rem; font-weight:700; letter-spacing:-.02em; }
+  h1 { font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .25rem; font-weight:700; }
   h2 { font-size:clamp(1.1rem,2vw,1.35rem); margin:2rem 0 1rem; font-weight:600; }
   .subtitle { color:var(--muted); margin:0 0 2rem; font-size:.95rem; }
   .grid { display:grid; gap:1rem; }
@@ -22,19 +22,11 @@
   .progress-label { display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:.5rem; }
   .progress-label b { color:var(--accent); }
   .progress-bar { height:10px; background:#21262d; border-radius:999px; overflow:hidden; }
-  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent-soft),var(--accent)); transition:width .6s ease; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent-soft),var(--accent)); }
   .cats { grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); }
   .cat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.8rem 1rem; display:flex; justify-content:space-between; align-items:center; font-size:.92rem; }
-  .cat-name { color:var(--text); }
-  .cat-count { color:var(--muted); font-weight:600; font-variant-numeric:tabular-nums; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; margin-top:1rem; }
-  .card h3 { margin:0 0 .75rem; font-size:1rem; font-weight:600; }
-  .list { list-style:none; padding:0; margin:0; }
-  .list li { display:flex; justify-content:space-between; padding:.4rem 0; border-bottom:1px solid #21262d; font-size:.88rem; }
-  .list li:last-child { border-bottom:none; }
-  .list .muted { color:var(--muted); font-variant-numeric:tabular-nums; }
-  .btn { display:inline-block; margin-top:1.5rem; padding:.75rem 1.25rem; background:var(--accent-soft); color:#fff; text-decoration:none; border-radius:8px; font-weight:600; font-size:.92rem; }
-  .footer { margin-top:2rem; color:var(--muted); font-size:.8rem; text-align:center; }
+  .cat-count { color:var(--muted); font-weight:600; }
+  .btn { display:inline-block; margin-top:1.5rem; padding:.75rem 1.25rem; background:var(--accent-soft); color:#fff; text-decoration:none; border-radius:8px; font-weight:600; }
 </style>
 </head>
 <body>
@@ -47,11 +39,7 @@ fetch('dashboard.json').then(r => r.json()).then(d => {
   const pct = total > 0 ? Math.round(alive / total * 100) : 0;
   const dead = total - alive;
   const catsHtml = Object.entries(d.categories || {}).filter(([k, v]) => v > 0)
-    .map(([k, v]) => `<div class="cat"><span class="cat-name">${k}</span><span class="cat-count">${v}</span></div>`).join('');
-  const deadHtml = (d.recent_dead || []).length
-    ? d.recent_dead.map(x => `<li><span>${x.name}</span><span class="muted">${x.last_ok || '—'}</span></li>`).join('')
-    : '<li><span class="muted">Все каналы живы 🎉</span></li>';
-  const fuzzyCount = Object.entries(d.epg_match || {}).filter(([k]) => k.startsWith('fuzzy')).reduce((a, [, v]) => a + v, 0);
+    .map(([k, v]) => `<div class="cat"><span>${k}</span><span class="cat-count">${v}</span></div>`).join('');
   document.getElementById('app').innerHTML = `
     <div class="grid stats">
       <div class="stat"><div class="stat-label">Обновлено</div><div class="stat-value" style="font-size:.95rem;font-weight:500">${d.updated}</div></div>
@@ -67,23 +55,10 @@ fetch('dashboard.json').then(r => r.json()).then(d => {
     </div>
     <h2>Категории</h2>
     <div class="grid cats">${catsHtml}</div>
-    <div class="card"><h3>⚠️ Недавно пропавшие каналы</h3><ul class="list">${deadHtml}</ul></div>
-    <div class="card">
-      <h3>🛠️ Статистика пайплайна</h3>
-      <ul class="list">
-        <li><span>Удалено мёртвых</span><span class="muted">${d.deleted || 0}</span></li>
-        <li><span>Реабилитировано</span><span class="muted">${d.rehabilitated || 0}</span></li>
-        <li><span>Хостов в UA-кэше</span><span class="muted">${d.ua_hosts || 0}</span></li>
-        <li><span>Каналов в «Разное»</span><span class="muted">${d.unmatched || 0}</span></li>
-        <li><span>EPG найдено напрямую</span><span class="muted">${(d.epg_match && d.epg_match.direct) || 0}</span></li>
-        <li><span>EPG найдено через fuzzy</span><span class="muted">${fuzzyCount}</span></li>
-      </ul>
-    </div>
     <a class="btn" href="clean_sorted_channels.m3u">📥 Скачать плейлист</a>
-    <p class="footer">Автообновление: каждые 3 дня · GitHub Actions</p>
   `;
 }).catch(e => {
-  document.getElementById('app').innerHTML = '<p class="subtitle">Ошибка загрузки dashboard.json: ' + e + '</p>';
+  document.getElementById('app').innerHTML = '<p class="subtitle">Ошибка загрузки dashboard.json</p>';
 });
 </script>
 </body>

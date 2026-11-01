@@ -1,93 +1,39 @@
 {
-  "updated": "2026-11-01 15:52 MSK",
-  "total": 492,
-  "alive": 293,
+  "updated": "2026-11-01 16:08 MSK",
+  "total": 457,
+  "alive": 261,
   "with_fallback": 0,
   "whitelist": 192,
   "ua_hosts": 188,
   "unmatched": 1,
-  "with_logo": 488,
+  "with_logo": 453,
   "without_logo": 4,
-  "deleted": 234,
-  "rehabilitated": 5,
+  "deleted": 233,
+  "rehabilitated": 2,
   "epg_match": {
     "whitelist": 192,
-    "fallback": 49,
-    "direct": 231,
+    "fallback": 46,
+    "direct": 202,
     "fuzzy_85": 4,
     "fuzzy_81": 4,
     "fuzzy_84": 1,
     "fuzzy_82": 1,
-    "fuzzy_88": 1,
-    "fuzzy_95": 2,
-    "fuzzy_100": 1,
+    "fuzzy_95": 1,
     "fuzzy_93": 1,
     "fuzzy_80": 1,
     "fuzzy_87": 1
   },
-  "recent_dead": [
-    {
-      "name": "РБК (СПБ) (576p)",
-      "last_ok": "2026-11-01 13:02 MSK",
-      "fails": 1
-    },
-    {
-      "name": "Ю [bl.rutube.ru]",
-      "last_ok": "2026-11-01 13:02 MSK",
-      "fails": 1
-    },
-    {
-      "name": "Bollywood HD Russia (576p)",
-      "last_ok": "2026-11-01 13:02 MSK",
-      "fails": 1
-    },
-    {
-      "name": "За! ТВ",
-      "last_ok": "2026-11-01 13:02 MSK",
-      "fails": 1
-    },
-    {
-      "name": "ТВ1 КГ",
-      "last_ok": "2026-11-01 13:02 MSK",
-      "fails": 1
-    },
-    {
-      "name": "Шансон ТВ (512p) [Geo-blocked]",
-      "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 2
-    },
-    {
-      "name": "ВИВА Россия",
-      "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 2
-    },
-    {
-      "name": "Сити Эдем КиноДок HD",
-      "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 2
-    },
-    {
-      "name": "Суббота! [bl.rutube.ru]",
-      "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 2
-    },
-    {
-      "name": "ARTN TV (1080p) [Not 24/7]",
-      "last_ok": "2026-10-30 00:29 MSK",
-      "fails": 4
-    }
-  ],
   "categories": {
-    "Федеральные": 85,
+    "Федеральные": 80,
     "Новостные": 34,
-    "Кино": 56,
+    "Кино": 46,
     "Сериалы": 4,
     "Сериалы НТВ": 7,
-    "Спорт": 16,
-    "Познавательные": 40,
-    "Документальные": 9,
-    "Музыкальные": 20,
-    "Развлекательные": 23,
+    "Спорт": 14,
+    "Познавательные": 29,
+    "Документальные": 8,
+    "Музыкальные": 16,
+    "Развлекательные": 21,
     "Радио": 2,
     "Разное": 1
   }
