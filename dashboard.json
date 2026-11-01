@@ -1,19 +1,19 @@
 {
-  "updated": "2026-11-01 13:02 MSK",
-  "total": 496,
-  "alive": 298,
+  "updated": "2026-11-01 15:52 MSK",
+  "total": 492,
+  "alive": 293,
   "with_fallback": 0,
   "whitelist": 192,
   "ua_hosts": 188,
   "unmatched": 1,
-  "with_logo": 492,
+  "with_logo": 488,
   "without_logo": 4,
-  "deleted": 230,
-  "rehabilitated": 4,
+  "deleted": 234,
+  "rehabilitated": 5,
   "epg_match": {
     "whitelist": 192,
-    "fallback": 50,
-    "direct": 233,
+    "fallback": 49,
+    "direct": 231,
     "fuzzy_85": 4,
     "fuzzy_81": 4,
     "fuzzy_84": 1,
@@ -21,53 +21,72 @@
     "fuzzy_88": 1,
     "fuzzy_95": 2,
     "fuzzy_100": 1,
-    "fuzzy_83": 1,
     "fuzzy_93": 1,
     "fuzzy_80": 1,
     "fuzzy_87": 1
   },
   "recent_dead": [
     {
+      "name": "РБК (СПБ) (576p)",
+      "last_ok": "2026-11-01 13:02 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Ю [bl.rutube.ru]",
+      "last_ok": "2026-11-01 13:02 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Bollywood HD Russia (576p)",
+      "last_ok": "2026-11-01 13:02 MSK",
+      "fails": 1
+    },
+    {
+      "name": "За! ТВ",
+      "last_ok": "2026-11-01 13:02 MSK",
+      "fails": 1
+    },
+    {
+      "name": "ТВ1 КГ",
+      "last_ok": "2026-11-01 13:02 MSK",
+      "fails": 1
+    },
+    {
       "name": "Шансон ТВ (512p) [Geo-blocked]",
       "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 1
+      "fails": 2
     },
     {
       "name": "ВИВА Россия",
       "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 1
+      "fails": 2
     },
     {
       "name": "Сити Эдем КиноДок HD",
       "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 1
+      "fails": 2
     },
     {
       "name": "Суббота! [bl.rutube.ru]",
       "last_ok": "2026-10-31 12:15 MSK",
-      "fails": 1
+      "fails": 2
     },
     {
       "name": "ARTN TV (1080p) [Not 24/7]",
       "last_ok": "2026-10-30 00:29 MSK",
-      "fails": 3
-    },
-    {
-      "name": "ЯПервый HD",
-      "last_ok": "2026-10-30 00:09 MSK",
       "fails": 4
     }
   ],
   "categories": {
-    "Федеральные": 86,
+    "Федеральные": 85,
     "Новостные": 34,
     "Кино": 56,
     "Сериалы": 4,
     "Сериалы НТВ": 7,
     "Спорт": 16,
     "Познавательные": 40,
-    "Документальные": 10,
-    "Музыкальные": 22,
+    "Документальные": 9,
+    "Музыкальные": 20,
     "Развлекательные": 23,
     "Радио": 2,
     "Разное": 1
