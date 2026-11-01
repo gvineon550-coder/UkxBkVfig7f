@@ -1,19 +1,19 @@
 {
-  "updated": "2026-10-31 12:15 MSK",
-  "total": 493,
-  "alive": 299,
+  "updated": "2026-11-01 13:02 MSK",
+  "total": 496,
+  "alive": 298,
   "with_fallback": 0,
   "whitelist": 192,
   "ua_hosts": 188,
   "unmatched": 1,
-  "with_logo": 489,
+  "with_logo": 492,
   "without_logo": 4,
-  "deleted": 233,
-  "rehabilitated": 0,
+  "deleted": 230,
+  "rehabilitated": 4,
   "epg_match": {
     "whitelist": 192,
-    "fallback": 49,
-    "direct": 231,
+    "fallback": 50,
+    "direct": 233,
     "fuzzy_85": 4,
     "fuzzy_81": 4,
     "fuzzy_84": 1,
@@ -28,21 +28,41 @@
   },
   "recent_dead": [
     {
+      "name": "Шансон ТВ (512p) [Geo-blocked]",
+      "last_ok": "2026-10-31 12:15 MSK",
+      "fails": 1
+    },
+    {
+      "name": "ВИВА Россия",
+      "last_ok": "2026-10-31 12:15 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Сити Эдем КиноДок HD",
+      "last_ok": "2026-10-31 12:15 MSK",
+      "fails": 1
+    },
+    {
+      "name": "Суббота! [bl.rutube.ru]",
+      "last_ok": "2026-10-31 12:15 MSK",
+      "fails": 1
+    },
+    {
       "name": "ARTN TV (1080p) [Not 24/7]",
       "last_ok": "2026-10-30 00:29 MSK",
-      "fails": 2
+      "fails": 3
     },
     {
       "name": "ЯПервый HD",
       "last_ok": "2026-10-30 00:09 MSK",
-      "fails": 3
+      "fails": 4
     }
   ],
   "categories": {
-    "Федеральные": 84,
+    "Федеральные": 86,
     "Новостные": 34,
     "Кино": 56,
-    "Сериалы": 3,
+    "Сериалы": 4,
     "Сериалы НТВ": 7,
     "Спорт": 16,
     "Познавательные": 40,
