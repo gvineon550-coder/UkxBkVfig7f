@@ -27,6 +27,10 @@ UA_POOL = _load(ROOT / "useragents.json")
 OVERRIDES = _load(ROOT / "overrides.json")
 BLOCKLIST = _load(ROOT / "blocklist.json")
 
+FEATURES = CFG.get("features", {})
+DRY_RUN = CFG.get("dry_run", False)
+def feature(name): return FEATURES.get(name, False)
+
 CATS = CFG.get("category_order", ["Федеральные","Новостные","Региональные","Кино","Сериалы","Сериалы НТВ","Спорт","Познавательные","Документальные","Музыкальные","Развлекательные","Религиозные","Радио","Разное"])
 EMOJI = CFG.get("category_emoji", {})
 CAT_KW = CFG.get("category_keywords", {})
@@ -34,6 +38,7 @@ UA_W = CFG.get("ua_weights", {})
 WL_GROUPS_ORDER = CFG.get("whitelist_groups_order", ["Kinowalk", "Rutube"])
 MAX_CONSECUTIVE_FAILS = CFG.get("max_consecutive_fails", 2)
 DROP_CATS = set(CFG.get("drop_categories", []))
+FFPROBE_DEFAULT_TIMEOUT = CFG.get("ffprobe_timeout", 8)
 
 API_VER = 3
 RAW_KEYWORDS = (
@@ -399,6 +404,7 @@ def cmd_parse():
     blocked_countries = set(CFG.get("blocked_countries", []))
     blocked_hosts = set(BLOCKLIST.get("blocked_url_hosts", []))
     blocked_exact = set(BLOCKLIST.get("blocked_urls_exact", []))
+    blocked_prefixes = tuple(BLOCKLIST.get("blocked_url_prefixes", []))
     name_del = {k.lower() for k, v in OVERRIDES.get("category_by_name", {}).items() if v == "DELETE"}
     child_bl = CFG.get("child_blacklist", [])
     trash_bl = CFG.get("trash_blacklist", [])
@@ -422,6 +428,10 @@ def cmd_parse():
             if any(x in low for x in child_bl): st["child"] += 1; continue
             if any(x in low for x in trash_bl): st["trash"] += 1; continue
             if norm_name(n) in name_del: st["name_del"] += 1; continue
+
+            # Блокировка по префиксу URL (заменяет длинные списки точных URL)
+            if blocked_prefixes and u.strip().startswith(blocked_prefixes):
+                st["blocked_prefix"] += 1; continue
 
             tid = a.get("tvg-id", "")
             base_id = tid.split("@")[0] if tid else ""
@@ -450,30 +460,22 @@ def cmd_parse():
 def categorize(name, group, tvg_id, api_cats, api_names):
     low = name.lower()
     nn = norm_name(name)
-    # 1. Полный tvg_id из overrides (приоритет над RAW_KEYWORDS)
     if tvg_id and tvg_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][tvg_id]
-    # 2. Базовый tvg_id без суффикса (@SD/@HD) — тоже из overrides
     base_id = tvg_id.split("@")[0] if tvg_id else ""
     if base_id and base_id in OVERRIDES.get("category_by_tvg_id", {}):
         return OVERRIDES["category_by_tvg_id"][base_id]
-    # 3. Сырые ключевые слова в названии
     for key, cat in RAW_KEYWORDS:
         if key in low: return cat
-    # 4. Название из overrides
     if nn in OVERRIDES.get("category_by_name", {}):
         return OVERRIDES["category_by_name"][nn]
-    # 5. API категории
     if base_id and base_id in api_cats: return api_cats[base_id]
     if nn in api_names and api_names[nn] in api_cats: return api_cats[api_names[nn]]
-    # 6. Регионы
     for city in CITY_HINTS:
         if city in nn: return "Региональные"
-    # 7. Ключевые слова из config.json
     for cat, kws in CAT_KW.items():
         for k in kws:
             if k in low: return cat
-    # 8. По group-title
     g = (group or "").lower()
     for cat in CATS:
         if cat.lower() in g: return cat
@@ -641,7 +643,126 @@ def cmd_categorize():
     print(f"[cat] RU-NAME: {dict(rename_stats)}")
     print(f"[cat] LOGO: {dict(logo_stats)}")
 
-def pick_ua(host, ua_cache):
+# ============================================================
+# НОВЫЕ МЕХАНИЗМЫ (Package A): все за флагами в config.features
+# ============================================================
+
+DEAD_CACHE_TTL_DAYS = CFG.get("dead_cache_ttl_days", 30)
+DEAD_CACHE_MIN_FAILS = CFG.get("dead_cache_min_fails", 3)
+
+def load_dead_cache():
+    if not feature("dead_cache"): return {}
+    return _load(DATA / "dead_urls.json")
+
+def save_dead_cache(cache):
+    if not feature("dead_cache"): return
+    try:
+        (DATA / "dead_urls.json").write_text(json.dumps(cache, ensure_ascii=False, indent=1), "utf-8")
+    except Exception as e: print(f"  save dead_urls: {e}")
+
+def is_url_dead_cached(url, cache):
+    if not feature("dead_cache"): return False
+    info = cache.get(url)
+    if not info: return False
+    if info.get("fails", 0) < DEAD_CACHE_MIN_FAILS: return False
+    last = info.get("last_checked_ts", 0)
+    if time.time() - last > DEAD_CACHE_TTL_DAYS * 86400: return False
+    return True
+
+def update_dead_cache(cache, url, ok):
+    if not feature("dead_cache"): return
+    if ok:
+        cache.pop(url, None)
+    else:
+        prev = cache.get(url, {"fails": 0, "last_checked_ts": 0})
+        prev["fails"] = prev.get("fails", 0) + 1
+        prev["last_checked_ts"] = int(time.time())
+        cache[url] = prev
+
+def load_ua_scores():
+    ua_cache = _load(DATA / "ua_cache.json")
+    if not feature("ua_scores"): return ua_cache, {}
+    p = DATA / "ua_scores.json"
+    if p.exists():
+        return ua_cache, _load(p)
+    scores = {host: {ua: 3} for host, ua in ua_cache.items()}
+    return ua_cache, scores
+
+def save_ua_scores(ua_cache, ua_scores):
+    try:
+        (DATA / "ua_cache.json").write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
+    except Exception: pass
+    if feature("ua_scores"):
+        try:
+            (DATA / "ua_scores.json").write_text(json.dumps(ua_scores, ensure_ascii=False, indent=1), "utf-8")
+        except Exception as e: print(f"  save ua_scores: {e}")
+
+def update_ua_score(ua_scores, host, ua_name, ok):
+    if not feature("ua_scores"): return
+    scores = ua_scores.setdefault(host, {})
+    cur = scores.get(ua_name, 0)
+    scores[ua_name] = cur + (2 if ok else -1)
+
+def load_timeout_stats():
+    if not feature("adaptive_timeout"): return {}
+    return _load(DATA / "timeout_stats.json")
+
+def save_timeout_stats(stats):
+    if not feature("adaptive_timeout"): return
+    try:
+        (DATA / "timeout_stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=1), "utf-8")
+    except Exception as e: print(f"  save timeout_stats: {e}")
+
+def get_timeout(url, stats):
+    if not feature("adaptive_timeout"): return FFPROBE_DEFAULT_TIMEOUT
+    host = urlparse(url).netloc.lower().split(":")[0]
+    s = stats.get(host, {})
+    med = s.get("median_ms", 0)
+    if not med: return FFPROBE_DEFAULT_TIMEOUT
+    return max(3, int(med / 1000 * 2 + 2))
+
+def update_timeout(stats, url, elapsed_ms):
+    if not feature("adaptive_timeout"): return
+    host = urlparse(url).netloc.lower().split(":")[0]
+    s = stats.setdefault(host, {"values": []})
+    vals = s.get("values", [])
+    vals.append(int(elapsed_ms))
+    vals = vals[-20:]
+    s["values"] = vals
+    s["median_ms"] = sorted(vals)[len(vals) // 2]
+    s["samples"] = len(vals)
+
+def load_host_stats():
+    if not feature("host_stats"): return {}
+    return _load(DATA / "host_stats.json")
+
+def save_host_stats(stats):
+    if not feature("host_stats"): return
+    try:
+        (DATA / "host_stats.json").write_text(json.dumps(stats, ensure_ascii=False, indent=1), "utf-8")
+    except Exception as e: print(f"  save host_stats: {e}")
+
+def update_host_stat(stats, host, ok):
+    if not feature("host_stats"): return
+    s = stats.setdefault(host, {"ok": 0, "fail": 0})
+    if ok: s["ok"] = s.get("ok", 0) + 1
+    else: s["fail"] = s.get("fail", 0) + 1
+
+def host_is_bad(host, stats):
+    if not feature("host_stats"): return False
+    s = stats.get(host, {})
+    return s.get("ok", 0) == 0 and s.get("fail", 0) >= 10
+
+# ============================================================
+
+def pick_ua(host, ua_cache, ua_scores):
+    if feature("ua_scores") and host in ua_scores:
+        scores = ua_scores[host]
+        keys = sorted(scores.keys(), key=lambda k: (-scores.get(k, 0), -UA_W.get(k, 1)))
+        for k in UA_POOL.keys():
+            if k not in keys:
+                keys.append(k)
+        return [k for k in keys if scores.get(k, 0) >= -5 or k not in scores]
     saved = ua_cache.get(host)
     keys = sorted(UA_POOL.keys(), key=lambda k: (-UA_W.get(k, 1), k))
     if saved and saved in UA_POOL:
@@ -649,7 +770,8 @@ def pick_ua(host, ua_cache):
         keys.insert(0, saved)
     return keys
 
-def ffprobe_ok(url, ua):
+def ffprobe_ok(url, ua, timeout=None):
+    if timeout is None: timeout = FFPROBE_DEFAULT_TIMEOUT
     host = urlparse(url).netloc.lower()
     headers = f"User-Agent: {ua}\r\n"
     if "wink" in host: headers += "Referer: https://wink.ru/\r\n"
@@ -661,10 +783,10 @@ def ffprobe_ok(url, ua):
            "-headers", headers,
            "-probesize", str(CFG.get("ffprobe_probesize", 32768)),
            "-analyzeduration", str(CFG.get("ffprobe_analyzeduration", 1000000)),
-           "-rw_timeout", str(int(CFG.get("ffprobe_timeout", 8) * 1_000_000)),
+           "-rw_timeout", str(int(timeout * 1_000_000)),
            "-user_agent", ua, "-i", url]
     try:
-        r = subprocess.run(cmd, capture_output=True, timeout=CFG.get("ffprobe_timeout", 8) + 3)
+        r = subprocess.run(cmd, capture_output=True, timeout=timeout + 3)
         if r.returncode != 0: return False
         return bool(json.loads(r.stdout or b"{}").get("streams"))
     except Exception: return False
@@ -678,7 +800,6 @@ async def http_pre(session, url, ua):
     elif "rutube" in host:
         headers["Referer"] = "https://rutube.ru/"
         headers["Origin"] = "https://rutube.ru"
-
     try:
         async with session.get(url, headers=headers, timeout=aiohttp.ClientTimeout(total=CFG.get("http_timeout", 8)), allow_redirects=True) as r:
             if r.status not in (200, 206): return False
@@ -687,18 +808,35 @@ async def http_pre(session, url, ua):
             return True
     except Exception: return False
 
-async def check_one(session, ch, sem, ua_cache, results, loop, executor):
+async def check_one(session, ch, sem, ua_cache, ua_scores, dead_cache, timeout_stats, host_stats, results, loop, executor):
     async with sem:
         for u in ch["urls"]:
+            if is_url_dead_cached(u, dead_cache):
+                continue
             host = urlparse(u).netloc.lower().split(":")[0]
-            for k in pick_ua(host, ua_cache):
+            url_ok = False
+            for k in pick_ua(host, ua_cache, ua_scores):
                 ua = UA_POOL[k]
-                if not await http_pre(session, u, ua): continue
-                ok = await loop.run_in_executor(executor, ffprobe_ok, u, ua)
+                if not await http_pre(session, u, ua):
+                    update_ua_score(ua_scores, host, k, False)
+                    continue
+                timeout = get_timeout(u, timeout_stats)
+                start = time.time()
+                ok = await loop.run_in_executor(executor, ffprobe_ok, u, ua, timeout)
+                elapsed_ms = (time.time() - start) * 1000
+                update_timeout(timeout_stats, u, elapsed_ms)
                 if ok:
                     ua_cache[host] = k
+                    update_ua_score(ua_scores, host, k, True)
+                    url_ok = True
                     results[ch["name"]] = {"ok": True, "url": u, "ua": k}
-                    return
+                    break
+                else:
+                    update_ua_score(ua_scores, host, k, False)
+            update_dead_cache(dead_cache, u, url_ok)
+            update_host_stat(host_stats, host, url_ok)
+            if url_ok:
+                return
         results[ch["name"]] = {"ok": False}
 
 def migrate_cache():
@@ -734,8 +872,11 @@ def cmd_check():
     total = len(to_check)
     print(f"   whitelist {wl_count} пропускаем, проверяем {total}", flush=True)
 
-    cp = DATA / "ua_cache.json"
-    ua_cache = json.loads(cp.read_text("utf-8")) if cp.exists() else {}
+    ua_cache, ua_scores = load_ua_scores()
+    dead_cache = load_dead_cache()
+    timeout_stats = load_timeout_stats()
+    host_stats = load_host_stats()
+
     results = {}
     done = [0]
     ok_count = [0]
@@ -745,7 +886,7 @@ def cmd_check():
     executor_holder = [concurrent.futures.ThreadPoolExecutor(max_workers=20)]
 
     async def worker(c):
-        await check_one(session_holder[0], c, sem, ua_cache, results, loop_holder[0], executor_holder[0])
+        await check_one(session_holder[0], c, sem, ua_cache, ua_scores, dead_cache, timeout_stats, host_stats, results, loop_holder[0], executor_holder[0])
         done[0] += 1
         if results.get(c["name"], {}).get("ok"): ok_count[0] += 1
         if done[0] % 50 == 0 or done[0] == total:
@@ -763,7 +904,11 @@ def cmd_check():
     asyncio.run(go())
     executor_holder[0].shutdown()
 
-    cp.write_text(json.dumps(ua_cache, ensure_ascii=False, indent=1), "utf-8")
+    save_ua_scores(ua_cache, ua_scores)
+    save_dead_cache(dead_cache)
+    save_timeout_stats(timeout_stats)
+    save_host_stats(host_stats)
+
     DATA.joinpath("check.json").write_text(json.dumps({"updated": now_msk(), "results": results}, ensure_ascii=False), "utf-8")
 
     history = load_history()
@@ -772,10 +917,7 @@ def cmd_check():
         if r.get("ok"):
             history[name] = {"fail_count": 0, "last_ok": now_msk()}
         else:
-            history[name] = {
-                "fail_count": prev.get("fail_count", 0) + 1,
-                "last_ok": prev.get("last_ok", ""),
-            }
+            history[name] = {"fail_count": prev.get("fail_count", 0) + 1, "last_ok": prev.get("last_ok", "")}
     DATA.joinpath("history.json").write_text(json.dumps(history, ensure_ascii=False, indent=1), "utf-8")
 
     ok = sum(1 for r in results.values() if r.get("ok"))
@@ -793,6 +935,7 @@ def cmd_build():
     if (DATA / "ua_cache.json").exists():
         ua_cache = json.loads((DATA / "ua_cache.json").read_text("utf-8"))
     history = load_history()
+    host_stats = load_host_stats()
 
     epg_bn, epg_bt, epg_bp, epg_ic, epg_ru = load_epg_map()
     epg_ids = set()
@@ -817,23 +960,18 @@ def cmd_build():
         candidates = []
         if tid:
             candidates.append(tid)
-            if "@" in tid:
-                candidates.append(tid.split("@")[0])
+            if "@" in tid: candidates.append(tid.split("@")[0])
         eid, _ = resolve_epg(name, epg_bn, epg_bt, epg_bp)
-        if eid:
-            candidates.append(eid)
+        if eid: candidates.append(eid)
         for c in candidates:
-            if c in epg_ids:
-                return c, "direct"
-
+            if c in epg_ids: return c, "direct"
         nn = clean_name_for_fuzzy(name)
         if nn:
             variants = [nn]
             for prefix in ("viasat ", "mtv ", "discovery ", "nat geo "):
                 if nn.startswith(prefix):
                     v = nn[len(prefix):]
-                    if len(v) >= 4:
-                        variants.append(v)
+                    if len(v) >= 4: variants.append(v)
             for variant in variants:
                 if len(variant) < 4: continue
                 best, best_r = None, 0
@@ -843,7 +981,6 @@ def cmd_build():
                     if r > best_r: best_r, best = r, cid
                 if best and best_r >= 80:
                     return best, f"fuzzy_{int(best_r)}"
-
         if tid and "@" in tid:
             return tid.split("@")[0], "fallback"
         return tid or "", "fallback"
@@ -853,11 +990,13 @@ def cmd_build():
     for c in channels:
         if c.get("is_whitelist"):
             kept_channels.append(c); continue
+        good_urls = [u for u in c["urls"] if not host_is_bad(urlparse(u).netloc.lower().split(":")[0], host_stats)]
+        if feature("host_stats") and not good_urls:
+            continue
+        if good_urls: c["urls"] = good_urls
         r = check.get(c["name"])
-        if not r:
-            kept_channels.append(c); continue
-        if r.get("ok"):
-            kept_channels.append(c); continue
+        if not r: kept_channels.append(c); continue
+        if r.get("ok"): kept_channels.append(c); continue
         prev = history.get(c["name"], {})
         was_alive = prev.get("last_ok", "") != ""
         fc = prev.get("fail_count", 1)
@@ -887,10 +1026,7 @@ def cmd_build():
 
     unmatched = sorted({c["name"] for c in by_cat.get("Разное", [])})
     (DATA / "unmatched.json").write_text(
-        json.dumps({"updated": now_msk(), "count": len(unmatched), "channels": unmatched},
-                   ensure_ascii=False, indent=2),
-        "utf-8"
-    )
+        json.dumps({"updated": now_msk(), "count": len(unmatched), "channels": unmatched}, ensure_ascii=False, indent=2), "utf-8")
     print(f"[build] Разное: {len(unmatched)} -> data/unmatched.json")
 
     with_logo = sum(1 for c in channels if c.get("logo"))
@@ -917,31 +1053,28 @@ def cmd_build():
             for u2 in c["urls"]: lines.append(u2)
 
     out_name = CFG.get("output_m3u", "clean_sorted_channels.m3u")
+    if DRY_RUN:
+        out_name = "proposed.m3u"
+        print(f"[build] DRY RUN: пишем в {out_name} (не перезаписываем основной плейлист)")
     (ROOT / out_name).write_text("\n".join(lines) + "\n", "utf-8")
     total_out = sum(len(v) for _, v in out_groups)
     print(f"[build] {out_name}: {total_out} каналов в {len(out_groups)} группах")
     print(f"[build] логотипы: {with_logo} с лого, {without_logo} без")
     print(f"[build] EPG match: {dict(epg_pick_stats)}")
 
-    recent_dead = sorted(
-        [(n, h) for n, h in history.items() if h.get("fail_count", 0) >= 1 and h.get("last_ok")],
-        key=lambda x: x[1].get("last_ok", ""), reverse=True
-    )[:10]
+    if DRY_RUN:
+        print("[build] DRY RUN: dashboard/README/index не обновляются")
+        return
 
     dash = {
-        "updated": now_msk(),
-        "total": len(channels),
+        "updated": now_msk(), "total": len(channels),
         "alive": sum(1 for r in check.values() if r.get("ok")),
         "with_fallback": sum(1 for c in channels if len(c["urls"]) > 1),
         "whitelist": sum(1 for c in channels if c.get("is_whitelist")),
-        "ua_hosts": len(ua_cache),
-        "unmatched": len(unmatched),
-        "with_logo": with_logo,
-        "without_logo": without_logo,
-        "deleted": deleted,
-        "rehabilitated": len(rehab),
+        "ua_hosts": len(ua_cache), "unmatched": len(unmatched),
+        "with_logo": with_logo, "without_logo": without_logo,
+        "deleted": deleted, "rehabilitated": len(rehab),
         "epg_match": dict(epg_pick_stats),
-        "recent_dead": [{"name": n, "last_ok": h.get("last_ok",""), "fails": h.get("fail_count",0)} for n, h in recent_dead if h.get("fail_count",0) >= 1],
         "categories": {cat: len(by_cat.get(cat, [])) for cat in CATS if cat not in DROP_CATS},
     }
     (ROOT / "dashboard.json").write_text(json.dumps(dash, ensure_ascii=False, indent=2), "utf-8")
@@ -953,10 +1086,10 @@ def cmd_build():
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>IPTV Dashboard</title>
 <style>
-  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#2ea043; --accent-soft:#238636; --danger:#f85149; --warn:#d29922; }
+  :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#c9d1d9; --muted:#8b949e; --accent:#2ea043; --accent-soft:#238636; --danger:#f85149; }
   * { box-sizing: border-box; }
   body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; padding:clamp(1rem,4vw,2.5rem); max-width:1100px; margin:0 auto; }
-  h1 { font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .25rem; font-weight:700; letter-spacing:-.02em; }
+  h1 { font-size:clamp(1.4rem,3vw,2rem); margin:0 0 .25rem; font-weight:700; }
   h2 { font-size:clamp(1.1rem,2vw,1.35rem); margin:2rem 0 1rem; font-weight:600; }
   .subtitle { color:var(--muted); margin:0 0 2rem; font-size:.95rem; }
   .grid { display:grid; gap:1rem; }
@@ -970,19 +1103,11 @@ def cmd_build():
   .progress-label { display:flex; justify-content:space-between; font-size:.9rem; margin-bottom:.5rem; }
   .progress-label b { color:var(--accent); }
   .progress-bar { height:10px; background:#21262d; border-radius:999px; overflow:hidden; }
-  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent-soft),var(--accent)); transition:width .6s ease; }
+  .progress-fill { height:100%; background:linear-gradient(90deg,var(--accent-soft),var(--accent)); }
   .cats { grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); }
   .cat { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:.8rem 1rem; display:flex; justify-content:space-between; align-items:center; font-size:.92rem; }
-  .cat-name { color:var(--text); }
-  .cat-count { color:var(--muted); font-weight:600; font-variant-numeric:tabular-nums; }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; margin-top:1rem; }
-  .card h3 { margin:0 0 .75rem; font-size:1rem; font-weight:600; }
-  .list { list-style:none; padding:0; margin:0; }
-  .list li { display:flex; justify-content:space-between; padding:.4rem 0; border-bottom:1px solid #21262d; font-size:.88rem; }
-  .list li:last-child { border-bottom:none; }
-  .list .muted { color:var(--muted); font-variant-numeric:tabular-nums; }
-  .btn { display:inline-block; margin-top:1.5rem; padding:.75rem 1.25rem; background:var(--accent-soft); color:#fff; text-decoration:none; border-radius:8px; font-weight:600; font-size:.92rem; }
-  .footer { margin-top:2rem; color:var(--muted); font-size:.8rem; text-align:center; }
+  .cat-count { color:var(--muted); font-weight:600; }
+  .btn { display:inline-block; margin-top:1.5rem; padding:.75rem 1.25rem; background:var(--accent-soft); color:#fff; text-decoration:none; border-radius:8px; font-weight:600; }
 </style>
 </head>
 <body>
@@ -995,11 +1120,7 @@ fetch('dashboard.json').then(r => r.json()).then(d => {
   const pct = total > 0 ? Math.round(alive / total * 100) : 0;
   const dead = total - alive;
   const catsHtml = Object.entries(d.categories || {}).filter(([k, v]) => v > 0)
-    .map(([k, v]) => `<div class="cat"><span class="cat-name">${k}</span><span class="cat-count">${v}</span></div>`).join('');
-  const deadHtml = (d.recent_dead || []).length
-    ? d.recent_dead.map(x => `<li><span>${x.name}</span><span class="muted">${x.last_ok || '—'}</span></li>`).join('')
-    : '<li><span class="muted">Все каналы живы 🎉</span></li>';
-  const fuzzyCount = Object.entries(d.epg_match || {}).filter(([k]) => k.startsWith('fuzzy')).reduce((a, [, v]) => a + v, 0);
+    .map(([k, v]) => `<div class="cat"><span>${k}</span><span class="cat-count">${v}</span></div>`).join('');
   document.getElementById('app').innerHTML = `
     <div class="grid stats">
       <div class="stat"><div class="stat-label">Обновлено</div><div class="stat-value" style="font-size:.95rem;font-weight:500">${d.updated}</div></div>
@@ -1015,23 +1136,10 @@ fetch('dashboard.json').then(r => r.json()).then(d => {
     </div>
     <h2>Категории</h2>
     <div class="grid cats">${catsHtml}</div>
-    <div class="card"><h3>⚠️ Недавно пропавшие каналы</h3><ul class="list">${deadHtml}</ul></div>
-    <div class="card">
-      <h3>🛠️ Статистика пайплайна</h3>
-      <ul class="list">
-        <li><span>Удалено мёртвых</span><span class="muted">${d.deleted || 0}</span></li>
-        <li><span>Реабилитировано</span><span class="muted">${d.rehabilitated || 0}</span></li>
-        <li><span>Хостов в UA-кэше</span><span class="muted">${d.ua_hosts || 0}</span></li>
-        <li><span>Каналов в «Разное»</span><span class="muted">${d.unmatched || 0}</span></li>
-        <li><span>EPG найдено напрямую</span><span class="muted">${(d.epg_match && d.epg_match.direct) || 0}</span></li>
-        <li><span>EPG найдено через fuzzy</span><span class="muted">${fuzzyCount}</span></li>
-      </ul>
-    </div>
     <a class="btn" href="clean_sorted_channels.m3u">📥 Скачать плейлист</a>
-    <p class="footer">Автообновление: каждые 3 дня · GitHub Actions</p>
   `;
 }).catch(e => {
-  document.getElementById('app').innerHTML = '<p class="subtitle">Ошибка загрузки dashboard.json: ' + e + '</p>';
+  document.getElementById('app').innerHTML = '<p class="subtitle">Ошибка загрузки dashboard.json</p>';
 });
 </script>
 </body>
